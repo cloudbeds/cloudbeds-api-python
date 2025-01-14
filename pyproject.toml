@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "cloudbeds_pms"
+description = "OpenAPI client for Cloudbeds PMS API."
+readme = "README.md"
+authors = [
+    { name = "CloudBeds"}
+]
+license = { file = "LICENSE" }
+dependencies = [
+    "urllib3 >= 1.25.3, < 3.0.0",
+    "python-dateutil >= 2.8.2, < 3.0.0",
+    "pydantic >= 2",
+    "typing-extensions >= 4.7.1",
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+requires-python = ">=3.8"
+
+[project.urls]
+Documentation = "https://github.com/cloudbeds/cloudbeds-api-python#README"
+Repository = "https://github.com/cloudbeds/cloudbeds-api-python"
+
+[project.optional-dependencies]
+testing = [
+    "pytest",
+    "coverage"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
+
+[tool.uv.workspace]
+members = ["cluodbeds_pms"]

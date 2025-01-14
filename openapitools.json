@@ -1,0 +1,21 @@
+{
+  "generator-cli": {
+    "version": "7.10.0"
+  },
+  "generatorName": "python",
+  "inputSpec": "PATH_TO_FILE",
+  "outputDir": ".",
+  "additionalProperties": {
+    "packageName": "cloudbeds_pms",
+    "projectName": "CloudBeds PMS",
+    "packageVersion": "VERSION",
+    "packageDescription": "OpenAPI client for CloudBeds PMS API.",
+    "generateSourceCodeOnly": true,
+    "packageUrl": "https://github.com/cloudbeds/cloudbeds-api-python"
+  },
+  "files": {
+    "README_onlypackage.mustache": {
+      "destinationFilename": "README.md"
+    }
+  }
+}
