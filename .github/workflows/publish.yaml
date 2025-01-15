@@ -1,0 +1,121 @@
+name: Publish new version
+
+env:
+  UV_VERSION: 0.5.20
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release'
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  release-build:
+    name: Update version and build python module
+    runs-on: default
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get API docs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
+          echo "Latest MFD tag: $MFD_TAG"
+          gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa'
+
+      - name: Setup NPM
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
+
+      - name: Generate API docs
+        run: |
+          npm install @openapitools/openapi-generator-cli -g
+          openapi-generator-cli version-manager $(cat .openapi-generator/VERSION)
+          # TODO - change file name based on branch (main or release/v1)
+          openapi-generator-cli generate -i public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml -c openapitools.json
+          rm -rf public_accessa
+
+      - name: Get next version
+        id: get_next_version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "next_version=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+            echo "Version provided: ${{ github.event.inputs.version }}"
+          else
+            current_version=$(cat VERSION)
+            echo "Current version: $current_version"
+          
+            IFS='.' read -r major minor patch <<< "$current_version"
+            minor=$((minor + 1))
+            next_version="$major.$minor.$patch"
+            echo "Next version: $next_version"
+          
+            echo "next_version=$next_version" >> $GITHUB_ENV
+          fi
+
+      - name: Bump version in files
+        if: github.event.inputs.version == ''
+        run: |
+          echo ${{ env.next_version }} > VERSION
+          sed -i 's/"packageVersion": "[0-9]*\.[0-9]*\.[0-9]*"/"packageVersion": "${{ env.next_version }}"/' openapitools.json
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add VERSION openapitools.json
+          git commit -m "Bump version to ${{ env.next_version }}"
+          git push
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      - name: Build release distributions
+        run: |
+          pip install "uv==$UV_VERSION"
+          uv sync --locked --no-dev
+          uv build
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Create Release
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create '${{ env.next_version }}' 
+          --notes '${{ env.next_version }}'
+          --target '${{ github.ref_name }}'
+          --title '${{ env.next_version }}'
+
+  pypi-publish:
+    name: Publish to PyPI
+    runs-on: default
+    needs:
+      - release-build
+    environment:
+      name: pypi
+    permissions:
+      id-token: write
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
