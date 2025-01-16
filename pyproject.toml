@@ -8,7 +8,7 @@ name = "cloudbeds_pms"
 description = "OpenAPI client for Cloudbeds PMS API."
 readme = "README.md"
 authors = [
-    { name = "CloudBeds"}
+    { name = "Cloudbeds"}
 ]
 license = { file = "LICENSE" }
 dependencies = [
@@ -47,11 +47,14 @@ testing = [
     "coverage"
 ]
 
+[dependency-groups]
+dev = [
+    "pytest",
+    "coverage"
+]
+
 [tool.setuptools.packages.find]
 where = ["."]
 
 [tool.setuptools.dynamic]
 version = { file = "VERSION" }
-
-[tool.uv.workspace]
-members = ["cluodbeds_pms"]
