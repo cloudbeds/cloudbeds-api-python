@@ -1,9 +1,8 @@
 {
   "generator-cli": {
-    "version": "7.10.0"
+    "version": "7.9.0"
   },
   "generatorName": "python",
-  "inputSpec": "PATH_TO_FILE",
   "outputDir": ".",
   "additionalProperties": {
     "packageName": "cloudbeds_pms",
