@@ -30,18 +30,28 @@ jobs:
           echo "Latest MFD tag: $MFD_TAG"
           gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa'
 
-      - name: Setup NPM
-        uses: actions/setup-node@v2
+      - name: Set path to yaml file
+        id: set-path-to-yaml
+        run: |
+          if [ "${{ github.ref_name }}" == "release/v1" ]; then
+            echo "yaml_path=public_accessa/api/v1.2/docs/cb-v1.2-openapi-3.0.1.yaml" >> $GITHUB_ENV
+          else
+            echo "yaml_path=public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml" >> $GITHUB_ENV
+          fi
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
-          node-version: '22'
+          java-version: 21
+          distribution: corretto
+
+      - name: Install OpenAPI generator
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -O openapi-generator-cli.jar
 
       - name: Generate API docs
         run: |
-          npm install @openapitools/openapi-generator-cli -g
-          openapi-generator-cli version-manager $(cat .openapi-generator/VERSION)
-          # TODO - change file name based on branch (main or release/v1)
-          openapi-generator-cli generate -i public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml -c openapitools.json
-          rm -rf public_accessa
+          java -jar openapi-generator-cli.jar generate -i ${{ env.yaml_path }} -c openapitools.json
 
       - name: Get next version
         id: get_next_version
@@ -52,12 +62,12 @@ jobs:
           else
             current_version=$(cat VERSION)
             echo "Current version: $current_version"
-          
+
             IFS='.' read -r major minor patch <<< "$current_version"
             minor=$((minor + 1))
             next_version="$major.$minor.$patch"
             echo "Next version: $next_version"
-          
+
             echo "next_version=$next_version" >> $GITHUB_ENV
           fi
 
@@ -94,7 +104,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
-          gh release create '${{ env.next_version }}' 
+          gh release create '${{ env.next_version }}'
           --notes '${{ env.next_version }}'
           --target '${{ github.ref_name }}'
           --title '${{ env.next_version }}'
