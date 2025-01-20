@@ -25,7 +25,7 @@ jobs:
         run: |
           MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           echo "Latest MFD tag: $MFD_TAG"
-          gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa'
+          gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
 
       - name: Get next version
         id: get_next_version
