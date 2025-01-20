@@ -3,6 +3,7 @@
     "version": "7.9.0"
   },
   "generatorName": "python",
+  "inputSpec": "public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml",
   "outputDir": ".",
   "additionalProperties": {
     "packageName": "cloudbeds_pms",
