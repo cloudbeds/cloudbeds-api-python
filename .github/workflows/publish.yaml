@@ -1,8 +1,5 @@
 name: Publish new version
 
-env:
-  UV_VERSION: 0.5.21
-
 on:
   workflow_dispatch:
     inputs:
@@ -15,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  release-build:
+  generate-api-docs:
     name: Update version and build python module
     runs-on: default
     steps:
@@ -29,29 +26,6 @@ jobs:
           MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           echo "Latest MFD tag: $MFD_TAG"
           gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa'
-
-      - name: Set path to yaml file
-        id: set-path-to-yaml
-        run: |
-          if [ "${{ github.ref_name }}" == "release/v1" ]; then
-            echo "yaml_path=public_accessa/api/v1.2/docs/cb-v1.2-openapi-3.0.1.yaml" >> $GITHUB_ENV
-          else
-            echo "yaml_path=public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml" >> $GITHUB_ENV
-          fi
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: 21
-          distribution: corretto
-
-      - name: Install OpenAPI generator
-        run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -O openapi-generator-cli.jar
-
-      - name: Generate API docs
-        run: |
-          java -jar openapi-generator-cli.jar generate -i ${{ env.yaml_path }} -c openapitools.json
 
       - name: Get next version
         id: get_next_version
@@ -71,16 +45,45 @@ jobs:
             echo "next_version=$next_version" >> $GITHUB_ENV
           fi
 
-      - name: Bump version in files
-        if: github.event.inputs.version == ''
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 23
+          distribution: corretto
+
+      - name: Install OpenAPI generator
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -O openapi-generator-cli.jar
+
+      - name: Bump version in VERSION and openapitools.json
         run: |
           echo ${{ env.next_version }} > VERSION
           sed -i 's/"packageVersion": "[0-9]*\.[0-9]*\.[0-9]*"/"packageVersion": "${{ env.next_version }}"/' openapitools.json
+
+      - name: Generate API docs
+        run: |
+          java -jar openapi-generator-cli.jar generate -c openapitools.json
+
+      - name: Update repository with new version
+        if: github.event.inputs.version == ''
+        run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add VERSION openapitools.json
+          git add VERSION openapitools.json $(cat PACKAGE) README.md .openapi-generator/FILES
           git commit -m "Bump version to ${{ env.next_version }}"
           git push
+
+  build-release:
+    name: Build release distribution
+    runs-on: default
+    needs: generate-api-docs
+    env:
+      UV_VERSION: 0.5.21
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -89,7 +92,7 @@ jobs:
 
       - name: Build release distributions
         run: |
-          pip install "uv==$UV_VERSION"
+          pip install "uv==${{ env.UV_VERSION }}"
           uv sync --locked --no-dev
           uv build
 
@@ -101,19 +104,19 @@ jobs:
 
       - name: Create Release
         id: create_release
+        if: github.event.inputs.version == ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
-          gh release create '${{ env.next_version }}'
-          --notes '${{ env.next_version }}'
-          --target '${{ github.ref_name }}'
-          --title '${{ env.next_version }}'
+          gh release create $(cat VERSION)
+          --notes $(cat VERSION)
+          --target ${{ github.ref_name }}
+          --title $(cat VERSION)
 
   pypi-publish:
     name: Publish to PyPI
     runs-on: default
-    needs:
-      - release-build
+    needs: build-release
     environment:
       name: pypi
     permissions:
