@@ -37,9 +37,9 @@ jobs:
       - name: Get next version
         id: get_next_version
         run: |
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            echo "next_version=${{ github.event.inputs.version }}" >> $GITHUB_ENV
-            echo "Version provided: ${{ github.event.inputs.version }}"
+          if [ -n "${{ inputs.version }}" ]; then
+            echo "next_version=${{ inputs.version }}" >> $GITHUB_ENV
+            echo "Version provided: ${{ inputs.version }}"
           else
             current_version=$(cat VERSION)
             echo "Current version: $current_version"
@@ -72,7 +72,7 @@ jobs:
           java -jar openapi-generator-cli.jar generate -c openapitools.json
 
       - name: Update repository with new version
-        if: github.event.inputs.version == ''
+        if: inputs.version == ''
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
@@ -111,7 +111,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        if: github.event.inputs.version == ''
+        if: inputs.version == ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
