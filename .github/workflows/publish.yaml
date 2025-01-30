@@ -19,9 +19,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get GH app token
+        id: gh-app-token
+        uses: cloudbeds/composite-actions/gh-app-token@v2
+
       - name: Get API docs
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.github-token }}
         run: |
           MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           echo "Latest MFD tag: $MFD_TAG"
