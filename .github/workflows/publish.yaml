@@ -60,7 +60,7 @@ jobs:
 
       - name: Install OpenAPI generator
         run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -O openapi-generator-cli.jar
+          curl -s https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -o openapi-generator-cli.jar
 
       - name: Bump version in VERSION and openapitools.json
         run: |
