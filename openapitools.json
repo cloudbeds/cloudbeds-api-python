@@ -1,6 +1,6 @@
 {
   "generator-cli": {
-    "version": "7.9.0"
+    "version": "7.11.0"
   },
   "generatorName": "python",
   "inputSpec": "public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml",
