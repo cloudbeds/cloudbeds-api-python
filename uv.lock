@@ -18,7 +18,7 @@ wheels = [
 ]
 
 [[package]]
-name = "cloudbeds-pms"
+name = "cloudbeds-pms-v1-2"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
