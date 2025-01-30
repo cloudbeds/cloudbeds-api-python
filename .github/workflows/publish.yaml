@@ -19,12 +19,18 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Get GH app token
         id: gh-app-token
         uses: cloudbeds/composite-actions/gh-app-token@v2
+        with:
+          app_id: 391670
+          aws_role_arn: arn:aws:iam::048781935247:role/GH-APP-OIDC-CBMyFrontDesk
+          aws_ssm_param_name: /github/app/CBMyFrontDesk/private-key
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.gh-app-token.outputs.github-token }}
 
       - name: Get API docs
         env:
@@ -37,9 +43,9 @@ jobs:
       - name: Get next version
         id: get_next_version
         run: |
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            echo "next_version=${{ github.event.inputs.version }}" >> $GITHUB_ENV
-            echo "Version provided: ${{ github.event.inputs.version }}"
+          if [ -n "${{ inputs.version }}" ]; then
+            echo "next_version=${{ inputs.version }}" >> $GITHUB_ENV
+            echo "Version provided: ${{ inputs.version }}"
           else
             current_version=$(cat VERSION)
             echo "Current version: $current_version"
@@ -71,11 +77,15 @@ jobs:
         run: |
           java -jar openapi-generator-cli.jar generate -c openapitools.json
 
-      - name: Update repository with new version
-        if: github.event.inputs.version == ''
+      - name: Git Setup
+        if: inputs.version == ''
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
+
+      - name: Update repository with new version
+        if: inputs.version == ''
+        run: |
           git add VERSION openapitools.json $(cat PACKAGE) README.md .openapi-generator/FILES
           git commit -m "Bump version to ${{ env.next_version }}"
           git push
@@ -111,7 +121,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        if: github.event.inputs.version == ''
+        if: inputs.version == ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
