@@ -58,3 +58,6 @@ where = ["."]
 
 [tool.setuptools.dynamic]
 version = { file = "VERSION" }
+
+[tool.setuptools.package-data]
+"cloudbeds_pms_v1_2" = ["py.typed"]
