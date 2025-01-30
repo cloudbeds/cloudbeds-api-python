@@ -71,11 +71,15 @@ jobs:
         run: |
           java -jar openapi-generator-cli.jar generate -c openapitools.json
 
-      - name: Update repository with new version
+      - name: Git Setup
         if: inputs.version == ''
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
+
+      - name: Update repository with new version
+        if: inputs.version == ''
+        run: |
           git add VERSION openapitools.json $(cat PACKAGE) README.md .openapi-generator/FILES
           git commit -m "Bump version to ${{ env.next_version }}"
           git push
