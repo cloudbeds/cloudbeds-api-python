@@ -15,6 +15,9 @@ jobs:
   generate-api-docs:
     name: Update version and build python module
     runs-on: default
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
