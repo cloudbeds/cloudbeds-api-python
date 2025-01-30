@@ -1,0 +1,134 @@
+name: Publish new version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release'
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  generate-api-docs:
+    name: Update version and build python module
+    runs-on: default
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get API docs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
+          echo "Latest MFD tag: $MFD_TAG"
+          gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
+
+      - name: Get next version
+        id: get_next_version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "next_version=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+            echo "Version provided: ${{ github.event.inputs.version }}"
+          else
+            current_version=$(cat VERSION)
+            echo "Current version: $current_version"
+
+            IFS='.' read -r major minor patch <<< "$current_version"
+            minor=$((minor + 1))
+            next_version="$major.$minor.$patch"
+            echo "Next version: $next_version"
+
+            echo "next_version=$next_version" >> $GITHUB_ENV
+          fi
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 23
+          distribution: corretto
+
+      - name: Install OpenAPI generator
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-$(cat .openapi-generator/VERSION).jar -O openapi-generator-cli.jar
+
+      - name: Bump version in VERSION and openapitools.json
+        run: |
+          echo ${{ env.next_version }} > VERSION
+          sed -i 's/"packageVersion": "[0-9]*\.[0-9]*\.[0-9]*"/"packageVersion": "${{ env.next_version }}"/' openapitools.json
+
+      - name: Generate API docs
+        run: |
+          java -jar openapi-generator-cli.jar generate -c openapitools.json
+
+      - name: Update repository with new version
+        if: github.event.inputs.version == ''
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add VERSION openapitools.json $(cat PACKAGE) README.md .openapi-generator/FILES
+          git commit -m "Bump version to ${{ env.next_version }}"
+          git push
+
+  build-release:
+    name: Build release distribution
+    runs-on: default
+    needs: generate-api-docs
+    env:
+      UV_VERSION: 0.5.21
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      - name: Build release distributions
+        run: |
+          pip install "uv==${{ env.UV_VERSION }}"
+          uv sync --locked --no-dev
+          uv build
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Create Release
+        id: create_release
+        if: github.event.inputs.version == ''
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create $(cat VERSION)
+          --notes $(cat VERSION)
+          --target ${{ github.ref_name }}
+          --title $(cat VERSION)
+
+  pypi-publish:
+    name: Publish to PyPI
+    runs-on: default
+    needs: build-release
+    environment:
+      name: pypi
+    permissions:
+      id-token: write
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
