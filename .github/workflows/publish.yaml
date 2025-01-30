@@ -76,6 +76,7 @@ jobs:
 
       - name: Generate API docs
         run: |
+          find $(cat PACKAGE) -mindepth 1 ! -name 'py.typed' -delete
           java -jar openapi-generator-cli.jar generate -c openapitools.json
 
       - name: Git Setup
