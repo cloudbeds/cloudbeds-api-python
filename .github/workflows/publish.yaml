@@ -19,12 +19,18 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Get GH app token
         id: gh-app-token
         uses: cloudbeds/composite-actions/gh-app-token@v2
+        with:
+          app_id: 391670
+          aws_role_arn: arn:aws:iam::048781935247:role/GH-APP-OIDC-CBMyFrontDesk
+          aws_ssm_param_name: /github/app/CBMyFrontDesk/private-key
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.gh-app-token.outputs.github-token }}
 
       - name: Get API docs
         env:
