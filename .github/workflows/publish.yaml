@@ -44,7 +44,7 @@ jobs:
           rm private.key
 
       - name: Generate token
-        id: generate_token
+        id: generate-token
         uses: tibdex/github-app-token@v2
         with:
           app_id: 391670
@@ -53,18 +53,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.generate_token.outputs.token }}
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Get API docs
         env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           echo "Latest MFD tag: $MFD_TAG"
           gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
 
       - name: Get next version
-        id: get_next_version
         run: |
           if [ -n "${{ inputs.version }}" ]; then
             echo "next_version=${{ inputs.version }}" >> $GITHUB_ENV
@@ -145,7 +144,6 @@ jobs:
           path: dist/
 
       - name: Create Release
-        id: create_release
         if: inputs.version == ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
