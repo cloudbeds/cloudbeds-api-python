@@ -7,6 +7,10 @@ on:
         description: 'The version to release'
         required: false
         default: ""
+      mfd-tag:
+        description: 'The MFD tag to use for API docs'
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -59,7 +63,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
+          MFD_TAG='${{ inputs.mfd-tag }}'
+          if [[ -z "${MFD_TAG}" ]]; then
+            MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
+          fi
           echo "Latest MFD tag: $MFD_TAG"
           gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
 
