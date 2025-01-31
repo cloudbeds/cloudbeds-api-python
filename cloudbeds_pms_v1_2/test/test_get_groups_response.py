@@ -48,7 +48,8 @@ class TestGetGroupsResponse(unittest.TestCase):
                         address2 = '', 
                         city = '', 
                         zip = '', 
-                        state = '', )
+                        state = '', 
+                        commission_type = 'fixed', )
                     ]
             )
         else:

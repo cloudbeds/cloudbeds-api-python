@@ -100,11 +100,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_groups_get**
-> GetGroupsResponse get_groups_get(property_id, group_code, type, status, created_from, created_to, page_size, page_number)
+> GetGroupsResponse get_groups_get(property_id, group_code=group_code, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
 
 getGroups
 
-Returns groups of allotment block
+Returns the groups for a property
 
 ### Example
 
@@ -141,17 +141,17 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_2.GroupsApi(api_client)
     property_id = 'property_id_example' # str | Property ID
-    group_code = 'group_code_example' # str | Unique ID for a group
-    type = 'type_example' # str | The type of group
-    status = 'status_example' # str | Group status
-    created_from = '2013-10-20T19:20:30+01:00' # datetime | Datetime (lower limit) to be queried
-    created_to = '2013-10-20T19:20:30+01:00' # datetime | Datetime (upper limit) to be queried
-    page_size = 56 # int | Number of groups to return per page (min: 1, max: 100)
-    page_number = 56 # int | Which page in the results to access
+    group_code = 'group_code_example' # str | Unique ID for a group (optional)
+    type = 'type_example' # str | The type of group (optional)
+    status = 'status_example' # str | Group status (optional)
+    created_from = '2013-10-20T19:20:30+01:00' # datetime | Datetime (lower limit) to be queried (optional)
+    created_to = '2013-10-20T19:20:30+01:00' # datetime | Datetime (upper limit) to be queried (optional)
+    page_size = 56 # int | Number of groups to return per page (min: 1, max: 100) (optional)
+    page_number = 56 # int | Which page in the results to access (optional)
 
     try:
         # getGroups
-        api_response = api_instance.get_groups_get(property_id, group_code, type, status, created_from, created_to, page_size, page_number)
+        api_response = api_instance.get_groups_get(property_id, group_code=group_code, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
         print("The response of GroupsApi->get_groups_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -166,13 +166,13 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | 
- **group_code** | **str**| Unique ID for a group | 
- **type** | **str**| The type of group | 
- **status** | **str**| Group status | 
- **created_from** | **datetime**| Datetime (lower limit) to be queried | 
- **created_to** | **datetime**| Datetime (upper limit) to be queried | 
- **page_size** | **int**| Number of groups to return per page (min: 1, max: 100) | 
- **page_number** | **int**| Which page in the results to access | 
+ **group_code** | **str**| Unique ID for a group | [optional] 
+ **type** | **str**| The type of group | [optional] 
+ **status** | **str**| Group status | [optional] 
+ **created_from** | **datetime**| Datetime (lower limit) to be queried | [optional] 
+ **created_to** | **datetime**| Datetime (upper limit) to be queried | [optional] 
+ **page_size** | **int**| Number of groups to return per page (min: 1, max: 100) | [optional] 
+ **page_number** | **int**| Which page in the results to access | [optional] 
 
 ### Return type
 

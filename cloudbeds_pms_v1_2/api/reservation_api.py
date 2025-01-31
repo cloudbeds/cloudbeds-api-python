@@ -1512,6 +1512,7 @@ class ReservationApi:
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1572,6 +1573,8 @@ class ReservationApi:
         :type first_name: str
         :param last_name: Filters reservation with the supplied primary guest last name.
         :type last_name: str
+        :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1621,6 +1624,7 @@ class ReservationApi:
             rate_plan_id=rate_plan_id,
             first_name=first_name,
             last_name=last_name,
+            guest_id=guest_id,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1667,6 +1671,7 @@ class ReservationApi:
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1727,6 +1732,8 @@ class ReservationApi:
         :type first_name: str
         :param last_name: Filters reservation with the supplied primary guest last name.
         :type last_name: str
+        :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1776,6 +1783,7 @@ class ReservationApi:
             rate_plan_id=rate_plan_id,
             first_name=first_name,
             last_name=last_name,
+            guest_id=guest_id,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1822,6 +1830,7 @@ class ReservationApi:
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1882,6 +1891,8 @@ class ReservationApi:
         :type first_name: str
         :param last_name: Filters reservation with the supplied primary guest last name.
         :type last_name: str
+        :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1931,6 +1942,7 @@ class ReservationApi:
             rate_plan_id=rate_plan_id,
             first_name=first_name,
             last_name=last_name,
+            guest_id=guest_id,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1972,6 +1984,7 @@ class ReservationApi:
         rate_plan_id,
         first_name,
         last_name,
+        guest_id,
         sort_by_recent,
         page_number,
         page_size,
@@ -2148,6 +2161,10 @@ class ReservationApi:
         if last_name is not None:
             
             _query_params.append(('lastName', last_name))
+            
+        if guest_id is not None:
+            
+            _query_params.append(('guestID', guest_id))
             
         if sort_by_recent is not None:
             

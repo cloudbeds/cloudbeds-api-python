@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservations_get**
-> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
 
 getReservations
 
@@ -502,13 +502,14 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     rate_plan_id = 'rate_plan_id_example' # str | Filters reservation with the supplied rate plan ID. (optional)
     first_name = 'first_name_example' # str | Filters reservation with the supplied primary guest first name. (optional)
     last_name = 'last_name_example' # str | Filters reservation with the supplied primary guest last name. (optional)
+    guest_id = 'guest_id_example' # str | Filters reservation with the supplied Guest ID (Including additional guests). (optional)
     sort_by_recent = True # bool | Sort response results by most recent action (optional)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getReservations
-        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
         print("The response of ReservationApi->get_reservations_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -542,6 +543,7 @@ Name | Type | Description  | Notes
  **rate_plan_id** | **str**| Filters reservation with the supplied rate plan ID. | [optional] 
  **first_name** | **str**| Filters reservation with the supplied primary guest first name. | [optional] 
  **last_name** | **str**| Filters reservation with the supplied primary guest last name. | [optional] 
+ **guest_id** | **str**| Filters reservation with the supplied Guest ID (Including additional guests). | [optional] 
  **sort_by_recent** | **bool**| Sort response results by most recent action | [optional] 
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]

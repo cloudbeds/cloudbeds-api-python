@@ -45,7 +45,8 @@ class TestGetGroupsResponseDataInner(unittest.TestCase):
                 address2 = '',
                 city = '',
                 zip = '',
-                state = ''
+                state = '',
+                commission_type = 'fixed'
             )
         else:
             return GetGroupsResponseDataInner(

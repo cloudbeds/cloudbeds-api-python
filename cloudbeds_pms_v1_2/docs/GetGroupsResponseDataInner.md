@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **city** | **str** | City | [optional] 
 **zip** | **str** | Zip | [optional] 
 **state** | **str** | State | [optional] 
+**commission_type** | **str** | Commission type | [optional] 
 
 ## Example
 

@@ -38,7 +38,8 @@ class GetGroupsResponseDataInner(BaseModel):
     city: Optional[StrictStr] = Field(default=None, description="City")
     zip: Optional[StrictStr] = Field(default=None, description="Zip")
     state: Optional[StrictStr] = Field(default=None, description="State")
-    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "address1", "address2", "city", "zip", "state"]
+    commission_type: Optional[StrictStr] = Field(default=None, description="Commission type", alias="commissionType")
+    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "address1", "address2", "city", "zip", "state", "commissionType"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -58,6 +59,16 @@ class GetGroupsResponseDataInner(BaseModel):
 
         if value not in set(['open', 'closed']):
             raise ValueError("must be one of enum values ('open', 'closed')")
+        return value
+
+    @field_validator('commission_type')
+    def commission_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['fixed', 'percent']):
+            raise ValueError("must be one of enum values ('fixed', 'percent')")
         return value
 
     model_config = ConfigDict(
@@ -121,7 +132,8 @@ class GetGroupsResponseDataInner(BaseModel):
             "address2": obj.get("address2"),
             "city": obj.get("city"),
             "zip": obj.get("zip"),
-            "state": obj.get("state")
+            "state": obj.get("state"),
+            "commissionType": obj.get("commissionType")
         })
         return _obj
 

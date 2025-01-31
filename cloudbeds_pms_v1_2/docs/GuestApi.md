@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_guest_list_get**
-> GetGuestListResponse get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
+> GetGuestListResponse get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
 
 getGuestList
 
@@ -240,6 +240,11 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     check_in_to = '2013-10-20' # date | Filters guests result to return only guests with check-in date range ending on this date (optional)
     check_out_from = '2013-10-20' # date | Filters guests result to return only guests with check-out date range starting on this date (optional)
     check_out_to = '2013-10-20' # date | Filters guests result to return only guests with check-out date range ending on this date (optional)
+    guest_first_name = 'guest_first_name_example' # str | Filters guests result based on Guest First Name (optional)
+    guest_last_name = 'guest_last_name_example' # str | Filters guests result based on Guest Last Name (optional)
+    guest_email = 'guest_email_example' # str | Filters guests result based on Guest Email (optional)
+    guest_phone = 'guest_phone_example' # str | Filters guests result based on Guest Phone Number (optional)
+    guest_cell_phone = 'guest_cell_phone_example' # str | Filters guests result based on Guest Cell Phone Number (optional)
     status = 'status_example' # str | Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed (optional)
     sort_by = modification # str | Sort By parameter (optional) (default to modification)
     include_guest_info = False # bool | If API response should return with more of Guest's information (optional) (default to False)
@@ -249,7 +254,7 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
 
     try:
         # getGuestList
-        api_response = api_instance.get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
         print("The response of GuestApi->get_guest_list_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -270,6 +275,11 @@ Name | Type | Description  | Notes
  **check_in_to** | **date**| Filters guests result to return only guests with check-in date range ending on this date | [optional] 
  **check_out_from** | **date**| Filters guests result to return only guests with check-out date range starting on this date | [optional] 
  **check_out_to** | **date**| Filters guests result to return only guests with check-out date range ending on this date | [optional] 
+ **guest_first_name** | **str**| Filters guests result based on Guest First Name | [optional] 
+ **guest_last_name** | **str**| Filters guests result based on Guest Last Name | [optional] 
+ **guest_email** | **str**| Filters guests result based on Guest Email | [optional] 
+ **guest_phone** | **str**| Filters guests result based on Guest Phone Number | [optional] 
+ **guest_cell_phone** | **str**| Filters guests result based on Guest Cell Phone Number | [optional] 
  **status** | **str**| Reservation status &lt;br /&gt; If more than one, send as comma-separated values. i.e. in_progress,confirmed | [optional] 
  **sort_by** | **str**| Sort By parameter | [optional] [default to modification]
  **include_guest_info** | **bool**| If API response should return with more of Guest&#39;s information | [optional] [default to False]

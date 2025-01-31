@@ -363,13 +363,13 @@ class GroupsApi:
     def get_groups_get(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Unique ID for a group")],
-        type: Annotated[StrictStr, Field(description="The type of group")],
-        status: Annotated[StrictStr, Field(description="Group status")],
-        created_from: Annotated[datetime, Field(description="Datetime (lower limit) to be queried")],
-        created_to: Annotated[datetime, Field(description="Datetime (upper limit) to be queried")],
-        page_size: Annotated[StrictInt, Field(description="Number of groups to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
+        created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
+        created_to: Annotated[Optional[datetime], Field(description="Datetime (upper limit) to be queried")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of groups to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -385,23 +385,23 @@ class GroupsApi:
     ) -> GetGroupsResponse:
         """getGroups
 
-        Returns groups of allotment block
+        Returns the groups for a property
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group (required)
+        :param group_code: Unique ID for a group
         :type group_code: str
-        :param type: The type of group (required)
+        :param type: The type of group
         :type type: str
-        :param status: Group status (required)
+        :param status: Group status
         :type status: str
-        :param created_from: Datetime (lower limit) to be queried (required)
+        :param created_from: Datetime (lower limit) to be queried
         :type created_from: datetime
-        :param created_to: Datetime (upper limit) to be queried (required)
+        :param created_to: Datetime (upper limit) to be queried
         :type created_to: datetime
-        :param page_size: Number of groups to return per page (min: 1, max: 100) (required)
+        :param page_size: Number of groups to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -458,13 +458,13 @@ class GroupsApi:
     def get_groups_get_with_http_info(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Unique ID for a group")],
-        type: Annotated[StrictStr, Field(description="The type of group")],
-        status: Annotated[StrictStr, Field(description="Group status")],
-        created_from: Annotated[datetime, Field(description="Datetime (lower limit) to be queried")],
-        created_to: Annotated[datetime, Field(description="Datetime (upper limit) to be queried")],
-        page_size: Annotated[StrictInt, Field(description="Number of groups to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
+        created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
+        created_to: Annotated[Optional[datetime], Field(description="Datetime (upper limit) to be queried")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of groups to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -480,23 +480,23 @@ class GroupsApi:
     ) -> ApiResponse[GetGroupsResponse]:
         """getGroups
 
-        Returns groups of allotment block
+        Returns the groups for a property
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group (required)
+        :param group_code: Unique ID for a group
         :type group_code: str
-        :param type: The type of group (required)
+        :param type: The type of group
         :type type: str
-        :param status: Group status (required)
+        :param status: Group status
         :type status: str
-        :param created_from: Datetime (lower limit) to be queried (required)
+        :param created_from: Datetime (lower limit) to be queried
         :type created_from: datetime
-        :param created_to: Datetime (upper limit) to be queried (required)
+        :param created_to: Datetime (upper limit) to be queried
         :type created_to: datetime
-        :param page_size: Number of groups to return per page (min: 1, max: 100) (required)
+        :param page_size: Number of groups to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -553,13 +553,13 @@ class GroupsApi:
     def get_groups_get_without_preload_content(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Unique ID for a group")],
-        type: Annotated[StrictStr, Field(description="The type of group")],
-        status: Annotated[StrictStr, Field(description="Group status")],
-        created_from: Annotated[datetime, Field(description="Datetime (lower limit) to be queried")],
-        created_to: Annotated[datetime, Field(description="Datetime (upper limit) to be queried")],
-        page_size: Annotated[StrictInt, Field(description="Number of groups to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
+        created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
+        created_to: Annotated[Optional[datetime], Field(description="Datetime (upper limit) to be queried")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of groups to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -575,23 +575,23 @@ class GroupsApi:
     ) -> RESTResponseType:
         """getGroups
 
-        Returns groups of allotment block
+        Returns the groups for a property
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group (required)
+        :param group_code: Unique ID for a group
         :type group_code: str
-        :param type: The type of group (required)
+        :param type: The type of group
         :type type: str
-        :param status: Group status (required)
+        :param status: Group status
         :type status: str
-        :param created_from: Datetime (lower limit) to be queried (required)
+        :param created_from: Datetime (lower limit) to be queried
         :type created_from: datetime
-        :param created_to: Datetime (upper limit) to be queried (required)
+        :param created_to: Datetime (upper limit) to be queried
         :type created_to: datetime
-        :param page_size: Number of groups to return per page (min: 1, max: 100) (required)
+        :param page_size: Number of groups to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

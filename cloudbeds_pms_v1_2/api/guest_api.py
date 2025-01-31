@@ -661,6 +661,11 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        guest_first_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest First Name")] = None,
+        guest_last_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Last Name")] = None,
+        guest_email: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Email")] = None,
+        guest_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Phone Number")] = None,
+        guest_cell_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Cell Phone Number")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
@@ -698,6 +703,16 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param guest_first_name: Filters guests result based on Guest First Name
+        :type guest_first_name: str
+        :param guest_last_name: Filters guests result based on Guest Last Name
+        :type guest_last_name: str
+        :param guest_email: Filters guests result based on Guest Email
+        :type guest_email: str
+        :param guest_phone: Filters guests result based on Guest Phone Number
+        :type guest_phone: str
+        :param guest_cell_phone: Filters guests result based on Guest Cell Phone Number
+        :type guest_cell_phone: str
         :param status: Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed
         :type status: str
         :param sort_by: Sort By parameter
@@ -740,6 +755,11 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            guest_first_name=guest_first_name,
+            guest_last_name=guest_last_name,
+            guest_email=guest_email,
+            guest_phone=guest_phone,
+            guest_cell_phone=guest_cell_phone,
             status=status,
             sort_by=sort_by,
             include_guest_info=include_guest_info,
@@ -776,6 +796,11 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        guest_first_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest First Name")] = None,
+        guest_last_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Last Name")] = None,
+        guest_email: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Email")] = None,
+        guest_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Phone Number")] = None,
+        guest_cell_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Cell Phone Number")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
@@ -813,6 +838,16 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param guest_first_name: Filters guests result based on Guest First Name
+        :type guest_first_name: str
+        :param guest_last_name: Filters guests result based on Guest Last Name
+        :type guest_last_name: str
+        :param guest_email: Filters guests result based on Guest Email
+        :type guest_email: str
+        :param guest_phone: Filters guests result based on Guest Phone Number
+        :type guest_phone: str
+        :param guest_cell_phone: Filters guests result based on Guest Cell Phone Number
+        :type guest_cell_phone: str
         :param status: Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed
         :type status: str
         :param sort_by: Sort By parameter
@@ -855,6 +890,11 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            guest_first_name=guest_first_name,
+            guest_last_name=guest_last_name,
+            guest_email=guest_email,
+            guest_phone=guest_phone,
+            guest_cell_phone=guest_cell_phone,
             status=status,
             sort_by=sort_by,
             include_guest_info=include_guest_info,
@@ -891,6 +931,11 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        guest_first_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest First Name")] = None,
+        guest_last_name: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Last Name")] = None,
+        guest_email: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Email")] = None,
+        guest_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Phone Number")] = None,
+        guest_cell_phone: Annotated[Optional[StrictStr], Field(description="Filters guests result based on Guest Cell Phone Number")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
@@ -928,6 +973,16 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param guest_first_name: Filters guests result based on Guest First Name
+        :type guest_first_name: str
+        :param guest_last_name: Filters guests result based on Guest Last Name
+        :type guest_last_name: str
+        :param guest_email: Filters guests result based on Guest Email
+        :type guest_email: str
+        :param guest_phone: Filters guests result based on Guest Phone Number
+        :type guest_phone: str
+        :param guest_cell_phone: Filters guests result based on Guest Cell Phone Number
+        :type guest_cell_phone: str
         :param status: Reservation status <br /> If more than one, send as comma-separated values. i.e. in_progress,confirmed
         :type status: str
         :param sort_by: Sort By parameter
@@ -970,6 +1025,11 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            guest_first_name=guest_first_name,
+            guest_last_name=guest_last_name,
+            guest_email=guest_email,
+            guest_phone=guest_phone,
+            guest_cell_phone=guest_cell_phone,
             status=status,
             sort_by=sort_by,
             include_guest_info=include_guest_info,
@@ -1001,6 +1061,11 @@ class GuestApi:
         check_in_to,
         check_out_from,
         check_out_to,
+        guest_first_name,
+        guest_last_name,
+        guest_email,
+        guest_phone,
+        guest_cell_phone,
         status,
         sort_by,
         include_guest_info,
@@ -1110,6 +1175,26 @@ class GuestApi:
                 )
             else:
                 _query_params.append(('checkOutTo', check_out_to))
+            
+        if guest_first_name is not None:
+            
+            _query_params.append(('guestFirstName', guest_first_name))
+            
+        if guest_last_name is not None:
+            
+            _query_params.append(('guestLastName', guest_last_name))
+            
+        if guest_email is not None:
+            
+            _query_params.append(('guestEmail', guest_email))
+            
+        if guest_phone is not None:
+            
+            _query_params.append(('guestPhone', guest_phone))
+            
+        if guest_cell_phone is not None:
+            
+            _query_params.append(('guestCellPhone', guest_cell_phone))
             
         if status is not None:
             
