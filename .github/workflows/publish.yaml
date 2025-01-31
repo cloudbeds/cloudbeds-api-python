@@ -30,9 +30,11 @@ jobs:
         shell: bash
         run: |
           aws ssm get-parameter --name /github/app/CBMyFrontDesk/private-key --output text --with-decryption --query Parameter.Value > private.key
-          echo "APP_PRIVATE_KEY<<EOF" >> $GITHUB_ENV
-          cat private.key >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "key<<EOF"
+            cat private.key
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
           while read -r line;
           do
             if [[ -n "${line}" ]]; then
@@ -46,7 +48,7 @@ jobs:
         uses: tibdex/github-app-token@v2
         with:
           app_id: 391670
-          private_key: ${{ env.APP_PRIVATE_KEY }}
+          private_key: ${{ steps.app-private-key.outputs.key }}
 
       - name: Checkout code
         uses: actions/checkout@v4
