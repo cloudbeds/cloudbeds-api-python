@@ -53,11 +53,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.gh-app-token.outputs.github-token }}
+          token: ${{ steps.generate_token.outputs.token }}
 
       - name: Get API docs
         env:
-          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.github-token }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           echo "Latest MFD tag: $MFD_TAG"
