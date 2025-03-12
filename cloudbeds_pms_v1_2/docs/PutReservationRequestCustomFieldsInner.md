@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**custom_field_name** | **str** | Internal custom field reference. Must match the registered name in backend. Pay Attention | [optional] 
+**custom_field_name** | **str** | Internal custom field reference. Must match the registered name (shortcode) in backend. Pay Attention | [optional] 
 **custom_field_value** | **str** | Custom field value. It&#39;s strictly forbidden to send unencrypted payment data through the API. Numeric values longer than 12 characters and considered valid by Luhn&#39;s algorithm will be rejected. | [optional] 
 
 ## Example

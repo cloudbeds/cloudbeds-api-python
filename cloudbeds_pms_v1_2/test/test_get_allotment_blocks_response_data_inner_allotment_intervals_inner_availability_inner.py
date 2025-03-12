@@ -46,7 +46,9 @@ class TestGetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailability
                     adult3 = '', 
                     child1 = '', 
                     child2 = '', 
-                    child3 = '', )
+                    child3 = '', ),
+                split_block_allotted = 56,
+                split_block_confirmed = 56
             )
         else:
             return GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInner(

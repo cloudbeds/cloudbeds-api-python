@@ -55,6 +55,13 @@ class TestGetReservationsResponse(unittest.TestCase):
                         source_name = '', 
                         source_id = '', 
                         third_party_identifier = '', 
+                        group_inventory = [
+                            cloudbeds_pms_v1_2.models.get_reservation_response_data_group_inventory_inner.GetReservationResponse_data_groupInventory_inner(
+                                sub_reservation_id = '', 
+                                allotment_block_code = '', 
+                                start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                                end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
+                            ], 
                         sub_reservation_id = '', 
                         custom_fields = [
                             cloudbeds_pms_v1_2.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(

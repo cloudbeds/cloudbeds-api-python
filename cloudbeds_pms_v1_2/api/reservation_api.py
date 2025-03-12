@@ -3652,6 +3652,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -3715,6 +3716,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
+        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
+        :type group_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -3764,6 +3767,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
+            group_code=group_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -3811,6 +3815,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -3874,6 +3879,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
+        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
+        :type group_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -3923,6 +3930,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
+            group_code=group_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -3970,6 +3978,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -4033,6 +4042,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
+        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
+        :type group_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -4082,6 +4093,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
+            group_code=group_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -4124,6 +4136,7 @@ class ReservationApi:
         custom_fields,
         promo_code,
         allotment_block_code,
+        group_code,
         date_created,
         send_email_confirmation,
         _request_auth,
@@ -4198,6 +4211,8 @@ class ReservationApi:
             _form_params.append(('promoCode', promo_code))
         if allotment_block_code is not None:
             _form_params.append(('allotmentBlockCode', allotment_block_code))
+        if group_code is not None:
+            _form_params.append(('groupCode', group_code))
         if date_created is not None:
             _form_params.append(('dateCreated', date_created))
         if send_email_confirmation is not None:

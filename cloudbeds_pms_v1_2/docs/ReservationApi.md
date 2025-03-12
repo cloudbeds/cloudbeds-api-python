@@ -932,7 +932,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reservation_post**
-> PostReservationResponse post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
+> PostReservationResponse post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
 
 postReservation
 
@@ -998,12 +998,13 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     custom_fields = [cloudbeds_pms_v1_2.PostReservationRequestCustomFieldsInner()] # List[PostReservationRequestCustomFieldsInner] | Array with custom fields information (optional)
     promo_code = 'promo_code_example' # str | Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\". (optional)
     allotment_block_code = 'allotment_block_code_example' # str | Allotment block code to add reservation to allotment block. (optional)
+    group_code = 'group_code_example' # str | Code from the Aggregate Allotment block the reservation will be added to. (optional)
     date_created = '2013-10-20T19:20:30+01:00' # datetime | Date reservation was made. Defaults to current date if omitted. (optional)
     send_email_confirmation = True # bool | Send confirmation email to guest. (optional) (default to True)
 
     try:
         # postReservation
-        api_response = api_instance.post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
+        api_response = api_instance.post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
         print("The response of ReservationApi->post_reservation_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1039,6 +1040,7 @@ Name | Type | Description  | Notes
  **custom_fields** | [**List[PostReservationRequestCustomFieldsInner]**](PostReservationRequestCustomFieldsInner.md)| Array with custom fields information | [optional] 
  **promo_code** | **str**| Promotional code. Required for specials and packages that uses it. \\\&quot;rateID\\\&quot; parameter required for using \\\&quot;promoCode\\\&quot;. | [optional] 
  **allotment_block_code** | **str**| Allotment block code to add reservation to allotment block. | [optional] 
+ **group_code** | **str**| Code from the Aggregate Allotment block the reservation will be added to. | [optional] 
  **date_created** | **datetime**| Date reservation was made. Defaults to current date if omitted. | [optional] 
  **send_email_confirmation** | **bool**| Send confirmation email to guest. | [optional] [default to True]
 

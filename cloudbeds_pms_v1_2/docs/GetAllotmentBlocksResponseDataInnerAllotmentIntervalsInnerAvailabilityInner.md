@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **block_confirmed** | **int** | Number of units booked for the room type for this day | [optional] 
 **rate** | **str** | the price | [optional] 
 **guest_pricing** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.md) |  | [optional] 
+**split_block_allotted** | **int** | Number of split units available for the room type this day | [optional] 
+**split_block_confirmed** | **int** | Number of split units blocked for the room type this day | [optional] 
 
 ## Example
 

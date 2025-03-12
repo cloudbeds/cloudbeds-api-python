@@ -1029,6 +1029,8 @@ class PaymentApi:
         results_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result (posted transaction date)")] = None,
         modified_from: Annotated[Optional[date], Field(description="Inferior limit date, used to filter transactions result")] = None,
         modified_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result")] = None,
+        service_date_from: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
+        service_date_to: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.")] = None,
         created_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.")] = None,
         transaction_filter: Annotated[Optional[StrictStr], Field(description="Transaction filter is used to filter transactions result")] = None,
@@ -1083,6 +1085,10 @@ class PaymentApi:
         :type modified_from: date
         :param modified_to: Superior limit date, used to filter transactions result
         :type modified_to: date
+        :param service_date_from: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_from: date
+        :param service_date_to: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_to: date
         :param created_from: Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.
         :type created_from: datetime
         :param created_to: Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.
@@ -1135,6 +1141,8 @@ class PaymentApi:
             results_to=results_to,
             modified_from=modified_from,
             modified_to=modified_to,
+            service_date_from=service_date_from,
+            service_date_to=service_date_to,
             created_from=created_from,
             created_to=created_to,
             transaction_filter=transaction_filter,
@@ -1180,6 +1188,8 @@ class PaymentApi:
         results_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result (posted transaction date)")] = None,
         modified_from: Annotated[Optional[date], Field(description="Inferior limit date, used to filter transactions result")] = None,
         modified_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result")] = None,
+        service_date_from: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
+        service_date_to: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.")] = None,
         created_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.")] = None,
         transaction_filter: Annotated[Optional[StrictStr], Field(description="Transaction filter is used to filter transactions result")] = None,
@@ -1234,6 +1244,10 @@ class PaymentApi:
         :type modified_from: date
         :param modified_to: Superior limit date, used to filter transactions result
         :type modified_to: date
+        :param service_date_from: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_from: date
+        :param service_date_to: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_to: date
         :param created_from: Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.
         :type created_from: datetime
         :param created_to: Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.
@@ -1286,6 +1300,8 @@ class PaymentApi:
             results_to=results_to,
             modified_from=modified_from,
             modified_to=modified_to,
+            service_date_from=service_date_from,
+            service_date_to=service_date_to,
             created_from=created_from,
             created_to=created_to,
             transaction_filter=transaction_filter,
@@ -1331,6 +1347,8 @@ class PaymentApi:
         results_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result (posted transaction date)")] = None,
         modified_from: Annotated[Optional[date], Field(description="Inferior limit date, used to filter transactions result")] = None,
         modified_to: Annotated[Optional[date], Field(description="Superior limit date, used to filter transactions result")] = None,
+        service_date_from: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
+        service_date_to: Annotated[Optional[date], Field(description="Filter by the date of the service, the date that was intended the transaction to occured")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.")] = None,
         created_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.")] = None,
         transaction_filter: Annotated[Optional[StrictStr], Field(description="Transaction filter is used to filter transactions result")] = None,
@@ -1385,6 +1403,10 @@ class PaymentApi:
         :type modified_from: date
         :param modified_to: Superior limit date, used to filter transactions result
         :type modified_to: date
+        :param service_date_from: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_from: date
+        :param service_date_to: Filter by the date of the service, the date that was intended the transaction to occured
+        :type service_date_to: date
         :param created_from: Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00.
         :type created_from: datetime
         :param created_to: Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59.
@@ -1437,6 +1459,8 @@ class PaymentApi:
             results_to=results_to,
             modified_from=modified_from,
             modified_to=modified_to,
+            service_date_from=service_date_from,
+            service_date_to=service_date_to,
             created_from=created_from,
             created_to=created_to,
             transaction_filter=transaction_filter,
@@ -1477,6 +1501,8 @@ class PaymentApi:
         results_to,
         modified_from,
         modified_to,
+        service_date_from,
+        service_date_to,
         created_from,
         created_to,
         transaction_filter,
@@ -1601,6 +1627,32 @@ class PaymentApi:
                 )
             else:
                 _query_params.append(('modifiedTo', modified_to))
+            
+        if service_date_from is not None:
+            if isinstance(service_date_from, date):
+                _query_params.append(
+                    (
+                        'serviceDateFrom',
+                        service_date_from.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('serviceDateFrom', service_date_from))
+            
+        if service_date_to is not None:
+            if isinstance(service_date_to, date):
+                _query_params.append(
+                    (
+                        'serviceDateTo',
+                        service_date_to.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('serviceDateTo', service_date_to))
             
         if created_from is not None:
             if isinstance(created_from, datetime):

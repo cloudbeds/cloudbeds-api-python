@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transactions_get**
-> GetTransactionsResponse get_transactions_get(property_id=property_id, include_debit=include_debit, include_credit=include_credit, include_deleted=include_deleted, include_children=include_children, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, room_id=room_id, guest_id=guest_id, house_account_id=house_account_id, transaction_ids=transaction_ids, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, created_from=created_from, created_to=created_to, transaction_filter=transaction_filter, page_number=page_number, page_size=page_size, sort_by=sort_by, order_by=order_by)
+> GetTransactionsResponse get_transactions_get(property_id=property_id, include_debit=include_debit, include_credit=include_credit, include_deleted=include_deleted, include_children=include_children, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, room_id=room_id, guest_id=guest_id, house_account_id=house_account_id, transaction_ids=transaction_ids, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, service_date_from=service_date_from, service_date_to=service_date_to, created_from=created_from, created_to=created_to, transaction_filter=transaction_filter, page_number=page_number, page_size=page_size, sort_by=sort_by, order_by=order_by)
 
 getTransactions
 
@@ -335,6 +335,8 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     results_to = '2013-10-20' # date | Superior limit date, used to filter transactions result (posted transaction date) (optional)
     modified_from = '2013-10-20' # date | Inferior limit date, used to filter transactions result (optional)
     modified_to = '2013-10-20' # date | Superior limit date, used to filter transactions result (optional)
+    service_date_from = '2013-10-20' # date | Filter by the date of the service, the date that was intended the transaction to occured (optional)
+    service_date_to = '2013-10-20' # date | Filter by the date of the service, the date that was intended the transaction to occured (optional)
     created_from = '2013-10-20T19:20:30+01:00' # datetime | Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00. (optional)
     created_to = '2013-10-20T19:20:30+01:00' # datetime | Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59. (optional)
     transaction_filter = 'simple_transactions,adjustments,adjustments_voids,voids,refunds' # str | Transaction filter is used to filter transactions result (optional) (default to 'simple_transactions,adjustments,adjustments_voids,voids,refunds')
@@ -345,7 +347,7 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
 
     try:
         # getTransactions
-        api_response = api_instance.get_transactions_get(property_id=property_id, include_debit=include_debit, include_credit=include_credit, include_deleted=include_deleted, include_children=include_children, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, room_id=room_id, guest_id=guest_id, house_account_id=house_account_id, transaction_ids=transaction_ids, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, created_from=created_from, created_to=created_to, transaction_filter=transaction_filter, page_number=page_number, page_size=page_size, sort_by=sort_by, order_by=order_by)
+        api_response = api_instance.get_transactions_get(property_id=property_id, include_debit=include_debit, include_credit=include_credit, include_deleted=include_deleted, include_children=include_children, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, room_id=room_id, guest_id=guest_id, house_account_id=house_account_id, transaction_ids=transaction_ids, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, service_date_from=service_date_from, service_date_to=service_date_to, created_from=created_from, created_to=created_to, transaction_filter=transaction_filter, page_number=page_number, page_size=page_size, sort_by=sort_by, order_by=order_by)
         print("The response of PaymentApi->get_transactions_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -374,6 +376,8 @@ Name | Type | Description  | Notes
  **results_to** | **date**| Superior limit date, used to filter transactions result (posted transaction date) | [optional] 
  **modified_from** | **date**| Inferior limit date, used to filter transactions result | [optional] 
  **modified_to** | **date**| Superior limit date, used to filter transactions result | [optional] 
+ **service_date_from** | **date**| Filter by the date of the service, the date that was intended the transaction to occured | [optional] 
+ **service_date_to** | **date**| Filter by the date of the service, the date that was intended the transaction to occured | [optional] 
  **created_from** | **datetime**| Inferior limit datetime, used to filter transactions result (creation date of the transaction). If informed, all other dates are ignored (except createdTo). If createdFrom is informed, but createdTo is not, the call will return all results since this datetime. Necessary only if createdTo is sent. If time portion not given, assumes 00:00:00. | [optional] 
  **created_to** | **datetime**| Superior limit datetime, used to filter transactions result (creation date of the transaction). If informed (together with createdFrom), all other dates are ignored. If time portion not given, assumes 23:59:59. | [optional] 
  **transaction_filter** | **str**| Transaction filter is used to filter transactions result | [optional] [default to &#39;simple_transactions,adjustments,adjustments_voids,voids,refunds&#39;]

@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_app_property_settings_response_data_inner import GetAppPropertySettingsResponseDataInner
+from cloudbeds_pms_v1_2.models.get_app_property_settings_response_data import GetAppPropertySettingsResponseData
 
-class TestGetAppPropertySettingsResponseDataInner(unittest.TestCase):
-    """GetAppPropertySettingsResponseDataInner unit test stubs"""
+class TestGetAppPropertySettingsResponseData(unittest.TestCase):
+    """GetAppPropertySettingsResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,27 +25,27 @@ class TestGetAppPropertySettingsResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetAppPropertySettingsResponseDataInner:
-        """Test GetAppPropertySettingsResponseDataInner
+    def make_instance(self, include_optional) -> GetAppPropertySettingsResponseData:
+        """Test GetAppPropertySettingsResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetAppPropertySettingsResponseDataInner`
+        # uncomment below to create an instance of `GetAppPropertySettingsResponseData`
         """
-        model = GetAppPropertySettingsResponseDataInner()
+        model = GetAppPropertySettingsResponseData()
         if include_optional:
-            return GetAppPropertySettingsResponseDataInner(
+            return GetAppPropertySettingsResponseData(
                 id = '',
                 key = '',
                 value = ''
             )
         else:
-            return GetAppPropertySettingsResponseDataInner(
+            return GetAppPropertySettingsResponseData(
         )
         """
 
-    def testGetAppPropertySettingsResponseDataInner(self):
-        """Test GetAppPropertySettingsResponseDataInner"""
+    def testGetAppPropertySettingsResponseData(self):
+        """Test GetAppPropertySettingsResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

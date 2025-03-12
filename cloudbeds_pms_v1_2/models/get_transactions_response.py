@@ -29,10 +29,11 @@ class GetTransactionsResponse(BaseModel):
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
     data: Optional[List[GetTransactionsResponseDataInner]] = Field(default=None, description="Transaction list covering the date range specified")
+    cloudbeds_accounting: Optional[StrictBool] = Field(default=None, description="if true it means the data comes from the new accounting solution", alias="cloudbedsAccounting")
     count: Optional[StrictInt] = Field(default=None, description="Number of results returned, based on pagination and filter parameters")
     total: Optional[StrictInt] = Field(default=None, description="Total count of results, based on filter parameters")
     message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false). If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "data", "count", "total", "message"]
+    __properties: ClassVar[List[str]] = ["success", "data", "cloudbedsAccounting", "count", "total", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +100,7 @@ class GetTransactionsResponse(BaseModel):
         _obj = cls.model_validate({
             "success": obj.get("success"),
             "data": [GetTransactionsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "cloudbedsAccounting": obj.get("cloudbedsAccounting"),
             "count": obj.get("count"),
             "total": obj.get("total"),
             "message": obj.get("message")

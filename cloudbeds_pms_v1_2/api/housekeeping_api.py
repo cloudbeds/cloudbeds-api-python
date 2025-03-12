@@ -1308,7 +1308,7 @@ class HousekeepingApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition")] = None,
+        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.")] = None,
         do_not_disturb: Annotated[Optional[StrictBool], Field(description="New \\\"do not disturb\\\" status")] = None,
         room_comments: Annotated[Optional[StrictStr], Field(description="New room comments.")] = None,
         refused_service: Annotated[Optional[StrictBool], Field(description="New \\\"refused service\\\" status")] = None,
@@ -1334,7 +1334,7 @@ class HousekeepingApi:
         :type property_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition
+        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.
         :type room_condition: str
         :param do_not_disturb: New \\\"do not disturb\\\" status
         :type do_not_disturb: bool
@@ -1399,7 +1399,7 @@ class HousekeepingApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition")] = None,
+        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.")] = None,
         do_not_disturb: Annotated[Optional[StrictBool], Field(description="New \\\"do not disturb\\\" status")] = None,
         room_comments: Annotated[Optional[StrictStr], Field(description="New room comments.")] = None,
         refused_service: Annotated[Optional[StrictBool], Field(description="New \\\"refused service\\\" status")] = None,
@@ -1425,7 +1425,7 @@ class HousekeepingApi:
         :type property_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition
+        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.
         :type room_condition: str
         :param do_not_disturb: New \\\"do not disturb\\\" status
         :type do_not_disturb: bool
@@ -1490,7 +1490,7 @@ class HousekeepingApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition")] = None,
+        room_condition: Annotated[Optional[StrictStr], Field(description="New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.")] = None,
         do_not_disturb: Annotated[Optional[StrictBool], Field(description="New \\\"do not disturb\\\" status")] = None,
         room_comments: Annotated[Optional[StrictStr], Field(description="New room comments.")] = None,
         refused_service: Annotated[Optional[StrictBool], Field(description="New \\\"refused service\\\" status")] = None,
@@ -1516,7 +1516,7 @@ class HousekeepingApi:
         :type property_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition
+        :param room_condition: New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled.
         :type room_condition: str
         :param do_not_disturb: New \\\"do not disturb\\\" status
         :type do_not_disturb: bool

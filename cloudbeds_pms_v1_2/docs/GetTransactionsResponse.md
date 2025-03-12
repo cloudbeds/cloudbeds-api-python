@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Returns if the request could be completed | [optional] 
 **data** | [**List[GetTransactionsResponseDataInner]**](GetTransactionsResponseDataInner.md) | Transaction list covering the date range specified | [optional] 
+**cloudbeds_accounting** | **bool** | if true it means the data comes from the new accounting solution | [optional] 
 **count** | **int** | Number of results returned, based on pagination and filter parameters | [optional] 
 **total** | **int** | Total count of results, based on filter parameters | [optional] 
 **message** | **str** | To be used in case any error occurs (if success &#x3D; false). If success &#x3D; true, it does not exist. | [optional] 

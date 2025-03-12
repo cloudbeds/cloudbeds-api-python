@@ -38,10 +38,11 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeID")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room type Name", alias="roomTypeName")
     room_type_name_short: Optional[StrictStr] = Field(default=None, description="Room type Short Name", alias="roomTypeNameShort")
+    doorlock_id: Optional[StrictStr] = Field(default=None, description="The doorlock ID for the room", alias="doorlockID")
     linked_room_ids: Optional[List[StrictStr]] = Field(default=None, description="List of linked room IDs for this room (including nested relations). Only returned if includeRoomRelations is set to true", alias="linkedRoomIDs")
     linked_room_type_ids: Optional[List[StrictStr]] = Field(default=None, description="List of linked room type IDs. Only returned if includeRoomRelations is set to true", alias="linkedRoomTypeIDs")
     linked_room_type_qty: Optional[List[GetRoomsResponseDataInnerRoomsInnerLinkedRoomTypeQtyInner]] = Field(default=None, description="Data about linked rooms count, grouped by room type. Only returned if includeRoomRelations is set to true", alias="linkedRoomTypeQty")
-    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort", "linkedRoomIDs", "linkedRoomTypeIDs", "linkedRoomTypeQty"]
+    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort", "doorlockID", "linkedRoomIDs", "linkedRoomTypeIDs", "linkedRoomTypeQty"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,6 +128,7 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
             "roomTypeID": obj.get("roomTypeID"),
             "roomTypeName": obj.get("roomTypeName"),
             "roomTypeNameShort": obj.get("roomTypeNameShort"),
+            "doorlockID": obj.get("doorlockID"),
             "linkedRoomIDs": obj.get("linkedRoomIDs"),
             "linkedRoomTypeIDs": obj.get("linkedRoomTypeIDs"),
             "linkedRoomTypeQty": [GetRoomsResponseDataInnerRoomsInnerLinkedRoomTypeQtyInner.from_dict(_item) for _item in obj["linkedRoomTypeQty"]] if obj.get("linkedRoomTypeQty") is not None else None

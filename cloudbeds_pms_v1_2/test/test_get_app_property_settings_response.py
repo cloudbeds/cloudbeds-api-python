@@ -36,12 +36,7 @@ class TestGetAppPropertySettingsResponse(unittest.TestCase):
         if include_optional:
             return GetAppPropertySettingsResponse(
                 success = True,
-                data = [
-                    cloudbeds_pms_v1_2.models.get_app_property_settings_response_data_inner.GetAppPropertySettingsResponse_data_inner(
-                        id = '', 
-                        key = '', 
-                        value = '', )
-                    ]
+                data = None
             )
         else:
             return GetAppPropertySettingsResponse(

@@ -20,6 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from cloudbeds_pms_v1_2.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner_guest_pricing import PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,7 +37,8 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
     closed_to_departure: Optional[StrictBool] = Field(default=None, description="Whether it is closed to departure.", alias="closedToDeparture")
     cut_off: Optional[StrictInt] = Field(default=None, description="Cut off time for the selected date.", alias="cutOff")
     last_minute_booking: Optional[StrictInt] = Field(default=None, description="Last minute bookings.", alias="lastMinuteBooking")
-    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate", "maxLos", "minLos", "closedToArrival", "closedToDeparture", "cutOff", "lastMinuteBooking"]
+    guest_pricing: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing] = Field(default=None, alias="guestPricing")
+    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate", "maxLos", "minLos", "closedToArrival", "closedToDeparture", "cutOff", "lastMinuteBooking", "guestPricing"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,9 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of guest_pricing
+        if self.guest_pricing:
+            _dict['guestPricing'] = self.guest_pricing.to_dict()
         # set to None if max_los (nullable) is None
         # and model_fields_set contains the field
         if self.max_los is None and "max_los" in self.model_fields_set:
@@ -107,6 +112,11 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
         if self.last_minute_booking is None and "last_minute_booking" in self.model_fields_set:
             _dict['lastMinuteBooking'] = None
 
+        # set to None if guest_pricing (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_pricing is None and "guest_pricing" in self.model_fields_set:
+            _dict['guestPricing'] = None
+
         return _dict
 
     @classmethod
@@ -127,7 +137,8 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
             "closedToArrival": obj.get("closedToArrival"),
             "closedToDeparture": obj.get("closedToDeparture"),
             "cutOff": obj.get("cutOff"),
-            "lastMinuteBooking": obj.get("lastMinuteBooking")
+            "lastMinuteBooking": obj.get("lastMinuteBooking"),
+            "guestPricing": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None
         })
         return _obj
 

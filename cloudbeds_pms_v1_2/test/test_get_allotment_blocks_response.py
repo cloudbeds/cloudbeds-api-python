@@ -75,7 +75,9 @@ class TestGetAllotmentBlocksResponse(unittest.TestCase):
                                             adult3 = '', 
                                             child1 = '', 
                                             child2 = '', 
-                                            child3 = '', ), )
+                                            child3 = '', ), 
+                                        split_block_allotted = 56, 
+                                        split_block_confirmed = 56, )
                                     ], 
                                 restrictions = cloudbeds_pms_v1_2.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner_restrictions.GetAllotmentBlocksResponse_data_inner_allotmentIntervals_inner_restrictions(
                                     min_los = 56, 

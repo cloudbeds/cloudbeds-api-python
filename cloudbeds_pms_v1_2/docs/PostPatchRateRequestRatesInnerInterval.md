@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **closed_to_departure** | **bool** | Whether it is closed to departure. | [optional] 
 **cut_off** | **int** | Cut off time for the selected date. | [optional] 
 **last_minute_booking** | **int** | Last minute bookings. | [optional] 
+**guest_pricing** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.md) |  | [optional] 
 
 ## Example
 

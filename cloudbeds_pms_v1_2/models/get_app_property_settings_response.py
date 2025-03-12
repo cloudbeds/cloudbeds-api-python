@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_2.models.get_app_property_settings_response_data_inner import GetAppPropertySettingsResponseDataInner
+from cloudbeds_pms_v1_2.models.get_app_property_settings_response_data import GetAppPropertySettingsResponseData
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class GetAppPropertySettingsResponse(BaseModel):
     GetAppPropertySettingsResponse
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Success")
-    data: Optional[List[GetAppPropertySettingsResponseDataInner]] = Field(default=None, description="Data")
+    data: Optional[GetAppPropertySettingsResponseData] = None
     __properties: ClassVar[List[str]] = ["success", "data"]
 
     model_config = ConfigDict(
@@ -70,13 +70,9 @@ class GetAppPropertySettingsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
-            for _item_data in self.data:
-                if _item_data:
-                    _items.append(_item_data.to_dict())
-            _dict['data'] = _items
+            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
@@ -90,7 +86,7 @@ class GetAppPropertySettingsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "data": [GetAppPropertySettingsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": GetAppPropertySettingsResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

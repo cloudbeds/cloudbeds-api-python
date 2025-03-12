@@ -26,7 +26,7 @@ class PutReservationRequestCustomFieldsInner(BaseModel):
     """
     PutReservationRequestCustomFieldsInner
     """ # noqa: E501
-    custom_field_name: Optional[StrictStr] = Field(default=None, description="Internal custom field reference. Must match the registered name in backend. Pay Attention", alias="customFieldName")
+    custom_field_name: Optional[StrictStr] = Field(default=None, description="Internal custom field reference. Must match the registered name (shortcode) in backend. Pay Attention", alias="customFieldName")
     custom_field_value: Optional[StrictStr] = Field(default=None, description="Custom field value. It's strictly forbidden to send unencrypted payment data through the API. Numeric values longer than 12 characters and considered valid by Luhn's algorithm will be rejected.", alias="customFieldValue")
     __properties: ClassVar[List[str]] = ["customFieldName", "customFieldValue"]
 

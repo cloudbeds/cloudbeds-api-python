@@ -21,6 +21,7 @@ from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_2.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
+from cloudbeds_pms_v1_2.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
 from cloudbeds_pms_v1_2.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_2.models.get_reservations_response_data_inner_rooms_inner import GetReservationsResponseDataInnerRoomsInner
 from typing import Optional, Set
@@ -47,11 +48,12 @@ class GetReservationsResponseDataInner(BaseModel):
     source_name: Optional[StrictStr] = Field(default=None, description="Source of reservation", alias="sourceName")
     source_id: Optional[StrictStr] = Field(default=None, description="Booking source unique id", alias="sourceID")
     third_party_identifier: Optional[StrictStr] = Field(default=None, alias="thirdPartyIdentifier")
+    group_inventory: Optional[List[GetReservationResponseDataGroupInventoryInner]] = Field(default=None, description="Aggregate allotment block information", alias="groupInventory")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="If roomID or roomName are given, the respective subReservationID (to that room) is informed.", alias="subReservationID")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
     rooms: Optional[List[GetReservationsResponseDataInnerRoomsInner]] = Field(default=None, description="Array with rooms information. Only returned if \"includeAllRooms\" is true")
     guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
-    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "subReservationID", "customFields", "rooms", "guestList"]
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "groupInventory", "subReservationID", "customFields", "rooms", "guestList"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -102,6 +104,13 @@ class GetReservationsResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in group_inventory (list)
+        _items = []
+        if self.group_inventory:
+            for _item_group_inventory in self.group_inventory:
+                if _item_group_inventory:
+                    _items.append(_item_group_inventory.to_dict())
+            _dict['groupInventory'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in custom_fields (list)
         _items = []
         if self.custom_fields:
@@ -127,6 +136,11 @@ class GetReservationsResponseDataInner(BaseModel):
         # and model_fields_set contains the field
         if self.allotment_block_code is None and "allotment_block_code" in self.model_fields_set:
             _dict['allotmentBlockCode'] = None
+
+        # set to None if group_inventory (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_inventory is None and "group_inventory" in self.model_fields_set:
+            _dict['groupInventory'] = None
 
         # set to None if sub_reservation_id (nullable) is None
         # and model_fields_set contains the field
@@ -172,6 +186,7 @@ class GetReservationsResponseDataInner(BaseModel):
             "sourceName": obj.get("sourceName"),
             "sourceID": obj.get("sourceID"),
             "thirdPartyIdentifier": obj.get("thirdPartyIdentifier"),
+            "groupInventory": [GetReservationResponseDataGroupInventoryInner.from_dict(_item) for _item in obj["groupInventory"]] if obj.get("groupInventory") is not None else None,
             "subReservationID": obj.get("subReservationID"),
             "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "rooms": [GetReservationsResponseDataInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,

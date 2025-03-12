@@ -66,7 +66,8 @@ class TestGetTransactionsResponseDataInner(unittest.TestCase):
                 transaction_id = '',
                 parent_transaction_id = '',
                 card_type = '',
-                is_deleted = True
+                is_deleted = True,
+                service_date = ''
             )
         else:
             return GetTransactionsResponseDataInner(

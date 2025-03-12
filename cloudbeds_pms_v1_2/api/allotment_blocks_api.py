@@ -16,7 +16,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from datetime import date
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from cloudbeds_pms_v1_2.models.get_allotment_blocks_response import GetAllotmentBlocksResponse
@@ -360,8 +361,10 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
+        rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
         _request_timeout: Union[
@@ -387,10 +390,14 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
         :type rate_type: str
+        :param rate_plan_id: The rate plan ID. Required if rateType is \\\"rate_plan\\\".
+        :type rate_plan_id: str
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
         :type allotment_block_status: str
+        :param allow_overbooking: If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param auto_release:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
@@ -421,8 +428,10 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
+            rate_plan_id=rate_plan_id,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
+            allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
             _request_auth=_request_auth,
@@ -451,8 +460,10 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
+        rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
         _request_timeout: Union[
@@ -478,10 +489,14 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
         :type rate_type: str
+        :param rate_plan_id: The rate plan ID. Required if rateType is \\\"rate_plan\\\".
+        :type rate_plan_id: str
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
         :type allotment_block_status: str
+        :param allow_overbooking: If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param auto_release:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
@@ -512,8 +527,10 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
+            rate_plan_id=rate_plan_id,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
+            allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
             _request_auth=_request_auth,
@@ -542,8 +559,10 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
+        rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
         _request_timeout: Union[
@@ -569,10 +588,14 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
         :type rate_type: str
+        :param rate_plan_id: The rate plan ID. Required if rateType is \\\"rate_plan\\\".
+        :type rate_plan_id: str
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
         :type allotment_block_status: str
+        :param allow_overbooking: If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param auto_release:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
@@ -603,8 +626,10 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
+            rate_plan_id=rate_plan_id,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
+            allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
             _request_auth=_request_auth,
@@ -628,8 +653,10 @@ class AllotmentBlocksApi:
         group_code,
         allotment_block_name,
         rate_type,
+        rate_plan_id,
         allotment_type,
         allotment_block_status,
+        allow_overbooking,
         auto_release,
         allotment_intervals,
         _request_auth,
@@ -663,10 +690,14 @@ class AllotmentBlocksApi:
             _form_params.append(('allotmentBlockName', allotment_block_name))
         if rate_type is not None:
             _form_params.append(('rateType', rate_type))
+        if rate_plan_id is not None:
+            _form_params.append(('ratePlanId', rate_plan_id))
         if allotment_type is not None:
             _form_params.append(('allotmentType', allotment_type))
         if allotment_block_status is not None:
             _form_params.append(('allotmentBlockStatus', allotment_block_status))
+        if allow_overbooking is not None:
+            _form_params.append(('allowOverbooking', allow_overbooking))
         if auto_release is not None:
             _form_params.append(('autoRelease', auto_release))
         if allotment_intervals is not None:
@@ -999,11 +1030,15 @@ class AllotmentBlocksApi:
     def get_allotment_blocks_get(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
-        allotment_block_code: Annotated[StrictStr, Field(description="Allotment block code")],
-        group_code: Annotated[StrictStr, Field(description="A group profile code")],
-        allotment_block_status: Annotated[StrictStr, Field(description="Allotment block status(es)")],
-        page_size: Annotated[StrictInt, Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
+        allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
+        allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
+        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1023,16 +1058,24 @@ class AllotmentBlocksApi:
 
         :param property_id: Property ID (optional, by default all authorized properties will be included) (required)
         :type property_id: str
-        :param allotment_block_code: Allotment block code (required)
+        :param allotment_block_code: Allotment block code
         :type allotment_block_code: str
-        :param group_code: A group profile code (required)
+        :param allotment_block_name: Allotment block name
+        :type allotment_block_name: str
+        :param group_code: A group profile code
         :type group_code: str
-        :param allotment_block_status: Allotment block status(es) (required)
+        :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
-        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100) (required)
+        :param allotment_block_type: The type of allotment block
+        :type allotment_block_type: str
+        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
+        :param start_date: Interval start date
+        :type start_date: date
+        :param end_date: Interval start date
+        :type end_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1058,10 +1101,14 @@ class AllotmentBlocksApi:
         _param = self._get_allotment_blocks_get_serialize(
             property_id=property_id,
             allotment_block_code=allotment_block_code,
+            allotment_block_name=allotment_block_name,
             group_code=group_code,
             allotment_block_status=allotment_block_status,
+            allotment_block_type=allotment_block_type,
             page_size=page_size,
             page_number=page_number,
+            start_date=start_date,
+            end_date=end_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1086,11 +1133,15 @@ class AllotmentBlocksApi:
     def get_allotment_blocks_get_with_http_info(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
-        allotment_block_code: Annotated[StrictStr, Field(description="Allotment block code")],
-        group_code: Annotated[StrictStr, Field(description="A group profile code")],
-        allotment_block_status: Annotated[StrictStr, Field(description="Allotment block status(es)")],
-        page_size: Annotated[StrictInt, Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
+        allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
+        allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
+        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1110,16 +1161,24 @@ class AllotmentBlocksApi:
 
         :param property_id: Property ID (optional, by default all authorized properties will be included) (required)
         :type property_id: str
-        :param allotment_block_code: Allotment block code (required)
+        :param allotment_block_code: Allotment block code
         :type allotment_block_code: str
-        :param group_code: A group profile code (required)
+        :param allotment_block_name: Allotment block name
+        :type allotment_block_name: str
+        :param group_code: A group profile code
         :type group_code: str
-        :param allotment_block_status: Allotment block status(es) (required)
+        :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
-        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100) (required)
+        :param allotment_block_type: The type of allotment block
+        :type allotment_block_type: str
+        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
+        :param start_date: Interval start date
+        :type start_date: date
+        :param end_date: Interval start date
+        :type end_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1145,10 +1204,14 @@ class AllotmentBlocksApi:
         _param = self._get_allotment_blocks_get_serialize(
             property_id=property_id,
             allotment_block_code=allotment_block_code,
+            allotment_block_name=allotment_block_name,
             group_code=group_code,
             allotment_block_status=allotment_block_status,
+            allotment_block_type=allotment_block_type,
             page_size=page_size,
             page_number=page_number,
+            start_date=start_date,
+            end_date=end_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1173,11 +1236,15 @@ class AllotmentBlocksApi:
     def get_allotment_blocks_get_without_preload_content(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
-        allotment_block_code: Annotated[StrictStr, Field(description="Allotment block code")],
-        group_code: Annotated[StrictStr, Field(description="A group profile code")],
-        allotment_block_status: Annotated[StrictStr, Field(description="Allotment block status(es)")],
-        page_size: Annotated[StrictInt, Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")],
-        page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
+        allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
+        allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
+        page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
+        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1197,16 +1264,24 @@ class AllotmentBlocksApi:
 
         :param property_id: Property ID (optional, by default all authorized properties will be included) (required)
         :type property_id: str
-        :param allotment_block_code: Allotment block code (required)
+        :param allotment_block_code: Allotment block code
         :type allotment_block_code: str
-        :param group_code: A group profile code (required)
+        :param allotment_block_name: Allotment block name
+        :type allotment_block_name: str
+        :param group_code: A group profile code
         :type group_code: str
-        :param allotment_block_status: Allotment block status(es) (required)
+        :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
-        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100) (required)
+        :param allotment_block_type: The type of allotment block
+        :type allotment_block_type: str
+        :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
-        :param page_number: Which page in the results to access (required)
+        :param page_number: Which page in the results to access
         :type page_number: int
+        :param start_date: Interval start date
+        :type start_date: date
+        :param end_date: Interval start date
+        :type end_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1232,10 +1307,14 @@ class AllotmentBlocksApi:
         _param = self._get_allotment_blocks_get_serialize(
             property_id=property_id,
             allotment_block_code=allotment_block_code,
+            allotment_block_name=allotment_block_name,
             group_code=group_code,
             allotment_block_status=allotment_block_status,
+            allotment_block_type=allotment_block_type,
             page_size=page_size,
             page_number=page_number,
+            start_date=start_date,
+            end_date=end_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1256,10 +1335,14 @@ class AllotmentBlocksApi:
         self,
         property_id,
         allotment_block_code,
+        allotment_block_name,
         group_code,
         allotment_block_status,
+        allotment_block_type,
         page_size,
         page_number,
+        start_date,
+        end_date,
         _request_auth,
         _content_type,
         _headers,
@@ -1290,6 +1373,10 @@ class AllotmentBlocksApi:
             
             _query_params.append(('allotmentBlockCode', allotment_block_code))
             
+        if allotment_block_name is not None:
+            
+            _query_params.append(('allotmentBlockName', allotment_block_name))
+            
         if group_code is not None:
             
             _query_params.append(('groupCode', group_code))
@@ -1298,6 +1385,10 @@ class AllotmentBlocksApi:
             
             _query_params.append(('allotmentBlockStatus', allotment_block_status))
             
+        if allotment_block_type is not None:
+            
+            _query_params.append(('allotmentBlockType', allotment_block_type))
+            
         if page_size is not None:
             
             _query_params.append(('pageSize', page_size))
@@ -1305,6 +1396,32 @@ class AllotmentBlocksApi:
         if page_number is not None:
             
             _query_params.append(('pageNumber', page_number))
+            
+        if start_date is not None:
+            if isinstance(start_date, date):
+                _query_params.append(
+                    (
+                        'startDate',
+                        start_date.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, date):
+                _query_params.append(
+                    (
+                        'endDate',
+                        end_date.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDate', end_date))
             
         # process the header parameters
         # process the form parameters
@@ -2016,6 +2133,7 @@ class AllotmentBlocksApi:
         self,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="The allotment block code identifying the allotment block to update")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
@@ -2041,6 +2159,8 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
+        :param allow_overbooking: If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
@@ -2074,6 +2194,7 @@ class AllotmentBlocksApi:
         _param = self._update_allotment_block_post_serialize(
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
+            allow_overbooking=allow_overbooking,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
@@ -2103,6 +2224,7 @@ class AllotmentBlocksApi:
         self,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="The allotment block code identifying the allotment block to update")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
@@ -2128,6 +2250,8 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
+        :param allow_overbooking: If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
@@ -2161,6 +2285,7 @@ class AllotmentBlocksApi:
         _param = self._update_allotment_block_post_serialize(
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
+            allow_overbooking=allow_overbooking,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
@@ -2190,6 +2315,7 @@ class AllotmentBlocksApi:
         self,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="The allotment block code identifying the allotment block to update")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
+        allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         allotment_type: Annotated[Optional[StrictStr], Field(description="The allotment type")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
@@ -2215,6 +2341,8 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
+        :param allow_overbooking: If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.
+        :type allow_overbooking: bool
         :param allotment_type: The allotment type
         :type allotment_type: str
         :param allotment_block_status: The status for the allotment block under
@@ -2248,6 +2376,7 @@ class AllotmentBlocksApi:
         _param = self._update_allotment_block_post_serialize(
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
+            allow_overbooking=allow_overbooking,
             allotment_type=allotment_type,
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
@@ -2272,6 +2401,7 @@ class AllotmentBlocksApi:
         self,
         allotment_block_code,
         allotment_block_name,
+        allow_overbooking,
         allotment_type,
         allotment_block_status,
         auto_release,
@@ -2305,6 +2435,8 @@ class AllotmentBlocksApi:
             _form_params.append(('allotmentBlockCode', allotment_block_code))
         if allotment_block_name is not None:
             _form_params.append(('allotmentBlockName', allotment_block_name))
+        if allow_overbooking is not None:
+            _form_params.append(('allowOverbooking', allow_overbooking))
         if allotment_type is not None:
             _form_params.append(('allotmentType', allotment_type))
         if allotment_block_status is not None:

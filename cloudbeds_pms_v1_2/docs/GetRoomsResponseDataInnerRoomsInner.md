@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **room_type_id** | **str** | Room type ID | [optional] 
 **room_type_name** | **str** | Room type Name | [optional] 
 **room_type_name_short** | **str** | Room type Short Name | [optional] 
+**doorlock_id** | **str** | The doorlock ID for the room | [optional] 
 **linked_room_ids** | **List[str]** | List of linked room IDs for this room (including nested relations). Only returned if includeRoomRelations is set to true | [optional] 
 **linked_room_type_ids** | **List[str]** | List of linked room type IDs. Only returned if includeRoomRelations is set to true | [optional] 
 **linked_room_type_qty** | [**List[GetRoomsResponseDataInnerRoomsInnerLinkedRoomTypeQtyInner]**](GetRoomsResponseDataInnerRoomsInnerLinkedRoomTypeQtyInner.md) | Data about linked rooms count, grouped by room type. Only returned if includeRoomRelations is set to true | [optional] 

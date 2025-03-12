@@ -405,7 +405,7 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms_v1_2.HousekeepingApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
     room_id = 'room_id_example' # str | Room ID (optional)
-    room_condition = 'room_condition_example' # str | New room condition. If no optional parameters are sent, will switch from current room condition (optional)
+    room_condition = 'room_condition_example' # str | New room condition. If no optional parameters are sent, will switch from current room condition. \\\"inspected\\\" status is available only if the property has the feature enabled. (optional)
     do_not_disturb = True # bool | New \\\"do not disturb\\\" status (optional)
     room_comments = 'room_comments_example' # str | New room comments. (optional)
     refused_service = True # bool | New \\\"refused service\\\" status (optional)
@@ -429,7 +429,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
  **room_id** | **str**| Room ID | [optional] 
- **room_condition** | **str**| New room condition. If no optional parameters are sent, will switch from current room condition | [optional] 
+ **room_condition** | **str**| New room condition. If no optional parameters are sent, will switch from current room condition. \\\&quot;inspected\\\&quot; status is available only if the property has the feature enabled. | [optional] 
  **do_not_disturb** | **bool**| New \\\&quot;do not disturb\\\&quot; status | [optional] 
  **room_comments** | **str**| New room comments. | [optional] 
  **refused_service** | **bool**| New \\\&quot;refused service\\\&quot; status | [optional] 

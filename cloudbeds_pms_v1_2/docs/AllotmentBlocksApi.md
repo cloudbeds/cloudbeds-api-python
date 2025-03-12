@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_allotment_block_post**
-> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
 
 createAllotmentBlock
 
@@ -145,14 +145,16 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     group_code = 'group_code_example' # str | The unique identifier of the group profile the allotment block should be created (optional)
     allotment_block_name = 'allotment_block_name_example' # str | The name for the allotment block (optional)
     rate_type = 'rate_type_example' # str | The rate type for the associated intervals (optional)
+    rate_plan_id = 'rate_plan_id_example' # str | The rate plan ID. Required if rateType is \\\"rate_plan\\\". (optional)
     allotment_type = 'allotment_type_example' # str | The allotment type (optional)
     allotment_block_status = 'allotment_block_status_example' # str | The status for the allotment block under (optional)
+    allow_overbooking = True # bool | If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. (optional)
     auto_release = cloudbeds_pms_v1_2.PostCreateAllotmentBlockRequestAutoRelease() # PostCreateAllotmentBlockRequestAutoRelease |  (optional)
     allotment_intervals = [cloudbeds_pms_v1_2.PostCreateAllotmentBlockRequestAllotmentIntervalsInner()] # List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner] | The day-based data for the allotment block. (optional)
 
     try:
         # createAllotmentBlock
-        api_response = api_instance.create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+        api_response = api_instance.create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
         print("The response of AllotmentBlocksApi->create_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -169,8 +171,10 @@ Name | Type | Description  | Notes
  **group_code** | **str**| The unique identifier of the group profile the allotment block should be created | [optional] 
  **allotment_block_name** | **str**| The name for the allotment block | [optional] 
  **rate_type** | **str**| The rate type for the associated intervals | [optional] 
+ **rate_plan_id** | **str**| The rate plan ID. Required if rateType is \\\&quot;rate_plan\\\&quot;. | [optional] 
  **allotment_type** | **str**| The allotment type | [optional] 
  **allotment_block_status** | **str**| The status for the allotment block under | [optional] 
+ **allow_overbooking** | **bool**| If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. | [optional] 
  **auto_release** | [**PostCreateAllotmentBlockRequestAutoRelease**](PostCreateAllotmentBlockRequestAutoRelease.md)|  | [optional] 
  **allotment_intervals** | [**List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]**](PostCreateAllotmentBlockRequestAllotmentIntervalsInner.md)| The day-based data for the allotment block. | [optional] 
 
@@ -278,7 +282,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_allotment_blocks_get**
-> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code, group_code, allotment_block_status, page_size, page_number)
+> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date)
 
 getAllotmentBlocks
 
@@ -319,15 +323,19 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_2.AllotmentBlocksApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional, by default all authorized properties will be included)
-    allotment_block_code = 'allotment_block_code_example' # str | Allotment block code
-    group_code = 'group_code_example' # str | A group profile code
-    allotment_block_status = 'allotment_block_status_example' # str | Allotment block status(es)
-    page_size = 56 # int | Number of allotment blocks to return per page (min: 1, max: 100)
-    page_number = 56 # int | Which page in the results to access
+    allotment_block_code = 'allotment_block_code_example' # str | Allotment block code (optional)
+    allotment_block_name = 'allotment_block_name_example' # str | Allotment block name (optional)
+    group_code = 'group_code_example' # str | A group profile code (optional)
+    allotment_block_status = 'allotment_block_status_example' # str | Allotment block status(es) (optional)
+    allotment_block_type = 'allotment_block_type_example' # str | The type of allotment block (optional)
+    page_size = 56 # int | Number of allotment blocks to return per page (min: 1, max: 100) (optional)
+    page_number = 56 # int | Which page in the results to access (optional)
+    start_date = '2013-10-20' # date | Interval start date (optional)
+    end_date = '2013-10-20' # date | Interval start date (optional)
 
     try:
         # getAllotmentBlocks
-        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code, group_code, allotment_block_status, page_size, page_number)
+        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date)
         print("The response of AllotmentBlocksApi->get_allotment_blocks_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -342,11 +350,15 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID (optional, by default all authorized properties will be included) | 
- **allotment_block_code** | **str**| Allotment block code | 
- **group_code** | **str**| A group profile code | 
- **allotment_block_status** | **str**| Allotment block status(es) | 
- **page_size** | **int**| Number of allotment blocks to return per page (min: 1, max: 100) | 
- **page_number** | **int**| Which page in the results to access | 
+ **allotment_block_code** | **str**| Allotment block code | [optional] 
+ **allotment_block_name** | **str**| Allotment block name | [optional] 
+ **group_code** | **str**| A group profile code | [optional] 
+ **allotment_block_status** | **str**| Allotment block status(es) | [optional] 
+ **allotment_block_type** | **str**| The type of allotment block | [optional] 
+ **page_size** | **int**| Number of allotment blocks to return per page (min: 1, max: 100) | [optional] 
+ **page_number** | **int**| Which page in the results to access | [optional] 
+ **start_date** | **date**| Interval start date | [optional] 
+ **end_date** | **date**| Interval start date | [optional] 
 
 ### Return type
 
@@ -550,7 +562,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_allotment_block_post**
-> PostUpdateAllotmentBlockResponse update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+> PostUpdateAllotmentBlockResponse update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
 
 updateAllotmentBlock
 
@@ -594,6 +606,7 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms_v1_2.AllotmentBlocksApi(api_client)
     allotment_block_code = 'allotment_block_code_example' # str | The allotment block code identifying the allotment block to update (optional)
     allotment_block_name = 'allotment_block_name_example' # str | The name for the allotment block (optional)
+    allow_overbooking = True # bool | If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. (optional)
     allotment_type = 'allotment_type_example' # str | The allotment type (optional)
     allotment_block_status = 'allotment_block_status_example' # str | The status for the allotment block under (optional)
     auto_release = cloudbeds_pms_v1_2.PostUpdateAllotmentBlockRequestAutoRelease() # PostUpdateAllotmentBlockRequestAutoRelease |  (optional)
@@ -601,7 +614,7 @@ with cloudbeds_pms_v1_2.ApiClient(configuration) as api_client:
 
     try:
         # updateAllotmentBlock
-        api_response = api_instance.update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+        api_response = api_instance.update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
         print("The response of AllotmentBlocksApi->update_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -617,6 +630,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allotment_block_code** | **str**| The allotment block code identifying the allotment block to update | [optional] 
  **allotment_block_name** | **str**| The name for the allotment block | [optional] 
+ **allow_overbooking** | **bool**| If false, or omitted, then this update will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. | [optional] 
  **allotment_type** | **str**| The allotment type | [optional] 
  **allotment_block_status** | **str**| The status for the allotment block under | [optional] 
  **auto_release** | [**PostUpdateAllotmentBlockRequestAutoRelease**](PostUpdateAllotmentBlockRequestAutoRelease.md)|  | [optional] 

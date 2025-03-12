@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.post_patch_rate_request_rates_inner_interval import PostPatchRateRequestRatesInnerInterval
+from cloudbeds_pms_v1_2.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
 
-class TestPostPatchRateRequestRatesInnerInterval(unittest.TestCase):
-    """PostPatchRateRequestRatesInnerInterval unit test stubs"""
+class TestGetReservationResponseDataGroupInventoryInner(unittest.TestCase):
+    """GetReservationResponseDataGroupInventoryInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,40 +25,28 @@ class TestPostPatchRateRequestRatesInnerInterval(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PostPatchRateRequestRatesInnerInterval:
-        """Test PostPatchRateRequestRatesInnerInterval
+    def make_instance(self, include_optional) -> GetReservationResponseDataGroupInventoryInner:
+        """Test GetReservationResponseDataGroupInventoryInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PostPatchRateRequestRatesInnerInterval`
+        # uncomment below to create an instance of `GetReservationResponseDataGroupInventoryInner`
         """
-        model = PostPatchRateRequestRatesInnerInterval()
+        model = GetReservationResponseDataGroupInventoryInner()
         if include_optional:
-            return PostPatchRateRequestRatesInnerInterval(
+            return GetReservationResponseDataGroupInventoryInner(
+                sub_reservation_id = '',
+                allotment_block_code = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                rate = 1.337,
-                max_los = 56,
-                min_los = 56,
-                closed_to_arrival = True,
-                closed_to_departure = True,
-                cut_off = 56,
-                last_minute_booking = 56,
-                guest_pricing = cloudbeds_pms_v1_2.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner_guest_pricing.PostCreateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner_guestPricing(
-                    adult1 = '', 
-                    adult2 = '', 
-                    adult3 = '', 
-                    child1 = '', 
-                    child2 = '', 
-                    child3 = '', )
+                end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date()
             )
         else:
-            return PostPatchRateRequestRatesInnerInterval(
+            return GetReservationResponseDataGroupInventoryInner(
         )
         """
 
-    def testPostPatchRateRequestRatesInnerInterval(self):
-        """Test PostPatchRateRequestRatesInnerInterval"""
+    def testGetReservationResponseDataGroupInventoryInner(self):
+        """Test GetReservationResponseDataGroupInventoryInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

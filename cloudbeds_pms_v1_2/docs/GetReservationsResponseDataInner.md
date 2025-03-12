@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **source_name** | **str** | Source of reservation | [optional] 
 **source_id** | **str** | Booking source unique id | [optional] 
 **third_party_identifier** | **str** |  | [optional] 
+**group_inventory** | [**List[GetReservationResponseDataGroupInventoryInner]**](GetReservationResponseDataGroupInventoryInner.md) | Aggregate allotment block information | [optional] 
 **sub_reservation_id** | **str** | If roomID or roomName are given, the respective subReservationID (to that room) is informed. | [optional] 
 **custom_fields** | [**List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]**](GetGuestsModifiedResponseDataInnerCustomFieldsInner.md) | List of reservation custom fields. Only returned if \&quot;includeCustomFields\&quot; is true | [optional] 
 **rooms** | [**List[GetReservationsResponseDataInnerRoomsInner]**](GetReservationsResponseDataInnerRoomsInner.md) | Array with rooms information. Only returned if \&quot;includeAllRooms\&quot; is true | [optional] 

@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_assigned_inner import GetReservationResponseDataAssignedInner
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_balance_detailed_inner import GetReservationResponseDataBalanceDetailedInner
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_cards_on_file_inner import GetReservationResponseDataCardsOnFileInner
+from cloudbeds_pms_v1_2.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_guest_list_value import GetReservationResponseDataGuestListValue
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_guest_list_value_custom_fields_inner import GetReservationResponseDataGuestListValueCustomFieldsInner
 from cloudbeds_pms_v1_2.models.get_reservation_response_data_unassigned_inner import GetReservationResponseDataUnassignedInner
@@ -57,7 +58,8 @@ class GetReservationResponseData(BaseModel):
     end_date: Optional[date] = Field(default=None, description="Last reservation check-out date", alias="endDate")
     allotment_block_code: Optional[StrictStr] = Field(default=None, description="Allotment block code", alias="allotmentBlockCode")
     channel_provided_credit_card: Optional[StrictBool] = Field(default=None, description="Whether a credit card was provided by the channel. Only included for reservations originating from OTAs.", alias="channelProvidedCreditCard")
-    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard"]
+    group_inventory: Optional[List[GetReservationResponseDataGroupInventoryInner]] = Field(default=None, description="Aggregate allotment block information", alias="groupInventory")
+    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard", "groupInventory"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -150,6 +152,13 @@ class GetReservationResponseData(BaseModel):
                 if _item_custom_fields:
                     _items.append(_item_custom_fields.to_dict())
             _dict['customFields'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in group_inventory (list)
+        _items = []
+        if self.group_inventory:
+            for _item_group_inventory in self.group_inventory:
+                if _item_group_inventory:
+                    _items.append(_item_group_inventory.to_dict())
+            _dict['groupInventory'] = _items
         # set to None if estimated_arrival_time (nullable) is None
         # and model_fields_set contains the field
         if self.estimated_arrival_time is None and "estimated_arrival_time" in self.model_fields_set:
@@ -164,6 +173,11 @@ class GetReservationResponseData(BaseModel):
         # and model_fields_set contains the field
         if self.allotment_block_code is None and "allotment_block_code" in self.model_fields_set:
             _dict['allotmentBlockCode'] = None
+
+        # set to None if group_inventory (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_inventory is None and "group_inventory" in self.model_fields_set:
+            _dict['groupInventory'] = None
 
         return _dict
 
@@ -205,7 +219,8 @@ class GetReservationResponseData(BaseModel):
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
             "allotmentBlockCode": obj.get("allotmentBlockCode"),
-            "channelProvidedCreditCard": obj.get("channelProvidedCreditCard")
+            "channelProvidedCreditCard": obj.get("channelProvidedCreditCard"),
+            "groupInventory": [GetReservationResponseDataGroupInventoryInner.from_dict(_item) for _item in obj["groupInventory"]] if obj.get("groupInventory") is not None else None
         })
         return _obj
 

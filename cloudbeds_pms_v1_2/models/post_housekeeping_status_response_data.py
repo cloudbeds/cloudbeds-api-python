@@ -29,7 +29,7 @@ class PostHousekeepingStatusResponseData(BaseModel):
     """ # noqa: E501
     var_date: Optional[date] = Field(default=None, description="Date for last date/time that the room condition changed", alias="date")
     room_id: Optional[StrictStr] = Field(default=None, description="ID of room", alias="roomID")
-    room_condition: Optional[StrictStr] = Field(default=None, description="New room condition", alias="roomCondition")
+    room_condition: Optional[StrictStr] = Field(default=None, description="New room condition. \"inspected\" status is available only if the property has the feature enabled.", alias="roomCondition")
     room_comments: Optional[StrictStr] = Field(default=None, description="New room comments.", alias="roomComments")
     do_not_disturb: Optional[StrictBool] = Field(default=None, description="New \"do not disturb\" status", alias="doNotDisturb")
     refused_service: Optional[StrictBool] = Field(default=None, description="New \"refused service\" status", alias="refusedService")
@@ -42,8 +42,8 @@ class PostHousekeepingStatusResponseData(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['dirty', 'clean']):
-            raise ValueError("must be one of enum values ('dirty', 'clean')")
+        if value not in set(['dirty', 'clean', 'inspected']):
+            raise ValueError("must be one of enum values ('dirty', 'clean', 'inspected')")
         return value
 
     model_config = ConfigDict(

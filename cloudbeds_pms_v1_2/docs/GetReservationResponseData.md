@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **end_date** | **date** | Last reservation check-out date | [optional] 
 **allotment_block_code** | **str** | Allotment block code | [optional] 
 **channel_provided_credit_card** | **bool** | Whether a credit card was provided by the channel. Only included for reservations originating from OTAs. | [optional] 
+**group_inventory** | [**List[GetReservationResponseDataGroupInventoryInner]**](GetReservationResponseDataGroupInventoryInner.md) | Aggregate allotment block information | [optional] 
 
 ## Example
 

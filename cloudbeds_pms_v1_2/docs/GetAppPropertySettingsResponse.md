@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Success | [optional] 
-**data** | [**List[GetAppPropertySettingsResponseDataInner]**](GetAppPropertySettingsResponseDataInner.md) | Data | [optional] 
+**data** | [**GetAppPropertySettingsResponseData**](GetAppPropertySettingsResponseData.md) |  | [optional] 
 
 ## Example
 

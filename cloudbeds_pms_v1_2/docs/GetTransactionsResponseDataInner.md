@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **parent_transaction_id** | **str** | Parent transaction identifier. Parent transaction is a transaction to which this current transaction is strongly related to or derived from.&lt;br/&gt; Example: Parent transaction to a room rate tax is a room rate.&lt;br/&gt; This parent transaction ID will mostly be present on transactions that are taxes, fees and voids. It will not be present on room rates, items, payments and refunds. | [optional] 
 **card_type** | **str** | Abbreviated name of credit card type | [optional] 
 **is_deleted** | **bool** |  | [optional] 
+**service_date** | **str** | will represent the date when a product or service is delivered | [optional] 
 
 ## Example
 

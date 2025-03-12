@@ -49,6 +49,7 @@ class TestGetRoomsResponseDataInner(unittest.TestCase):
                         room_type_id = '', 
                         room_type_name = '', 
                         room_type_name_short = '', 
+                        doorlock_id = '', 
                         linked_room_ids = [
                             ''
                             ], 

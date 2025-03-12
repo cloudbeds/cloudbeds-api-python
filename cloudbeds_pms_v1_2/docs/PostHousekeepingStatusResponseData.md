@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_date** | **date** | Date for last date/time that the room condition changed | [optional] 
 **room_id** | **str** | ID of room | [optional] 
-**room_condition** | **str** | New room condition | [optional] 
+**room_condition** | **str** | New room condition. \&quot;inspected\&quot; status is available only if the property has the feature enabled. | [optional] 
 **room_comments** | **str** | New room comments. | [optional] 
 **do_not_disturb** | **bool** | New \&quot;do not disturb\&quot; status | [optional] 
 **refused_service** | **bool** | New \&quot;refused service\&quot; status | [optional] 

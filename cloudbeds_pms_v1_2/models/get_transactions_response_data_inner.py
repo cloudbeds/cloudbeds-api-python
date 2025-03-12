@@ -59,7 +59,8 @@ class GetTransactionsResponseDataInner(BaseModel):
     parent_transaction_id: Optional[StrictStr] = Field(default=None, description="Parent transaction identifier. Parent transaction is a transaction to which this current transaction is strongly related to or derived from.<br/> Example: Parent transaction to a room rate tax is a room rate.<br/> This parent transaction ID will mostly be present on transactions that are taxes, fees and voids. It will not be present on room rates, items, payments and refunds.", alias="parentTransactionID")
     card_type: Optional[StrictStr] = Field(default=None, description="Abbreviated name of credit card type", alias="cardType")
     is_deleted: Optional[StrictBool] = Field(default=None, alias="isDeleted")
-    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "subReservationID", "houseAccountID", "houseAccountName", "guestID", "propertyName", "transactionDateTime", "transactionDateTimeUTC", "transactionModifiedDateTime", "transactionModifiedDateTimeUTC", "guestCheckIn", "guestCheckOut", "roomTypeID", "roomTypeName", "roomName", "guestName", "description", "category", "transactionCode", "notes", "quantity", "amount", "currency", "userName", "transactionType", "transactionCategory", "itemCategoryName", "transactionID", "parentTransactionID", "cardType", "isDeleted"]
+    service_date: Optional[StrictStr] = Field(default=None, description="will represent the date when a product or service is delivered", alias="serviceDate")
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "subReservationID", "houseAccountID", "houseAccountName", "guestID", "propertyName", "transactionDateTime", "transactionDateTimeUTC", "transactionModifiedDateTime", "transactionModifiedDateTimeUTC", "guestCheckIn", "guestCheckOut", "roomTypeID", "roomTypeName", "roomName", "guestName", "description", "category", "transactionCode", "notes", "quantity", "amount", "currency", "userName", "transactionType", "transactionCategory", "itemCategoryName", "transactionID", "parentTransactionID", "cardType", "isDeleted", "serviceDate"]
 
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
@@ -173,7 +174,8 @@ class GetTransactionsResponseDataInner(BaseModel):
             "transactionID": obj.get("transactionID"),
             "parentTransactionID": obj.get("parentTransactionID"),
             "cardType": obj.get("cardType"),
-            "isDeleted": obj.get("isDeleted")
+            "isDeleted": obj.get("isDeleted"),
+            "serviceDate": obj.get("serviceDate")
         })
         return _obj
 
