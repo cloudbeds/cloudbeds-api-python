@@ -28,6 +28,8 @@ class FeatureEnum(str, Enum):
     """
     FEATURE_DOT_INTEGRATIONS_DOT_EXAMPLE = 'feature.integrations.example'
     FEATURE_DOT_INTEGRATIONS_DOT_GENERATE_MINUS_DUMMY_MINUS_DOORLOCK_MINUS_KEYS = 'feature.integrations.generate-dummy-doorlock-keys'
+    FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION = 'feature.distribution.market-segmentation'
+    FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION_MINUS_ENABLE_MINUS_CUSTOM_MINUS_GROUP = 'feature.distribution.market-segmentation-enable-custom-group'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

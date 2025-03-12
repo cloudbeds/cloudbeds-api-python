@@ -41,7 +41,7 @@ class TestDoorLockKeyCreateRequestSchema(unittest.TestCase):
                 issuer_id = '',
                 start_date_time = '',
                 end_date_time = '',
-                key_type = '',
+                key_type = 'key_card',
                 rooms = ["1","2","3"],
                 common_rooms = ["1","2","3"],
                 external_id = '',
@@ -59,7 +59,7 @@ class TestDoorLockKeyCreateRequestSchema(unittest.TestCase):
                 issuer_id = '',
                 start_date_time = '',
                 end_date_time = '',
-                key_type = '',
+                key_type = 'key_card',
         )
         """
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **issuer_id** | **str** |  | 
 **start_date_time** | **str** | Start date and time of key. | 
 **end_date_time** | **str** | End date and time of key. | 
-**key_type** | **str** | Key type ID. | 
+**key_type** | **str** | Key type. | 
 **rooms** | **List[str]** | List of common room IDs. | [optional] [default to []]
 **common_rooms** | **List[str]** | List of common room ids. | [optional] [default to []]
 **external_id** | **str** |  | [optional] 

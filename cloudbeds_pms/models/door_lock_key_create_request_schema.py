@@ -32,7 +32,7 @@ class DoorLockKeyCreateRequestSchema(BaseModel):
     issuer_id: StrictStr = Field(alias="issuerId")
     start_date_time: StrictStr = Field(description="Start date and time of key.", alias="startDateTime")
     end_date_time: StrictStr = Field(description="End date and time of key.", alias="endDateTime")
-    key_type: StrictStr = Field(description="Key type ID.", alias="keyType")
+    key_type: StrictStr = Field(description="Key type.", alias="keyType")
     rooms: Optional[List[StrictStr]] = Field(default=None, description="List of common room IDs.")
     common_rooms: Optional[List[StrictStr]] = Field(default=None, description="List of common room ids.", alias="commonRooms")
     external_id: Optional[StrictStr] = Field(default=None, alias="externalId")
@@ -42,6 +42,13 @@ class DoorLockKeyCreateRequestSchema(BaseModel):
     mobile_id: Optional[StrictStr] = Field(default=None, alias="mobileId")
     guest_id: Optional[StrictStr] = Field(default=None, alias="guestId")
     __properties: ClassVar[List[str]] = ["propertyId", "reservationId", "subReservationId", "issuerId", "startDateTime", "endDateTime", "keyType", "rooms", "commonRooms", "externalId", "keyCode", "status", "encoder", "mobileId", "guestId"]
+
+    @field_validator('key_type')
+    def key_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['key_card', 'access_code', 'mobile_key']):
+            raise ValueError("must be one of enum values ('key_card', 'access_code', 'mobile_key')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
