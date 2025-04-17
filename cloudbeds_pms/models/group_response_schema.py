@@ -30,7 +30,7 @@ class GroupResponseSchema(BaseModel):
     name: Optional[StrictStr] = None
     code: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
-    can_edit: Optional[StrictBool] = Field(default=None, alias="canEdit")
+    can_edit: Optional[List[StrictStr]] = Field(default=None, alias="canEdit")
     can_delete: Optional[StrictBool] = Field(default=None, alias="canDelete")
     can_disable: Optional[StrictBool] = Field(default=None, alias="canDisable")
     created_at: Optional[StrictStr] = Field(default=None, alias="createdAt")

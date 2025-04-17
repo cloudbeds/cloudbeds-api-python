@@ -54,6 +54,13 @@ class TestImportTasksApi(unittest.TestCase):
         """
         pass
 
+    def test_import_task_controller_reimport(self) -> None:
+        """Test case for import_task_controller_reimport
+
+        ReImport an import task and generate a temporary upload URL.
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

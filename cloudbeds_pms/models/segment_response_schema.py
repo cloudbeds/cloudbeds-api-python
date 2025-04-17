@@ -36,7 +36,7 @@ class SegmentResponseSchema(BaseModel):
     rate_plan_ids: Optional[List[StrictStr]] = Field(default=None, alias="ratePlanIds")
     created_at: Optional[StrictStr] = Field(default=None, alias="createdAt")
     updated_at: Optional[StrictStr] = Field(default=None, alias="updatedAt")
-    can_edit: Optional[StrictBool] = Field(default=None, alias="canEdit")
+    can_edit: Optional[List[StrictStr]] = Field(default=None, alias="canEdit")
     can_delete: Optional[StrictBool] = Field(default=None, alias="canDelete")
     can_disable: Optional[StrictBool] = Field(default=None, alias="canDisable")
     __properties: ClassVar[List[str]] = ["id", "groupId", "name", "code", "description", "isEnabled", "isDefault", "ratePlanIds", "createdAt", "updatedAt", "canEdit", "canDelete", "canDisable"]

@@ -44,7 +44,8 @@ class TestImportTaskGetResponseSchema(unittest.TestCase):
                 priority = 'standard',
                 file_status = '',
                 import_status = 'uploaded',
-                created_at = ''
+                created_at = '',
+                errors = ''
             )
         else:
             return ImportTaskGetResponseSchema(

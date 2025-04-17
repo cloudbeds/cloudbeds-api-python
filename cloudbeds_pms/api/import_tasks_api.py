@@ -16,7 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
 from cloudbeds_pms.models.import_task_create_request_schema import ImportTaskCreateRequestSchema
@@ -24,6 +24,7 @@ from cloudbeds_pms.models.import_task_get_response_schema import ImportTaskGetRe
 from cloudbeds_pms.models.import_task_record_list_response_schema import ImportTaskRecordListResponseSchema
 from cloudbeds_pms.models.import_task_response_schema import ImportTaskResponseSchema
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
+from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 
 from cloudbeds_pms.api_client import ApiClient, RequestSerialized
 from cloudbeds_pms.api_response import ApiResponse
@@ -339,7 +340,7 @@ class ImportTasksApi:
     def import_task_controller_find_by_id(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -358,8 +359,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -412,7 +413,7 @@ class ImportTasksApi:
     def import_task_controller_find_by_id_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -431,8 +432,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -485,7 +486,7 @@ class ImportTasksApi:
     def import_task_controller_find_by_id_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -504,8 +505,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -621,7 +622,7 @@ class ImportTasksApi:
     def import_task_controller_find_task_records(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         _request_timeout: Union[
@@ -642,8 +643,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
@@ -702,7 +703,7 @@ class ImportTasksApi:
     def import_task_controller_find_task_records_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         _request_timeout: Union[
@@ -723,8 +724,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
@@ -783,7 +784,7 @@ class ImportTasksApi:
     def import_task_controller_find_task_records_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        task_id: Annotated[StrictInt, Field(description="The import task ID")],
+        task_id: StrictStr,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         _request_timeout: Union[
@@ -804,8 +805,8 @@ class ImportTasksApi:
 
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param task_id: The import task ID (required)
-        :type task_id: int
+        :param task_id: (required)
+        :type task_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
@@ -939,6 +940,7 @@ class ImportTasksApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -961,6 +963,8 @@ class ImportTasksApi:
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
+        :param filters: This parameter should be formatted as a list of strings separated by ;
+        :type filters: QueryParameterDynamicFilterSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -987,6 +991,7 @@ class ImportTasksApi:
             x_property_id=x_property_id,
             limit=limit,
             offset=offset,
+            filters=filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1015,6 +1020,7 @@ class ImportTasksApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1037,6 +1043,8 @@ class ImportTasksApi:
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
+        :param filters: This parameter should be formatted as a list of strings separated by ;
+        :type filters: QueryParameterDynamicFilterSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1063,6 +1071,7 @@ class ImportTasksApi:
             x_property_id=x_property_id,
             limit=limit,
             offset=offset,
+            filters=filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1091,6 +1100,7 @@ class ImportTasksApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1113,6 +1123,8 @@ class ImportTasksApi:
         :type limit: LimitOffsetPaginationSchema
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
+        :param filters: This parameter should be formatted as a list of strings separated by ;
+        :type filters: QueryParameterDynamicFilterSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1139,6 +1151,7 @@ class ImportTasksApi:
             x_property_id=x_property_id,
             limit=limit,
             offset=offset,
+            filters=filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1162,6 +1175,7 @@ class ImportTasksApi:
         x_property_id,
         limit,
         offset,
+        filters,
         _request_auth,
         _content_type,
         _headers,
@@ -1192,6 +1206,10 @@ class ImportTasksApi:
             
             _query_params.append(('offset', offset))
             
+        if filters is not None:
+            
+            _query_params.append(('filters', filters))
+            
         # process the header parameters
         if x_property_id is not None:
             _header_params['x-property-id'] = x_property_id
@@ -1216,6 +1234,288 @@ class ImportTasksApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/import/v1/tasks',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def import_task_controller_reimport(
+        self,
+        x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
+        task_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ImportTaskResponseSchema:
+        """ReImport an import task and generate a temporary upload URL.
+
+
+        :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
+        :type x_property_id: str
+        :param task_id: (required)
+        :type task_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._import_task_controller_reimport_serialize(
+            x_property_id=x_property_id,
+            task_id=task_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ImportTaskResponseSchema",
+            '404': "NotFoundResponseSchema",
+            '400': "BadRequestResponseSchema",
+            '500': "ImportFailedToCreateImportTaskSchema",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def import_task_controller_reimport_with_http_info(
+        self,
+        x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
+        task_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ImportTaskResponseSchema]:
+        """ReImport an import task and generate a temporary upload URL.
+
+
+        :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
+        :type x_property_id: str
+        :param task_id: (required)
+        :type task_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._import_task_controller_reimport_serialize(
+            x_property_id=x_property_id,
+            task_id=task_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ImportTaskResponseSchema",
+            '404': "NotFoundResponseSchema",
+            '400': "BadRequestResponseSchema",
+            '500': "ImportFailedToCreateImportTaskSchema",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def import_task_controller_reimport_without_preload_content(
+        self,
+        x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
+        task_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """ReImport an import task and generate a temporary upload URL.
+
+
+        :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
+        :type x_property_id: str
+        :param task_id: (required)
+        :type task_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._import_task_controller_reimport_serialize(
+            x_property_id=x_property_id,
+            task_id=task_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ImportTaskResponseSchema",
+            '404': "NotFoundResponseSchema",
+            '400': "BadRequestResponseSchema",
+            '500': "ImportFailedToCreateImportTaskSchema",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _import_task_controller_reimport_serialize(
+        self,
+        x_property_id,
+        task_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if task_id is not None:
+            _path_params['taskId'] = task_id
+        # process the query parameters
+        # process the header parameters
+        if x_property_id is not None:
+            _header_params['x-property-id'] = x_property_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'default'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/import/v1/tasks/{taskId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

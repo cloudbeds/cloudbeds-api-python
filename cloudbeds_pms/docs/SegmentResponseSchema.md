@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **rate_plan_ids** | **List[str]** |  | [optional] 
 **created_at** | **str** |  | [optional] 
 **updated_at** | **str** |  | [optional] 
-**can_edit** | **bool** |  | [optional] 
+**can_edit** | **List[str]** |  | [optional] 
 **can_delete** | **bool** |  | [optional] 
 **can_disable** | **bool** |  | [optional] 
 

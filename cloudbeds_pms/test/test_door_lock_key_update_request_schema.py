@@ -36,7 +36,8 @@ class TestDoorLockKeyUpdateRequestSchema(unittest.TestCase):
         if include_optional:
             return DoorLockKeyUpdateRequestSchema(
                 status = 'processing',
-                key_code = ''
+                key_code = '',
+                error_message = ''
             )
         else:
             return DoorLockKeyUpdateRequestSchema(

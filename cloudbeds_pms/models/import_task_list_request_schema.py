@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms.models.query_parameter_dynamic_filter_schema_filters import QueryParameterDynamicFilterSchemaFilters
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,8 @@ class ImportTaskListRequestSchema(BaseModel):
     """ # noqa: E501
     limit: Optional[StrictInt] = Field(default=100, description="The limit for the number of items to return (max 500)")
     offset: Optional[StrictInt] = Field(default=0, description="The offset for the current page of results")
-    __properties: ClassVar[List[str]] = ["limit", "offset"]
+    filters: Optional[QueryParameterDynamicFilterSchemaFilters] = None
+    __properties: ClassVar[List[str]] = ["limit", "offset", "filters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,14 @@ class ImportTaskListRequestSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
+        # set to None if filters (nullable) is None
+        # and model_fields_set contains the field
+        if self.filters is None and "filters" in self.model_fields_set:
+            _dict['filters'] = None
+
         return _dict
 
     @classmethod
@@ -82,7 +92,8 @@ class ImportTaskListRequestSchema(BaseModel):
 
         _obj = cls.model_validate({
             "limit": obj.get("limit") if obj.get("limit") is not None else 100,
-            "offset": obj.get("offset") if obj.get("offset") is not None else 0
+            "offset": obj.get("offset") if obj.get("offset") is not None else 0,
+            "filters": QueryParameterDynamicFilterSchemaFilters.from_dict(obj["filters"]) if obj.get("filters") is not None else None
         })
         return _obj
 

@@ -70,6 +70,11 @@ class ImportTaskGetRecordListRequestSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if errors_only (nullable) is None
+        # and model_fields_set contains the field
+        if self.errors_only is None and "errors_only" in self.model_fields_set:
+            _dict['errorsOnly'] = None
+
         return _dict
 
     @classmethod

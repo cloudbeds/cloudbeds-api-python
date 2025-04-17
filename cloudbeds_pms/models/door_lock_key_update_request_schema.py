@@ -28,7 +28,8 @@ class DoorLockKeyUpdateRequestSchema(BaseModel):
     """ # noqa: E501
     status: Optional[StrictStr] = None
     key_code: Optional[StrictStr] = Field(default=None, alias="keyCode")
-    __properties: ClassVar[List[str]] = ["status", "keyCode"]
+    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
+    __properties: ClassVar[List[str]] = ["status", "keyCode", "errorMessage"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -89,6 +90,11 @@ class DoorLockKeyUpdateRequestSchema(BaseModel):
         if self.key_code is None and "key_code" in self.model_fields_set:
             _dict['keyCode'] = None
 
+        # set to None if error_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_message is None and "error_message" in self.model_fields_set:
+            _dict['errorMessage'] = None
+
         return _dict
 
     @classmethod
@@ -102,7 +108,8 @@ class DoorLockKeyUpdateRequestSchema(BaseModel):
 
         _obj = cls.model_validate({
             "status": obj.get("status"),
-            "keyCode": obj.get("keyCode")
+            "keyCode": obj.get("keyCode"),
+            "errorMessage": obj.get("errorMessage")
         })
         return _obj
 

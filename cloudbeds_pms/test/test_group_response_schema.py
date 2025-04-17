@@ -39,7 +39,9 @@ class TestGroupResponseSchema(unittest.TestCase):
                 name = '',
                 code = '',
                 description = '',
-                can_edit = True,
+                can_edit = [
+                    ''
+                    ],
                 can_delete = True,
                 can_disable = True,
                 created_at = '',

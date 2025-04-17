@@ -36,7 +36,8 @@ class TestImportTaskListRequestSchema(unittest.TestCase):
         if include_optional:
             return ImportTaskListRequestSchema(
                 limit = 1,
-                offset = 1
+                offset = 1,
+                filters = field1:value;field2:value
             )
         else:
             return ImportTaskListRequestSchema(

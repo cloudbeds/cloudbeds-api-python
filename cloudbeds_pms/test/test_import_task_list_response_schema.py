@@ -49,7 +49,8 @@ class TestImportTaskListResponseSchema(unittest.TestCase):
                         priority = 'standard', 
                         file_status = '', 
                         import_status = 'uploaded', 
-                        created_at = '', )
+                        created_at = '', 
+                        errors = '', )
                     ]
             )
         else:
@@ -68,7 +69,8 @@ class TestImportTaskListResponseSchema(unittest.TestCase):
                         priority = 'standard', 
                         file_status = '', 
                         import_status = 'uploaded', 
-                        created_at = '', )
+                        created_at = '', 
+                        errors = '', )
                     ],
         )
         """

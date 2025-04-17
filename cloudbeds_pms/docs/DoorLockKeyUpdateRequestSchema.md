@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** |  | [optional] 
 **key_code** | **str** |  | [optional] 
+**error_message** | **str** |  | [optional] 
 
 ## Example
 

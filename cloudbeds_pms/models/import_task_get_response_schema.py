@@ -36,7 +36,8 @@ class ImportTaskGetResponseSchema(BaseModel):
     file_status: StrictStr = Field(alias="fileStatus")
     import_status: StrictStr = Field(description="Import task status.", alias="importStatus")
     created_at: Optional[StrictStr] = Field(default=None, alias="createdAt")
-    __properties: ClassVar[List[str]] = ["id", "name", "source", "parsedRecordsCount", "importedRecordsCount", "type", "priority", "fileStatus", "importStatus", "createdAt"]
+    errors: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "source", "parsedRecordsCount", "importedRecordsCount", "type", "priority", "fileStatus", "importStatus", "createdAt", "errors"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -98,6 +99,11 @@ class ImportTaskGetResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if errors (nullable) is None
+        # and model_fields_set contains the field
+        if self.errors is None and "errors" in self.model_fields_set:
+            _dict['errors'] = None
+
         return _dict
 
     @classmethod
@@ -119,7 +125,8 @@ class ImportTaskGetResponseSchema(BaseModel):
             "priority": obj.get("priority"),
             "fileStatus": obj.get("fileStatus"),
             "importStatus": obj.get("importStatus"),
-            "createdAt": obj.get("createdAt")
+            "createdAt": obj.get("createdAt"),
+            "errors": obj.get("errors")
         })
         return _obj
 

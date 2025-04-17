@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **code** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
-**can_edit** | **bool** |  | [optional] 
+**can_edit** | **List[str]** |  | [optional] 
 **can_delete** | **bool** |  | [optional] 
 **can_disable** | **bool** |  | [optional] 
 **created_at** | **str** |  | [optional] 

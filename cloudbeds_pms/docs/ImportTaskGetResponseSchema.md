@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **file_status** | **str** |  | 
 **import_status** | **str** | Import task status. | 
 **created_at** | **str** |  | [optional] 
+**errors** | **str** |  | [optional] 
 
 ## Example
 

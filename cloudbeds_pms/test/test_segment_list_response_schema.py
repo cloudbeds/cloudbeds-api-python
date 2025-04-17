@@ -51,7 +51,9 @@ class TestSegmentListResponseSchema(unittest.TestCase):
                             ], 
                         created_at = '', 
                         updated_at = '', 
-                        can_edit = True, 
+                        can_edit = [
+                            ''
+                            ], 
                         can_delete = True, 
                         can_disable = True, )
                     ]
