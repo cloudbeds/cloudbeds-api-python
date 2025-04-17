@@ -40,20 +40,6 @@ class TestPaymentApi(unittest.TestCase):
         """
         pass
 
-    def test_get_payments_get(self) -> None:
-        """Test case for get_payments_get
-
-        getPayments
-        """
-        pass
-
-    def test_get_transactions_get(self) -> None:
-        """Test case for get_transactions_get
-
-        getTransactions
-        """
-        pass
-
     def test_post_charge_post(self) -> None:
         """Test case for post_charge_post
 

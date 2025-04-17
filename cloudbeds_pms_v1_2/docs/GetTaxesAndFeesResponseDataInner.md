@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **child_id** | **str** | ID of the tax or fee that replaced current one | [optional] 
 **created_at** | **str** | Date when tax or fee was created in the system | [optional] 
 **expired_at** | **str** | Date when tax or fee was expired | [optional] 
+**room_types** | [**List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]**](GetTaxesAndFeesResponseDataInnerRoomTypesInner.md) | Room types this tax/fee applies to | [optional] 
+**date_ranges** | [**List[GetTaxesAndFeesResponseDataInnerDateRangesInner]**](GetTaxesAndFeesResponseDataInnerDateRangesInner.md) | Date ranges when this tax/fee is applicable | [optional] 
 
 ## Example
 

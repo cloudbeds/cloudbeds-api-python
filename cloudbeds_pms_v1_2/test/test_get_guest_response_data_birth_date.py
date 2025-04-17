@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_house_account_details_response_data import GetHouseAccountDetailsResponseData
+from cloudbeds_pms_v1_2.models.get_guest_response_data_birth_date import GetGuestResponseDataBirthDate
 
-class TestGetHouseAccountDetailsResponseData(unittest.TestCase):
-    """GetHouseAccountDetailsResponseData unit test stubs"""
+class TestGetGuestResponseDataBirthDate(unittest.TestCase):
+    """GetGuestResponseDataBirthDate unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,49 +25,24 @@ class TestGetHouseAccountDetailsResponseData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetHouseAccountDetailsResponseData:
-        """Test GetHouseAccountDetailsResponseData
+    def make_instance(self, include_optional) -> GetGuestResponseDataBirthDate:
+        """Test GetGuestResponseDataBirthDate
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetHouseAccountDetailsResponseData`
+        # uncomment below to create an instance of `GetGuestResponseDataBirthDate`
         """
-        model = GetHouseAccountDetailsResponseData()
+        model = GetGuestResponseDataBirthDate()
         if include_optional:
-            return GetHouseAccountDetailsResponseData(
-                total = [
-                    cloudbeds_pms_v1_2.models.get_house_account_details_response_data_total_inner.GetHouseAccountDetailsResponse_data_total_inner(
-                        count = 56, 
-                        quantity = '', 
-                        debit = '', 
-                        credit = '', )
-                    ],
-                records = [
-                    cloudbeds_pms_v1_2.models.get_house_account_details_response_data_records_inner.GetHouseAccountDetailsResponse_data_records_inner(
-                        property_id = '', 
-                        transaction_id = '', 
-                        user_name = '', 
-                        description = '', 
-                        notes = '', 
-                        quantity = '', 
-                        debit = '', 
-                        credit = '', 
-                        debit_formatter = '', 
-                        credit_formatted = '', 
-                        currency = '', 
-                        transaction_code = '', 
-                        parent_transaction_id = '', 
-                        transaction_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                        transaction_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ]
+            return GetGuestResponseDataBirthDate(
             )
         else:
-            return GetHouseAccountDetailsResponseData(
+            return GetGuestResponseDataBirthDate(
         )
         """
 
-    def testGetHouseAccountDetailsResponseData(self):
-        """Test GetHouseAccountDetailsResponseData"""
+    def testGetGuestResponseDataBirthDate(self):
+        """Test GetGuestResponseDataBirthDate"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

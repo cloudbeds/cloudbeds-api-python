@@ -37,8 +37,9 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
     closed_to_departure: Optional[StrictBool] = Field(default=None, description="Whether it is closed to departure.", alias="closedToDeparture")
     cut_off: Optional[StrictInt] = Field(default=None, description="Cut off time for the selected date.", alias="cutOff")
     last_minute_booking: Optional[StrictInt] = Field(default=None, description="Last minute bookings.", alias="lastMinuteBooking")
+    blocked: Optional[StrictBool] = Field(default=None, description="Whether the accommodation is blocked.")
     guest_pricing: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing] = Field(default=None, alias="guestPricing")
-    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate", "maxLos", "minLos", "closedToArrival", "closedToDeparture", "cutOff", "lastMinuteBooking", "guestPricing"]
+    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate", "maxLos", "minLos", "closedToArrival", "closedToDeparture", "cutOff", "lastMinuteBooking", "blocked", "guestPricing"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,6 +113,11 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
         if self.last_minute_booking is None and "last_minute_booking" in self.model_fields_set:
             _dict['lastMinuteBooking'] = None
 
+        # set to None if blocked (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked is None and "blocked" in self.model_fields_set:
+            _dict['blocked'] = None
+
         # set to None if guest_pricing (nullable) is None
         # and model_fields_set contains the field
         if self.guest_pricing is None and "guest_pricing" in self.model_fields_set:
@@ -138,6 +144,7 @@ class PostPatchRateRequestRatesInnerInterval(BaseModel):
             "closedToDeparture": obj.get("closedToDeparture"),
             "cutOff": obj.get("cutOff"),
             "lastMinuteBooking": obj.get("lastMinuteBooking"),
+            "blocked": obj.get("blocked"),
             "guestPricing": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None
         })
         return _obj

@@ -57,7 +57,24 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                 is_deleted = True,
                 child_id = '',
                 created_at = '',
-                expired_at = ''
+                expired_at = '',
+                room_types = [
+                    cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_room_types_inner.GetTaxesAndFeesResponse_data_inner_roomTypes_inner(
+                        room_type_id = '', 
+                        room_type_name = '', )
+                    ],
+                date_ranges = [
+                    cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_date_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner(
+                        range = cloudbeds_pms_v1_2.models.range.range(), 
+                        amount = 1.337, 
+                        amount_adult = 1.337, 
+                        amount_child = 1.337, 
+                        amount_rate_based = [
+                            cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
+                                rate = 1.337, 
+                                percentage = 1.337, )
+                            ], )
+                    ]
             )
         else:
             return GetTaxesAndFeesResponseDataInner(

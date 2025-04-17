@@ -46,21 +46,8 @@ class TestGetRoomTypesResponse(unittest.TestCase):
                         is_private = True, 
                         max_guests = 56, 
                         adults_included = 56, 
-                        children_included = 56, 
-                        room_type_photos = [
-                            ''
-                            ], 
-                        room_type_features = [
-                            ''
-                            ], 
-                        rooms_available = 56, 
-                        room_rate = 1.337, 
-                        room_type_units = 56, 
-                        room_type_unit_dorm_beds = 56, )
-                    ],
-                count = 56,
-                total = 56,
-                message = ''
+                        children_included = 56, )
+                    ]
             )
         else:
             return GetRoomTypesResponse(

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_2.models.get_room_types_response_data_inner import GetRoomTypesResponseDataInner
 from typing import Optional, Set
@@ -29,10 +29,7 @@ class GetRoomTypesResponse(BaseModel):
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
     data: Optional[List[GetRoomTypesResponseDataInner]] = Field(default=None, description="Room Types details")
-    count: Optional[StrictInt] = Field(default=None, description="Number of results in this page")
-    total: Optional[StrictInt] = Field(default=None, description="Total number of results")
-    message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false). If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "data", "count", "total", "message"]
+    __properties: ClassVar[List[str]] = ["success", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,11 +77,6 @@ class GetRoomTypesResponse(BaseModel):
                 if _item_data:
                     _items.append(_item_data.to_dict())
             _dict['data'] = _items
-        # set to None if message (nullable) is None
-        # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
-
         return _dict
 
     @classmethod
@@ -98,10 +90,7 @@ class GetRoomTypesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "data": [GetRoomTypesResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
-            "count": obj.get("count"),
-            "total": obj.get("total"),
-            "message": obj.get("message")
+            "data": [GetRoomTypesResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 

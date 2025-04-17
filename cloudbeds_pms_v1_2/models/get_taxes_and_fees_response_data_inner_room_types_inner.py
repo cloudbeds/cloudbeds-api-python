@@ -17,20 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetHouseAccountDetailsResponseDataTotalInner(BaseModel):
+class GetTaxesAndFeesResponseDataInnerRoomTypesInner(BaseModel):
     """
-    GetHouseAccountDetailsResponseDataTotalInner
+    GetTaxesAndFeesResponseDataInnerRoomTypesInner
     """ # noqa: E501
-    count: Optional[StrictInt] = Field(default=None, description="Total number of House Account records")
-    quantity: Optional[StrictStr] = Field(default=None, description="Total items quantity of product type records")
-    debit: Optional[StrictStr] = Field(default=None, description="Total debit (formatted)")
-    credit: Optional[StrictStr] = Field(default=None, description="Total credit (formatted)")
-    __properties: ClassVar[List[str]] = ["count", "quantity", "debit", "credit"]
+    room_type_id: Optional[StrictStr] = Field(default=None, description="Room type's unique identifier", alias="roomTypeID")
+    room_type_name: Optional[StrictStr] = Field(default=None, description="Room type name", alias="roomTypeName")
+    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +48,7 @@ class GetHouseAccountDetailsResponseDataTotalInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetHouseAccountDetailsResponseDataTotalInner from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerRoomTypesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +73,7 @@ class GetHouseAccountDetailsResponseDataTotalInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetHouseAccountDetailsResponseDataTotalInner from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerRoomTypesInner from a dict"""
         if obj is None:
             return None
 
@@ -83,10 +81,8 @@ class GetHouseAccountDetailsResponseDataTotalInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "count": obj.get("count"),
-            "quantity": obj.get("quantity"),
-            "debit": obj.get("debit"),
-            "credit": obj.get("credit")
+            "roomTypeID": obj.get("roomTypeID"),
+            "roomTypeName": obj.get("roomTypeName")
         })
         return _obj
 

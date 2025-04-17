@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rate_id** | **str** | Rate ID | [optional] 
 **is_derived** | **bool** | This rate has been derived from another rate | [optional] 
-**room_rate** | **float** | Base rate for the room, based on the parameters provided | [optional] 
-**total_rate** | **float** | Total rate for the room, based on the parameters provided. Calculated using base rates and additional costs from extra guests. | [optional] 
+**room_rate** | **float** | Base rate for the room, calculated based on the Room Type ID, selected dates, and promo code. This does not include additional guest charges | [optional] 
+**total_rate** | **float** | Total rate for the room, which includes the base rate (roomRate) plus additional costs for extra guests (adults and children) | [optional] 
 **rooms_available** | **int** | Number of rooms available, based on the parameters provided | [optional] 
 **days_of_week** | **List[str]** |  | [optional] 
 **room_rate_detailed** | [**List[GetRateResponseDataRoomRateDetailedInner]**](GetRateResponseDataRoomRateDetailedInner.md) | Detailed information on the rates, if requested | [optional] 

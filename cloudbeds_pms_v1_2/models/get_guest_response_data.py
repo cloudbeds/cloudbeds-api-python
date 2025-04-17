@@ -17,10 +17,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_2.models.get_guest_response_data_birth_date import GetGuestResponseDataBirthDate
 from cloudbeds_pms_v1_2.models.get_guest_response_data_custom_fields_inner import GetGuestResponseDataCustomFieldsInner
+from cloudbeds_pms_v1_2.models.get_guest_response_data_document_expiration_date import GetGuestResponseDataDocumentExpirationDate
+from cloudbeds_pms_v1_2.models.get_guest_response_data_document_issue_date import GetGuestResponseDataDocumentIssueDate
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -40,12 +42,12 @@ class GetGuestResponseData(BaseModel):
     city: Optional[StrictStr] = Field(default=None, description="City")
     zip: Optional[StrictStr] = Field(default=None, description="Zip")
     state: Optional[StrictStr] = Field(default=None, description="State")
-    birth_date: Optional[date] = Field(default=None, description="Birth date", alias="birthDate")
+    birth_date: Optional[GetGuestResponseDataBirthDate] = Field(default=None, alias="birthDate")
     document_type: Optional[StrictStr] = Field(default=None, description="Document Type", alias="documentType")
     document_number: Optional[StrictStr] = Field(default=None, description="Document number", alias="documentNumber")
-    document_issue_date: Optional[date] = Field(default=None, description="Document Issue Date, can be null", alias="documentIssueDate")
+    document_issue_date: Optional[GetGuestResponseDataDocumentIssueDate] = Field(default=None, alias="documentIssueDate")
     document_issuing_country: Optional[StrictStr] = Field(default=None, description="Document Issuing Country (2-digits code)", alias="documentIssuingCountry")
-    document_expiration_date: Optional[date] = Field(default=None, description="Document Expiration Date, can be null", alias="documentExpirationDate")
+    document_expiration_date: Optional[GetGuestResponseDataDocumentExpirationDate] = Field(default=None, alias="documentExpirationDate")
     custom_fields: Optional[List[GetGuestResponseDataCustomFieldsInner]] = Field(default=None, alias="customFields")
     special_requests: Optional[StrictStr] = Field(default=None, description="Special requests made by the guest at the time of the booking", alias="specialRequests")
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")
@@ -106,6 +108,15 @@ class GetGuestResponseData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of birth_date
+        if self.birth_date:
+            _dict['birthDate'] = self.birth_date.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of document_issue_date
+        if self.document_issue_date:
+            _dict['documentIssueDate'] = self.document_issue_date.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of document_expiration_date
+        if self.document_expiration_date:
+            _dict['documentExpirationDate'] = self.document_expiration_date.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in custom_fields (list)
         _items = []
         if self.custom_fields:
@@ -152,12 +163,12 @@ class GetGuestResponseData(BaseModel):
             "city": obj.get("city"),
             "zip": obj.get("zip"),
             "state": obj.get("state"),
-            "birthDate": obj.get("birthDate"),
+            "birthDate": GetGuestResponseDataBirthDate.from_dict(obj["birthDate"]) if obj.get("birthDate") is not None else None,
             "documentType": obj.get("documentType"),
             "documentNumber": obj.get("documentNumber"),
-            "documentIssueDate": obj.get("documentIssueDate"),
+            "documentIssueDate": GetGuestResponseDataDocumentIssueDate.from_dict(obj["documentIssueDate"]) if obj.get("documentIssueDate") is not None else None,
             "documentIssuingCountry": obj.get("documentIssuingCountry"),
-            "documentExpirationDate": obj.get("documentExpirationDate"),
+            "documentExpirationDate": GetGuestResponseDataDocumentExpirationDate.from_dict(obj["documentExpirationDate"]) if obj.get("documentExpirationDate") is not None else None,
             "customFields": [GetGuestResponseDataCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "specialRequests": obj.get("specialRequests"),
             "taxID": obj.get("taxID"),

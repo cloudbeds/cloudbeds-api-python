@@ -17,30 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetAdjustmentResponseData(BaseModel):
+class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     """
-    Adjustment
+    GetTaxesAndFeesResponseDataInnerDateRangesInner
     """ # noqa: E501
-    adjustment_id: Optional[StrictStr] = Field(default=None, description="Adjustment unique identifier", alias="adjustmentID")
-    property_id: Optional[StrictStr] = Field(default=None, description="unique hotel identifier", alias="propertyID")
-    created: Optional[datetime] = Field(default=None, description="Adjustment created time")
-    room_id: Optional[StrictStr] = Field(default=None, description="Adjustment room id", alias="roomID")
-    room_name: Optional[StrictStr] = Field(default=None, description="Room name of Adjustment", alias="roomName")
-    reservation_identifier: Optional[StrictStr] = Field(default=None, description="Reservation Unique Identifier", alias="reservationIdentifier")
-    description: Optional[StrictStr] = Field(default=None, description="Adjustment description")
-    notes: Optional[StrictStr] = Field(default=None, description="Adjustment notes")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Adjustment amount")
-    currency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Adjustment currency")
-    posted: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Adjustment posted transaction")
-    type: Optional[StrictStr] = Field(default=None, description="Adjustment type")
-    void_id: Optional[StrictStr] = Field(default=None, description="Voided adjustment transaction unique identifier.  Null if adjustment not voided", alias="voidID")
-    __properties: ClassVar[List[str]] = ["adjustmentID", "propertyID", "created", "roomID", "roomName", "reservationIdentifier", "description", "notes", "amount", "currency", "posted", "type", "voidID"]
+    range: Optional[Dict[str, Any]] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount")
+    amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
+    amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
+    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
+    __properties: ClassVar[List[str]] = ["range", "amount", "amountAdult", "amountChild", "amountRateBased"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +52,7 @@ class GetAdjustmentResponseData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetAdjustmentResponseData from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,11 +73,23 @@ class GetAdjustmentResponseData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in amount_rate_based (list)
+        _items = []
+        if self.amount_rate_based:
+            for _item_amount_rate_based in self.amount_rate_based:
+                if _item_amount_rate_based:
+                    _items.append(_item_amount_rate_based.to_dict())
+            _dict['amountRateBased'] = _items
+        # set to None if amount_rate_based (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_rate_based is None and "amount_rate_based" in self.model_fields_set:
+            _dict['amountRateBased'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetAdjustmentResponseData from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInner from a dict"""
         if obj is None:
             return None
 
@@ -93,19 +97,11 @@ class GetAdjustmentResponseData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "adjustmentID": obj.get("adjustmentID"),
-            "propertyID": obj.get("propertyID"),
-            "created": obj.get("created"),
-            "roomID": obj.get("roomID"),
-            "roomName": obj.get("roomName"),
-            "reservationIdentifier": obj.get("reservationIdentifier"),
-            "description": obj.get("description"),
-            "notes": obj.get("notes"),
+            "range": obj.get("range"),
             "amount": obj.get("amount"),
-            "currency": obj.get("currency"),
-            "posted": obj.get("posted"),
-            "type": obj.get("type"),
-            "voidID": obj.get("voidID")
+            "amountAdult": obj.get("amountAdult"),
+            "amountChild": obj.get("amountChild"),
+            "amountRateBased": [GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None
         })
         return _obj
 

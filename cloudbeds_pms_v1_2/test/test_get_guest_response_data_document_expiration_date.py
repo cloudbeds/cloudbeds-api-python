@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_house_account_details_response_data_total_inner import GetHouseAccountDetailsResponseDataTotalInner
+from cloudbeds_pms_v1_2.models.get_guest_response_data_document_expiration_date import GetGuestResponseDataDocumentExpirationDate
 
-class TestGetHouseAccountDetailsResponseDataTotalInner(unittest.TestCase):
-    """GetHouseAccountDetailsResponseDataTotalInner unit test stubs"""
+class TestGetGuestResponseDataDocumentExpirationDate(unittest.TestCase):
+    """GetGuestResponseDataDocumentExpirationDate unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,24 @@ class TestGetHouseAccountDetailsResponseDataTotalInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetHouseAccountDetailsResponseDataTotalInner:
-        """Test GetHouseAccountDetailsResponseDataTotalInner
+    def make_instance(self, include_optional) -> GetGuestResponseDataDocumentExpirationDate:
+        """Test GetGuestResponseDataDocumentExpirationDate
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetHouseAccountDetailsResponseDataTotalInner`
+        # uncomment below to create an instance of `GetGuestResponseDataDocumentExpirationDate`
         """
-        model = GetHouseAccountDetailsResponseDataTotalInner()
+        model = GetGuestResponseDataDocumentExpirationDate()
         if include_optional:
-            return GetHouseAccountDetailsResponseDataTotalInner(
-                count = 56,
-                quantity = '',
-                debit = '',
-                credit = ''
+            return GetGuestResponseDataDocumentExpirationDate(
             )
         else:
-            return GetHouseAccountDetailsResponseDataTotalInner(
+            return GetGuestResponseDataDocumentExpirationDate(
         )
         """
 
-    def testGetHouseAccountDetailsResponseDataTotalInner(self):
-        """Test GetHouseAccountDetailsResponseDataTotalInner"""
+    def testGetGuestResponseDataDocumentExpirationDate(self):
+        """Test GetGuestResponseDataDocumentExpirationDate"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

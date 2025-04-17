@@ -49,12 +49,12 @@ class TestGetGuestResponse(unittest.TestCase):
                     city = '', 
                     zip = '', 
                     state = '', 
-                    birth_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                    birth_date = null, 
                     document_type = '', 
                     document_number = '', 
-                    document_issue_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                    document_issue_date = null, 
                     document_issuing_country = '', 
-                    document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                    document_expiration_date = null, 
                     custom_fields = [
                         cloudbeds_pms_v1_2.models.get_guest_response_data_custom_fields_inner.GetGuestResponse_data_customFields_inner(
                             custom_field_name = '', 

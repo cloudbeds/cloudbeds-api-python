@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,13 +35,7 @@ class GetRoomTypesResponseDataInner(BaseModel):
     max_guests: Optional[StrictInt] = Field(default=None, description="Max number of guests allowed in the room type", alias="maxGuests")
     adults_included: Optional[StrictInt] = Field(default=None, description="Number of adults included on the basic room rate", alias="adultsIncluded")
     children_included: Optional[StrictInt] = Field(default=None, description="Number of children included on the basic room rate", alias="childrenIncluded")
-    room_type_photos: Optional[List[StrictStr]] = Field(default=None, description="List of photos for the room type", alias="roomTypePhotos")
-    room_type_features: Optional[List[StrictStr]] = Field(default=None, description="List of features for the room type", alias="roomTypeFeatures")
-    rooms_available: Optional[StrictInt] = Field(default=None, description="Number of rooms available, based on the parameters provided.", alias="roomsAvailable")
-    room_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Basic rate for the room, based on the parameters provided. Does not return if roomsAvailable = 0.", alias="roomRate")
-    room_type_units: Optional[StrictInt] = Field(default=None, description="Number of rooms of a particular type", alias="roomTypeUnits")
-    room_type_unit_dorm_beds: Optional[StrictInt] = Field(default=None, description="Number of beds per Shared Dorm Room type", alias="roomTypeUnitDormBeds")
-    __properties: ClassVar[List[str]] = ["roomTypeID", "propertyID", "roomTypeName", "roomTypeNameShort", "roomTypeDescription", "isPrivate", "maxGuests", "adultsIncluded", "childrenIncluded", "roomTypePhotos", "roomTypeFeatures", "roomsAvailable", "roomRate", "roomTypeUnits", "roomTypeUnitDormBeds"]
+    __properties: ClassVar[List[str]] = ["roomTypeID", "propertyID", "roomTypeName", "roomTypeNameShort", "roomTypeDescription", "isPrivate", "maxGuests", "adultsIncluded", "childrenIncluded"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,16 +76,6 @@ class GetRoomTypesResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if rooms_available (nullable) is None
-        # and model_fields_set contains the field
-        if self.rooms_available is None and "rooms_available" in self.model_fields_set:
-            _dict['roomsAvailable'] = None
-
-        # set to None if room_rate (nullable) is None
-        # and model_fields_set contains the field
-        if self.room_rate is None and "room_rate" in self.model_fields_set:
-            _dict['roomRate'] = None
-
         return _dict
 
     @classmethod
@@ -112,13 +96,7 @@ class GetRoomTypesResponseDataInner(BaseModel):
             "isPrivate": obj.get("isPrivate"),
             "maxGuests": obj.get("maxGuests"),
             "adultsIncluded": obj.get("adultsIncluded"),
-            "childrenIncluded": obj.get("childrenIncluded"),
-            "roomTypePhotos": obj.get("roomTypePhotos"),
-            "roomTypeFeatures": obj.get("roomTypeFeatures"),
-            "roomsAvailable": obj.get("roomsAvailable"),
-            "roomRate": obj.get("roomRate"),
-            "roomTypeUnits": obj.get("roomTypeUnits"),
-            "roomTypeUnitDormBeds": obj.get("roomTypeUnitDormBeds")
+            "childrenIncluded": obj.get("childrenIncluded")
         })
         return _obj
 

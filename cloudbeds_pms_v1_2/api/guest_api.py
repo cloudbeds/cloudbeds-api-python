@@ -3748,9 +3748,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="Document Type<br /> dni - Identity card<br /> nie - Residence permit<br /> na - non selection<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -3808,11 +3808,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
@@ -3915,9 +3915,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="Document Type<br /> dni - Identity card<br /> nie - Residence permit<br /> na - non selection<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -3975,11 +3975,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
@@ -4082,9 +4082,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="Document Type<br /> dni - Identity card<br /> nie - Residence permit<br /> na - non selection<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -4142,11 +4142,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
@@ -5069,9 +5069,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="It is mandatory to send all document information<br /> na - non selection<br /> dni - Identity card<br /> nie - Residence permit<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5127,11 +5127,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]
@@ -5228,9 +5228,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="It is mandatory to send all document information<br /> na - non selection<br /> dni - Identity card<br /> nie - Residence permit<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5286,11 +5286,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]
@@ -5387,9 +5387,9 @@ class GuestApi:
         guest_birth_date: Optional[date] = None,
         guest_document_type: Annotated[Optional[StrictStr], Field(description="It is mandatory to send all document information<br /> na - non selection<br /> dni - Identity card<br /> nie - Residence permit<br />")] = None,
         guest_document_number: Annotated[Optional[StrictStr], Field(description="(mandatory when guestDocumentType is sent)")] = None,
-        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
-        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent)")] = None,
+        guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5445,11 +5445,11 @@ class GuestApi:
         :type guest_document_type: str
         :param guest_document_number: (mandatory when guestDocumentType is sent)
         :type guest_document_number: str
-        :param guest_document_issue_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_issue_date: (mandatory when guestDocumentType is sent and is not DNI)
         :type guest_document_issue_date: date
         :param guest_document_issuing_country: ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)
         :type guest_document_issuing_country: str
-        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent)
+        :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]

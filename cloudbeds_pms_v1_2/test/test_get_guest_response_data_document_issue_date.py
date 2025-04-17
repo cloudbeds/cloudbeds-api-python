@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_adjustments_response import GetAdjustmentsResponse
+from cloudbeds_pms_v1_2.models.get_guest_response_data_document_issue_date import GetGuestResponseDataDocumentIssueDate
 
-class TestGetAdjustmentsResponse(unittest.TestCase):
-    """GetAdjustmentsResponse unit test stubs"""
+class TestGetGuestResponseDataDocumentIssueDate(unittest.TestCase):
+    """GetGuestResponseDataDocumentIssueDate unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,34 +25,24 @@ class TestGetAdjustmentsResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetAdjustmentsResponse:
-        """Test GetAdjustmentsResponse
+    def make_instance(self, include_optional) -> GetGuestResponseDataDocumentIssueDate:
+        """Test GetGuestResponseDataDocumentIssueDate
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetAdjustmentsResponse`
+        # uncomment below to create an instance of `GetGuestResponseDataDocumentIssueDate`
         """
-        model = GetAdjustmentsResponse()
+        model = GetGuestResponseDataDocumentIssueDate()
         if include_optional:
-            return GetAdjustmentsResponse(
-                success = True,
-                data = cloudbeds_pms_v1_2.models.get_adjustments_response_data.GetAdjustmentsResponse_data(
-                    adjustment_id = '', 
-                    created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    room_id = '', 
-                    room_name = '', 
-                    description = '', 
-                    notes = '', 
-                    amount = 1.337, 
-                    type = '', )
+            return GetGuestResponseDataDocumentIssueDate(
             )
         else:
-            return GetAdjustmentsResponse(
+            return GetGuestResponseDataDocumentIssueDate(
         )
         """
 
-    def testGetAdjustmentsResponse(self):
-        """Test GetAdjustmentsResponse"""
+    def testGetGuestResponseDataDocumentIssueDate(self):
+        """Test GetGuestResponseDataDocumentIssueDate"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -14,12 +14,6 @@ Name | Type | Description | Notes
 **max_guests** | **int** | Max number of guests allowed in the room type | [optional] 
 **adults_included** | **int** | Number of adults included on the basic room rate | [optional] 
 **children_included** | **int** | Number of children included on the basic room rate | [optional] 
-**room_type_photos** | **List[str]** | List of photos for the room type | [optional] 
-**room_type_features** | **List[str]** | List of features for the room type | [optional] 
-**rooms_available** | **int** | Number of rooms available, based on the parameters provided. | [optional] 
-**room_rate** | **float** | Basic rate for the room, based on the parameters provided. Does not return if roomsAvailable &#x3D; 0. | [optional] 
-**room_type_units** | **int** | Number of rooms of a particular type | [optional] 
-**room_type_unit_dorm_beds** | **int** | Number of beds per Shared Dorm Room type | [optional] 
 
 ## Example
 

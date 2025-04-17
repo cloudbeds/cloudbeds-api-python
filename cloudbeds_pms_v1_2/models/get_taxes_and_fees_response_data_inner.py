@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
+from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
+from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_room_types_inner import GetTaxesAndFeesResponseDataInnerRoomTypesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -44,7 +46,9 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     child_id: Optional[StrictStr] = Field(default=None, description="ID of the tax or fee that replaced current one", alias="childId")
     created_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was created in the system", alias="createdAt")
     expired_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was expired", alias="expiredAt")
-    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt"]
+    room_types: Optional[List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]] = Field(default=None, description="Room types this tax/fee applies to", alias="roomTypes")
+    date_ranges: Optional[List[GetTaxesAndFeesResponseDataInnerDateRangesInner]] = Field(default=None, description="Date ranges when this tax/fee is applicable", alias="dateRanges")
+    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -133,6 +137,20 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
                 if _item_amount_rate_based:
                     _items.append(_item_amount_rate_based.to_dict())
             _dict['amountRateBased'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in room_types (list)
+        _items = []
+        if self.room_types:
+            for _item_room_types in self.room_types:
+                if _item_room_types:
+                    _items.append(_item_room_types.to_dict())
+            _dict['roomTypes'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in date_ranges (list)
+        _items = []
+        if self.date_ranges:
+            for _item_date_ranges in self.date_ranges:
+                if _item_date_ranges:
+                    _items.append(_item_date_ranges.to_dict())
+            _dict['dateRanges'] = _items
         # set to None if fee_id (nullable) is None
         # and model_fields_set contains the field
         if self.fee_id is None and "fee_id" in self.model_fields_set:
@@ -152,6 +170,16 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         # and model_fields_set contains the field
         if self.fees_charged is None and "fees_charged" in self.model_fields_set:
             _dict['feesCharged'] = None
+
+        # set to None if room_types (nullable) is None
+        # and model_fields_set contains the field
+        if self.room_types is None and "room_types" in self.model_fields_set:
+            _dict['roomTypes'] = None
+
+        # set to None if date_ranges (nullable) is None
+        # and model_fields_set contains the field
+        if self.date_ranges is None and "date_ranges" in self.model_fields_set:
+            _dict['dateRanges'] = None
 
         return _dict
 
@@ -181,7 +209,9 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "isDeleted": obj.get("isDeleted"),
             "childId": obj.get("childId"),
             "createdAt": obj.get("createdAt"),
-            "expiredAt": obj.get("expiredAt")
+            "expiredAt": obj.get("expiredAt"),
+            "roomTypes": [GetTaxesAndFeesResponseDataInnerRoomTypesInner.from_dict(_item) for _item in obj["roomTypes"]] if obj.get("roomTypes") is not None else None,
+            "dateRanges": [GetTaxesAndFeesResponseDataInnerDateRangesInner.from_dict(_item) for _item in obj["dateRanges"]] if obj.get("dateRanges") is not None else None
         })
         return _obj
 

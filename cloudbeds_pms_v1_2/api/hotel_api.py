@@ -46,6 +46,7 @@ class HotelApi:
     def get_files_get(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="The group code, if the files are to be fetched from a group profile")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         order_by: Annotated[Optional[StrictStr], Field(description="Order response in DESCending or ASCending order, used together with sortBy")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Filter filess by name. Include only with names containing specified string")] = None,
@@ -66,10 +67,12 @@ class HotelApi:
     ) -> GetFilesResponse:
         """getFiles
 
-        Returns a list of files attached to a hotel, ordered by creation date
+        Returns a list of files attached to a hotel or group profile, ordered by creation date
 
         :param property_id: Property ID
         :type property_id: str
+        :param group_code: The group code, if the files are to be fetched from a group profile
+        :type group_code: str
         :param sort_by: Sort By parameter
         :type sort_by: str
         :param order_by: Order response in DESCending or ASCending order, used together with sortBy
@@ -104,6 +107,7 @@ class HotelApi:
 
         _param = self._get_files_get_serialize(
             property_id=property_id,
+            group_code=group_code,
             sort_by=sort_by,
             order_by=order_by,
             name=name,
@@ -133,6 +137,7 @@ class HotelApi:
     def get_files_get_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="The group code, if the files are to be fetched from a group profile")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         order_by: Annotated[Optional[StrictStr], Field(description="Order response in DESCending or ASCending order, used together with sortBy")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Filter filess by name. Include only with names containing specified string")] = None,
@@ -153,10 +158,12 @@ class HotelApi:
     ) -> ApiResponse[GetFilesResponse]:
         """getFiles
 
-        Returns a list of files attached to a hotel, ordered by creation date
+        Returns a list of files attached to a hotel or group profile, ordered by creation date
 
         :param property_id: Property ID
         :type property_id: str
+        :param group_code: The group code, if the files are to be fetched from a group profile
+        :type group_code: str
         :param sort_by: Sort By parameter
         :type sort_by: str
         :param order_by: Order response in DESCending or ASCending order, used together with sortBy
@@ -191,6 +198,7 @@ class HotelApi:
 
         _param = self._get_files_get_serialize(
             property_id=property_id,
+            group_code=group_code,
             sort_by=sort_by,
             order_by=order_by,
             name=name,
@@ -220,6 +228,7 @@ class HotelApi:
     def get_files_get_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="The group code, if the files are to be fetched from a group profile")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         order_by: Annotated[Optional[StrictStr], Field(description="Order response in DESCending or ASCending order, used together with sortBy")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Filter filess by name. Include only with names containing specified string")] = None,
@@ -240,10 +249,12 @@ class HotelApi:
     ) -> RESTResponseType:
         """getFiles
 
-        Returns a list of files attached to a hotel, ordered by creation date
+        Returns a list of files attached to a hotel or group profile, ordered by creation date
 
         :param property_id: Property ID
         :type property_id: str
+        :param group_code: The group code, if the files are to be fetched from a group profile
+        :type group_code: str
         :param sort_by: Sort By parameter
         :type sort_by: str
         :param order_by: Order response in DESCending or ASCending order, used together with sortBy
@@ -278,6 +289,7 @@ class HotelApi:
 
         _param = self._get_files_get_serialize(
             property_id=property_id,
+            group_code=group_code,
             sort_by=sort_by,
             order_by=order_by,
             name=name,
@@ -302,6 +314,7 @@ class HotelApi:
     def _get_files_get_serialize(
         self,
         property_id,
+        group_code,
         sort_by,
         order_by,
         name,
@@ -332,6 +345,10 @@ class HotelApi:
         if property_id is not None:
             
             _query_params.append(('propertyID', property_id))
+            
+        if group_code is not None:
+            
+            _query_params.append(('groupCode', group_code))
             
         if sort_by is not None:
             
@@ -992,6 +1009,7 @@ class HotelApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1013,6 +1031,8 @@ class HotelApi:
         :type property_id: str
         :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
         :type file: bytearray
+        :param group_code: optional - the group code if the file is to be attached to a group profile
+        :type group_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1038,6 +1058,7 @@ class HotelApi:
         _param = self._post_file_post_serialize(
             property_id=property_id,
             file=file,
+            group_code=group_code,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1063,6 +1084,7 @@ class HotelApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1084,6 +1106,8 @@ class HotelApi:
         :type property_id: str
         :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
         :type file: bytearray
+        :param group_code: optional - the group code if the file is to be attached to a group profile
+        :type group_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1109,6 +1133,7 @@ class HotelApi:
         _param = self._post_file_post_serialize(
             property_id=property_id,
             file=file,
+            group_code=group_code,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1134,6 +1159,7 @@ class HotelApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1155,6 +1181,8 @@ class HotelApi:
         :type property_id: str
         :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
         :type file: bytearray
+        :param group_code: optional - the group code if the file is to be attached to a group profile
+        :type group_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1180,6 +1208,7 @@ class HotelApi:
         _param = self._post_file_post_serialize(
             property_id=property_id,
             file=file,
+            group_code=group_code,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1200,6 +1229,7 @@ class HotelApi:
         self,
         property_id,
         file,
+        group_code,
         _request_auth,
         _content_type,
         _headers,
@@ -1228,6 +1258,8 @@ class HotelApi:
             _form_params.append(('propertyID', property_id))
         if file is not None:
             _files['file'] = file
+        if group_code is not None:
+            _form_params.append(('groupCode', group_code))
         # process the body parameter
 
 

@@ -44,6 +44,7 @@ class TestPostPatchRateRequestRatesInnerInterval(unittest.TestCase):
                 closed_to_departure = True,
                 cut_off = 56,
                 last_minute_booking = 56,
+                blocked = True,
                 guest_pricing = cloudbeds_pms_v1_2.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner_guest_pricing.PostCreateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner_guestPricing(
                     adult1 = '', 
                     adult2 = '', 

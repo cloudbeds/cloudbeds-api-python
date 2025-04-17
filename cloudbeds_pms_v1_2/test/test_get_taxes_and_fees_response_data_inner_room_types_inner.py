@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_house_account_details_response_data_records_inner import GetHouseAccountDetailsResponseDataRecordsInner
+from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_room_types_inner import GetTaxesAndFeesResponseDataInnerRoomTypesInner
 
-class TestGetHouseAccountDetailsResponseDataRecordsInner(unittest.TestCase):
-    """GetHouseAccountDetailsResponseDataRecordsInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerRoomTypesInner(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerRoomTypesInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,39 +25,26 @@ class TestGetHouseAccountDetailsResponseDataRecordsInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetHouseAccountDetailsResponseDataRecordsInner:
-        """Test GetHouseAccountDetailsResponseDataRecordsInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerRoomTypesInner:
+        """Test GetTaxesAndFeesResponseDataInnerRoomTypesInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetHouseAccountDetailsResponseDataRecordsInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerRoomTypesInner`
         """
-        model = GetHouseAccountDetailsResponseDataRecordsInner()
+        model = GetTaxesAndFeesResponseDataInnerRoomTypesInner()
         if include_optional:
-            return GetHouseAccountDetailsResponseDataRecordsInner(
-                property_id = '',
-                transaction_id = '',
-                user_name = '',
-                description = '',
-                notes = '',
-                quantity = '',
-                debit = '',
-                credit = '',
-                debit_formatter = '',
-                credit_formatted = '',
-                currency = '',
-                transaction_code = '',
-                parent_transaction_id = '',
-                transaction_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                transaction_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+            return GetTaxesAndFeesResponseDataInnerRoomTypesInner(
+                room_type_id = '',
+                room_type_name = ''
             )
         else:
-            return GetHouseAccountDetailsResponseDataRecordsInner(
+            return GetTaxesAndFeesResponseDataInnerRoomTypesInner(
         )
         """
 
-    def testGetHouseAccountDetailsResponseDataRecordsInner(self):
-        """Test GetHouseAccountDetailsResponseDataRecordsInner"""
+    def testGetTaxesAndFeesResponseDataInnerRoomTypesInner(self):
+        """Test GetTaxesAndFeesResponseDataInnerRoomTypesInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

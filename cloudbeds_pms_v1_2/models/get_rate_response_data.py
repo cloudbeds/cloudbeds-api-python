@@ -29,8 +29,8 @@ class GetRateResponseData(BaseModel):
     """ # noqa: E501
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID", alias="rateID")
     is_derived: Optional[StrictBool] = Field(default=None, description="This rate has been derived from another rate", alias="isDerived")
-    room_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Base rate for the room, based on the parameters provided", alias="roomRate")
-    total_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total rate for the room, based on the parameters provided. Calculated using base rates and additional costs from extra guests.", alias="totalRate")
+    room_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Base rate for the room, calculated based on the Room Type ID, selected dates, and promo code. This does not include additional guest charges", alias="roomRate")
+    total_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total rate for the room, which includes the base rate (roomRate) plus additional costs for extra guests (adults and children)", alias="totalRate")
     rooms_available: Optional[StrictInt] = Field(default=None, description="Number of rooms available, based on the parameters provided", alias="roomsAvailable")
     days_of_week: Optional[List[StrictStr]] = Field(default=None, alias="daysOfWeek")
     room_rate_detailed: Optional[List[GetRateResponseDataRoomRateDetailedInner]] = Field(default=None, description="Detailed information on the rates, if requested", alias="roomRateDetailed")

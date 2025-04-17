@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_2.models.get_transactions_response_data_inner import GetTransactionsResponseDataInner
+from cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
 
-class TestGetTransactionsResponseDataInner(unittest.TestCase):
-    """GetTransactionsResponseDataInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerDateRangesInner(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerDateRangesInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,57 +25,33 @@ class TestGetTransactionsResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetTransactionsResponseDataInner:
-        """Test GetTransactionsResponseDataInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerDateRangesInner:
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetTransactionsResponseDataInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerDateRangesInner`
         """
-        model = GetTransactionsResponseDataInner()
+        model = GetTaxesAndFeesResponseDataInnerDateRangesInner()
         if include_optional:
-            return GetTransactionsResponseDataInner(
-                property_id = '',
-                reservation_id = '',
-                sub_reservation_id = '',
-                house_account_id = '',
-                house_account_name = '',
-                guest_id = '',
-                property_name = '',
-                transaction_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                transaction_date_time_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                transaction_modified_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                transaction_modified_date_time_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                guest_check_in = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                guest_check_out = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                room_type_id = '',
-                room_type_name = '',
-                room_name = '',
-                guest_name = '',
-                description = '',
-                category = '',
-                transaction_code = '',
-                notes = '',
-                quantity = 56,
+            return GetTaxesAndFeesResponseDataInnerDateRangesInner(
+                range = cloudbeds_pms_v1_2.models.range.range(),
                 amount = 1.337,
-                currency = '',
-                user_name = '',
-                transaction_type = 'debit',
-                transaction_category = 'adjustment',
-                item_category_name = '',
-                transaction_id = '',
-                parent_transaction_id = '',
-                card_type = '',
-                is_deleted = True,
-                service_date = ''
+                amount_adult = 1.337,
+                amount_child = 1.337,
+                amount_rate_based = [
+                    cloudbeds_pms_v1_2.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
+                        rate = 1.337, 
+                        percentage = 1.337, )
+                    ]
             )
         else:
-            return GetTransactionsResponseDataInner(
+            return GetTaxesAndFeesResponseDataInnerDateRangesInner(
         )
         """
 
-    def testGetTransactionsResponseDataInner(self):
-        """Test GetTransactionsResponseDataInner"""
+    def testGetTaxesAndFeesResponseDataInnerDateRangesInner(self):
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
