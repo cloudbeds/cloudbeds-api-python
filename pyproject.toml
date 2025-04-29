@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 dynamic = ["version"]
-name = "cloudbeds_pms_v1_2"
+name = "cloudbeds_pms_v1_3"
 description = "OpenAPI client for Cloudbeds PMS v1.3 API."
 readme = "README.md"
 authors = [
@@ -60,4 +60,4 @@ where = ["."]
 version = { file = "VERSION" }
 
 [tool.setuptools.package-data]
-"cloudbeds_pms_v1_2" = ["py.typed"]
+"cloudbeds_pms_v1_3" = ["py.typed"]
