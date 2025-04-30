@@ -1,0 +1,40 @@
+# GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**product_id** | **str** | Internal product ID | [optional] 
+**sold_product_id** | **str** | ID of the sold product | [optional] 
+**item_code** | **str** | Code of the item | [optional] 
+**product_name** | **str** | Name | [optional] 
+**product_price** | **float** | Price | [optional] 
+**product_quantity** | **int** | Quantity sold | [optional] 
+**product_sub_total** | **float** | Gross amount | [optional] 
+**product_fees** | **float** | Fees charged for this item | [optional] 
+**product_taxes** | **float** | Taxes charged for this item | [optional] 
+**product_total** | **float** | Net amount | [optional] 
+**product_note** | **float** | Product note | [optional] 
+**transaction_date_time** | **datetime** | Date and time of the sale | [optional] 
+
+## Example
+
+```python
+from cloudbeds_pms_v1_3.models.get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner import GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner from a JSON string
+get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner_instance = GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner.from_json(json)
+# print the JSON string representation of the object
+print(GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner.to_json())
+
+# convert the object into a dict
+get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner_dict = get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner_instance.to_dict()
+# create an instance of GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner from a dict
+get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner_from_dict = GetReservationInvoiceInformationResponseDataInnerReservationAdditionalProductsInner.from_dict(get_reservation_invoice_information_response_data_inner_reservation_additional_products_inner_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
