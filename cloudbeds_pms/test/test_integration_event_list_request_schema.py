@@ -14,53 +14,49 @@
 
 import unittest
 
-from cloudbeds_pms.api.doorlock_keys_api import DoorlockKeysApi
+from cloudbeds_pms.models.integration_event_list_request_schema import IntegrationEventListRequestSchema
 
+class TestIntegrationEventListRequestSchema(unittest.TestCase):
+    """IntegrationEventListRequestSchema unit test stubs"""
 
-class TestDoorlockKeysApi(unittest.TestCase):
-    """DoorlockKeysApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = DoorlockKeysApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_door_lock_key_controller_batch_delete(self) -> None:
-        """Test case for door_lock_key_controller_batch_delete
+    def tearDown(self):
+        pass
 
-        Delete a list of doorlock keys.
+    def make_instance(self, include_optional) -> IntegrationEventListRequestSchema:
+        """Test IntegrationEventListRequestSchema
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `IntegrationEventListRequestSchema`
         """
-        pass
-
-    def test_door_lock_key_controller_create(self) -> None:
-        """Test case for door_lock_key_controller_create
-
-        Create a new doorlock key.
+        model = IntegrationEventListRequestSchema()
+        if include_optional:
+            return IntegrationEventListRequestSchema(
+                limit = 1,
+                offset = 1,
+                filters = field1:value;field2:operator:value,
+                sort = [
+        {
+            "field": "checkin_date",
+            "direction": "desc"
+        },
+        {
+            "field": "checkout_date"
+        }
+    ]
+            )
+        else:
+            return IntegrationEventListRequestSchema(
+        )
         """
-        pass
 
-    def test_door_lock_key_controller_delete(self) -> None:
-        """Test case for door_lock_key_controller_delete
-
-        Delete a doorlock key.
-        """
-        pass
-
-    def test_door_lock_key_controller_index(self) -> None:
-        """Test case for door_lock_key_controller_index
-
-        Get a list of doorlock keys for a specific app client and property.
-        """
-        pass
-
-    def test_door_lock_key_controller_update(self) -> None:
-        """Test case for door_lock_key_controller_update
-
-        Update a doorlock key.
-        """
-        pass
-
+    def testIntegrationEventListRequestSchema(self):
+        """Test IntegrationEventListRequestSchema"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

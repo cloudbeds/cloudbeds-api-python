@@ -14,50 +14,43 @@
 
 import unittest
 
-from cloudbeds_pms.api.doorlock_keys_api import DoorlockKeysApi
+from cloudbeds_pms.api.integration_events_api import IntegrationEventsApi
 
 
-class TestDoorlockKeysApi(unittest.TestCase):
-    """DoorlockKeysApi unit test stubs"""
+class TestIntegrationEventsApi(unittest.TestCase):
+    """IntegrationEventsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = DoorlockKeysApi()
+        self.api = IntegrationEventsApi()
 
     def tearDown(self) -> None:
         pass
 
-    def test_door_lock_key_controller_batch_delete(self) -> None:
-        """Test case for door_lock_key_controller_batch_delete
+    def test_integration_event_controller_create(self) -> None:
+        """Test case for integration_event_controller_create
 
-        Delete a list of doorlock keys.
+        Create a new integration event.
         """
         pass
 
-    def test_door_lock_key_controller_create(self) -> None:
-        """Test case for door_lock_key_controller_create
+    def test_integration_event_controller_index(self) -> None:
+        """Test case for integration_event_controller_index
 
-        Create a new doorlock key.
+        Get a list of integration events for a specific property.
         """
         pass
 
-    def test_door_lock_key_controller_delete(self) -> None:
-        """Test case for door_lock_key_controller_delete
+    def test_integration_event_controller_retry(self) -> None:
+        """Test case for integration_event_controller_retry
 
-        Delete a doorlock key.
+        Retry an integration event.
         """
         pass
 
-    def test_door_lock_key_controller_index(self) -> None:
-        """Test case for door_lock_key_controller_index
+    def test_integration_event_controller_update(self) -> None:
+        """Test case for integration_event_controller_update
 
-        Get a list of doorlock keys for a specific app client and property.
-        """
-        pass
-
-    def test_door_lock_key_controller_update(self) -> None:
-        """Test case for door_lock_key_controller_update
-
-        Update a doorlock key.
+        Update an integration event.
         """
         pass
 

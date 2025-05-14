@@ -4,11 +4,89 @@ All URIs are relative to *https://api.cloudbeds.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**door_lock_key_controller_batch_delete**](DoorlockKeysApi.md#door_lock_key_controller_batch_delete) | **DELETE** /doorlock/v1/keys | Delete a list of doorlock keys.
 [**door_lock_key_controller_create**](DoorlockKeysApi.md#door_lock_key_controller_create) | **POST** /doorlock/v1/keys | Create a new doorlock key.
 [**door_lock_key_controller_delete**](DoorlockKeysApi.md#door_lock_key_controller_delete) | **DELETE** /doorlock/v1/keys/{id} | Delete a doorlock key.
 [**door_lock_key_controller_index**](DoorlockKeysApi.md#door_lock_key_controller_index) | **GET** /doorlock/v1/keys/{propertyId} | Get a list of doorlock keys for a specific app client and property.
 [**door_lock_key_controller_update**](DoorlockKeysApi.md#door_lock_key_controller_update) | **PATCH** /doorlock/v1/keys/{id} | Update a doorlock key.
 
+
+# **door_lock_key_controller_batch_delete**
+> object door_lock_key_controller_batch_delete(key_ids, x_property_id)
+
+Delete a list of doorlock keys.
+
+### Example
+
+* OAuth Authentication (default):
+
+```python
+import cloudbeds_pms
+from cloudbeds_pms.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.cloudbeds.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cloudbeds_pms.Configuration(
+    host = "https://api.cloudbeds.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cloudbeds_pms.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cloudbeds_pms.DoorlockKeysApi(api_client)
+    key_ids = '1,2' # str | 
+    x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
+
+    try:
+        # Delete a list of doorlock keys.
+        api_response = api_instance.door_lock_key_controller_batch_delete(key_ids, x_property_id)
+        print("The response of DoorlockKeysApi->door_lock_key_controller_batch_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DoorlockKeysApi->door_lock_key_controller_batch_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key_ids** | **str**|  | 
+ **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Keys were cancelled. |  -  |
+**400** | Bad Request response |  -  |
+**404** | Not found response |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **door_lock_key_controller_create**
 > DoorLockKeyResponseSchema door_lock_key_controller_create(door_lock_key_create_request_schema)

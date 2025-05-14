@@ -58,6 +58,7 @@ class TestDoorLockKeyListResponseSchema(unittest.TestCase):
                             mobile_id = '', 
                             external_id = '', 
                             status = '', 
+                            error_message = '', 
                             created_at = '', 
                             updated_at = '', )
                         ]
@@ -88,6 +89,7 @@ class TestDoorLockKeyListResponseSchema(unittest.TestCase):
                             mobile_id = '', 
                             external_id = '', 
                             status = '', 
+                            error_message = '', 
                             created_at = '', 
                             updated_at = '', )
                         ]

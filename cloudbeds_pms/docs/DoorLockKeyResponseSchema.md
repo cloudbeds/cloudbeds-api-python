@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **mobile_id** | **str** |  | [optional] 
 **external_id** | **str** |  | [optional] 
 **status** | **str** |  | 
+**error_message** | **str** |  | [optional] 
 **created_at** | **str** |  | 
 **updated_at** | **str** |  | [optional] 
 

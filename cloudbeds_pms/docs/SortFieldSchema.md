@@ -1,6 +1,6 @@
 # SortFieldSchema
 
-Represents a logical group of filters with keys like 'and' or 'or'
+Represents a sort field and its direction
 
 ## Properties
 

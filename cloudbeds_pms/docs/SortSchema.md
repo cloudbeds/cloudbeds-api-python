@@ -1,12 +1,12 @@
 # SortSchema
 
-Represents a logical group of filters with keys like 'and' or 'or'
+Represents a list of sort fields to apply to the request
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fields** | [**List[SortFieldSchema]**](SortFieldSchema.md) | Logical operator grouping filters or nested logical groups | [optional] 
+**fields** | [**List[SortFieldSchema]**](SortFieldSchema.md) | The list of fields to sort by | [optional] 
 
 ## Example
 

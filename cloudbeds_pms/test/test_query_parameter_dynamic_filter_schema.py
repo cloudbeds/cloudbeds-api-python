@@ -35,7 +35,7 @@ class TestQueryParameterDynamicFilterSchema(unittest.TestCase):
         model = QueryParameterDynamicFilterSchema()
         if include_optional:
             return QueryParameterDynamicFilterSchema(
-                filters = field1:value;field2:value
+                filters = field1:value;field2:operator:value
             )
         else:
             return QueryParameterDynamicFilterSchema(

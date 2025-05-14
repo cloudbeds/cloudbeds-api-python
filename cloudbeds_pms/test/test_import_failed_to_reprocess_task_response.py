@@ -14,53 +14,39 @@
 
 import unittest
 
-from cloudbeds_pms.api.import_tasks_api import ImportTasksApi
+from cloudbeds_pms.models.import_failed_to_reprocess_task_response import ImportFailedToReprocessTaskResponse
 
+class TestImportFailedToReprocessTaskResponse(unittest.TestCase):
+    """ImportFailedToReprocessTaskResponse unit test stubs"""
 
-class TestImportTasksApi(unittest.TestCase):
-    """ImportTasksApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = ImportTasksApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_import_task_controller_create(self) -> None:
-        """Test case for import_task_controller_create
+    def tearDown(self):
+        pass
 
-        Create a new import task and generate a temporary upload URL.
+    def make_instance(self, include_optional) -> ImportFailedToReprocessTaskResponse:
+        """Test ImportFailedToReprocessTaskResponse
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ImportFailedToReprocessTaskResponse`
         """
-        pass
-
-    def test_import_task_controller_find_by_id(self) -> None:
-        """Test case for import_task_controller_find_by_id
-
-        Fetch import task by ID.
+        model = ImportFailedToReprocessTaskResponse()
+        if include_optional:
+            return ImportFailedToReprocessTaskResponse(
+                message = ''
+            )
+        else:
+            return ImportFailedToReprocessTaskResponse(
+                message = '',
+        )
         """
-        pass
 
-    def test_import_task_controller_find_task_records(self) -> None:
-        """Test case for import_task_controller_find_task_records
-
-        Fetch import task records by ID.
-        """
-        pass
-
-    def test_import_task_controller_get_all(self) -> None:
-        """Test case for import_task_controller_get_all
-
-        Fetch a list of previously uploaded imports.
-        """
-        pass
-
-    def test_import_task_controller_reimport(self) -> None:
-        """Test case for import_task_controller_reimport
-
-        ReImport an import task and generate a temporary upload URL.
-        """
-        pass
-
+    def testImportFailedToReprocessTaskResponse(self):
+        """Test ImportFailedToReprocessTaskResponse"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

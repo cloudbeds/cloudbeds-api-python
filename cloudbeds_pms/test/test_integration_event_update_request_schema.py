@@ -14,53 +14,39 @@
 
 import unittest
 
-from cloudbeds_pms.api.doorlock_keys_api import DoorlockKeysApi
+from cloudbeds_pms.models.integration_event_update_request_schema import IntegrationEventUpdateRequestSchema
 
+class TestIntegrationEventUpdateRequestSchema(unittest.TestCase):
+    """IntegrationEventUpdateRequestSchema unit test stubs"""
 
-class TestDoorlockKeysApi(unittest.TestCase):
-    """DoorlockKeysApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = DoorlockKeysApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_door_lock_key_controller_batch_delete(self) -> None:
-        """Test case for door_lock_key_controller_batch_delete
+    def tearDown(self):
+        pass
 
-        Delete a list of doorlock keys.
+    def make_instance(self, include_optional) -> IntegrationEventUpdateRequestSchema:
+        """Test IntegrationEventUpdateRequestSchema
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `IntegrationEventUpdateRequestSchema`
         """
-        pass
-
-    def test_door_lock_key_controller_create(self) -> None:
-        """Test case for door_lock_key_controller_create
-
-        Create a new doorlock key.
+        model = IntegrationEventUpdateRequestSchema()
+        if include_optional:
+            return IntegrationEventUpdateRequestSchema(
+                status = 'open'
+            )
+        else:
+            return IntegrationEventUpdateRequestSchema(
+                status = 'open',
+        )
         """
-        pass
 
-    def test_door_lock_key_controller_delete(self) -> None:
-        """Test case for door_lock_key_controller_delete
-
-        Delete a doorlock key.
-        """
-        pass
-
-    def test_door_lock_key_controller_index(self) -> None:
-        """Test case for door_lock_key_controller_index
-
-        Get a list of doorlock keys for a specific app client and property.
-        """
-        pass
-
-    def test_door_lock_key_controller_update(self) -> None:
-        """Test case for door_lock_key_controller_update
-
-        Update a doorlock key.
-        """
-        pass
-
+    def testIntegrationEventUpdateRequestSchema(self):
+        """Test IntegrationEventUpdateRequestSchema"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

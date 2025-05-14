@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class SortSchema(BaseModel):
     """
-    Represents a logical group of filters with keys like 'and' or 'or'
+    Represents a list of sort fields to apply to the request
     """ # noqa: E501
-    fields: Optional[List[SortFieldSchema]] = Field(default=None, description="Logical operator grouping filters or nested logical groups")
+    fields: Optional[List[SortFieldSchema]] = Field(default=None, description="The list of fields to sort by")
     __properties: ClassVar[List[str]] = ["fields"]
 
     model_config = ConfigDict(

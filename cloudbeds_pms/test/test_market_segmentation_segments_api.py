@@ -14,50 +14,78 @@
 
 import unittest
 
-from cloudbeds_pms.api.doorlock_keys_api import DoorlockKeysApi
+from cloudbeds_pms.api.market_segmentation_segments_api import MarketSegmentationSegmentsApi
 
 
-class TestDoorlockKeysApi(unittest.TestCase):
-    """DoorlockKeysApi unit test stubs"""
+class TestMarketSegmentationSegmentsApi(unittest.TestCase):
+    """MarketSegmentationSegmentsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = DoorlockKeysApi()
+        self.api = MarketSegmentationSegmentsApi()
 
     def tearDown(self) -> None:
         pass
 
-    def test_door_lock_key_controller_batch_delete(self) -> None:
-        """Test case for door_lock_key_controller_batch_delete
+    def test_segment_controller_create(self) -> None:
+        """Test case for segment_controller_create
 
-        Delete a list of doorlock keys.
+        Create a new Market Segmentation Segment.
         """
         pass
 
-    def test_door_lock_key_controller_create(self) -> None:
-        """Test case for door_lock_key_controller_create
+    def test_segment_controller_default(self) -> None:
+        """Test case for segment_controller_default
 
-        Create a new doorlock key.
+        Set Market Segmentation Segment as Default.
         """
         pass
 
-    def test_door_lock_key_controller_delete(self) -> None:
-        """Test case for door_lock_key_controller_delete
+    def test_segment_controller_delete(self) -> None:
+        """Test case for segment_controller_delete
 
-        Delete a doorlock key.
+        Delete a Market Segmentation Segment.
         """
         pass
 
-    def test_door_lock_key_controller_index(self) -> None:
-        """Test case for door_lock_key_controller_index
+    def test_segment_controller_disable(self) -> None:
+        """Test case for segment_controller_disable
 
-        Get a list of doorlock keys for a specific app client and property.
+        Disable a Market Segmentation Segment.
         """
         pass
 
-    def test_door_lock_key_controller_update(self) -> None:
-        """Test case for door_lock_key_controller_update
+    def test_segment_controller_enable(self) -> None:
+        """Test case for segment_controller_enable
 
-        Update a doorlock key.
+        Enable a Market Segmentation Segment.
+        """
+        pass
+
+    def test_segment_controller_index(self) -> None:
+        """Test case for segment_controller_index
+
+        Get a list of Market Segmentation Segments.
+        """
+        pass
+
+    def test_segment_controller_reservations(self) -> None:
+        """Test case for segment_controller_reservations
+
+        Get a list of reservations linked to a Market Segmentation Segment.
+        """
+        pass
+
+    def test_segment_controller_single(self) -> None:
+        """Test case for segment_controller_single
+
+        Get Market Segmentation Segment data.
+        """
+        pass
+
+    def test_segment_controller_update(self) -> None:
+        """Test case for segment_controller_update
+
+        Update a Market Segmentation Segment.
         """
         pass
 

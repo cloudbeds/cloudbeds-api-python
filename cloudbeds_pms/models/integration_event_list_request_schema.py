@@ -17,19 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.direction_enum_schema import DirectionEnumSchema
+from cloudbeds_pms.models.query_parameter_dynamic_filter_schema_filters import QueryParameterDynamicFilterSchemaFilters
+from cloudbeds_pms.models.sort_schema import SortSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SortFieldSchema(BaseModel):
+class IntegrationEventListRequestSchema(BaseModel):
     """
-    Represents a sort field and its direction
+    IntegrationEventListRequestSchema
     """ # noqa: E501
-    var_field: Optional[StrictStr] = Field(default=None, description="The field to apply the sort on", alias="field")
-    direction: Optional[DirectionEnumSchema] = None
-    __properties: ClassVar[List[str]] = ["field", "direction"]
+    limit: Optional[StrictInt] = Field(default=100, description="The limit for the number of items to return (max 500)")
+    offset: Optional[StrictInt] = Field(default=0, description="The offset for the current page of results")
+    filters: Optional[QueryParameterDynamicFilterSchemaFilters] = None
+    sort: Optional[SortSchema] = None
+    __properties: ClassVar[List[str]] = ["limit", "offset", "filters", "sort"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +52,7 @@ class SortFieldSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a JSON string"""
+        """Create an instance of IntegrationEventListRequestSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,11 +73,22 @@ class SortFieldSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sort
+        if self.sort:
+            _dict['sort'] = self.sort.to_dict()
+        # set to None if filters (nullable) is None
+        # and model_fields_set contains the field
+        if self.filters is None and "filters" in self.model_fields_set:
+            _dict['filters'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a dict"""
+        """Create an instance of IntegrationEventListRequestSchema from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +96,10 @@ class SortFieldSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "field": obj.get("field"),
-            "direction": obj.get("direction")
+            "limit": obj.get("limit") if obj.get("limit") is not None else 100,
+            "offset": obj.get("offset") if obj.get("offset") is not None else 0,
+            "filters": QueryParameterDynamicFilterSchemaFilters.from_dict(obj["filters"]) if obj.get("filters") is not None else None,
+            "sort": SortSchema.from_dict(obj["sort"]) if obj.get("sort") is not None else None
         })
         return _obj
 

@@ -18,18 +18,16 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.direction_enum_schema import DirectionEnumSchema
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SortFieldSchema(BaseModel):
+class SegmentDefaultRequestSchema(BaseModel):
     """
-    Represents a sort field and its direction
+    SegmentDefaultRequestSchema
     """ # noqa: E501
-    var_field: Optional[StrictStr] = Field(default=None, description="The field to apply the sort on", alias="field")
-    direction: Optional[DirectionEnumSchema] = None
-    __properties: ClassVar[List[str]] = ["field", "direction"]
+    id: StrictStr = Field(description="Segment ID.")
+    __properties: ClassVar[List[str]] = ["id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class SortFieldSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a JSON string"""
+        """Create an instance of SegmentDefaultRequestSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,7 +72,7 @@ class SortFieldSchema(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a dict"""
+        """Create an instance of SegmentDefaultRequestSchema from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +80,7 @@ class SortFieldSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "field": obj.get("field"),
-            "direction": obj.get("direction")
+            "id": obj.get("id")
         })
         return _obj
 

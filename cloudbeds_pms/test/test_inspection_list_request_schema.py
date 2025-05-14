@@ -37,7 +37,7 @@ class TestInspectionListRequestSchema(unittest.TestCase):
             return InspectionListRequestSchema(
                 limit = 1,
                 offset = 1,
-                filters = field1:value;field2:value
+                filters = field1:value;field2:operator:value
             )
         else:
             return InspectionListRequestSchema(

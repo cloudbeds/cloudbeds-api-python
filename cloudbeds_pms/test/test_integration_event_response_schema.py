@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.segment_list_request_schema import SegmentListRequestSchema
+from cloudbeds_pms.models.integration_event_response_schema import IntegrationEventResponseSchema
 
-class TestSegmentListRequestSchema(unittest.TestCase):
-    """SegmentListRequestSchema unit test stubs"""
+class TestIntegrationEventResponseSchema(unittest.TestCase):
+    """IntegrationEventResponseSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,44 @@ class TestSegmentListRequestSchema(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> SegmentListRequestSchema:
-        """Test SegmentListRequestSchema
+    def make_instance(self, include_optional) -> IntegrationEventResponseSchema:
+        """Test IntegrationEventResponseSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `SegmentListRequestSchema`
+        # uncomment below to create an instance of `IntegrationEventResponseSchema`
         """
-        model = SegmentListRequestSchema()
+        model = IntegrationEventResponseSchema()
         if include_optional:
-            return SegmentListRequestSchema(
-                limit = 1,
-                offset = 1,
-                filters = field1:value;field2:operator:value,
-                enabled = False
+            return IntegrationEventResponseSchema(
+                id = '123456',
+                property_id = '123456',
+                object_id = '123456',
+                object_type = 'reservation',
+                system = 'gov',
+                status = 'open',
+                result = 'success',
+                description = 'Integration event description.',
+                details = 'Integration event details.',
+                action_text = 'Retry',
+                created_at = '2023-10-01T12:00:00Z',
+                updated_at = '2023-10-01T12:00:00Z',
+                retried_at = '2023-10-01T12:00:00Z'
             )
         else:
-            return SegmentListRequestSchema(
+            return IntegrationEventResponseSchema(
+                id = '123456',
+                property_id = '123456',
+                object_type = 'reservation',
+                system = 'gov',
+                status = 'open',
+                result = 'success',
+                created_at = '2023-10-01T12:00:00Z',
         )
         """
 
-    def testSegmentListRequestSchema(self):
-        """Test SegmentListRequestSchema"""
+    def testIntegrationEventResponseSchema(self):
+        """Test IntegrationEventResponseSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

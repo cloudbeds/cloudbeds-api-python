@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DirectionEnumSchema(str, Enum):
     """
-    The operator to use for the filter
+    The direction of the sort
     """
 
     """

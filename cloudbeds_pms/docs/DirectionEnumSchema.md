@@ -1,6 +1,6 @@
 # DirectionEnumSchema
 
-The operator to use for the filter
+The direction of the sort
 
 ## Enum
 

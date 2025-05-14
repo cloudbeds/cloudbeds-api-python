@@ -17,19 +17,39 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.direction_enum_schema import DirectionEnumSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SortFieldSchema(BaseModel):
+class IntegrationEventCreateRequestSchema(BaseModel):
     """
-    Represents a sort field and its direction
+    IntegrationEventCreateRequestSchema
     """ # noqa: E501
-    var_field: Optional[StrictStr] = Field(default=None, description="The field to apply the sort on", alias="field")
-    direction: Optional[DirectionEnumSchema] = None
-    __properties: ClassVar[List[str]] = ["field", "direction"]
+    object_type: StrictStr = Field(description="Type of object related to the integration event.", alias="objectType")
+    system: StrictStr = Field(description="System where the integration event occurred.")
+    status: StrictStr = Field(description="Status of the integration event.")
+    result: StrictStr = Field(description="Result of the integration event.")
+    object_id: Optional[StrictStr] = Field(default=None, description="ID of object related to the integration event.", alias="objectId")
+    description: Optional[StrictStr] = Field(default=None, description="Description of the integration event. Required when result is failure.")
+    details: Optional[StrictStr] = Field(default=None, description="Details of the integration event, that usually contain instructions.")
+    action_text: Optional[StrictStr] = Field(default=None, description="Text to be displayed on the UI for the action.", alias="actionText")
+    retry_url: Optional[StrictStr] = Field(default=None, description="URL that is used to retry the action.", alias="retryUrl")
+    __properties: ClassVar[List[str]] = ["objectType", "system", "status", "result", "objectId", "description", "details", "actionText", "retryUrl"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['open', 'completed']):
+            raise ValueError("must be one of enum values ('open', 'completed')")
+        return value
+
+    @field_validator('result')
+    def result_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['failure', 'success']):
+            raise ValueError("must be one of enum values ('failure', 'success')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +69,7 @@ class SortFieldSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a JSON string"""
+        """Create an instance of IntegrationEventCreateRequestSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,11 +90,36 @@ class SortFieldSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if object_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_id is None and "object_id" in self.model_fields_set:
+            _dict['objectId'] = None
+
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if details (nullable) is None
+        # and model_fields_set contains the field
+        if self.details is None and "details" in self.model_fields_set:
+            _dict['details'] = None
+
+        # set to None if action_text (nullable) is None
+        # and model_fields_set contains the field
+        if self.action_text is None and "action_text" in self.model_fields_set:
+            _dict['actionText'] = None
+
+        # set to None if retry_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.retry_url is None and "retry_url" in self.model_fields_set:
+            _dict['retryUrl'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SortFieldSchema from a dict"""
+        """Create an instance of IntegrationEventCreateRequestSchema from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +127,15 @@ class SortFieldSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "field": obj.get("field"),
-            "direction": obj.get("direction")
+            "objectType": obj.get("objectType"),
+            "system": obj.get("system"),
+            "status": obj.get("status"),
+            "result": obj.get("result"),
+            "objectId": obj.get("objectId"),
+            "description": obj.get("description"),
+            "details": obj.get("details"),
+            "actionText": obj.get("actionText"),
+            "retryUrl": obj.get("retryUrl")
         })
         return _obj
 

@@ -17,35 +17,43 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DoorLockKeyResponseSchema(BaseModel):
+class IntegrationEventResponseSchema(BaseModel):
     """
-    DoorLockKeyResponseSchema
+    IntegrationEventResponseSchema
     """ # noqa: E501
-    key_id: StrictStr = Field(alias="keyId")
-    property_id: StrictStr = Field(alias="propertyId")
-    reservation_id: StrictStr = Field(alias="reservationId")
-    sub_reservation_id: StrictStr = Field(alias="subReservationId")
-    issuer_id: StrictStr = Field(alias="issuerId")
-    guest_id: Optional[StrictStr] = Field(default=None, alias="guestId")
-    rooms: List[StrictStr]
-    common_rooms: List[StrictStr] = Field(alias="commonRooms")
-    start_date_time: StrictStr = Field(alias="startDateTime")
-    end_date_time: StrictStr = Field(alias="endDateTime")
-    encoder: Optional[StrictStr] = None
-    key_code: Optional[StrictStr] = Field(default=None, alias="keyCode")
-    key_type: StrictStr = Field(alias="keyType")
-    mobile_id: Optional[StrictStr] = Field(default=None, alias="mobileId")
-    external_id: Optional[StrictStr] = Field(default=None, alias="externalId")
-    status: StrictStr
-    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
+    id: StrictStr = Field(description="Unique identifier for the integration event.")
+    property_id: StrictStr = Field(description="Unique identifier for the property.", alias="propertyId")
+    object_id: Optional[StrictStr] = Field(default=None, description="Unique identifier for the object associated with the integration event.", alias="objectId")
+    object_type: StrictStr = Field(description="Type of object associated with the integration event.", alias="objectType")
+    system: StrictStr = Field(description="Type of system associated with the integration event.")
+    status: StrictStr = Field(description="Status of the integration event.")
+    result: StrictStr = Field(description="Result of the integration event.")
+    description: Optional[StrictStr] = Field(default=None, description="Short description of the integration event.")
+    details: Optional[StrictStr] = Field(default=None, description="Detailed information about the integration event.")
+    action_text: Optional[StrictStr] = Field(default=None, description="Text to be displayed for the action associated with the integration event.", alias="actionText")
     created_at: StrictStr = Field(alias="createdAt")
     updated_at: Optional[StrictStr] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["keyId", "propertyId", "reservationId", "subReservationId", "issuerId", "guestId", "rooms", "commonRooms", "startDateTime", "endDateTime", "encoder", "keyCode", "keyType", "mobileId", "externalId", "status", "errorMessage", "createdAt", "updatedAt"]
+    retried_at: Optional[StrictStr] = Field(default=None, alias="retriedAt")
+    __properties: ClassVar[List[str]] = ["id", "propertyId", "objectId", "objectType", "system", "status", "result", "description", "details", "actionText", "createdAt", "updatedAt", "retriedAt"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['open', 'completed']):
+            raise ValueError("must be one of enum values ('open', 'completed')")
+        return value
+
+    @field_validator('result')
+    def result_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['failure', 'success']):
+            raise ValueError("must be one of enum values ('failure', 'success')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -65,7 +73,7 @@ class DoorLockKeyResponseSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DoorLockKeyResponseSchema from a JSON string"""
+        """Create an instance of IntegrationEventResponseSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,46 +94,41 @@ class DoorLockKeyResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if guest_id (nullable) is None
+        # set to None if object_id (nullable) is None
         # and model_fields_set contains the field
-        if self.guest_id is None and "guest_id" in self.model_fields_set:
-            _dict['guestId'] = None
+        if self.object_id is None and "object_id" in self.model_fields_set:
+            _dict['objectId'] = None
 
-        # set to None if encoder (nullable) is None
+        # set to None if description (nullable) is None
         # and model_fields_set contains the field
-        if self.encoder is None and "encoder" in self.model_fields_set:
-            _dict['encoder'] = None
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
 
-        # set to None if key_code (nullable) is None
+        # set to None if details (nullable) is None
         # and model_fields_set contains the field
-        if self.key_code is None and "key_code" in self.model_fields_set:
-            _dict['keyCode'] = None
+        if self.details is None and "details" in self.model_fields_set:
+            _dict['details'] = None
 
-        # set to None if mobile_id (nullable) is None
+        # set to None if action_text (nullable) is None
         # and model_fields_set contains the field
-        if self.mobile_id is None and "mobile_id" in self.model_fields_set:
-            _dict['mobileId'] = None
-
-        # set to None if external_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.external_id is None and "external_id" in self.model_fields_set:
-            _dict['externalId'] = None
-
-        # set to None if error_message (nullable) is None
-        # and model_fields_set contains the field
-        if self.error_message is None and "error_message" in self.model_fields_set:
-            _dict['errorMessage'] = None
+        if self.action_text is None and "action_text" in self.model_fields_set:
+            _dict['actionText'] = None
 
         # set to None if updated_at (nullable) is None
         # and model_fields_set contains the field
         if self.updated_at is None and "updated_at" in self.model_fields_set:
             _dict['updatedAt'] = None
 
+        # set to None if retried_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.retried_at is None and "retried_at" in self.model_fields_set:
+            _dict['retriedAt'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DoorLockKeyResponseSchema from a dict"""
+        """Create an instance of IntegrationEventResponseSchema from a dict"""
         if obj is None:
             return None
 
@@ -133,25 +136,19 @@ class DoorLockKeyResponseSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "keyId": obj.get("keyId"),
+            "id": obj.get("id"),
             "propertyId": obj.get("propertyId"),
-            "reservationId": obj.get("reservationId"),
-            "subReservationId": obj.get("subReservationId"),
-            "issuerId": obj.get("issuerId"),
-            "guestId": obj.get("guestId"),
-            "rooms": obj.get("rooms"),
-            "commonRooms": obj.get("commonRooms"),
-            "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime"),
-            "encoder": obj.get("encoder"),
-            "keyCode": obj.get("keyCode"),
-            "keyType": obj.get("keyType"),
-            "mobileId": obj.get("mobileId"),
-            "externalId": obj.get("externalId"),
+            "objectId": obj.get("objectId"),
+            "objectType": obj.get("objectType"),
+            "system": obj.get("system"),
             "status": obj.get("status"),
-            "errorMessage": obj.get("errorMessage"),
+            "result": obj.get("result"),
+            "description": obj.get("description"),
+            "details": obj.get("details"),
+            "actionText": obj.get("actionText"),
             "createdAt": obj.get("createdAt"),
-            "updatedAt": obj.get("updatedAt")
+            "updatedAt": obj.get("updatedAt"),
+            "retriedAt": obj.get("retriedAt")
         })
         return _obj
 

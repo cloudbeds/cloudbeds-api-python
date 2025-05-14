@@ -14,53 +14,39 @@
 
 import unittest
 
-from cloudbeds_pms.api.doorlock_keys_api import DoorlockKeysApi
+from cloudbeds_pms.models.segment_default_request_schema import SegmentDefaultRequestSchema
 
+class TestSegmentDefaultRequestSchema(unittest.TestCase):
+    """SegmentDefaultRequestSchema unit test stubs"""
 
-class TestDoorlockKeysApi(unittest.TestCase):
-    """DoorlockKeysApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = DoorlockKeysApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_door_lock_key_controller_batch_delete(self) -> None:
-        """Test case for door_lock_key_controller_batch_delete
+    def tearDown(self):
+        pass
 
-        Delete a list of doorlock keys.
+    def make_instance(self, include_optional) -> SegmentDefaultRequestSchema:
+        """Test SegmentDefaultRequestSchema
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `SegmentDefaultRequestSchema`
         """
-        pass
-
-    def test_door_lock_key_controller_create(self) -> None:
-        """Test case for door_lock_key_controller_create
-
-        Create a new doorlock key.
+        model = SegmentDefaultRequestSchema()
+        if include_optional:
+            return SegmentDefaultRequestSchema(
+                id = '1-b'
+            )
+        else:
+            return SegmentDefaultRequestSchema(
+                id = '1-b',
+        )
         """
-        pass
 
-    def test_door_lock_key_controller_delete(self) -> None:
-        """Test case for door_lock_key_controller_delete
-
-        Delete a doorlock key.
-        """
-        pass
-
-    def test_door_lock_key_controller_index(self) -> None:
-        """Test case for door_lock_key_controller_index
-
-        Get a list of doorlock keys for a specific app client and property.
-        """
-        pass
-
-    def test_door_lock_key_controller_update(self) -> None:
-        """Test case for door_lock_key_controller_update
-
-        Update a doorlock key.
-        """
-        pass
-
+    def testSegmentDefaultRequestSchema(self):
+        """Test SegmentDefaultRequestSchema"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
