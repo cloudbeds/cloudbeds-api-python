@@ -16,12 +16,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field, StrictBool, StrictStr
 from typing import Any, Optional
 from typing_extensions import Annotated
-from cloudbeds_pms.models.active import Active
-from cloudbeds_pms.models.enabled import Enabled
-from cloudbeds_pms.models.id import Id
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.segment_create_request_schema import SegmentCreateRequestSchema
@@ -1490,7 +1487,7 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_index(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        enabled: Annotated[Enabled, Field(description="List only enabled segments.")],
+        enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
@@ -1513,7 +1510,7 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param enabled: List only enabled segments. (required)
-        :type enabled: Enabled
+        :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
@@ -1575,7 +1572,7 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_index_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        enabled: Annotated[Enabled, Field(description="List only enabled segments.")],
+        enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
@@ -1598,7 +1595,7 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param enabled: List only enabled segments. (required)
-        :type enabled: Enabled
+        :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
@@ -1660,7 +1657,7 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_index_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        enabled: Annotated[Enabled, Field(description="List only enabled segments.")],
+        enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
@@ -1683,7 +1680,7 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param enabled: List only enabled segments. (required)
-        :type enabled: Enabled
+        :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
@@ -1823,8 +1820,8 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_reservations(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        id: Annotated[Id, Field(description="Segment ID.")],
-        active: Annotated[Active, Field(description="List only active reservations.")],
+        id: Annotated[StrictStr, Field(description="Segment ID.")],
+        active: Annotated[StrictBool, Field(description="List only active reservations.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
@@ -1846,9 +1843,9 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param id: Segment ID. (required)
-        :type id: Id
+        :type id: str
         :param active: List only active reservations. (required)
-        :type active: Active
+        :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
@@ -1908,8 +1905,8 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_reservations_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        id: Annotated[Id, Field(description="Segment ID.")],
-        active: Annotated[Active, Field(description="List only active reservations.")],
+        id: Annotated[StrictStr, Field(description="Segment ID.")],
+        active: Annotated[StrictBool, Field(description="List only active reservations.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
@@ -1931,9 +1928,9 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param id: Segment ID. (required)
-        :type id: Id
+        :type id: str
         :param active: List only active reservations. (required)
-        :type active: Active
+        :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
@@ -1993,8 +1990,8 @@ class MarketSegmentationSegmentsApi:
     def segment_controller_reservations_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        id: Annotated[Id, Field(description="Segment ID.")],
-        active: Annotated[Active, Field(description="List only active reservations.")],
+        id: Annotated[StrictStr, Field(description="Segment ID.")],
+        active: Annotated[StrictBool, Field(description="List only active reservations.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
@@ -2016,9 +2013,9 @@ class MarketSegmentationSegmentsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param id: Segment ID. (required)
-        :type id: Id
+        :type id: str
         :param active: List only active reservations. (required)
-        :type active: Active
+        :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param limit: The maximum number of items to return in the response. Default is 100.

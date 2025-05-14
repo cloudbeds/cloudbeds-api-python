@@ -418,7 +418,6 @@ Get a list of Market Segmentation Segments.
 
 ```python
 import cloudbeds_pms
-from cloudbeds_pms.models.enabled import Enabled
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.segment_list_response_schema import SegmentListResponseSchema
@@ -443,7 +442,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.MarketSegmentationSegmentsApi(api_client)
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
-    enabled = cloudbeds_pms.Enabled() # Enabled | List only enabled segments.
+    enabled = false # bool | List only enabled segments.
     offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
     limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
     filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
@@ -465,7 +464,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
- **enabled** | [**Enabled**](.md)| List only enabled segments. | 
+ **enabled** | **bool**| List only enabled segments. | 
  **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
  **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
  **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
@@ -505,8 +504,6 @@ Get a list of reservations linked to a Market Segmentation Segment.
 
 ```python
 import cloudbeds_pms
-from cloudbeds_pms.models.active import Active
-from cloudbeds_pms.models.id import Id
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.segment_list_reservations_response_schema import SegmentListReservationsResponseSchema
 from cloudbeds_pms.rest import ApiException
@@ -530,8 +527,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.MarketSegmentationSegmentsApi(api_client)
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
-    id = cloudbeds_pms.Id() # Id | Segment ID.
-    active = cloudbeds_pms.Active() # Active | List only active reservations.
+    id = '1-b' # str | Segment ID.
+    active = false # bool | List only active reservations.
     offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
     limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
 
@@ -552,8 +549,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
- **id** | [**Id**](.md)| Segment ID. | 
- **active** | [**Active**](.md)| List only active reservations. | 
+ **id** | **str**| Segment ID. | 
+ **active** | **bool**| List only active reservations. | 
  **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
  **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
 
