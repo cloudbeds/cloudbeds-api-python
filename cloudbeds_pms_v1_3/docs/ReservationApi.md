@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservation_get**
-> GetReservationResponse get_reservation_get(reservation_id, property_id=property_id)
+> GetReservationResponse get_reservation_get(reservation_id, property_id=property_id, include_guest_requirements=include_guest_requirements)
 
 getReservation
 
@@ -406,10 +406,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms_v1_3.ReservationApi(api_client)
     reservation_id = 'reservation_id_example' # str | Reservation Unique Identifier. Obtained from one of the \"Reservations\" group methods
     property_id = 'property_id_example' # str | Property ID (optional)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response. (optional) (default to False)
 
     try:
         # getReservation
-        api_response = api_instance.get_reservation_get(reservation_id, property_id=property_id)
+        api_response = api_instance.get_reservation_get(reservation_id, property_id=property_id, include_guest_requirements=include_guest_requirements)
         print("The response of ReservationApi->get_reservation_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -425,6 +426,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **reservation_id** | **str**| Reservation Unique Identifier. Obtained from one of the \&quot;Reservations\&quot; group methods | 
  **property_id** | **str**| Property ID | [optional] 
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response. | [optional] [default to False]
 
 ### Return type
 
@@ -700,7 +702,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservations_get**
-> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
 
 getReservations
 
@@ -750,9 +752,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     check_in_to = '2013-10-20' # date | Filters reservations result to return only reservations with check-in date range ending on this date (optional)
     check_out_from = '2013-10-20' # date | Filters reservations result to return only reservations with check-out date range starting on this date (optional)
     check_out_to = '2013-10-20' # date | Filters reservations result to return only reservations with check-out date range ending on this date (optional)
+    dates_query_mode = booking # str | If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms. (optional) (default to booking)
     room_id = 'room_id_example' # str | Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored. (optional)
     room_name = 'room_name_example' # str | Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. (optional)
     include_guests_details = False # bool | If guests details should be included or not (optional) (default to False)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response. Requires `includeGuestsDetails=true`. (optional) (default to False)
     include_custom_fields = False # bool | If reservation custom fields should be included or not (optional) (default to False)
     include_all_rooms = False # bool | When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms. (optional) (default to False)
     source_id = 'source_id_example' # str | Filters reservation with the supplied source ID. (optional)
@@ -767,7 +771,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getReservations
-        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
         print("The response of ReservationApi->get_reservations_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -791,9 +795,11 @@ Name | Type | Description  | Notes
  **check_in_to** | **date**| Filters reservations result to return only reservations with check-in date range ending on this date | [optional] 
  **check_out_from** | **date**| Filters reservations result to return only reservations with check-out date range starting on this date | [optional] 
  **check_out_to** | **date**| Filters reservations result to return only reservations with check-out date range ending on this date | [optional] 
+ **dates_query_mode** | **str**| If we should consider the booking&#39;s check-in/check-out dates or the start and end dates for the associated rooms. | [optional] [default to booking]
  **room_id** | **str**| Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored. | [optional] 
  **room_name** | **str**| Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. | [optional] 
  **include_guests_details** | **bool**| If guests details should be included or not | [optional] [default to False]
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response. Requires &#x60;includeGuestsDetails&#x3D;true&#x60;. | [optional] [default to False]
  **include_custom_fields** | **bool**| If reservation custom fields should be included or not | [optional] [default to False]
  **include_all_rooms** | **bool**| When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms. | [optional] [default to False]
  **source_id** | **str**| Filters reservation with the supplied source ID. | [optional] 
@@ -828,7 +834,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservations_with_rate_details_get**
-> GetReservationsWithRateDetailsResponse get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, page_number=page_number, page_size=page_size)
+> GetReservationsWithRateDetailsResponse get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, page_number=page_number, page_size=page_size)
 
 getReservationsWithRateDetails
 
@@ -879,12 +885,15 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     reservation_check_out_to = '2013-10-20' # date | Superior limit datetime, used to filter reservations, based on reservation check-out date. (optional)
     include_deleted = False # bool | Include deleted reservations (optional) (default to False)
     exclude_statuses = 'exclude_statuses_example' # str | List of statuses (separated by comma) to be excluded from search (optional)
+    include_guests_details = False # bool | If guests details should be included or not (optional) (default to False)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response. Requires `includeGuestsDetails=true`. (optional) (default to False)
+    include_custom_fields = False # bool | If reservation custom fields should be included or not (optional) (default to False)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getReservationsWithRateDetails
-        api_response = api_instance.get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, page_number=page_number, page_size=page_size)
         print("The response of ReservationApi->get_reservations_with_rate_details_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -909,6 +918,9 @@ Name | Type | Description  | Notes
  **reservation_check_out_to** | **date**| Superior limit datetime, used to filter reservations, based on reservation check-out date. | [optional] 
  **include_deleted** | **bool**| Include deleted reservations | [optional] [default to False]
  **exclude_statuses** | **str**| List of statuses (separated by comma) to be excluded from search | [optional] 
+ **include_guests_details** | **bool**| If guests details should be included or not | [optional] [default to False]
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response. Requires &#x60;includeGuestsDetails&#x3D;true&#x60;. | [optional] [default to False]
+ **include_custom_fields** | **bool**| If reservation custom fields should be included or not | [optional] [default to False]
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]
 
@@ -1266,7 +1278,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reservation_note_post**
-> PostReservationNoteResponse post_reservation_note_post(property_id=property_id, reservation_id=reservation_id, reservation_note=reservation_note, user_id=user_id)
+> PostReservationNoteResponse post_reservation_note_post(property_id=property_id, reservation_id=reservation_id, reservation_note=reservation_note, user_id=user_id, date_created=date_created)
 
 postReservationNote
 
@@ -1310,10 +1322,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     reservation_id = 'reservation_id_example' # str | Reservation Unique Identifier (optional)
     reservation_note = 'reservation_note_example' # str | Note to be added to reservation (optional)
     user_id = 'user_id_example' # str | User ID Identify the actual user that is posting the note (optional)
+    date_created = '2013-10-20T19:20:30+01:00' # datetime | Datetime the note was created. (optional)
 
     try:
         # postReservationNote
-        api_response = api_instance.post_reservation_note_post(property_id=property_id, reservation_id=reservation_id, reservation_note=reservation_note, user_id=user_id)
+        api_response = api_instance.post_reservation_note_post(property_id=property_id, reservation_id=reservation_id, reservation_note=reservation_note, user_id=user_id, date_created=date_created)
         print("The response of ReservationApi->post_reservation_note_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1331,6 +1344,7 @@ Name | Type | Description  | Notes
  **reservation_id** | **str**| Reservation Unique Identifier | [optional] 
  **reservation_note** | **str**| Note to be added to reservation | [optional] 
  **user_id** | **str**| User ID Identify the actual user that is posting the note | [optional] 
+ **date_created** | **datetime**| Datetime the note was created. | [optional] 
 
 ### Return type
 
@@ -1354,7 +1368,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reservation_post**
-> PostReservationResponse post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
+> PostReservationResponse post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, guest_requirements=guest_requirements, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
 
 postReservation
 
@@ -1410,6 +1424,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_zip = 'guest_zip_example' # str | ZIP Code (optional)
     guest_email = 'guest_email_example' # str | Guest email (optional)
     guest_phone = 'guest_phone_example' # str | Guest main phone number (optional)
+    guest_requirements = None # List[object] | Object with guest requirements information. (optional)
     estimated_arrival_time = 'estimated_arrival_time_example' # str | Estimated Arrival Time, 24-hour format. (optional)
     rooms = [cloudbeds_pms_v1_3.PostReservationRequestRoomsInner()] # List[PostReservationRequestRoomsInner] | Array with quantity of rooms (optional)
     adults = [cloudbeds_pms_v1_3.PostReservationRequestAdultsInner()] # List[PostReservationRequestAdultsInner] | Array with number of adults (optional)
@@ -1426,7 +1441,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postReservation
-        api_response = api_instance.post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
+        api_response = api_instance.post_reservation_post(property_id=property_id, source_id=source_id, third_party_identifier=third_party_identifier, start_date=start_date, end_date=end_date, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_country=guest_country, guest_zip=guest_zip, guest_email=guest_email, guest_phone=guest_phone, guest_requirements=guest_requirements, estimated_arrival_time=estimated_arrival_time, rooms=rooms, adults=adults, children=children, payment_method=payment_method, card_token=card_token, payment_authorization_code=payment_authorization_code, custom_fields=custom_fields, promo_code=promo_code, allotment_block_code=allotment_block_code, group_code=group_code, date_created=date_created, send_email_confirmation=send_email_confirmation)
         print("The response of ReservationApi->post_reservation_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1452,6 +1467,7 @@ Name | Type | Description  | Notes
  **guest_zip** | **str**| ZIP Code | [optional] 
  **guest_email** | **str**| Guest email | [optional] 
  **guest_phone** | **str**| Guest main phone number | [optional] 
+ **guest_requirements** | [**List[object]**](object.md)| Object with guest requirements information. | [optional] 
  **estimated_arrival_time** | **str**| Estimated Arrival Time, 24-hour format. | [optional] 
  **rooms** | [**List[PostReservationRequestRoomsInner]**](PostReservationRequestRoomsInner.md)| Array with quantity of rooms | [optional] 
  **adults** | [**List[PostReservationRequestAdultsInner]**](PostReservationRequestAdultsInner.md)| Array with number of adults | [optional] 

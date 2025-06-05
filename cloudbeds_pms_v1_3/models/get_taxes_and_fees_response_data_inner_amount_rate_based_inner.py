@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner_percentage import GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerPercentage
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner_rate import GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerRate
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,8 +28,8 @@ class GetTaxesAndFeesResponseDataInnerAmountRateBasedInner(BaseModel):
     """
     GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
     """ # noqa: E501
-    rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Maximum rate for which this amount is valid")
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Percentage applied for the rate")
+    rate: Optional[GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerRate] = None
+    percentage: Optional[GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerPercentage] = None
     __properties: ClassVar[List[str]] = ["rate", "percentage"]
 
     model_config = ConfigDict(
@@ -69,6 +71,12 @@ class GetTaxesAndFeesResponseDataInnerAmountRateBasedInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of rate
+        if self.rate:
+            _dict['rate'] = self.rate.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of percentage
+        if self.percentage:
+            _dict['percentage'] = self.percentage.to_dict()
         return _dict
 
     @classmethod
@@ -81,8 +89,8 @@ class GetTaxesAndFeesResponseDataInnerAmountRateBasedInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rate": obj.get("rate"),
-            "percentage": obj.get("percentage")
+            "rate": GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerRate.from_dict(obj["rate"]) if obj.get("rate") is not None else None,
+            "percentage": GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerPercentage.from_dict(obj["percentage"]) if obj.get("percentage") is not None else None
         })
         return _obj
 

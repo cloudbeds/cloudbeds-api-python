@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_room_types_inner import GetTaxesAndFeesResponseDataInnerRoomTypesInner
@@ -30,17 +30,17 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     GetTaxesAndFeesResponseDataInner
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="Type. Fee or tax.")
-    fee_id: Optional[StrictInt] = Field(default=None, description="Fee's unique identifier. Only exists if type = fee.", alias="feeID")
-    tax_id: Optional[StrictInt] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax.", alias="taxID")
+    fee_id: Optional[StrictStr] = Field(default=None, description="Fee's unique identifier. Only exists if type = fee.", alias="feeID")
+    tax_id: Optional[StrictStr] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax.", alias="taxID")
     name: Optional[StrictStr] = Field(default=None, description="Name")
     code: Optional[StrictStr] = Field(default=None, description="Code")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount")
-    amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
-    amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
+    amount: Optional[StrictStr] = Field(default=None, description="Amount")
+    amount_adult: Optional[StrictStr] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
+    amount_child: Optional[StrictStr] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
     amount_type: Optional[StrictStr] = Field(default=None, description="Amount type. They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>percentage</td><td>Percentage of Total Amount</td></tr> <tr><td>fixed</td><td>Fixed per Room Night / Item</td></tr> <tr><td>fixed_per_person</td><td>Fixed per Person per Night</td></tr> <tr><td>fixed_per_accomodation</td><td>Fixed per Accomodation</td></tr> <tr><td>fixed_per_reservation</td><td>Fixed per Reservation</td></tr> <tr><td>percentage_rate_based</td><td>Rate-based</td></tr> </table>", alias="amountType")
     available_for: Optional[List[StrictStr]] = Field(default=None, description="Where this tax/fee is available?<br/>They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>product</td><td>Items</td></tr> <tr><td>rate</td><td>Reservations</td></tr> <tr><td>fee</td><td>Fees -- this tax is charged on top of some fees</td></tr> </table>", alias="availableFor")
-    fees_charged: Optional[List[StrictInt]] = Field(default=None, description="List of Fee IDs charged by the current tax. Only exists if type = tax.", alias="feesCharged")
+    fees_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Fee IDs charged by the current tax. Only exists if type = tax.", alias="feesCharged")
     inclusive_or_exclusive: Optional[StrictStr] = Field(default=None, description="If this tax/fee is inclusive or exclusive", alias="inclusiveOrExclusive")
     is_deleted: Optional[StrictBool] = Field(default=None, description="Flag indicating if tax was deleted from the system", alias="isDeleted")
     child_id: Optional[StrictStr] = Field(default=None, description="ID of the tax or fee that replaced current one", alias="childId")
@@ -77,8 +77,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             return value
 
         for i in value:
-            if i not in set([]):
-                raise ValueError("each list item must be one of ()")
+            if i not in set(['product', 'rate', 'fee']):
+                raise ValueError("each list item must be one of ('product', 'rate', 'fee')")
         return value
 
     @field_validator('inclusive_or_exclusive')

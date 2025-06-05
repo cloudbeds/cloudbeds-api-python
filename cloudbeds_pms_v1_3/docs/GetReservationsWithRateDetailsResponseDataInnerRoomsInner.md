@@ -15,12 +15,15 @@ Name | Type | Description | Notes
 **rate_name** | **str** | Name of the rate used for the booking room | [optional] 
 **adults** | **str** | Number of adults in the room | [optional] 
 **children** | **str** | Number of children in the room | [optional] 
+**reservation_room_id** | **str** | Reservation room ID | [optional] 
 **room_id** | **str** | Room ID (null if the reservation has not been assigned a specific room yet). | [optional] 
 **room_name** | **str** | Name of the room, if roomID&#x3D;null it does not exist. | [optional] 
 **room_check_in** | **str** | Check-in date for the room | [optional] 
 **room_check_out** | **str** | Check-out date for the room | [optional] 
 **room_status** | **str** |  | [optional] 
 **detailed_room_rates** | **List[object]** | Associative object, with dates as indexes, and rates as values | [optional] 
+**market_name** | **str** | Market segmentation name | [optional] 
+**market_code** | **str** | Market segmentation code | [optional] 
 
 ## Example
 

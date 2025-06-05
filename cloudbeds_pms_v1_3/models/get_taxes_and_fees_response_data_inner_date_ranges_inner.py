@@ -17,9 +17,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount_adult import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount_child import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,9 +31,9 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     GetTaxesAndFeesResponseDataInnerDateRangesInner
     """ # noqa: E501
     range: Optional[Dict[str, Any]] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount")
-    amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
-    amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
+    amount: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount] = None
+    amount_adult: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult] = Field(default=None, alias="amountAdult")
+    amount_child: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild] = Field(default=None, alias="amountChild")
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
     __properties: ClassVar[List[str]] = ["range", "amount", "amountAdult", "amountChild", "amountRateBased"]
 
@@ -73,6 +76,15 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount_adult
+        if self.amount_adult:
+            _dict['amountAdult'] = self.amount_adult.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount_child
+        if self.amount_child:
+            _dict['amountChild'] = self.amount_child.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in amount_rate_based (list)
         _items = []
         if self.amount_rate_based:
@@ -98,9 +110,9 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
 
         _obj = cls.model_validate({
             "range": obj.get("range"),
-            "amount": obj.get("amount"),
-            "amountAdult": obj.get("amountAdult"),
-            "amountChild": obj.get("amountChild"),
+            "amount": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amountAdult": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
+            "amountChild": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
             "amountRateBased": [GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None
         })
         return _obj

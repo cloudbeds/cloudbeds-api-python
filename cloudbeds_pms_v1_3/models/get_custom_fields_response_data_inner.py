@@ -64,8 +64,8 @@ class GetCustomFieldsResponseDataInner(BaseModel):
             return value
 
         for i in value:
-            if i not in set([]):
-                raise ValueError("each list item must be one of ()")
+            if i not in set(['reservation', 'booking', 'card']):
+                raise ValueError("each list item must be one of ('reservation', 'booking', 'card')")
         return value
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_response_data import PostItemToReservationResponseData
+from cloudbeds_pms_v1_3.models.post_item_response_data import PostItemResponseData
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class PostItemResponse(BaseModel):
     PostItemResponse
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
-    data: Optional[PostItemToReservationResponseData] = None
+    data: Optional[PostItemResponseData] = None
     message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false). If success = true, it does not exist.")
     __properties: ClassVar[List[str]] = ["success", "data", "message"]
 
@@ -92,7 +92,7 @@ class PostItemResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "data": PostItemToReservationResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "data": PostItemResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None,
             "message": obj.get("message")
         })
         return _obj

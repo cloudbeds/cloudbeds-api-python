@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **rooms** | [**List[GetReservationsResponseDataInnerRoomsInner]**](GetReservationsResponseDataInnerRoomsInner.md) | Array with rooms information. Only returned if \&quot;includeAllRooms\&quot; is true | [optional] 
 **guest_list** | [**Dict[str, GetReservationsResponseDataInnerGuestListValue]**](GetReservationsResponseDataInnerGuestListValue.md) | A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \&quot;includeGuestsDetails\&quot; is true | [optional] 
 **origin** | **str** | Reservation origin | [optional] 
+**meal_plans** | **str** | Reservation meal plans | [optional] 
 
 ## Example
 

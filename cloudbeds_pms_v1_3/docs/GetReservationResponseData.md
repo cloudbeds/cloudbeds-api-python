@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **status** | **str** | Reservation status&lt;br /&gt; &#39;not_confirmed&#39; - Reservation is pending confirmation&lt;br /&gt; &#39;confirmed&#39; - Reservation is confirmed&lt;br /&gt; &#39;canceled&#39; - Reservation is canceled&lt;br /&gt; &#39;checked_in&#39; - Guest is in hotel&lt;br /&gt; &#39;checked_out&#39; - Guest already left hotel&lt;br /&gt; &#39;no_show&#39; - Guest didn&#39;t showed up on check-in date | [optional] 
 **total** | **float** | Total price of the booking | [optional] 
 **balance** | **float** | Balance currently owed | [optional] 
-**balance_detailed** | [**List[GetReservationResponseDataBalanceDetailedInner]**](GetReservationResponseDataBalanceDetailedInner.md) | Reservation balance detailed with the information available on PC app, describing the financial items calculated | [optional] 
+**balance_detailed** | [**GetReservationResponseDataBalanceDetailed**](GetReservationResponseDataBalanceDetailed.md) |  | [optional] 
 **assigned** | [**List[GetReservationResponseDataAssignedInner]**](GetReservationResponseDataAssignedInner.md) | Assigned Rooms information | [optional] 
 **unassigned** | [**List[GetReservationResponseDataUnassignedInner]**](GetReservationResponseDataUnassignedInner.md) | Unassigned Rooms information | [optional] 
 **cards_on_file** | [**List[GetReservationResponseDataCardsOnFileInner]**](GetReservationResponseDataCardsOnFileInner.md) | Credit Cards stored for the reservation | [optional] 
@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **channel_provided_credit_card** | **bool** | Whether a credit card was provided by the channel. Only included for reservations originating from OTAs. | [optional] 
 **group_inventory** | [**List[GetReservationResponseDataGroupInventoryInner]**](GetReservationResponseDataGroupInventoryInner.md) | Aggregate allotment block information | [optional] 
 **origin** | **str** | Reservation origin | [optional] 
+**meal_plans** | **str** | Reservation Meal Plans | [optional] 
 
 ## Example
 

@@ -589,7 +589,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_rooms_get**
-> GetRoomsResponse get_rooms_get(room_type_id, room_type_name_short, property_ids=property_ids, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
+> GetRoomsResponse get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
 
 getRooms
 
@@ -629,9 +629,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.RoomApi(api_client)
-    room_type_id = 'room_type_id_example' # str | Room type ID, comma-separated, i.e. 37,345,89
-    room_type_name_short = 'room_type_name_short_example' # str | Room Type (short-version)
     property_ids = 'property_ids_example' # str | Property ID list, comma-separated, i.e. 37,345,89 (optional)
+    room_type_id = 'room_type_id_example' # str | Room type ID, comma-separated, i.e. 37,345,89 (optional)
+    room_type_name_short = 'room_type_name_short_example' # str | Room Type (short-version) (optional)
     start_date = '2013-10-20' # date | Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent. (optional)
     end_date = '2013-10-20' # date | Final stay date. Necessary if startDate is sent. (optional)
     include_room_relations = 0 # int | Determines whether room relations info should be included in the response (optional) (default to 0)
@@ -640,7 +640,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getRooms
-        api_response = api_instance.get_rooms_get(room_type_id, room_type_name_short, property_ids=property_ids, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
         print("The response of RoomApi->get_rooms_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -654,9 +654,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **room_type_id** | **str**| Room type ID, comma-separated, i.e. 37,345,89 | 
- **room_type_name_short** | **str**| Room Type (short-version) | 
  **property_ids** | **str**| Property ID list, comma-separated, i.e. 37,345,89 | [optional] 
+ **room_type_id** | **str**| Room type ID, comma-separated, i.e. 37,345,89 | [optional] 
+ **room_type_name_short** | **str**| Room Type (short-version) | [optional] 
  **start_date** | **date**| Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent. | [optional] 
  **end_date** | **date**| Final stay date. Necessary if startDate is sent. | [optional] 
  **include_room_relations** | **int**| Determines whether room relations info should be included in the response | [optional] [default to 0]
@@ -767,7 +767,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_room_assign_post**
-> PostRoomAssignResponse post_room_assign_post(property_id=property_id, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, new_room_id=new_room_id, room_type_id=room_type_id, old_room_id=old_room_id, override_rates=override_rates, adjust_price=adjust_price)
+> PostRoomAssignResponse post_room_assign_post(property_id=property_id, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, reservation_room_id=reservation_room_id, new_room_id=new_room_id, room_type_id=room_type_id, old_room_id=old_room_id, override_rates=override_rates, adjust_price=adjust_price)
 
 postRoomAssign
 
@@ -810,15 +810,16 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_id = 'property_id_example' # str | Property ID (optional)
     reservation_id = 'reservation_id_example' # str | Reservation identifier (optional)
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier (optional)
-    new_room_id = 'new_room_id_example' # str | Room ID of the room that will be assigned. (optional)
-    room_type_id = 'room_type_id_example' # str | Room Type ID of the room that will be assigned. Need to be informed in case of assignment. (optional)
-    old_room_id = 'old_room_id_example' # str | Room ID of the room that was assigned. Need to be informed in case of reassignment. (optional)
+    reservation_room_id = 'reservation_room_id_example' # str | Reservation room ID. Must be set if you want to unassign a room. (optional)
+    new_room_id = 'new_room_id_example' # str | Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room. (optional)
+    room_type_id = 'room_type_id_example' # str | Room Type ID of the room that will be assigned. Need to be provided in case of assignment. (optional)
+    old_room_id = 'old_room_id_example' # str | Room ID of the room that was assigned. Need to be provided in case of reassignment. (optional)
     override_rates = False # bool | Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment. (optional) (default to False)
     adjust_price = False # bool | If room assignment would result in an upcharge or discount, this parameter needs to be set to true to approve the charges. If not set, the rate will retain its original value. (optional) (default to False)
 
     try:
         # postRoomAssign
-        api_response = api_instance.post_room_assign_post(property_id=property_id, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, new_room_id=new_room_id, room_type_id=room_type_id, old_room_id=old_room_id, override_rates=override_rates, adjust_price=adjust_price)
+        api_response = api_instance.post_room_assign_post(property_id=property_id, reservation_id=reservation_id, sub_reservation_id=sub_reservation_id, reservation_room_id=reservation_room_id, new_room_id=new_room_id, room_type_id=room_type_id, old_room_id=old_room_id, override_rates=override_rates, adjust_price=adjust_price)
         print("The response of RoomApi->post_room_assign_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -835,9 +836,10 @@ Name | Type | Description  | Notes
  **property_id** | **str**| Property ID | [optional] 
  **reservation_id** | **str**| Reservation identifier | [optional] 
  **sub_reservation_id** | **str**| Sub Reservation identifier | [optional] 
- **new_room_id** | **str**| Room ID of the room that will be assigned. | [optional] 
- **room_type_id** | **str**| Room Type ID of the room that will be assigned. Need to be informed in case of assignment. | [optional] 
- **old_room_id** | **str**| Room ID of the room that was assigned. Need to be informed in case of reassignment. | [optional] 
+ **reservation_room_id** | **str**| Reservation room ID. Must be set if you want to unassign a room. | [optional] 
+ **new_room_id** | **str**| Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room. | [optional] 
+ **room_type_id** | **str**| Room Type ID of the room that will be assigned. Need to be provided in case of assignment. | [optional] 
+ **old_room_id** | **str**| Room ID of the room that was assigned. Need to be provided in case of reassignment. | [optional] 
  **override_rates** | **bool**| Deprecated. Please use adjustPrice instead. Setting overrideRates&#x3D;true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment. | [optional] [default to False]
  **adjust_price** | **bool**| If room assignment would result in an upcharge or discount, this parameter needs to be set to true to approve the charges. If not set, the rate will retain its original value. | [optional] [default to False]
 

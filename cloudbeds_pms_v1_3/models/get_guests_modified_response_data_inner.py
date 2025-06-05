@@ -53,6 +53,7 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
     guest_document_expiration_date: Optional[date] = Field(default=None, description="Document Expiration Date", alias="guestDocumentExpirationDate")
     start_date: Optional[datetime] = Field(default=None, description="Check-in date", alias="startDate")
     end_date: Optional[datetime] = Field(default=None, description="Check-out date", alias="endDate")
+    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of custom fields", alias="customFields")
     date_modified: Optional[datetime] = Field(default=None, description="Guest modification date", alias="dateModified")
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")
@@ -62,7 +63,7 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
     guest_opt_in: Optional[StrictBool] = Field(default=None, description="If guest has opted-in to marketing communication or not", alias="guestOptIn")
     is_merged: Optional[StrictBool] = Field(default=None, description="Flag indicating that guest was merged", alias="isMerged")
     new_guest_id: Optional[StrictStr] = Field(default=None, description="Merged guest ID", alias="newGuestID")
-    __properties: ClassVar[List[str]] = ["guestID", "reservationID", "roomTypeID", "roomID", "roomName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "startDate", "endDate", "customFields", "dateModified", "taxID", "companyTaxID", "companyName", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
+    __properties: ClassVar[List[str]] = ["guestID", "reservationID", "roomTypeID", "roomID", "roomName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "startDate", "endDate", "guestRequirements", "customFields", "dateModified", "taxID", "companyTaxID", "companyName", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -120,6 +121,11 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
                 if _item_custom_fields:
                     _items.append(_item_custom_fields.to_dict())
             _dict['customFields'] = _items
+        # set to None if guest_requirements (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_requirements is None and "guest_requirements" in self.model_fields_set:
+            _dict['guestRequirements'] = None
+
         # set to None if tax_id (nullable) is None
         # and model_fields_set contains the field
         if self.tax_id is None and "tax_id" in self.model_fields_set:
@@ -172,6 +178,7 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
             "guestDocumentExpirationDate": obj.get("guestDocumentExpirationDate"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
+            "guestRequirements": obj.get("guestRequirements"),
             "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "dateModified": obj.get("dateModified"),
             "taxID": obj.get("taxID"),

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**reservation_room_id** | **str** | Reservation room ID | [optional] 
 **room_type_name** | **str** | Name of the assigned room type | [optional] 
 **room_type_name_short** | **str** | Short name of the assigned room type | [optional] 
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
@@ -18,7 +19,9 @@ Name | Type | Description | Notes
 **adults** | **str** | Number of adult staying in the room | [optional] 
 **children** | **str** | Number of children staying in the room | [optional] 
 **daily_rates** | [**List[GetReservationResponseDataAssignedInnerDailyRatesInner]**](GetReservationResponseDataAssignedInnerDailyRatesInner.md) | Array with rates detailed by day | [optional] 
-**room_total** | **float** | Room total rate | [optional] 
+**room_total** | **str** | Room total rate | [optional] 
+**market_name** | **str** | Market segmentation name | [optional] 
+**market_code** | **str** | Market segmentation code | [optional] 
 
 ## Example
 

@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_guest_get**
-> GetGuestResponse get_guest_get(property_id=property_id, reservation_id=reservation_id, guest_id=guest_id)
+> GetGuestResponse get_guest_get(property_id=property_id, reservation_id=reservation_id, guest_id=guest_id, include_guest_requirements=include_guest_requirements)
 
 getGuest
 
@@ -151,10 +151,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_id = 'property_id_example' # str | Property ID (optional)
     reservation_id = 'reservation_id_example' # str | Reservation Unique Identifier. Required if no guestID is provided. (optional)
     guest_id = 'guest_id_example' # str | Guest ID. Required if no reservationID is provided. (optional)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response (optional) (default to False)
 
     try:
         # getGuest
-        api_response = api_instance.get_guest_get(property_id=property_id, reservation_id=reservation_id, guest_id=guest_id)
+        api_response = api_instance.get_guest_get(property_id=property_id, reservation_id=reservation_id, guest_id=guest_id, include_guest_requirements=include_guest_requirements)
         print("The response of GuestApi->get_guest_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -171,6 +172,7 @@ Name | Type | Description  | Notes
  **property_id** | **str**| Property ID | [optional] 
  **reservation_id** | **str**| Reservation Unique Identifier. Required if no guestID is provided. | [optional] 
  **guest_id** | **str**| Guest ID. Required if no reservationID is provided. | [optional] 
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response | [optional] [default to False]
 
 ### Return type
 
@@ -194,7 +196,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_guest_list_get**
-> GetGuestListResponse get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
+> GetGuestListResponse get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, include_guest_requirements=include_guest_requirements, page_number=page_number, page_size=page_size)
 
 getGuestList
 
@@ -250,12 +252,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     sort_by = modification # str | Sort By parameter (optional) (default to modification)
     include_guest_info = False # bool | If API response should return with more of Guest's information (optional) (default to False)
     exclude_secondary_guests = False # bool | If true, response only returns main guest's (optional) (default to False)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response (optional) (default to False)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getGuestList
-        api_response = api_instance.get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_guest_list_get(property_ids=property_ids, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, status=status, sort_by=sort_by, include_guest_info=include_guest_info, exclude_secondary_guests=exclude_secondary_guests, include_guest_requirements=include_guest_requirements, page_number=page_number, page_size=page_size)
         print("The response of GuestApi->get_guest_list_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -285,6 +288,7 @@ Name | Type | Description  | Notes
  **sort_by** | **str**| Sort By parameter | [optional] [default to modification]
  **include_guest_info** | **bool**| If API response should return with more of Guest&#39;s information | [optional] [default to False]
  **exclude_secondary_guests** | **bool**| If true, response only returns main guest&#39;s | [optional] [default to False]
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response | [optional] [default to False]
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]
 
@@ -584,7 +588,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_guests_modified_get**
-> GetGuestsModifiedResponse get_guests_modified_get(property_ids=property_ids, in_house=in_house, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, page_number=page_number, page_size=page_size)
+> GetGuestsModifiedResponse get_guests_modified_get(property_ids=property_ids, in_house=in_house, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, include_guest_requirements=include_guest_requirements, page_number=page_number, page_size=page_size)
 
 getGuestsModified
 
@@ -632,12 +636,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     check_in_to = '2013-10-20' # date | Filters guests result to return only guests with check-in date range ending on this date (optional)
     check_out_from = '2013-10-20' # date | Filters guests result to return only guests with check-out date range starting on this date (optional)
     check_out_to = '2013-10-20' # date | Filters guests result to return only guests with check-out date range ending on this date (optional)
+    include_guest_requirements = False # bool | Includes guest requirements data in the response (optional) (default to False)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getGuestsModified
-        api_response = api_instance.get_guests_modified_get(property_ids=property_ids, in_house=in_house, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_guests_modified_get(property_ids=property_ids, in_house=in_house, results_from=results_from, results_to=results_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, include_guest_requirements=include_guest_requirements, page_number=page_number, page_size=page_size)
         print("The response of GuestApi->get_guests_modified_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -659,6 +664,7 @@ Name | Type | Description  | Notes
  **check_in_to** | **date**| Filters guests result to return only guests with check-in date range ending on this date | [optional] 
  **check_out_from** | **date**| Filters guests result to return only guests with check-out date range starting on this date | [optional] 
  **check_out_to** | **date**| Filters guests result to return only guests with check-out date range ending on this date | [optional] 
+ **include_guest_requirements** | **bool**| Includes guest requirements data in the response | [optional] [default to False]
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]
 
@@ -684,7 +690,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_guest_credit_card_post**
-> PostGuestCreditCardResponse post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv)
+> PostGuestCreditCardResponse post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv, validate=validate)
 
 postGuestCreditCard
 
@@ -730,10 +736,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     card_expiry_month = 56 # int | Credit Card expiration month (optional)
     card_expiry_year = 56 # int | Credit Card expiration year (2 or 4 digits) (optional)
     card_cvv = 'card_cvv_example' # str | Credit Card CVV code (optional)
+    validate = True # bool | should the card be validated? If true, the card will be validated against the payment gateway. (optional)
 
     try:
         # postGuestCreditCard
-        api_response = api_instance.post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv)
+        api_response = api_instance.post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv, validate=validate)
         print("The response of GuestApi->post_guest_credit_card_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -753,6 +760,7 @@ Name | Type | Description  | Notes
  **card_expiry_month** | **int**| Credit Card expiration month | [optional] 
  **card_expiry_year** | **int**| Credit Card expiration year (2 or 4 digits) | [optional] 
  **card_cvv** | **str**| Credit Card CVV code | [optional] 
+ **validate** | **bool**| should the card be validated? If true, the card will be validated against the payment gateway. | [optional] 
 
 ### Return type
 
@@ -1034,7 +1042,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_guest_post**
-> PostGuestResponse post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+> PostGuestResponse post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
 
 postGuest
 
@@ -1095,6 +1103,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI) (optional)
     guest_document_issuing_country = 'guest_document_issuing_country_example' # str | Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) (optional)
     guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or NIE) (optional)
+    guest_requirements = None # List[object] | Object with guest requirements information. (optional)
     custom_fields = [cloudbeds_pms_v1_3.PostGuestRequestCustomFieldsInner()] # List[PostGuestRequestCustomFieldsInner] | Only guest custom fields are allowed. (optional)
     guest_note = 'guest_note_example' # str | Note to be added to the Guest (optional)
     reservation_note = 'reservation_note_example' # str | Note to be added only to the Reservation. (optional)
@@ -1104,7 +1113,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postGuest
-        api_response = api_instance.post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+        api_response = api_instance.post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
         print("The response of GuestApi->post_guest_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1138,6 +1147,7 @@ Name | Type | Description  | Notes
  **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI) | [optional] 
  **guest_document_issuing_country** | **str**| Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) | [optional] 
  **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or NIE) | [optional] 
+ **guest_requirements** | [**List[object]**](object.md)| Object with guest requirements information. | [optional] 
  **custom_fields** | [**List[PostGuestRequestCustomFieldsInner]**](PostGuestRequestCustomFieldsInner.md)| Only guest custom fields are allowed. | [optional] 
  **guest_note** | **str**| Note to be added to the Guest | [optional] 
  **reservation_note** | **str**| Note to be added only to the Reservation. | [optional] 
@@ -1167,7 +1177,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_guests_to_room_post**
-> PostGuestsToRoomResponse post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_all=remove_all)
+> PostGuestsToRoomResponse post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all)
 
 postGuestsToRoom
 
@@ -1212,11 +1222,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     room_id = 56 # int | Room ID already assigned to Reservation (optional)
     guest_ids = 'guest_ids_example' # str | Guest ID(s) to be assigned to room. If more than one, send as comma-separated, i.e. 37,345,89 (optional)
     remove_guest_ids = 'remove_guest_ids_example' # str | If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed. (optional)
+    remove_guest_ids_from_room = 'remove_guest_ids_from_room_example' # str | If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter. (optional)
     remove_all = True # bool | If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed. (optional)
 
     try:
         # postGuestsToRoom
-        api_response = api_instance.post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_all=remove_all)
+        api_response = api_instance.post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all)
         print("The response of GuestApi->post_guests_to_room_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1235,6 +1246,7 @@ Name | Type | Description  | Notes
  **room_id** | **int**| Room ID already assigned to Reservation | [optional] 
  **guest_ids** | **str**| Guest ID(s) to be assigned to room. If more than one, send as comma-separated, i.e. 37,345,89 | [optional] 
  **remove_guest_ids** | **str**| If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed. | [optional] 
+ **remove_guest_ids_from_room** | **str**| If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter. | [optional] 
  **remove_all** | **bool**| If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed. | [optional] 
 
 ### Return type
@@ -1347,7 +1359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_guest_put**
-> PutGuestResponse put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+> PutGuestResponse put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
 
 putGuest
 
@@ -1408,6 +1420,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI) (optional)
     guest_document_issuing_country = 'guest_document_issuing_country_example' # str | ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) (optional)
     guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or NIE) (optional)
+    guest_requirements = None # List[object] | Object with guest requirements information. (optional)
     guest_custom_fields = [cloudbeds_pms_v1_3.PutGuestRequestGuestCustomFieldsInner()] # List[PutGuestRequestGuestCustomFieldsInner] |  (optional)
     guest_company_name = 'guest_company_name_example' # str | Guest company name (optional)
     guest_company_tax_id = 'guest_company_tax_id_example' # str | Guest company tax ID (optional)
@@ -1415,7 +1428,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # putGuest
-        api_response = api_instance.put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+        api_response = api_instance.put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
         print("The response of GuestApi->put_guest_put:\n")
         pprint(api_response)
     except Exception as e:
@@ -1449,6 +1462,7 @@ Name | Type | Description  | Notes
  **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI) | [optional] 
  **guest_document_issuing_country** | **str**| ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) | [optional] 
  **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or NIE) | [optional] 
+ **guest_requirements** | [**List[object]**](object.md)| Object with guest requirements information. | [optional] 
  **guest_custom_fields** | [**List[PutGuestRequestGuestCustomFieldsInner]**](PutGuestRequestGuestCustomFieldsInner.md)|  | [optional] 
  **guest_company_name** | **str**| Guest company name | [optional] 
  **guest_company_tax_id** | **str**| Guest company tax ID | [optional] 

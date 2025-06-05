@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
 **rooms** | [**List[GetReservationsResponseDataInnerGuestListValueRoomsInner]**](GetReservationsResponseDataInnerGuestListValueRoomsInner.md) | List of all rooms that guest is assigned to | [optional] 
 **unassigned_rooms** | [**List[GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner]**](GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner.md) | List of all unassigned rooms | [optional] 
+**guest_requirements** | **List[object]** | Guest requirements data. Only included if &#x60;includeGuestsDetails&#x3D;true&#x60; and &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **custom_fields** | [**List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]**](GetGuestsModifiedResponseDataInnerCustomFieldsInner.md) | List of guest custom fields | [optional] 
 **is_anonymized** | **bool** | Flag indicating the guest data was removed upon request | [optional] 
 **is_main_guest** | **bool** | Flag indicating the guest is the main guest on the reservation | [optional] 

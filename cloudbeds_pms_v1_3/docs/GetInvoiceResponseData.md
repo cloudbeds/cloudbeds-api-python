@@ -7,6 +7,7 @@ Invoice details
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **invoice_id** | **str** | Unique invoice ID | [optional] 
+**user_id** | **str** | Unique ID of User who generated invoice | [optional] 
 **reservation_id** | **str** | Reservation identifier | [optional] 
 **prefix** | **str** | Invoice ID prefix | [optional] 
 **number** | **int** | Invoice ID number | [optional] 

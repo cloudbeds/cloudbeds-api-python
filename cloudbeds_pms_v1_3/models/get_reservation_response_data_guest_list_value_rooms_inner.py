@@ -26,12 +26,13 @@ class GetReservationResponseDataGuestListValueRoomsInner(BaseModel):
     """
     GetReservationResponseDataGuestListValueRoomsInner
     """ # noqa: E501
+    reservation_room_id: Optional[StrictStr] = Field(default=None, description="Reservation room ID where guest is assigned", alias="reservationRoomID")
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID where guest is assigned", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Room Name where guest is assigned", alias="roomName")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room Type Name where guest is assigned", alias="roomTypeName")
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Sub Reservation ID of the specific assigned room", alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "subReservationID"]
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "subReservationID"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +73,11 @@ class GetReservationResponseDataGuestListValueRoomsInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if reservation_room_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reservation_room_id is None and "reservation_room_id" in self.model_fields_set:
+            _dict['reservationRoomID'] = None
+
         # set to None if room_id (nullable) is None
         # and model_fields_set contains the field
         if self.room_id is None and "room_id" in self.model_fields_set:
@@ -109,6 +115,7 @@ class GetReservationResponseDataGuestListValueRoomsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "reservationRoomID": obj.get("reservationRoomID"),
             "roomID": obj.get("roomID"),
             "roomName": obj.get("roomName"),
             "roomTypeName": obj.get("roomTypeName"),

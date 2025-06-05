@@ -26,6 +26,7 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
     """
     GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner
     """ # noqa: E501
+    reservation_room_id: Optional[StrictStr] = Field(default=None, description="Reservation room ID", alias="reservationRoomID")
     room_type_id: Optional[StrictStr] = Field(default=None, description="ID of the assigned room type", alias="roomTypeID")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room Type Name where guest is assigned", alias="roomTypeName")
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
@@ -33,7 +34,7 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID", alias="rateID")
     rate_plan_name: Optional[StrictStr] = Field(default=None, description="Rate plan name", alias="ratePlanName")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Sub Reservation ID of the specific assigned room", alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeName", "roomTypeIsVirtual", "roomTypeNameShort", "rateID", "ratePlanName", "subReservationID"]
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeID", "roomTypeName", "roomTypeIsVirtual", "roomTypeNameShort", "rateID", "ratePlanName", "subReservationID"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +75,11 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if reservation_room_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reservation_room_id is None and "reservation_room_id" in self.model_fields_set:
+            _dict['reservationRoomID'] = None
+
         # set to None if room_type_id (nullable) is None
         # and model_fields_set contains the field
         if self.room_type_id is None and "room_type_id" in self.model_fields_set:
@@ -121,6 +127,7 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "reservationRoomID": obj.get("reservationRoomID"),
             "roomTypeID": obj.get("roomTypeID"),
             "roomTypeName": obj.get("roomTypeName"),
             "roomTypeIsVirtual": obj.get("roomTypeIsVirtual"),

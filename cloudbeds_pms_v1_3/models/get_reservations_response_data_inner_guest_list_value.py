@@ -63,10 +63,11 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
     rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueRoomsInner]] = Field(default=None, description="List of all rooms that guest is assigned to")
     unassigned_rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner]] = Field(default=None, description="List of all unassigned rooms", alias="unassignedRooms")
+    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestsDetails=true` and `includeGuestRequirements=true`.", alias="guestRequirements")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of guest custom fields", alias="customFields")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     is_main_guest: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest is the main guest on the reservation", alias="isMainGuest")
-    __properties: ClassVar[List[str]] = ["guestID", "guestName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "subReservationID", "startDate", "endDate", "assignedRoom", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "rooms", "unassignedRooms", "customFields", "isAnonymized", "isMainGuest"]
+    __properties: ClassVar[List[str]] = ["guestID", "guestName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "subReservationID", "startDate", "endDate", "assignedRoom", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "rooms", "unassignedRooms", "guestRequirements", "customFields", "isAnonymized", "isMainGuest"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -303,6 +304,11 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
         if self.unassigned_rooms is None and "unassigned_rooms" in self.model_fields_set:
             _dict['unassignedRooms'] = None
 
+        # set to None if guest_requirements (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_requirements is None and "guest_requirements" in self.model_fields_set:
+            _dict['guestRequirements'] = None
+
         # set to None if custom_fields (nullable) is None
         # and model_fields_set contains the field
         if self.custom_fields is None and "custom_fields" in self.model_fields_set:
@@ -363,6 +369,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
             "roomTypeIsVirtual": obj.get("roomTypeIsVirtual"),
             "rooms": [GetReservationsResponseDataInnerGuestListValueRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
             "unassignedRooms": [GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner.from_dict(_item) for _item in obj["unassignedRooms"]] if obj.get("unassignedRooms") is not None else None,
+            "guestRequirements": obj.get("guestRequirements"),
             "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "isAnonymized": obj.get("isAnonymized"),
             "isMainGuest": obj.get("isMainGuest")

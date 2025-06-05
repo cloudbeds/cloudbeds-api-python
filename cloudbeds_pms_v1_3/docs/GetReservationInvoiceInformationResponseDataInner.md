@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **balance** | **float** | Balance currently owed | [optional] 
 **balance_detailed** | [**List[GetReservationInvoiceInformationResponseDataInnerBalanceDetailedInner]**](GetReservationInvoiceInformationResponseDataInnerBalanceDetailedInner.md) | Reservation balance detailed with the information available on PC app, describing the financial items calculated | [optional] 
 **reservation_origin** | **str** | Reservation Origin | [optional] 
+**reservation_meal_plans** | **str** | Reservation Meal Plans | [optional] 
 
 ## Example
 

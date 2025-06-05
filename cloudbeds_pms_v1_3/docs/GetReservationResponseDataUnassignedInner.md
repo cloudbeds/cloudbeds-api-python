@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**reservation_room_id** | **str** | Reservation room ID | [optional] 
 **room_type_name** | **str** | Name of the room type to be assigned | [optional] 
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
 **room_type_id** | **str** | ID of the room type to be assigned | [optional] 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 **adults** | **str** | Number of adult staying in the room | [optional] 
 **children** | **str** | Number of children staying in the room | [optional] 
 **daily_rates** | [**List[GetReservationResponseDataAssignedInnerDailyRatesInner]**](GetReservationResponseDataAssignedInnerDailyRatesInner.md) | Array with rates detailed by day | [optional] 
-**room_total** | **float** | Room total rate | [optional] 
+**room_total** | **str** | Room total rate | [optional] 
 
 ## Example
 

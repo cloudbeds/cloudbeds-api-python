@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Returns if the request could be completed | [optional] 
-**data** | [**PostItemToReservationResponseData**](PostItemToReservationResponseData.md) |  | [optional] 
+**data** | [**PostItemResponseData**](PostItemResponseData.md) |  | [optional] 
 **message** | **str** | To be used in case any error occurs (if success &#x3D; false). If success &#x3D; true, it does not exist. | [optional] 
 
 ## Example

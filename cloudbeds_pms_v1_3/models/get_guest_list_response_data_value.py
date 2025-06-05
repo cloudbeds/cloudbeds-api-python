@@ -57,11 +57,12 @@ class GetGuestListResponseDataValue(BaseModel):
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Company tax ID", alias="companyTaxID")
     company_name: Optional[StrictStr] = Field(default=None, description="Company name", alias="companyName")
     guest_opt_in: Optional[StrictBool] = Field(default=None, description="If guest has opted-in to marketing communication or not", alias="guestOptIn")
+    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     guest_notes: Optional[List[GetGuestListResponseDataValueGuestNotesInner]] = Field(default=None, description="Guest Notes", alias="guestNotes")
     status: Optional[StrictStr] = Field(default=None, description="Reservation status<br /> in_progress - Reservation is pending confirmation<br /> confirmed - Reservation is confirmed<br /> not_confirmed - Reservation not passed confirmation<br /> canceled - Reservation is canceled<br /> checked_in - Guest is in hotel<br /> checked_out - Guest already left hotel<br /> no_show - Guest didn't showed up on check-in date")
     is_merged: Optional[StrictBool] = Field(default=None, description="Flag indicating that guest was merged", alias="isMerged")
     new_guest_id: Optional[StrictStr] = Field(default=None, description="Merged guest ID", alias="newGuestID")
-    __properties: ClassVar[List[str]] = ["reservationID", "guestName", "guestEmail", "guestID", "dateCreated", "dateModified", "isMainGuest", "isAnonymized", "guestFirstName", "guestLastName", "guestGender", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "guestOptIn", "guestNotes", "status", "isMerged", "newGuestID"]
+    __properties: ClassVar[List[str]] = ["reservationID", "guestName", "guestEmail", "guestID", "dateCreated", "dateModified", "isMainGuest", "isAnonymized", "guestFirstName", "guestLastName", "guestGender", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "guestOptIn", "guestRequirements", "guestNotes", "status", "isMerged", "newGuestID"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -234,6 +235,11 @@ class GetGuestListResponseDataValue(BaseModel):
         if self.guest_opt_in is None and "guest_opt_in" in self.model_fields_set:
             _dict['guestOptIn'] = None
 
+        # set to None if guest_requirements (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_requirements is None and "guest_requirements" in self.model_fields_set:
+            _dict['guestRequirements'] = None
+
         # set to None if guest_notes (nullable) is None
         # and model_fields_set contains the field
         if self.guest_notes is None and "guest_notes" in self.model_fields_set:
@@ -285,6 +291,7 @@ class GetGuestListResponseDataValue(BaseModel):
             "companyTaxID": obj.get("companyTaxID"),
             "companyName": obj.get("companyName"),
             "guestOptIn": obj.get("guestOptIn"),
+            "guestRequirements": obj.get("guestRequirements"),
             "guestNotes": [GetGuestListResponseDataValueGuestNotesInner.from_dict(_item) for _item in obj["guestNotes"]] if obj.get("guestNotes") is not None else None,
             "status": obj.get("status"),
             "isMerged": obj.get("isMerged"),

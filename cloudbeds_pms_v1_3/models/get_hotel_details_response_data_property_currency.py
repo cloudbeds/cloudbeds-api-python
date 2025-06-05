@@ -29,7 +29,9 @@ class GetHotelDetailsResponseDataPropertyCurrency(BaseModel):
     currency_code: Optional[StrictStr] = Field(default=None, description="Currency code", alias="currencyCode")
     currency_symbol: Optional[StrictStr] = Field(default=None, description="Currency symbol", alias="currencySymbol")
     currency_position: Optional[StrictStr] = Field(default=None, description="Currency position", alias="currencyPosition")
-    __properties: ClassVar[List[str]] = ["currencyCode", "currencySymbol", "currencyPosition"]
+    currency_decimal_separator: Optional[StrictStr] = Field(default=None, description="Currency decimal separator", alias="currencyDecimalSeparator")
+    currency_thousands_separator: Optional[StrictStr] = Field(default=None, description="Currency thousands separator", alias="currencyThousandsSeparator")
+    __properties: ClassVar[List[str]] = ["currencyCode", "currencySymbol", "currencyPosition", "currencyDecimalSeparator", "currencyThousandsSeparator"]
 
     @field_validator('currency_position')
     def currency_position_validate_enum(cls, value):
@@ -94,7 +96,9 @@ class GetHotelDetailsResponseDataPropertyCurrency(BaseModel):
         _obj = cls.model_validate({
             "currencyCode": obj.get("currencyCode"),
             "currencySymbol": obj.get("currencySymbol"),
-            "currencyPosition": obj.get("currencyPosition")
+            "currencyPosition": obj.get("currencyPosition"),
+            "currencyDecimalSeparator": obj.get("currencyDecimalSeparator"),
+            "currencyThousandsSeparator": obj.get("currencyThousandsSeparator")
         })
         return _obj
 

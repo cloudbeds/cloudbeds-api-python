@@ -54,7 +54,8 @@ class GetReservationInvoiceInformationResponseDataInner(BaseModel):
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Balance currently owed")
     balance_detailed: Optional[List[GetReservationInvoiceInformationResponseDataInnerBalanceDetailedInner]] = Field(default=None, description="Reservation balance detailed with the information available on PC app, describing the financial items calculated", alias="balanceDetailed")
     reservation_origin: Optional[StrictStr] = Field(default=None, description="Reservation Origin", alias="reservationOrigin")
-    __properties: ClassVar[List[str]] = ["status", "customFields", "mainGuestDetails", "reservationRooms", "reservationRoomsTotal", "reservationAdjustments", "reservationAdjustmentsTotal", "reservationPayments", "reservationAdditionalProducts", "reservationAdditionalProductsTotal", "reservationAddOnProducts", "reservationAddOnProductsTotal", "reservationTaxes", "reservationTaxesTotal", "reservationFees", "reservationFeesTotal", "balance", "balanceDetailed", "reservationOrigin"]
+    reservation_meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation Meal Plans", alias="reservationMealPlans")
+    __properties: ClassVar[List[str]] = ["status", "customFields", "mainGuestDetails", "reservationRooms", "reservationRoomsTotal", "reservationAdjustments", "reservationAdjustmentsTotal", "reservationPayments", "reservationAdditionalProducts", "reservationAdditionalProductsTotal", "reservationAddOnProducts", "reservationAddOnProductsTotal", "reservationTaxes", "reservationTaxesTotal", "reservationFees", "reservationFeesTotal", "balance", "balanceDetailed", "reservationOrigin", "reservationMealPlans"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -205,7 +206,8 @@ class GetReservationInvoiceInformationResponseDataInner(BaseModel):
             "reservationFeesTotal": obj.get("reservationFeesTotal"),
             "balance": obj.get("balance"),
             "balanceDetailed": [GetReservationInvoiceInformationResponseDataInnerBalanceDetailedInner.from_dict(_item) for _item in obj["balanceDetailed"]] if obj.get("balanceDetailed") is not None else None,
-            "reservationOrigin": obj.get("reservationOrigin")
+            "reservationOrigin": obj.get("reservationOrigin"),
+            "reservationMealPlans": obj.get("reservationMealPlans")
         })
         return _obj
 

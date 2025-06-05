@@ -49,6 +49,7 @@ class GetGuestResponseData(BaseModel):
     document_issuing_country: Optional[StrictStr] = Field(default=None, description="Document Issuing Country (2-digits code)", alias="documentIssuingCountry")
     document_expiration_date: Optional[GetGuestResponseDataDocumentExpirationDate] = Field(default=None, alias="documentExpirationDate")
     custom_fields: Optional[List[GetGuestResponseDataCustomFieldsInner]] = Field(default=None, alias="customFields")
+    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     special_requests: Optional[StrictStr] = Field(default=None, description="Special requests made by the guest at the time of the booking", alias="specialRequests")
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Company tax ID", alias="companyTaxID")
@@ -57,7 +58,7 @@ class GetGuestResponseData(BaseModel):
     guest_opt_in: Optional[StrictBool] = Field(default=None, description="If guest has opted-in to marketing communication or not", alias="guestOptIn")
     is_merged: Optional[StrictBool] = Field(default=None, description="Flag indicating that guest was merged", alias="isMerged")
     new_guest_id: Optional[StrictStr] = Field(default=None, description="Merged guest ID", alias="newGuestID")
-    __properties: ClassVar[List[str]] = ["firstName", "lastName", "gender", "email", "phone", "cellPhone", "country", "address", "address2", "city", "zip", "state", "birthDate", "documentType", "documentNumber", "documentIssueDate", "documentIssuingCountry", "documentExpirationDate", "customFields", "specialRequests", "taxID", "companyTaxID", "companyName", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
+    __properties: ClassVar[List[str]] = ["firstName", "lastName", "gender", "email", "phone", "cellPhone", "country", "address", "address2", "city", "zip", "state", "birthDate", "documentType", "documentNumber", "documentIssueDate", "documentIssuingCountry", "documentExpirationDate", "customFields", "guestRequirements", "specialRequests", "taxID", "companyTaxID", "companyName", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
 
     @field_validator('gender')
     def gender_validate_enum(cls, value):
@@ -124,6 +125,11 @@ class GetGuestResponseData(BaseModel):
                 if _item_custom_fields:
                     _items.append(_item_custom_fields.to_dict())
             _dict['customFields'] = _items
+        # set to None if guest_requirements (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_requirements is None and "guest_requirements" in self.model_fields_set:
+            _dict['guestRequirements'] = None
+
         # set to None if tax_id (nullable) is None
         # and model_fields_set contains the field
         if self.tax_id is None and "tax_id" in self.model_fields_set:
@@ -170,6 +176,7 @@ class GetGuestResponseData(BaseModel):
             "documentIssuingCountry": obj.get("documentIssuingCountry"),
             "documentExpirationDate": GetGuestResponseDataDocumentExpirationDate.from_dict(obj["documentExpirationDate"]) if obj.get("documentExpirationDate") is not None else None,
             "customFields": [GetGuestResponseDataCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
+            "guestRequirements": obj.get("guestRequirements"),
             "specialRequests": obj.get("specialRequests"),
             "taxID": obj.get("taxID"),
             "companyTaxID": obj.get("companyTaxID"),
