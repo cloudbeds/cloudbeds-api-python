@@ -65,8 +65,8 @@ class GetRatePlansResponseDataInner(BaseModel):
             return value
 
         for i in value:
-            if i not in set([]):
-                raise ValueError("each list item must be one of ()")
+            if i not in set(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']):
+                raise ValueError("each list item must be one of ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat')")
         return value
 
     model_config = ConfigDict(

@@ -7,7 +7,7 @@ Sold product details
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sold_product_id** | **str** | Sold product identifier (Usable to void this product in future). | [optional] 
-**transaction_id** | **str** | Transaction identifier | [optional] 
+**external_relation_id** | **str** | Same as sold product ID in case of this endpoint. Together with external relation kind ITEM_POS it can be used to get transaction from Accounting API | [optional] 
 **notice** | **str** | In case that a referenceID was sent, for second time, this field will alert that nothing was created or updated. | [optional] 
 
 ## Example

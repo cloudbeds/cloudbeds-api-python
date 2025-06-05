@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **currency_code** | **str** | Currency code | [optional] 
 **currency_symbol** | **str** | Currency symbol | [optional] 
 **currency_position** | **str** | Currency position | [optional] 
+**currency_decimal_separator** | **str** | Currency decimal separator | [optional] 
+**currency_thousands_separator** | **str** | Currency thousands separator | [optional] 
 
 ## Example
 

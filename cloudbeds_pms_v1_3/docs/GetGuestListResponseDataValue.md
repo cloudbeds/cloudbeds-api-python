@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **company_tax_id** | **str** | Company tax ID | [optional] 
 **company_name** | **str** | Company name | [optional] 
 **guest_opt_in** | **bool** | If guest has opted-in to marketing communication or not | [optional] 
+**guest_requirements** | **List[object]** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **guest_notes** | [**List[GetGuestListResponseDataValueGuestNotesInner]**](GetGuestListResponseDataValueGuestNotesInner.md) | Guest Notes | [optional] 
 **status** | **str** | Reservation status&lt;br /&gt; in_progress - Reservation is pending confirmation&lt;br /&gt; confirmed - Reservation is confirmed&lt;br /&gt; not_confirmed - Reservation not passed confirmation&lt;br /&gt; canceled - Reservation is canceled&lt;br /&gt; checked_in - Guest is in hotel&lt;br /&gt; checked_out - Guest already left hotel&lt;br /&gt; no_show - Guest didn&#39;t showed up on check-in date | [optional] 
 **is_merged** | **bool** | Flag indicating that guest was merged | [optional] 

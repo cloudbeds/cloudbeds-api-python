@@ -17,10 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner import GetReservationResponseDataGuestListValueCustomFieldsInner
+from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_guest_birthdate import GetReservationResponseDataGuestListValueGuestBirthdate
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_rooms_inner import GetReservationResponseDataGuestListValueRoomsInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_unassigned_rooms_inner import GetReservationResponseDataGuestListValueUnassignedRoomsInner
 from typing import Optional, Set
@@ -44,26 +44,27 @@ class GetReservationResponseDataGuestListValue(BaseModel):
     guest_country: Optional[StrictStr] = Field(default=None, alias="guestCountry")
     guest_zip: Optional[StrictStr] = Field(default=None, alias="guestZip")
     guest_status: Optional[StrictStr] = Field(default=None, alias="guestStatus")
-    guest_birthdate: Optional[date] = Field(default=None, alias="guestBirthdate")
+    guest_birthdate: Optional[GetReservationResponseDataGuestListValueGuestBirthdate] = Field(default=None, alias="guestBirthdate")
     guest_document_type: Optional[StrictStr] = Field(default=None, alias="guestDocumentType")
     guest_document_number: Optional[StrictStr] = Field(default=None, alias="guestDocumentNumber")
-    guest_document_issue_date: Optional[date] = Field(default=None, alias="guestDocumentIssueDate")
+    guest_document_issue_date: Optional[GetReservationResponseDataGuestListValueGuestBirthdate] = Field(default=None, alias="guestDocumentIssueDate")
     guest_document_issuing_country: Optional[StrictStr] = Field(default=None, alias="guestDocumentIssuingCountry")
-    guest_document_expiration_date: Optional[date] = Field(default=None, alias="guestDocumentExpirationDate")
+    guest_document_expiration_date: Optional[GetReservationResponseDataGuestListValueGuestBirthdate] = Field(default=None, alias="guestDocumentExpirationDate")
     tax_id: Optional[StrictStr] = Field(default=None, alias="taxID")
     company_tax_id: Optional[StrictStr] = Field(default=None, alias="companyTaxID")
     company_name: Optional[StrictStr] = Field(default=None, alias="companyName")
-    assigned_room: Optional[StrictStr] = Field(default=None, description="Returns true if guest has roomed assigned, false if not", alias="assignedRoom")
+    assigned_room: Optional[StrictBool] = Field(default=None, description="Returns true if guest has roomed assigned, false if not", alias="assignedRoom")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID where guest is assigned", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Room Name where guest is assigned", alias="roomName")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room Type Name where guest is assigned", alias="roomTypeName")
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
     is_main_guest: Optional[StrictBool] = Field(default=None, description="If the guest is the main guest of the reservation or not", alias="isMainGuest")
+    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     custom_fields: Optional[List[GetReservationResponseDataGuestListValueCustomFieldsInner]] = Field(default=None, description="List of custom fields", alias="customFields")
     rooms: Optional[List[GetReservationResponseDataGuestListValueRoomsInner]] = Field(default=None, description="List of all rooms that guest is assigned to")
     unassigned_rooms: Optional[List[GetReservationResponseDataGuestListValueUnassignedRoomsInner]] = Field(default=None, description="List of unassigned rooms", alias="unassignedRooms")
-    __properties: ClassVar[List[str]] = ["guestID", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestStatus", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "assignedRoom", "isAnonymized", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "isMainGuest", "customFields", "rooms", "unassignedRooms"]
+    __properties: ClassVar[List[str]] = ["guestID", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestStatus", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "assignedRoom", "isAnonymized", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "isMainGuest", "guestRequirements", "customFields", "rooms", "unassignedRooms"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -124,6 +125,15 @@ class GetReservationResponseDataGuestListValue(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of guest_birthdate
+        if self.guest_birthdate:
+            _dict['guestBirthdate'] = self.guest_birthdate.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of guest_document_issue_date
+        if self.guest_document_issue_date:
+            _dict['guestDocumentIssueDate'] = self.guest_document_issue_date.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of guest_document_expiration_date
+        if self.guest_document_expiration_date:
+            _dict['guestDocumentExpirationDate'] = self.guest_document_expiration_date.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in custom_fields (list)
         _items = []
         if self.custom_fields:
@@ -145,6 +155,36 @@ class GetReservationResponseDataGuestListValue(BaseModel):
                 if _item_unassigned_rooms:
                     _items.append(_item_unassigned_rooms.to_dict())
             _dict['unassignedRooms'] = _items
+        # set to None if guest_birthdate (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_birthdate is None and "guest_birthdate" in self.model_fields_set:
+            _dict['guestBirthdate'] = None
+
+        # set to None if guest_document_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_document_type is None and "guest_document_type" in self.model_fields_set:
+            _dict['guestDocumentType'] = None
+
+        # set to None if guest_document_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_document_number is None and "guest_document_number" in self.model_fields_set:
+            _dict['guestDocumentNumber'] = None
+
+        # set to None if guest_document_issue_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_document_issue_date is None and "guest_document_issue_date" in self.model_fields_set:
+            _dict['guestDocumentIssueDate'] = None
+
+        # set to None if guest_document_issuing_country (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_document_issuing_country is None and "guest_document_issuing_country" in self.model_fields_set:
+            _dict['guestDocumentIssuingCountry'] = None
+
+        # set to None if guest_document_expiration_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_document_expiration_date is None and "guest_document_expiration_date" in self.model_fields_set:
+            _dict['guestDocumentExpirationDate'] = None
+
         # set to None if tax_id (nullable) is None
         # and model_fields_set contains the field
         if self.tax_id is None and "tax_id" in self.model_fields_set:
@@ -180,6 +220,11 @@ class GetReservationResponseDataGuestListValue(BaseModel):
         if self.room_type_is_virtual is None and "room_type_is_virtual" in self.model_fields_set:
             _dict['roomTypeIsVirtual'] = None
 
+        # set to None if guest_requirements (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_requirements is None and "guest_requirements" in self.model_fields_set:
+            _dict['guestRequirements'] = None
+
         return _dict
 
     @classmethod
@@ -206,12 +251,12 @@ class GetReservationResponseDataGuestListValue(BaseModel):
             "guestCountry": obj.get("guestCountry"),
             "guestZip": obj.get("guestZip"),
             "guestStatus": obj.get("guestStatus"),
-            "guestBirthdate": obj.get("guestBirthdate"),
+            "guestBirthdate": GetReservationResponseDataGuestListValueGuestBirthdate.from_dict(obj["guestBirthdate"]) if obj.get("guestBirthdate") is not None else None,
             "guestDocumentType": obj.get("guestDocumentType"),
             "guestDocumentNumber": obj.get("guestDocumentNumber"),
-            "guestDocumentIssueDate": obj.get("guestDocumentIssueDate"),
+            "guestDocumentIssueDate": GetReservationResponseDataGuestListValueGuestBirthdate.from_dict(obj["guestDocumentIssueDate"]) if obj.get("guestDocumentIssueDate") is not None else None,
             "guestDocumentIssuingCountry": obj.get("guestDocumentIssuingCountry"),
-            "guestDocumentExpirationDate": obj.get("guestDocumentExpirationDate"),
+            "guestDocumentExpirationDate": GetReservationResponseDataGuestListValueGuestBirthdate.from_dict(obj["guestDocumentExpirationDate"]) if obj.get("guestDocumentExpirationDate") is not None else None,
             "taxID": obj.get("taxID"),
             "companyTaxID": obj.get("companyTaxID"),
             "companyName": obj.get("companyName"),
@@ -222,6 +267,7 @@ class GetReservationResponseDataGuestListValue(BaseModel):
             "roomTypeName": obj.get("roomTypeName"),
             "roomTypeIsVirtual": obj.get("roomTypeIsVirtual"),
             "isMainGuest": obj.get("isMainGuest"),
+            "guestRequirements": obj.get("guestRequirements"),
             "customFields": [GetReservationResponseDataGuestListValueCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "rooms": [GetReservationResponseDataGuestListValueRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
             "unassignedRooms": [GetReservationResponseDataGuestListValueUnassignedRoomsInner.from_dict(_item) for _item in obj["unassignedRooms"]] if obj.get("unassignedRooms") is not None else None

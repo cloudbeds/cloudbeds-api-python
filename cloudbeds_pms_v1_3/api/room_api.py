@@ -2360,9 +2360,9 @@ class RoomApi:
     @validate_call
     def get_rooms_get(
         self,
-        room_type_id: Annotated[StrictStr, Field(description="Room type ID, comma-separated, i.e. 37,345,89")],
-        room_type_name_short: Annotated[StrictStr, Field(description="Room Type (short-version)")],
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID, comma-separated, i.e. 37,345,89")] = None,
+        room_type_name_short: Annotated[Optional[StrictStr], Field(description="Room Type (short-version)")] = None,
         start_date: Annotated[Optional[date], Field(description="Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.")] = None,
         end_date: Annotated[Optional[date], Field(description="Final stay date. Necessary if startDate is sent.")] = None,
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
@@ -2385,12 +2385,12 @@ class RoomApi:
 
         Returns a list of all rooms considering the informed parameters. If Check-in/out dates are sent, only unassigned rooms are returned. ### Group account support
 
-        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89 (required)
-        :type room_type_id: str
-        :param room_type_name_short: Room Type (short-version) (required)
-        :type room_type_name_short: str
         :param property_ids: Property ID list, comma-separated, i.e. 37,345,89
         :type property_ids: str
+        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89
+        :type room_type_id: str
+        :param room_type_name_short: Room Type (short-version)
+        :type room_type_name_short: str
         :param start_date: Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.
         :type start_date: date
         :param end_date: Final stay date. Necessary if startDate is sent.
@@ -2424,9 +2424,9 @@ class RoomApi:
         """ # noqa: E501
 
         _param = self._get_rooms_get_serialize(
+            property_ids=property_ids,
             room_type_id=room_type_id,
             room_type_name_short=room_type_name_short,
-            property_ids=property_ids,
             start_date=start_date,
             end_date=end_date,
             include_room_relations=include_room_relations,
@@ -2455,9 +2455,9 @@ class RoomApi:
     @validate_call
     def get_rooms_get_with_http_info(
         self,
-        room_type_id: Annotated[StrictStr, Field(description="Room type ID, comma-separated, i.e. 37,345,89")],
-        room_type_name_short: Annotated[StrictStr, Field(description="Room Type (short-version)")],
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID, comma-separated, i.e. 37,345,89")] = None,
+        room_type_name_short: Annotated[Optional[StrictStr], Field(description="Room Type (short-version)")] = None,
         start_date: Annotated[Optional[date], Field(description="Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.")] = None,
         end_date: Annotated[Optional[date], Field(description="Final stay date. Necessary if startDate is sent.")] = None,
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
@@ -2480,12 +2480,12 @@ class RoomApi:
 
         Returns a list of all rooms considering the informed parameters. If Check-in/out dates are sent, only unassigned rooms are returned. ### Group account support
 
-        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89 (required)
-        :type room_type_id: str
-        :param room_type_name_short: Room Type (short-version) (required)
-        :type room_type_name_short: str
         :param property_ids: Property ID list, comma-separated, i.e. 37,345,89
         :type property_ids: str
+        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89
+        :type room_type_id: str
+        :param room_type_name_short: Room Type (short-version)
+        :type room_type_name_short: str
         :param start_date: Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.
         :type start_date: date
         :param end_date: Final stay date. Necessary if startDate is sent.
@@ -2519,9 +2519,9 @@ class RoomApi:
         """ # noqa: E501
 
         _param = self._get_rooms_get_serialize(
+            property_ids=property_ids,
             room_type_id=room_type_id,
             room_type_name_short=room_type_name_short,
-            property_ids=property_ids,
             start_date=start_date,
             end_date=end_date,
             include_room_relations=include_room_relations,
@@ -2550,9 +2550,9 @@ class RoomApi:
     @validate_call
     def get_rooms_get_without_preload_content(
         self,
-        room_type_id: Annotated[StrictStr, Field(description="Room type ID, comma-separated, i.e. 37,345,89")],
-        room_type_name_short: Annotated[StrictStr, Field(description="Room Type (short-version)")],
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID, comma-separated, i.e. 37,345,89")] = None,
+        room_type_name_short: Annotated[Optional[StrictStr], Field(description="Room Type (short-version)")] = None,
         start_date: Annotated[Optional[date], Field(description="Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.")] = None,
         end_date: Annotated[Optional[date], Field(description="Final stay date. Necessary if startDate is sent.")] = None,
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
@@ -2575,12 +2575,12 @@ class RoomApi:
 
         Returns a list of all rooms considering the informed parameters. If Check-in/out dates are sent, only unassigned rooms are returned. ### Group account support
 
-        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89 (required)
-        :type room_type_id: str
-        :param room_type_name_short: Room Type (short-version) (required)
-        :type room_type_name_short: str
         :param property_ids: Property ID list, comma-separated, i.e. 37,345,89
         :type property_ids: str
+        :param room_type_id: Room type ID, comma-separated, i.e. 37,345,89
+        :type room_type_id: str
+        :param room_type_name_short: Room Type (short-version)
+        :type room_type_name_short: str
         :param start_date: Initial stay date. If sent, only returns unassigned rooms in this period. If not sent, will return all rooms available in property. Necessary if endDate is sent.
         :type start_date: date
         :param end_date: Final stay date. Necessary if startDate is sent.
@@ -2614,9 +2614,9 @@ class RoomApi:
         """ # noqa: E501
 
         _param = self._get_rooms_get_serialize(
+            property_ids=property_ids,
             room_type_id=room_type_id,
             room_type_name_short=room_type_name_short,
-            property_ids=property_ids,
             start_date=start_date,
             end_date=end_date,
             include_room_relations=include_room_relations,
@@ -2640,9 +2640,9 @@ class RoomApi:
 
     def _get_rooms_get_serialize(
         self,
+        property_ids,
         room_type_id,
         room_type_name_short,
-        property_ids,
         start_date,
         end_date,
         include_room_relations,
@@ -3028,9 +3028,10 @@ class RoomApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
-        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned.")] = None,
-        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be informed in case of assignment.")] = None,
-        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be informed in case of reassignment.")] = None,
+        reservation_room_id: Annotated[Optional[StrictStr], Field(description="Reservation room ID. Must be set if you want to unassign a room.")] = None,
+        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be provided in case of assignment.")] = None,
+        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be provided in case of reassignment.")] = None,
         override_rates: Annotated[Optional[StrictBool], Field(description="Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.")] = None,
         adjust_price: Annotated[Optional[StrictBool], Field(description="If room assignment would result in an upcharge or discount, this parameter needs to be set to true to approve the charges. If not set, the rate will retain its original value.")] = None,
         _request_timeout: Union[
@@ -3056,11 +3057,13 @@ class RoomApi:
         :type reservation_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
-        :param new_room_id: Room ID of the room that will be assigned.
+        :param reservation_room_id: Reservation room ID. Must be set if you want to unassign a room.
+        :type reservation_room_id: str
+        :param new_room_id: Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.
         :type new_room_id: str
-        :param room_type_id: Room Type ID of the room that will be assigned. Need to be informed in case of assignment.
+        :param room_type_id: Room Type ID of the room that will be assigned. Need to be provided in case of assignment.
         :type room_type_id: str
-        :param old_room_id: Room ID of the room that was assigned. Need to be informed in case of reassignment.
+        :param old_room_id: Room ID of the room that was assigned. Need to be provided in case of reassignment.
         :type old_room_id: str
         :param override_rates: Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.
         :type override_rates: bool
@@ -3092,6 +3095,7 @@ class RoomApi:
             property_id=property_id,
             reservation_id=reservation_id,
             sub_reservation_id=sub_reservation_id,
+            reservation_room_id=reservation_room_id,
             new_room_id=new_room_id,
             room_type_id=room_type_id,
             old_room_id=old_room_id,
@@ -3123,9 +3127,10 @@ class RoomApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
-        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned.")] = None,
-        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be informed in case of assignment.")] = None,
-        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be informed in case of reassignment.")] = None,
+        reservation_room_id: Annotated[Optional[StrictStr], Field(description="Reservation room ID. Must be set if you want to unassign a room.")] = None,
+        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be provided in case of assignment.")] = None,
+        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be provided in case of reassignment.")] = None,
         override_rates: Annotated[Optional[StrictBool], Field(description="Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.")] = None,
         adjust_price: Annotated[Optional[StrictBool], Field(description="If room assignment would result in an upcharge or discount, this parameter needs to be set to true to approve the charges. If not set, the rate will retain its original value.")] = None,
         _request_timeout: Union[
@@ -3151,11 +3156,13 @@ class RoomApi:
         :type reservation_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
-        :param new_room_id: Room ID of the room that will be assigned.
+        :param reservation_room_id: Reservation room ID. Must be set if you want to unassign a room.
+        :type reservation_room_id: str
+        :param new_room_id: Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.
         :type new_room_id: str
-        :param room_type_id: Room Type ID of the room that will be assigned. Need to be informed in case of assignment.
+        :param room_type_id: Room Type ID of the room that will be assigned. Need to be provided in case of assignment.
         :type room_type_id: str
-        :param old_room_id: Room ID of the room that was assigned. Need to be informed in case of reassignment.
+        :param old_room_id: Room ID of the room that was assigned. Need to be provided in case of reassignment.
         :type old_room_id: str
         :param override_rates: Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.
         :type override_rates: bool
@@ -3187,6 +3194,7 @@ class RoomApi:
             property_id=property_id,
             reservation_id=reservation_id,
             sub_reservation_id=sub_reservation_id,
+            reservation_room_id=reservation_room_id,
             new_room_id=new_room_id,
             room_type_id=room_type_id,
             old_room_id=old_room_id,
@@ -3218,9 +3226,10 @@ class RoomApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
-        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned.")] = None,
-        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be informed in case of assignment.")] = None,
-        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be informed in case of reassignment.")] = None,
+        reservation_room_id: Annotated[Optional[StrictStr], Field(description="Reservation room ID. Must be set if you want to unassign a room.")] = None,
+        new_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Room Type ID of the room that will be assigned. Need to be provided in case of assignment.")] = None,
+        old_room_id: Annotated[Optional[StrictStr], Field(description="Room ID of the room that was assigned. Need to be provided in case of reassignment.")] = None,
         override_rates: Annotated[Optional[StrictBool], Field(description="Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.")] = None,
         adjust_price: Annotated[Optional[StrictBool], Field(description="If room assignment would result in an upcharge or discount, this parameter needs to be set to true to approve the charges. If not set, the rate will retain its original value.")] = None,
         _request_timeout: Union[
@@ -3246,11 +3255,13 @@ class RoomApi:
         :type reservation_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
-        :param new_room_id: Room ID of the room that will be assigned.
+        :param reservation_room_id: Reservation room ID. Must be set if you want to unassign a room.
+        :type reservation_room_id: str
+        :param new_room_id: Room ID of the room that will be assigned. Empty field must be sent if you want to unassign a room.
         :type new_room_id: str
-        :param room_type_id: Room Type ID of the room that will be assigned. Need to be informed in case of assignment.
+        :param room_type_id: Room Type ID of the room that will be assigned. Need to be provided in case of assignment.
         :type room_type_id: str
-        :param old_room_id: Room ID of the room that was assigned. Need to be informed in case of reassignment.
+        :param old_room_id: Room ID of the room that was assigned. Need to be provided in case of reassignment.
         :type old_room_id: str
         :param override_rates: Deprecated. Please use adjustPrice instead. Setting overrideRates=true will have the opposite of the effect that the name implies. It will cause the rates to NOT be overridden, but instead to be recalculated based on the new room assignment.
         :type override_rates: bool
@@ -3282,6 +3293,7 @@ class RoomApi:
             property_id=property_id,
             reservation_id=reservation_id,
             sub_reservation_id=sub_reservation_id,
+            reservation_room_id=reservation_room_id,
             new_room_id=new_room_id,
             room_type_id=room_type_id,
             old_room_id=old_room_id,
@@ -3308,6 +3320,7 @@ class RoomApi:
         property_id,
         reservation_id,
         sub_reservation_id,
+        reservation_room_id,
         new_room_id,
         room_type_id,
         old_room_id,
@@ -3343,6 +3356,8 @@ class RoomApi:
             _form_params.append(('reservationID', reservation_id))
         if sub_reservation_id is not None:
             _form_params.append(('subReservationID', sub_reservation_id))
+        if reservation_room_id is not None:
+            _form_params.append(('reservationRoomID', reservation_room_id))
         if new_room_id is not None:
             _form_params.append(('newRoomID', new_room_id))
         if room_type_id is not None:

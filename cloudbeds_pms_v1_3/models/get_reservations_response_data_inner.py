@@ -54,7 +54,8 @@ class GetReservationsResponseDataInner(BaseModel):
     rooms: Optional[List[GetReservationsResponseDataInnerRoomsInner]] = Field(default=None, description="Array with rooms information. Only returned if \"includeAllRooms\" is true")
     guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
-    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "groupInventory", "subReservationID", "customFields", "rooms", "guestList", "origin"]
+    meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation meal plans", alias="mealPlans")
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "groupInventory", "subReservationID", "customFields", "rooms", "guestList", "origin", "mealPlans"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -197,7 +198,8 @@ class GetReservationsResponseDataInner(BaseModel):
             )
             if obj.get("guestList") is not None
             else None,
-            "origin": obj.get("origin")
+            "origin": obj.get("origin"),
+            "mealPlans": obj.get("mealPlans")
         })
         return _obj
 

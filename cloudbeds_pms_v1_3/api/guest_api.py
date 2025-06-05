@@ -18,7 +18,7 @@ from typing_extensions import Annotated
 
 from datetime import date, datetime
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from cloudbeds_pms_v1_3.models.delete_guest_note_response import DeleteGuestNoteResponse
 from cloudbeds_pms_v1_3.models.get_guest_list_response import GetGuestListResponse
@@ -360,6 +360,7 @@ class GuestApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier. Required if no guestID is provided.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID. Required if no reservationID is provided.")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -383,6 +384,8 @@ class GuestApi:
         :type reservation_id: str
         :param guest_id: Guest ID. Required if no reservationID is provided.
         :type guest_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -409,6 +412,7 @@ class GuestApi:
             property_id=property_id,
             reservation_id=reservation_id,
             guest_id=guest_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -435,6 +439,7 @@ class GuestApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier. Required if no guestID is provided.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID. Required if no reservationID is provided.")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -458,6 +463,8 @@ class GuestApi:
         :type reservation_id: str
         :param guest_id: Guest ID. Required if no reservationID is provided.
         :type guest_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -484,6 +491,7 @@ class GuestApi:
             property_id=property_id,
             reservation_id=reservation_id,
             guest_id=guest_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -510,6 +518,7 @@ class GuestApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier. Required if no guestID is provided.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID. Required if no reservationID is provided.")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -533,6 +542,8 @@ class GuestApi:
         :type reservation_id: str
         :param guest_id: Guest ID. Required if no reservationID is provided.
         :type guest_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -559,6 +570,7 @@ class GuestApi:
             property_id=property_id,
             reservation_id=reservation_id,
             guest_id=guest_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -580,6 +592,7 @@ class GuestApi:
         property_id,
         reservation_id,
         guest_id,
+        include_guest_requirements,
         _request_auth,
         _content_type,
         _headers,
@@ -613,6 +626,10 @@ class GuestApi:
         if guest_id is not None:
             
             _query_params.append(('guestID', guest_id))
+            
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
             
         # process the header parameters
         # process the form parameters
@@ -671,6 +688,7 @@ class GuestApi:
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
         exclude_secondary_guests: Annotated[Optional[StrictBool], Field(description="If true, response only returns main guest's")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -722,6 +740,8 @@ class GuestApi:
         :type include_guest_info: bool
         :param exclude_secondary_guests: If true, response only returns main guest's
         :type exclude_secondary_guests: bool
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -765,6 +785,7 @@ class GuestApi:
             sort_by=sort_by,
             include_guest_info=include_guest_info,
             exclude_secondary_guests=exclude_secondary_guests,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -806,6 +827,7 @@ class GuestApi:
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
         exclude_secondary_guests: Annotated[Optional[StrictBool], Field(description="If true, response only returns main guest's")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -857,6 +879,8 @@ class GuestApi:
         :type include_guest_info: bool
         :param exclude_secondary_guests: If true, response only returns main guest's
         :type exclude_secondary_guests: bool
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -900,6 +924,7 @@ class GuestApi:
             sort_by=sort_by,
             include_guest_info=include_guest_info,
             exclude_secondary_guests=exclude_secondary_guests,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -941,6 +966,7 @@ class GuestApi:
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort By parameter")] = None,
         include_guest_info: Annotated[Optional[StrictBool], Field(description="If API response should return with more of Guest's information")] = None,
         exclude_secondary_guests: Annotated[Optional[StrictBool], Field(description="If true, response only returns main guest's")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -992,6 +1018,8 @@ class GuestApi:
         :type include_guest_info: bool
         :param exclude_secondary_guests: If true, response only returns main guest's
         :type exclude_secondary_guests: bool
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -1035,6 +1063,7 @@ class GuestApi:
             sort_by=sort_by,
             include_guest_info=include_guest_info,
             exclude_secondary_guests=exclude_secondary_guests,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -1071,6 +1100,7 @@ class GuestApi:
         sort_by,
         include_guest_info,
         exclude_secondary_guests,
+        include_guest_requirements,
         page_number,
         page_size,
         _request_auth,
@@ -1212,6 +1242,10 @@ class GuestApi:
         if exclude_secondary_guests is not None:
             
             _query_params.append(('excludeSecondaryGuests', exclude_secondary_guests))
+            
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
             
         if page_number is not None:
             
@@ -2354,6 +2388,7 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2389,6 +2424,8 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2424,6 +2461,7 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2457,6 +2495,7 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2492,6 +2531,8 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2527,6 +2568,7 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2560,6 +2602,7 @@ class GuestApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters guests result to return only guests with check-out date range ending on this date")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2595,6 +2638,8 @@ class GuestApi:
         :type check_out_from: date
         :param check_out_to: Filters guests result to return only guests with check-out date range ending on this date
         :type check_out_to: date
+        :param include_guest_requirements: Includes guest requirements data in the response
+        :type include_guest_requirements: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2630,6 +2675,7 @@ class GuestApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            include_guest_requirements=include_guest_requirements,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2658,6 +2704,7 @@ class GuestApi:
         check_in_to,
         check_out_from,
         check_out_to,
+        include_guest_requirements,
         page_number,
         page_size,
         _request_auth,
@@ -2768,6 +2815,10 @@ class GuestApi:
             else:
                 _query_params.append(('checkOutTo', check_out_to))
             
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
+            
         if page_number is not None:
             
             _query_params.append(('pageNumber', page_number))
@@ -2823,6 +2874,7 @@ class GuestApi:
         card_expiry_month: Annotated[Optional[StrictInt], Field(description="Credit Card expiration month")] = None,
         card_expiry_year: Annotated[Optional[StrictInt], Field(description="Credit Card expiration year (2 or 4 digits)")] = None,
         card_cvv: Annotated[Optional[StrictStr], Field(description="Credit Card CVV code")] = None,
+        validate: Annotated[Optional[StrictBool], Field(description="should the card be validated? If true, the card will be validated against the payment gateway.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2852,6 +2904,8 @@ class GuestApi:
         :type card_expiry_year: int
         :param card_cvv: Credit Card CVV code
         :type card_cvv: str
+        :param validate: should the card be validated? If true, the card will be validated against the payment gateway.
+        :type validate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2881,6 +2935,7 @@ class GuestApi:
             card_expiry_month=card_expiry_month,
             card_expiry_year=card_expiry_year,
             card_cvv=card_cvv,
+            validate=validate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2910,6 +2965,7 @@ class GuestApi:
         card_expiry_month: Annotated[Optional[StrictInt], Field(description="Credit Card expiration month")] = None,
         card_expiry_year: Annotated[Optional[StrictInt], Field(description="Credit Card expiration year (2 or 4 digits)")] = None,
         card_cvv: Annotated[Optional[StrictStr], Field(description="Credit Card CVV code")] = None,
+        validate: Annotated[Optional[StrictBool], Field(description="should the card be validated? If true, the card will be validated against the payment gateway.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2939,6 +2995,8 @@ class GuestApi:
         :type card_expiry_year: int
         :param card_cvv: Credit Card CVV code
         :type card_cvv: str
+        :param validate: should the card be validated? If true, the card will be validated against the payment gateway.
+        :type validate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2968,6 +3026,7 @@ class GuestApi:
             card_expiry_month=card_expiry_month,
             card_expiry_year=card_expiry_year,
             card_cvv=card_cvv,
+            validate=validate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2997,6 +3056,7 @@ class GuestApi:
         card_expiry_month: Annotated[Optional[StrictInt], Field(description="Credit Card expiration month")] = None,
         card_expiry_year: Annotated[Optional[StrictInt], Field(description="Credit Card expiration year (2 or 4 digits)")] = None,
         card_cvv: Annotated[Optional[StrictStr], Field(description="Credit Card CVV code")] = None,
+        validate: Annotated[Optional[StrictBool], Field(description="should the card be validated? If true, the card will be validated against the payment gateway.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3026,6 +3086,8 @@ class GuestApi:
         :type card_expiry_year: int
         :param card_cvv: Credit Card CVV code
         :type card_cvv: str
+        :param validate: should the card be validated? If true, the card will be validated against the payment gateway.
+        :type validate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3055,6 +3117,7 @@ class GuestApi:
             card_expiry_month=card_expiry_month,
             card_expiry_year=card_expiry_year,
             card_cvv=card_cvv,
+            validate=validate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3079,6 +3142,7 @@ class GuestApi:
         card_expiry_month,
         card_expiry_year,
         card_cvv,
+        validate,
         _request_auth,
         _content_type,
         _headers,
@@ -3115,6 +3179,8 @@ class GuestApi:
             _form_params.append(('cardExpiryYear', card_expiry_year))
         if card_cvv is not None:
             _form_params.append(('cardCVV', card_cvv))
+        if validate is not None:
+            _form_params.append(('validate', validate))
         # process the body parameter
 
 
@@ -4102,6 +4168,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -4165,6 +4232,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
         :param guest_note: Note to be added to the Guest
@@ -4220,6 +4289,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             custom_fields=custom_fields,
             guest_note=guest_note,
             reservation_note=reservation_note,
@@ -4269,6 +4339,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -4332,6 +4403,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
         :param guest_note: Note to be added to the Guest
@@ -4387,6 +4460,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             custom_fields=custom_fields,
             guest_note=guest_note,
             reservation_note=reservation_note,
@@ -4436,6 +4510,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         custom_fields: Annotated[Optional[List[PostGuestRequestCustomFieldsInner]], Field(description="Only guest custom fields are allowed.")] = None,
         guest_note: Annotated[Optional[StrictStr], Field(description="Note to be added to the Guest")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added only to the Reservation.")] = None,
@@ -4499,6 +4574,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param custom_fields: Only guest custom fields are allowed.
         :type custom_fields: List[PostGuestRequestCustomFieldsInner]
         :param guest_note: Note to be added to the Guest
@@ -4554,6 +4631,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             custom_fields=custom_fields,
             guest_note=guest_note,
             reservation_note=reservation_note,
@@ -4598,6 +4676,7 @@ class GuestApi:
         guest_document_issue_date,
         guest_document_issuing_country,
         guest_document_expiration_date,
+        guest_requirements,
         custom_fields,
         guest_note,
         reservation_note,
@@ -4613,6 +4692,7 @@ class GuestApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'guestRequirements': 'csv',
             'customFields': 'csv',
         }
 
@@ -4669,6 +4749,8 @@ class GuestApi:
             _form_params.append(('guestDocumentIssuingCountry', guest_document_issuing_country))
         if guest_document_expiration_date is not None:
             _form_params.append(('guestDocumentExpirationDate', guest_document_expiration_date))
+        if guest_requirements is not None:
+            _form_params.append(('guestRequirements', guest_requirements))
         if custom_fields is not None:
             _form_params.append(('customFields', custom_fields))
         if guest_note is not None:
@@ -4738,6 +4820,7 @@ class GuestApi:
         room_id: Annotated[Optional[StrictInt], Field(description="Room ID already assigned to Reservation")] = None,
         guest_ids: Annotated[Optional[StrictStr], Field(description="Guest ID(s) to be assigned to room. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
+        remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
         _request_timeout: Union[
             None,
@@ -4766,6 +4849,8 @@ class GuestApi:
         :type guest_ids: str
         :param remove_guest_ids: If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.
         :type remove_guest_ids: str
+        :param remove_guest_ids_from_room: If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.
+        :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4796,6 +4881,7 @@ class GuestApi:
             room_id=room_id,
             guest_ids=guest_ids,
             remove_guest_ids=remove_guest_ids,
+            remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4825,6 +4911,7 @@ class GuestApi:
         room_id: Annotated[Optional[StrictInt], Field(description="Room ID already assigned to Reservation")] = None,
         guest_ids: Annotated[Optional[StrictStr], Field(description="Guest ID(s) to be assigned to room. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
+        remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
         _request_timeout: Union[
             None,
@@ -4853,6 +4940,8 @@ class GuestApi:
         :type guest_ids: str
         :param remove_guest_ids: If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.
         :type remove_guest_ids: str
+        :param remove_guest_ids_from_room: If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.
+        :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4883,6 +4972,7 @@ class GuestApi:
             room_id=room_id,
             guest_ids=guest_ids,
             remove_guest_ids=remove_guest_ids,
+            remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4912,6 +5002,7 @@ class GuestApi:
         room_id: Annotated[Optional[StrictInt], Field(description="Room ID already assigned to Reservation")] = None,
         guest_ids: Annotated[Optional[StrictStr], Field(description="Guest ID(s) to be assigned to room. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
+        remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
         _request_timeout: Union[
             None,
@@ -4940,6 +5031,8 @@ class GuestApi:
         :type guest_ids: str
         :param remove_guest_ids: If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.
         :type remove_guest_ids: str
+        :param remove_guest_ids_from_room: If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.
+        :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4970,6 +5063,7 @@ class GuestApi:
             room_id=room_id,
             guest_ids=guest_ids,
             remove_guest_ids=remove_guest_ids,
+            remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4994,6 +5088,7 @@ class GuestApi:
         room_id,
         guest_ids,
         remove_guest_ids,
+        remove_guest_ids_from_room,
         remove_all,
         _request_auth,
         _content_type,
@@ -5029,6 +5124,8 @@ class GuestApi:
             _form_params.append(('guestIDs', guest_ids))
         if remove_guest_ids is not None:
             _form_params.append(('removeGuestIDs', remove_guest_ids))
+        if remove_guest_ids_from_room is not None:
+            _form_params.append(('removeGuestIDsFromRoom', remove_guest_ids_from_room))
         if remove_all is not None:
             _form_params.append(('removeAll', remove_all))
         # process the body parameter
@@ -5423,6 +5520,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5484,6 +5582,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]
         :param guest_company_name: Guest company name
@@ -5535,6 +5635,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             guest_custom_fields=guest_custom_fields,
             guest_company_name=guest_company_name,
             guest_company_tax_id=guest_company_tax_id,
@@ -5582,6 +5683,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5643,6 +5745,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]
         :param guest_company_name: Guest company name
@@ -5694,6 +5798,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             guest_custom_fields=guest_custom_fields,
             guest_company_name=guest_company_name,
             guest_company_tax_id=guest_company_tax_id,
@@ -5741,6 +5846,7 @@ class GuestApi:
         guest_document_issue_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI)")] = None,
         guest_document_issuing_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent)")] = None,
         guest_document_expiration_date: Annotated[Optional[date], Field(description="(mandatory when guestDocumentType is sent and is not DNI or NIE)")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         guest_custom_fields: Optional[List[PutGuestRequestGuestCustomFieldsInner]] = None,
         guest_company_name: Annotated[Optional[StrictStr], Field(description="Guest company name")] = None,
         guest_company_tax_id: Annotated[Optional[StrictStr], Field(description="Guest company tax ID")] = None,
@@ -5802,6 +5908,8 @@ class GuestApi:
         :type guest_document_issuing_country: str
         :param guest_document_expiration_date: (mandatory when guestDocumentType is sent and is not DNI or NIE)
         :type guest_document_expiration_date: date
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param guest_custom_fields: 
         :type guest_custom_fields: List[PutGuestRequestGuestCustomFieldsInner]
         :param guest_company_name: Guest company name
@@ -5853,6 +5961,7 @@ class GuestApi:
             guest_document_issue_date=guest_document_issue_date,
             guest_document_issuing_country=guest_document_issuing_country,
             guest_document_expiration_date=guest_document_expiration_date,
+            guest_requirements=guest_requirements,
             guest_custom_fields=guest_custom_fields,
             guest_company_name=guest_company_name,
             guest_company_tax_id=guest_company_tax_id,
@@ -5895,6 +6004,7 @@ class GuestApi:
         guest_document_issue_date,
         guest_document_issuing_country,
         guest_document_expiration_date,
+        guest_requirements,
         guest_custom_fields,
         guest_company_name,
         guest_company_tax_id,
@@ -5908,6 +6018,7 @@ class GuestApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'guestRequirements': 'csv',
             'guestCustomFields': 'csv',
         }
 
@@ -5964,6 +6075,8 @@ class GuestApi:
             _form_params.append(('guestDocumentIssuingCountry', guest_document_issuing_country))
         if guest_document_expiration_date is not None:
             _form_params.append(('guestDocumentExpirationDate', guest_document_expiration_date))
+        if guest_requirements is not None:
+            _form_params.append(('guestRequirements', guest_requirements))
         if guest_custom_fields is not None:
             _form_params.append(('guestCustomFields', guest_custom_fields))
         if guest_company_name is not None:

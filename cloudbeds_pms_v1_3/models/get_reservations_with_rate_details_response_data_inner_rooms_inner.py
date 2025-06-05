@@ -36,13 +36,16 @@ class GetReservationsWithRateDetailsResponseDataInnerRoomsInner(BaseModel):
     rate_name: Optional[StrictStr] = Field(default=None, description="Name of the rate used for the booking room", alias="rateName")
     adults: Optional[StrictStr] = Field(default=None, description="Number of adults in the room")
     children: Optional[StrictStr] = Field(default=None, description="Number of children in the room")
+    reservation_room_id: Optional[StrictStr] = Field(default=None, description="Reservation room ID", alias="reservationRoomID")
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID (null if the reservation has not been assigned a specific room yet).", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Name of the room, if roomID=null it does not exist.", alias="roomName")
     room_check_in: Optional[StrictStr] = Field(default=None, description="Check-in date for the room", alias="roomCheckIn")
     room_check_out: Optional[StrictStr] = Field(default=None, description="Check-out date for the room", alias="roomCheckOut")
     room_status: Optional[StrictStr] = Field(default=None, alias="roomStatus")
     detailed_room_rates: Optional[List[Dict[str, Any]]] = Field(default=None, description="Associative object, with dates as indexes, and rates as values", alias="detailedRoomRates")
-    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeIsVirtual", "roomTypeName", "subReservationID", "guestID", "guestName", "rateID", "rateName", "adults", "children", "roomID", "roomName", "roomCheckIn", "roomCheckOut", "roomStatus", "detailedRoomRates"]
+    market_name: Optional[StrictStr] = Field(default=None, description="Market segmentation name", alias="marketName")
+    market_code: Optional[StrictStr] = Field(default=None, description="Market segmentation code", alias="marketCode")
+    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeIsVirtual", "roomTypeName", "subReservationID", "guestID", "guestName", "rateID", "rateName", "adults", "children", "reservationRoomID", "roomID", "roomName", "roomCheckIn", "roomCheckOut", "roomStatus", "detailedRoomRates", "marketName", "marketCode"]
 
     @field_validator('room_status')
     def room_status_validate_enum(cls, value):
@@ -120,12 +123,15 @@ class GetReservationsWithRateDetailsResponseDataInnerRoomsInner(BaseModel):
             "rateName": obj.get("rateName"),
             "adults": obj.get("adults"),
             "children": obj.get("children"),
+            "reservationRoomID": obj.get("reservationRoomID"),
             "roomID": obj.get("roomID"),
             "roomName": obj.get("roomName"),
             "roomCheckIn": obj.get("roomCheckIn"),
             "roomCheckOut": obj.get("roomCheckOut"),
             "roomStatus": obj.get("roomStatus"),
-            "detailedRoomRates": obj.get("detailedRoomRates")
+            "detailedRoomRates": obj.get("detailedRoomRates"),
+            "marketName": obj.get("marketName"),
+            "marketCode": obj.get("marketCode")
         })
         return _obj
 

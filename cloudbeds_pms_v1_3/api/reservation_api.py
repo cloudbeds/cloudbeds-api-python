@@ -18,7 +18,7 @@ from typing_extensions import Annotated
 
 from datetime import date, datetime
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from cloudbeds_pms_v1_3.models.delete_reservation_note_response import DeleteReservationNoteResponse
 from cloudbeds_pms_v1_3.models.get_reservation_arrivals_response import GetReservationArrivalsResponse
@@ -1256,6 +1256,7 @@ class ReservationApi:
         self,
         reservation_id: Annotated[StrictStr, Field(description="Reservation Unique Identifier. Obtained from one of the \"Reservations\" group methods")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1277,6 +1278,8 @@ class ReservationApi:
         :type reservation_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response.
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1302,6 +1305,7 @@ class ReservationApi:
         _param = self._get_reservation_get_serialize(
             reservation_id=reservation_id,
             property_id=property_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1327,6 +1331,7 @@ class ReservationApi:
         self,
         reservation_id: Annotated[StrictStr, Field(description="Reservation Unique Identifier. Obtained from one of the \"Reservations\" group methods")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1348,6 +1353,8 @@ class ReservationApi:
         :type reservation_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response.
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1373,6 +1380,7 @@ class ReservationApi:
         _param = self._get_reservation_get_serialize(
             reservation_id=reservation_id,
             property_id=property_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1398,6 +1406,7 @@ class ReservationApi:
         self,
         reservation_id: Annotated[StrictStr, Field(description="Reservation Unique Identifier. Obtained from one of the \"Reservations\" group methods")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1419,6 +1428,8 @@ class ReservationApi:
         :type reservation_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param include_guest_requirements: Includes guest requirements data in the response.
+        :type include_guest_requirements: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1444,6 +1455,7 @@ class ReservationApi:
         _param = self._get_reservation_get_serialize(
             reservation_id=reservation_id,
             property_id=property_id,
+            include_guest_requirements=include_guest_requirements,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1464,6 +1476,7 @@ class ReservationApi:
         self,
         reservation_id,
         property_id,
+        include_guest_requirements,
         _request_auth,
         _content_type,
         _headers,
@@ -1493,6 +1506,10 @@ class ReservationApi:
         if reservation_id is not None:
             
             _query_params.append(('reservationID', reservation_id))
+            
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
             
         # process the header parameters
         # process the form parameters
@@ -2388,9 +2405,11 @@ class ReservationApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
+        dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
         source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
@@ -2439,12 +2458,16 @@ class ReservationApi:
         :type check_out_from: date
         :param check_out_to: Filters reservations result to return only reservations with check-out date range ending on this date
         :type check_out_to: date
+        :param dates_query_mode: If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.
+        :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
@@ -2500,9 +2523,11 @@ class ReservationApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
             include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
             include_all_rooms=include_all_rooms,
             source_id=source_id,
@@ -2547,9 +2572,11 @@ class ReservationApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
+        dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
         source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
@@ -2598,12 +2625,16 @@ class ReservationApi:
         :type check_out_from: date
         :param check_out_to: Filters reservations result to return only reservations with check-out date range ending on this date
         :type check_out_to: date
+        :param dates_query_mode: If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.
+        :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
@@ -2659,9 +2690,11 @@ class ReservationApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
             include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
             include_all_rooms=include_all_rooms,
             source_id=source_id,
@@ -2706,9 +2739,11 @@ class ReservationApi:
         check_in_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-in date range ending on this date")] = None,
         check_out_from: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range starting on this date")] = None,
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
+        dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
         source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
@@ -2757,12 +2792,16 @@ class ReservationApi:
         :type check_out_from: date
         :param check_out_to: Filters reservations result to return only reservations with check-out date range ending on this date
         :type check_out_to: date
+        :param dates_query_mode: If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.
+        :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
@@ -2818,9 +2857,11 @@ class ReservationApi:
             check_in_to=check_in_to,
             check_out_from=check_out_from,
             check_out_to=check_out_to,
+            dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
             include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
             include_all_rooms=include_all_rooms,
             source_id=source_id,
@@ -2860,9 +2901,11 @@ class ReservationApi:
         check_in_to,
         check_out_from,
         check_out_to,
+        dates_query_mode,
         room_id,
         room_name,
         include_guests_details,
+        include_guest_requirements,
         include_custom_fields,
         include_all_rooms,
         source_id,
@@ -3008,6 +3051,10 @@ class ReservationApi:
             else:
                 _query_params.append(('checkOutTo', check_out_to))
             
+        if dates_query_mode is not None:
+            
+            _query_params.append(('datesQueryMode', dates_query_mode))
+            
         if room_id is not None:
             
             _query_params.append(('roomID', room_id))
@@ -3019,6 +3066,10 @@ class ReservationApi:
         if include_guests_details is not None:
             
             _query_params.append(('includeGuestsDetails', include_guests_details))
+            
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
             
         if include_custom_fields is not None:
             
@@ -3116,6 +3167,9 @@ class ReservationApi:
         reservation_check_out_to: Annotated[Optional[date], Field(description="Superior limit datetime, used to filter reservations, based on reservation check-out date.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="Include deleted reservations")] = None,
         exclude_statuses: Annotated[Optional[StrictStr], Field(description="List of statuses (separated by comma) to be excluded from search")] = None,
+        include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
+        include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -3157,6 +3211,12 @@ class ReservationApi:
         :type include_deleted: bool
         :param exclude_statuses: List of statuses (separated by comma) to be excluded from search
         :type exclude_statuses: str
+        :param include_guests_details: If guests details should be included or not
+        :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
+        :param include_custom_fields: If reservation custom fields should be included or not
+        :type include_custom_fields: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -3195,6 +3255,9 @@ class ReservationApi:
             reservation_check_out_to=reservation_check_out_to,
             include_deleted=include_deleted,
             exclude_statuses=exclude_statuses,
+            include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
+            include_custom_fields=include_custom_fields,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -3231,6 +3294,9 @@ class ReservationApi:
         reservation_check_out_to: Annotated[Optional[date], Field(description="Superior limit datetime, used to filter reservations, based on reservation check-out date.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="Include deleted reservations")] = None,
         exclude_statuses: Annotated[Optional[StrictStr], Field(description="List of statuses (separated by comma) to be excluded from search")] = None,
+        include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
+        include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -3272,6 +3338,12 @@ class ReservationApi:
         :type include_deleted: bool
         :param exclude_statuses: List of statuses (separated by comma) to be excluded from search
         :type exclude_statuses: str
+        :param include_guests_details: If guests details should be included or not
+        :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
+        :param include_custom_fields: If reservation custom fields should be included or not
+        :type include_custom_fields: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -3310,6 +3382,9 @@ class ReservationApi:
             reservation_check_out_to=reservation_check_out_to,
             include_deleted=include_deleted,
             exclude_statuses=exclude_statuses,
+            include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
+            include_custom_fields=include_custom_fields,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -3346,6 +3421,9 @@ class ReservationApi:
         reservation_check_out_to: Annotated[Optional[date], Field(description="Superior limit datetime, used to filter reservations, based on reservation check-out date.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="Include deleted reservations")] = None,
         exclude_statuses: Annotated[Optional[StrictStr], Field(description="List of statuses (separated by comma) to be excluded from search")] = None,
+        include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
+        include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
+        include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -3387,6 +3465,12 @@ class ReservationApi:
         :type include_deleted: bool
         :param exclude_statuses: List of statuses (separated by comma) to be excluded from search
         :type exclude_statuses: str
+        :param include_guests_details: If guests details should be included or not
+        :type include_guests_details: bool
+        :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
+        :type include_guest_requirements: bool
+        :param include_custom_fields: If reservation custom fields should be included or not
+        :type include_custom_fields: bool
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -3425,6 +3509,9 @@ class ReservationApi:
             reservation_check_out_to=reservation_check_out_to,
             include_deleted=include_deleted,
             exclude_statuses=exclude_statuses,
+            include_guests_details=include_guests_details,
+            include_guest_requirements=include_guest_requirements,
+            include_custom_fields=include_custom_fields,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -3456,6 +3543,9 @@ class ReservationApi:
         reservation_check_out_to,
         include_deleted,
         exclude_statuses,
+        include_guests_details,
+        include_guest_requirements,
+        include_custom_fields,
         page_number,
         page_size,
         _request_auth,
@@ -3577,6 +3667,18 @@ class ReservationApi:
         if exclude_statuses is not None:
             
             _query_params.append(('excludeStatuses', exclude_statuses))
+            
+        if include_guests_details is not None:
+            
+            _query_params.append(('includeGuestsDetails', include_guests_details))
+            
+        if include_guest_requirements is not None:
+            
+            _query_params.append(('includeGuestRequirements', include_guest_requirements))
+            
+        if include_custom_fields is not None:
+            
+            _query_params.append(('includeCustomFields', include_custom_fields))
             
         if page_number is not None:
             
@@ -4750,6 +4852,7 @@ class ReservationApi:
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added to reservation")] = None,
         user_id: Annotated[Optional[StrictStr], Field(description="User ID Identify the actual user that is posting the note")] = None,
+        date_created: Annotated[Optional[datetime], Field(description="Datetime the note was created.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4775,6 +4878,8 @@ class ReservationApi:
         :type reservation_note: str
         :param user_id: User ID Identify the actual user that is posting the note
         :type user_id: str
+        :param date_created: Datetime the note was created.
+        :type date_created: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4802,6 +4907,7 @@ class ReservationApi:
             reservation_id=reservation_id,
             reservation_note=reservation_note,
             user_id=user_id,
+            date_created=date_created,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4829,6 +4935,7 @@ class ReservationApi:
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added to reservation")] = None,
         user_id: Annotated[Optional[StrictStr], Field(description="User ID Identify the actual user that is posting the note")] = None,
+        date_created: Annotated[Optional[datetime], Field(description="Datetime the note was created.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4854,6 +4961,8 @@ class ReservationApi:
         :type reservation_note: str
         :param user_id: User ID Identify the actual user that is posting the note
         :type user_id: str
+        :param date_created: Datetime the note was created.
+        :type date_created: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4881,6 +4990,7 @@ class ReservationApi:
             reservation_id=reservation_id,
             reservation_note=reservation_note,
             user_id=user_id,
+            date_created=date_created,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4908,6 +5018,7 @@ class ReservationApi:
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
         reservation_note: Annotated[Optional[StrictStr], Field(description="Note to be added to reservation")] = None,
         user_id: Annotated[Optional[StrictStr], Field(description="User ID Identify the actual user that is posting the note")] = None,
+        date_created: Annotated[Optional[datetime], Field(description="Datetime the note was created.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4933,6 +5044,8 @@ class ReservationApi:
         :type reservation_note: str
         :param user_id: User ID Identify the actual user that is posting the note
         :type user_id: str
+        :param date_created: Datetime the note was created.
+        :type date_created: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4960,6 +5073,7 @@ class ReservationApi:
             reservation_id=reservation_id,
             reservation_note=reservation_note,
             user_id=user_id,
+            date_created=date_created,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4982,6 +5096,7 @@ class ReservationApi:
         reservation_id,
         reservation_note,
         user_id,
+        date_created,
         _request_auth,
         _content_type,
         _headers,
@@ -5014,6 +5129,8 @@ class ReservationApi:
             _form_params.append(('reservationNote', reservation_note))
         if user_id is not None:
             _form_params.append(('userID', user_id))
+        if date_created is not None:
+            _form_params.append(('dateCreated', date_created))
         # process the body parameter
 
 
@@ -5078,6 +5195,7 @@ class ReservationApi:
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         estimated_arrival_time: Annotated[Optional[StrictStr], Field(description="Estimated Arrival Time, 24-hour format.")] = None,
         rooms: Annotated[Optional[List[PostReservationRequestRoomsInner]], Field(description="Array with quantity of rooms")] = None,
         adults: Annotated[Optional[List[PostReservationRequestAdultsInner]], Field(description="Array with number of adults")] = None,
@@ -5132,6 +5250,8 @@ class ReservationApi:
         :type guest_email: str
         :param guest_phone: Guest main phone number
         :type guest_phone: str
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param estimated_arrival_time: Estimated Arrival Time, 24-hour format.
         :type estimated_arrival_time: str
         :param rooms: Array with quantity of rooms
@@ -5193,6 +5313,7 @@ class ReservationApi:
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
+            guest_requirements=guest_requirements,
             estimated_arrival_time=estimated_arrival_time,
             rooms=rooms,
             adults=adults,
@@ -5241,6 +5362,7 @@ class ReservationApi:
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         estimated_arrival_time: Annotated[Optional[StrictStr], Field(description="Estimated Arrival Time, 24-hour format.")] = None,
         rooms: Annotated[Optional[List[PostReservationRequestRoomsInner]], Field(description="Array with quantity of rooms")] = None,
         adults: Annotated[Optional[List[PostReservationRequestAdultsInner]], Field(description="Array with number of adults")] = None,
@@ -5295,6 +5417,8 @@ class ReservationApi:
         :type guest_email: str
         :param guest_phone: Guest main phone number
         :type guest_phone: str
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param estimated_arrival_time: Estimated Arrival Time, 24-hour format.
         :type estimated_arrival_time: str
         :param rooms: Array with quantity of rooms
@@ -5356,6 +5480,7 @@ class ReservationApi:
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
+            guest_requirements=guest_requirements,
             estimated_arrival_time=estimated_arrival_time,
             rooms=rooms,
             adults=adults,
@@ -5404,6 +5529,7 @@ class ReservationApi:
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
+        guest_requirements: Annotated[Optional[List[Dict[str, Any]]], Field(description="Object with guest requirements information.")] = None,
         estimated_arrival_time: Annotated[Optional[StrictStr], Field(description="Estimated Arrival Time, 24-hour format.")] = None,
         rooms: Annotated[Optional[List[PostReservationRequestRoomsInner]], Field(description="Array with quantity of rooms")] = None,
         adults: Annotated[Optional[List[PostReservationRequestAdultsInner]], Field(description="Array with number of adults")] = None,
@@ -5458,6 +5584,8 @@ class ReservationApi:
         :type guest_email: str
         :param guest_phone: Guest main phone number
         :type guest_phone: str
+        :param guest_requirements: Object with guest requirements information.
+        :type guest_requirements: List[object]
         :param estimated_arrival_time: Estimated Arrival Time, 24-hour format.
         :type estimated_arrival_time: str
         :param rooms: Array with quantity of rooms
@@ -5519,6 +5647,7 @@ class ReservationApi:
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
+            guest_requirements=guest_requirements,
             estimated_arrival_time=estimated_arrival_time,
             rooms=rooms,
             adults=adults,
@@ -5562,6 +5691,7 @@ class ReservationApi:
         guest_zip,
         guest_email,
         guest_phone,
+        guest_requirements,
         estimated_arrival_time,
         rooms,
         adults,
@@ -5584,6 +5714,7 @@ class ReservationApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'guestRequirements': 'csv',
             'rooms': 'csv',
             'adults': 'csv',
             'children': 'csv',
@@ -5627,6 +5758,8 @@ class ReservationApi:
             _form_params.append(('guestEmail', guest_email))
         if guest_phone is not None:
             _form_params.append(('guestPhone', guest_phone))
+        if guest_requirements is not None:
+            _form_params.append(('guestRequirements', guest_requirements))
         if estimated_arrival_time is not None:
             _form_params.append(('estimatedArrivalTime', estimated_arrival_time))
         if rooms is not None:

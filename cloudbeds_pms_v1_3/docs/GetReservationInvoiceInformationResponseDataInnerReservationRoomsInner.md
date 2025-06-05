@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **room_id** | **str** | Unique ID of the room | [optional] 
 **room_name** | **str** | Name of the room | [optional] 
 **room_type_id** | **str** | ID of the room type | [optional] 
+**market_name** | **str** | Market segmentation name | [optional] 
+**market_code** | **str** | Market segmentation code | [optional] 
 
 ## Example
 

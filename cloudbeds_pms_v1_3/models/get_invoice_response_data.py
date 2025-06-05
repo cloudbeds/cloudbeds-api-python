@@ -31,6 +31,7 @@ class GetInvoiceResponseData(BaseModel):
     Invoice details
     """ # noqa: E501
     invoice_id: Optional[StrictStr] = Field(default=None, description="Unique invoice ID", alias="invoiceID")
+    user_id: Optional[StrictStr] = Field(default=None, description="Unique ID of User who generated invoice", alias="userID")
     reservation_id: Optional[StrictStr] = Field(default=None, description="Reservation identifier", alias="reservationID")
     prefix: Optional[StrictStr] = Field(default=None, description="Invoice ID prefix")
     number: Optional[StrictInt] = Field(default=None, description="Invoice ID number")
@@ -41,7 +42,7 @@ class GetInvoiceResponseData(BaseModel):
     items: Optional[List[GetInvoiceResponseDataItemsInner]] = Field(default=None, description="Invoice items")
     taxes: Optional[List[GetInvoiceResponseDataItemsInnerTaxesInner]] = None
     fees: Optional[List[GetInvoiceResponseDataItemsInnerFeesInner]] = None
-    __properties: ClassVar[List[str]] = ["invoiceID", "reservationID", "prefix", "number", "suffix", "documentIssueDate", "status", "billedTo", "items", "taxes", "fees"]
+    __properties: ClassVar[List[str]] = ["invoiceID", "userID", "reservationID", "prefix", "number", "suffix", "documentIssueDate", "status", "billedTo", "items", "taxes", "fees"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,6 +120,7 @@ class GetInvoiceResponseData(BaseModel):
 
         _obj = cls.model_validate({
             "invoiceID": obj.get("invoiceID"),
+            "userID": obj.get("userID"),
             "reservationID": obj.get("reservationID"),
             "prefix": obj.get("prefix"),
             "number": obj.get("number"),

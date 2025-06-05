@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rate** | **float** | Maximum rate for which this amount is valid | [optional] 
-**percentage** | **float** | Percentage applied for the rate | [optional] 
+**rate** | [**GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerRate**](GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerRate.md) |  | [optional] 
+**percentage** | [**GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerPercentage**](GetTaxesAndFeesResponseDataInnerAmountRateBasedInnerPercentage.md) |  | [optional] 
 
 ## Example
 

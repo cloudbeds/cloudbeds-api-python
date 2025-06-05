@@ -18,9 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_inner import GetReservationResponseDataBalanceDetailedInner
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
+from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_one_of import GetReservationResponseDataBalanceDetailedOneOf
+from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_rooms_inner import GetReservationsWithRateDetailsResponseDataInnerRoomsInner
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_source_inner import GetReservationsWithRateDetailsResponseDataInnerSourceInner
 from typing import Optional, Set
@@ -30,6 +32,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     """
     GetReservationsWithRateDetailsResponseDataInner
     """ # noqa: E501
+    property_id: Optional[StrictStr] = Field(default=None, description="Properties identifier", alias="propertyID")
     reservation_id: Optional[StrictStr] = Field(default=None, description="Reservation's unique identifier", alias="reservationID")
     is_deleted: Optional[StrictBool] = Field(default=None, alias="isDeleted")
     date_created: Optional[datetime] = Field(default=None, alias="dateCreated")
@@ -49,11 +52,19 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     source_category: Optional[StrictInt] = Field(default=None, description="Reservation source category", alias="sourceCategory")
     source_reservation_id: Optional[StrictInt] = Field(default=None, description="Reservation ID on the source", alias="sourceReservationID")
     property_currency: Optional[StrictInt] = Field(default=None, description="Property currency ISO-formatted (3 characters)", alias="propertyCurrency")
-    balance_detailed: Optional[List[GetReservationResponseDataBalanceDetailedInner]] = Field(default=None, description="Reservation balance detailed with the information available on MyFrontdesk, describing the financial items calculated", alias="balanceDetailed")
+    balance_detailed: Optional[List[GetReservationResponseDataBalanceDetailedOneOf]] = Field(default=None, description="Reservation balance detailed with the information available on MyFrontdesk, describing the financial items calculated", alias="balanceDetailed")
     detailed_rates: Optional[List[Dict[str, Any]]] = Field(default=None, description="Associative object, where key is the date, and value is the total rate for that date.", alias="detailedRates")
     rooms: Optional[List[GetReservationsWithRateDetailsResponseDataInnerRoomsInner]] = Field(default=None, description="Array with rooms information")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
-    __properties: ClassVar[List[str]] = ["reservationID", "isDeleted", "dateCreated", "dateCreatedUTC", "dateModified", "dateModifiedUTC", "dateCancelled", "dateCancelledUTC", "status", "reservationCheckIn", "reservationCheckOut", "guestID", "profileID", "guestCountry", "sourceName", "source", "sourceCategory", "sourceReservationID", "propertyCurrency", "balanceDetailed", "detailedRates", "rooms", "origin"]
+    meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation meal plans", alias="mealPlans")
+    guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
+    third_party_identifier: Optional[StrictStr] = Field(default=None, alias="thirdPartyIdentifier")
+    custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
+    estimated_arrival_time: Optional[StrictStr] = Field(default=None, description="Estimated arrival time, 24-hour format.", alias="estimatedArrivalTime")
+    total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total price of the booking")
+    balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Balance currently owed")
+    date_imported: Optional[StrictStr] = Field(default=None, description="Date when the reservation was imported", alias="dateImported")
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "isDeleted", "dateCreated", "dateCreatedUTC", "dateModified", "dateModifiedUTC", "dateCancelled", "dateCancelledUTC", "status", "reservationCheckIn", "reservationCheckOut", "guestID", "profileID", "guestCountry", "sourceName", "source", "sourceCategory", "sourceReservationID", "propertyCurrency", "balanceDetailed", "detailedRates", "rooms", "origin", "mealPlans", "guestList", "thirdPartyIdentifier", "customFields", "estimatedArrivalTime", "total", "balance", "dateImported"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -125,6 +136,20 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
                 if _item_rooms:
                     _items.append(_item_rooms.to_dict())
             _dict['rooms'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in guest_list (dict)
+        _field_dict = {}
+        if self.guest_list:
+            for _key_guest_list in self.guest_list:
+                if self.guest_list[_key_guest_list]:
+                    _field_dict[_key_guest_list] = self.guest_list[_key_guest_list].to_dict()
+            _dict['guestList'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of each item in custom_fields (list)
+        _items = []
+        if self.custom_fields:
+            for _item_custom_fields in self.custom_fields:
+                if _item_custom_fields:
+                    _items.append(_item_custom_fields.to_dict())
+            _dict['customFields'] = _items
         # set to None if date_cancelled (nullable) is None
         # and model_fields_set contains the field
         if self.date_cancelled is None and "date_cancelled" in self.model_fields_set:
@@ -150,6 +175,21 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
         if self.property_currency is None and "property_currency" in self.model_fields_set:
             _dict['propertyCurrency'] = None
 
+        # set to None if guest_list (nullable) is None
+        # and model_fields_set contains the field
+        if self.guest_list is None and "guest_list" in self.model_fields_set:
+            _dict['guestList'] = None
+
+        # set to None if custom_fields (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_fields is None and "custom_fields" in self.model_fields_set:
+            _dict['customFields'] = None
+
+        # set to None if estimated_arrival_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.estimated_arrival_time is None and "estimated_arrival_time" in self.model_fields_set:
+            _dict['estimatedArrivalTime'] = None
+
         return _dict
 
     @classmethod
@@ -162,6 +202,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "propertyID": obj.get("propertyID"),
             "reservationID": obj.get("reservationID"),
             "isDeleted": obj.get("isDeleted"),
             "dateCreated": obj.get("dateCreated"),
@@ -181,10 +222,23 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
             "sourceCategory": obj.get("sourceCategory"),
             "sourceReservationID": obj.get("sourceReservationID"),
             "propertyCurrency": obj.get("propertyCurrency"),
-            "balanceDetailed": [GetReservationResponseDataBalanceDetailedInner.from_dict(_item) for _item in obj["balanceDetailed"]] if obj.get("balanceDetailed") is not None else None,
+            "balanceDetailed": [GetReservationResponseDataBalanceDetailedOneOf.from_dict(_item) for _item in obj["balanceDetailed"]] if obj.get("balanceDetailed") is not None else None,
             "detailedRates": obj.get("detailedRates"),
             "rooms": [GetReservationsWithRateDetailsResponseDataInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
-            "origin": obj.get("origin")
+            "origin": obj.get("origin"),
+            "mealPlans": obj.get("mealPlans"),
+            "guestList": dict(
+                (_k, GetReservationsResponseDataInnerGuestListValue.from_dict(_v))
+                for _k, _v in obj["guestList"].items()
+            )
+            if obj.get("guestList") is not None
+            else None,
+            "thirdPartyIdentifier": obj.get("thirdPartyIdentifier"),
+            "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
+            "estimatedArrivalTime": obj.get("estimatedArrivalTime"),
+            "total": obj.get("total"),
+            "balance": obj.get("balance"),
+            "dateImported": obj.get("dateImported")
         })
         return _obj
 

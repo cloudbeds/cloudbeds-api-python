@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**reservation_room_id** | **str** | Reservation room ID where guest is assigned | [optional] 
 **room_id** | **str** | Room ID where guest is assigned | [optional] 
 **room_name** | **str** | Room Name where guest is assigned | [optional] 
 **room_type_name** | **str** | Room Type Name where guest is assigned | [optional] 

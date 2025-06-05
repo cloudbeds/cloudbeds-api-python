@@ -38,7 +38,9 @@ class GetReservationInvoiceInformationResponseDataInnerReservationRoomsInner(Bas
     room_id: Optional[StrictStr] = Field(default=None, description="Unique ID of the room", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Name of the room", alias="roomName")
     room_type_id: Optional[StrictStr] = Field(default=None, description="ID of the room type", alias="roomTypeID")
-    __properties: ClassVar[List[str]] = ["roomTypeName", "guestName", "startDate", "endDate", "adults", "children", "nights", "roomTotal", "roomID", "roomName", "roomTypeID"]
+    market_name: Optional[StrictStr] = Field(default=None, description="Market segmentation name", alias="marketName")
+    market_code: Optional[StrictStr] = Field(default=None, description="Market segmentation code", alias="marketCode")
+    __properties: ClassVar[List[str]] = ["roomTypeName", "guestName", "startDate", "endDate", "adults", "children", "nights", "roomTotal", "roomID", "roomName", "roomTypeID", "marketName", "marketCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +103,9 @@ class GetReservationInvoiceInformationResponseDataInnerReservationRoomsInner(Bas
             "roomTotal": obj.get("roomTotal"),
             "roomID": obj.get("roomID"),
             "roomName": obj.get("roomName"),
-            "roomTypeID": obj.get("roomTypeID")
+            "roomTypeID": obj.get("roomTypeID"),
+            "marketName": obj.get("marketName"),
+            "marketCode": obj.get("marketCode")
         })
         return _obj
 

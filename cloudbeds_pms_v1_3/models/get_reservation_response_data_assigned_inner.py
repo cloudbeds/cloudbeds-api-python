@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner_daily_rates_inner import GetReservationResponseDataAssignedInnerDailyRatesInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,6 +28,7 @@ class GetReservationResponseDataAssignedInner(BaseModel):
     """
     GetReservationResponseDataAssignedInner
     """ # noqa: E501
+    reservation_room_id: Optional[StrictStr] = Field(default=None, description="Reservation room ID", alias="reservationRoomID")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Name of the assigned room type", alias="roomTypeName")
     room_type_name_short: Optional[StrictStr] = Field(default=None, description="Short name of the assigned room type", alias="roomTypeNameShort")
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
@@ -41,8 +42,10 @@ class GetReservationResponseDataAssignedInner(BaseModel):
     adults: Optional[StrictStr] = Field(default=None, description="Number of adult staying in the room")
     children: Optional[StrictStr] = Field(default=None, description="Number of children staying in the room")
     daily_rates: Optional[List[GetReservationResponseDataAssignedInnerDailyRatesInner]] = Field(default=None, description="Array with rates detailed by day", alias="dailyRates")
-    room_total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Room total rate", alias="roomTotal")
-    __properties: ClassVar[List[str]] = ["roomTypeName", "roomTypeNameShort", "roomTypeIsVirtual", "dormRoomName", "roomTypeID", "subReservationID", "roomName", "roomID", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal"]
+    room_total: Optional[StrictStr] = Field(default=None, description="Room total rate", alias="roomTotal")
+    market_name: Optional[StrictStr] = Field(default=None, description="Market segmentation name", alias="marketName")
+    market_code: Optional[StrictStr] = Field(default=None, description="Market segmentation code", alias="marketCode")
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeName", "roomTypeNameShort", "roomTypeIsVirtual", "dormRoomName", "roomTypeID", "subReservationID", "roomName", "roomID", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal", "marketName", "marketCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,6 +110,7 @@ class GetReservationResponseDataAssignedInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "reservationRoomID": obj.get("reservationRoomID"),
             "roomTypeName": obj.get("roomTypeName"),
             "roomTypeNameShort": obj.get("roomTypeNameShort"),
             "roomTypeIsVirtual": obj.get("roomTypeIsVirtual"),
@@ -120,7 +124,9 @@ class GetReservationResponseDataAssignedInner(BaseModel):
             "adults": obj.get("adults"),
             "children": obj.get("children"),
             "dailyRates": [GetReservationResponseDataAssignedInnerDailyRatesInner.from_dict(_item) for _item in obj["dailyRates"]] if obj.get("dailyRates") is not None else None,
-            "roomTotal": obj.get("roomTotal")
+            "roomTotal": obj.get("roomTotal"),
+            "marketName": obj.get("marketName"),
+            "marketCode": obj.get("marketCode")
         })
         return _obj
 

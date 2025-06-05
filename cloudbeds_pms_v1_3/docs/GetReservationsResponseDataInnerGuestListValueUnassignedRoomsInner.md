@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**reservation_room_id** | **str** | Reservation room ID | [optional] 
 **room_type_id** | **str** | ID of the assigned room type | [optional] 
 **room_type_name** | **str** | Room Type Name where guest is assigned | [optional] 
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 

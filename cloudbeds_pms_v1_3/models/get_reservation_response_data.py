@@ -21,7 +21,7 @@ from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner import GetReservationResponseDataAssignedInner
-from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_inner import GetReservationResponseDataBalanceDetailedInner
+from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed import GetReservationResponseDataBalanceDetailed
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_cards_on_file_inner import GetReservationResponseDataCardsOnFileInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value import GetReservationResponseDataGuestListValue
@@ -49,7 +49,7 @@ class GetReservationResponseData(BaseModel):
     status: Optional[StrictStr] = Field(default=None, description="Reservation status<br /> 'not_confirmed' - Reservation is pending confirmation<br /> 'confirmed' - Reservation is confirmed<br /> 'canceled' - Reservation is canceled<br /> 'checked_in' - Guest is in hotel<br /> 'checked_out' - Guest already left hotel<br /> 'no_show' - Guest didn't showed up on check-in date")
     total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total price of the booking")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Balance currently owed")
-    balance_detailed: Optional[List[GetReservationResponseDataBalanceDetailedInner]] = Field(default=None, description="Reservation balance detailed with the information available on PC app, describing the financial items calculated", alias="balanceDetailed")
+    balance_detailed: Optional[GetReservationResponseDataBalanceDetailed] = Field(default=None, alias="balanceDetailed")
     assigned: Optional[List[GetReservationResponseDataAssignedInner]] = Field(default=None, description="Assigned Rooms information")
     unassigned: Optional[List[GetReservationResponseDataUnassignedInner]] = Field(default=None, description="Unassigned Rooms information")
     cards_on_file: Optional[List[GetReservationResponseDataCardsOnFileInner]] = Field(default=None, description="Credit Cards stored for the reservation", alias="cardsOnFile")
@@ -60,7 +60,8 @@ class GetReservationResponseData(BaseModel):
     channel_provided_credit_card: Optional[StrictBool] = Field(default=None, description="Whether a credit card was provided by the channel. Only included for reservations originating from OTAs.", alias="channelProvidedCreditCard")
     group_inventory: Optional[List[GetReservationResponseDataGroupInventoryInner]] = Field(default=None, description="Aggregate allotment block information", alias="groupInventory")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
-    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard", "groupInventory", "origin"]
+    meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation Meal Plans", alias="mealPlans")
+    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard", "groupInventory", "origin", "mealPlans"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -118,13 +119,9 @@ class GetReservationResponseData(BaseModel):
                 if self.guest_list[_key_guest_list]:
                     _field_dict[_key_guest_list] = self.guest_list[_key_guest_list].to_dict()
             _dict['guestList'] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of each item in balance_detailed (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of balance_detailed
         if self.balance_detailed:
-            for _item_balance_detailed in self.balance_detailed:
-                if _item_balance_detailed:
-                    _items.append(_item_balance_detailed.to_dict())
-            _dict['balanceDetailed'] = _items
+            _dict['balanceDetailed'] = self.balance_detailed.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in assigned (list)
         _items = []
         if self.assigned:
@@ -212,7 +209,7 @@ class GetReservationResponseData(BaseModel):
             "status": obj.get("status"),
             "total": obj.get("total"),
             "balance": obj.get("balance"),
-            "balanceDetailed": [GetReservationResponseDataBalanceDetailedInner.from_dict(_item) for _item in obj["balanceDetailed"]] if obj.get("balanceDetailed") is not None else None,
+            "balanceDetailed": GetReservationResponseDataBalanceDetailed.from_dict(obj["balanceDetailed"]) if obj.get("balanceDetailed") is not None else None,
             "assigned": [GetReservationResponseDataAssignedInner.from_dict(_item) for _item in obj["assigned"]] if obj.get("assigned") is not None else None,
             "unassigned": [GetReservationResponseDataUnassignedInner.from_dict(_item) for _item in obj["unassigned"]] if obj.get("unassigned") is not None else None,
             "cardsOnFile": [GetReservationResponseDataCardsOnFileInner.from_dict(_item) for _item in obj["cardsOnFile"]] if obj.get("cardsOnFile") is not None else None,
@@ -222,7 +219,8 @@ class GetReservationResponseData(BaseModel):
             "allotmentBlockCode": obj.get("allotmentBlockCode"),
             "channelProvidedCreditCard": obj.get("channelProvidedCreditCard"),
             "groupInventory": [GetReservationResponseDataGroupInventoryInner.from_dict(_item) for _item in obj["groupInventory"]] if obj.get("groupInventory") is not None else None,
-            "origin": obj.get("origin")
+            "origin": obj.get("origin"),
+            "mealPlans": obj.get("mealPlans")
         })
         return _obj
 

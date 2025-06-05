@@ -26,6 +26,7 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
     """
     GetReservationsResponseDataInnerGuestListValueRoomsInner
     """ # noqa: E501
+    reservation_room_id: Optional[StrictStr] = Field(default=None, description="Reservation room ID where guest is assigned", alias="reservationRoomID")
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID where guest is assigned", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Room Name where guest is assigned", alias="roomName")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room Type Name where guest is assigned", alias="roomTypeName")
@@ -36,7 +37,7 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
     rate_plan_name: Optional[StrictStr] = Field(default=None, description="Rate plan name", alias="ratePlanName")
     room_status: Optional[StrictStr] = Field(default=None, alias="roomStatus")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "roomTypeNameShort", "rateID", "ratePlanName", "roomStatus", "subReservationID"]
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "roomTypeNameShort", "rateID", "ratePlanName", "roomStatus", "subReservationID"]
 
     @field_validator('room_status')
     def room_status_validate_enum(cls, value):
@@ -87,6 +88,11 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if reservation_room_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reservation_room_id is None and "reservation_room_id" in self.model_fields_set:
+            _dict['reservationRoomID'] = None
+
         # set to None if room_id (nullable) is None
         # and model_fields_set contains the field
         if self.room_id is None and "room_id" in self.model_fields_set:
@@ -149,6 +155,7 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "reservationRoomID": obj.get("reservationRoomID"),
             "roomID": obj.get("roomID"),
             "roomName": obj.get("roomName"),
             "roomTypeName": obj.get("roomTypeName"),
