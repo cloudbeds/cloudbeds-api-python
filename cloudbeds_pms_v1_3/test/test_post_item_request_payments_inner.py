@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.post_guest_credit_card_response import PostGuestCreditCardResponse
+from cloudbeds_pms_v1_3.models.post_item_request_payments_inner import PostItemRequestPaymentsInner
 
-class TestPostGuestCreditCardResponse(unittest.TestCase):
-    """PostGuestCreditCardResponse unit test stubs"""
+class TestPostItemRequestPaymentsInner(unittest.TestCase):
+    """PostItemRequestPaymentsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,25 +25,27 @@ class TestPostGuestCreditCardResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PostGuestCreditCardResponse:
-        """Test PostGuestCreditCardResponse
+    def make_instance(self, include_optional) -> PostItemRequestPaymentsInner:
+        """Test PostItemRequestPaymentsInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PostGuestCreditCardResponse`
+        # uncomment below to create an instance of `PostItemRequestPaymentsInner`
         """
-        model = PostGuestCreditCardResponse()
+        model = PostItemRequestPaymentsInner()
         if include_optional:
-            return PostGuestCreditCardResponse(
-                success = True
+            return PostItemRequestPaymentsInner(
+                payment_type = '',
+                amount = 1.337,
+                notes = ''
             )
         else:
-            return PostGuestCreditCardResponse(
+            return PostItemRequestPaymentsInner(
         )
         """
 
-    def testPostGuestCreditCardResponse(self):
-        """Test PostGuestCreditCardResponse"""
+    def testPostItemRequestPaymentsInner(self):
+        """Test PostItemRequestPaymentsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

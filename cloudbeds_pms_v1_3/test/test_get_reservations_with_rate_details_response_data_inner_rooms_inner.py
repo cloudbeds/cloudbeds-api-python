@@ -45,6 +45,7 @@ class TestGetReservationsWithRateDetailsResponseDataInnerRoomsInner(unittest.Tes
                 rate_name = '',
                 adults = '',
                 children = '',
+                reservation_room_id = '',
                 room_id = '',
                 room_name = '',
                 room_check_in = '',
@@ -52,7 +53,9 @@ class TestGetReservationsWithRateDetailsResponseDataInnerRoomsInner(unittest.Tes
                 room_status = 'cancelled',
                 detailed_room_rates = [
                     None
-                    ]
+                    ],
+                market_name = '',
+                market_code = ''
             )
         else:
             return GetReservationsWithRateDetailsResponseDataInnerRoomsInner(

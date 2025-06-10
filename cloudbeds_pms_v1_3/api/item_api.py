@@ -16,11 +16,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from datetime import date, datetime
+from datetime import datetime
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from cloudbeds_pms_v1_3.models.delete_item_from_reservation_response import DeleteItemFromReservationResponse
 from cloudbeds_pms_v1_3.models.get_item_categories_response import GetItemCategoriesResponse
 from cloudbeds_pms_v1_3.models.get_item_response import GetItemResponse
 from cloudbeds_pms_v1_3.models.get_items_response import GetItemsResponse
@@ -29,9 +28,8 @@ from cloudbeds_pms_v1_3.models.post_custom_item_request_items_inner import PostC
 from cloudbeds_pms_v1_3.models.post_custom_item_request_payments_inner import PostCustomItemRequestPaymentsInner
 from cloudbeds_pms_v1_3.models.post_custom_item_response import PostCustomItemResponse
 from cloudbeds_pms_v1_3.models.post_item_category_response import PostItemCategoryResponse
+from cloudbeds_pms_v1_3.models.post_item_request_payments_inner import PostItemRequestPaymentsInner
 from cloudbeds_pms_v1_3.models.post_item_response import PostItemResponse
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_request_payments_inner import PostItemToReservationRequestPaymentsInner
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_response import PostItemToReservationResponse
 from cloudbeds_pms_v1_3.models.post_items_to_inventory_request_item import PostItemsToInventoryRequestItem
 from cloudbeds_pms_v1_3.models.post_items_to_inventory_response import PostItemsToInventoryResponse
 from cloudbeds_pms_v1_3.models.post_void_item_response import PostVoidItemResponse
@@ -467,287 +465,6 @@ class ItemApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/appendCustomItem',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def delete_item_from_reservation_delete(
-        self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        sold_product_id: Annotated[StrictStr, Field(description="Item identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> DeleteItemFromReservationResponse:
-        """deleteItemFromReservation
-
-        Deletes the itemID transaction from the specified reservationID. If payments were sent in calls [postItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postItem) or [postCustomItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postCustomItem), they will be deleted too.
-
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param sold_product_id: Item identifier (required)
-        :type sold_product_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_item_from_reservation_delete_serialize(
-            reservation_id=reservation_id,
-            sold_product_id=sold_product_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteItemFromReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def delete_item_from_reservation_delete_with_http_info(
-        self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        sold_product_id: Annotated[StrictStr, Field(description="Item identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[DeleteItemFromReservationResponse]:
-        """deleteItemFromReservation
-
-        Deletes the itemID transaction from the specified reservationID. If payments were sent in calls [postItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postItem) or [postCustomItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postCustomItem), they will be deleted too.
-
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param sold_product_id: Item identifier (required)
-        :type sold_product_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_item_from_reservation_delete_serialize(
-            reservation_id=reservation_id,
-            sold_product_id=sold_product_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteItemFromReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def delete_item_from_reservation_delete_without_preload_content(
-        self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        sold_product_id: Annotated[StrictStr, Field(description="Item identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """deleteItemFromReservation
-
-        Deletes the itemID transaction from the specified reservationID. If payments were sent in calls [postItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postItem) or [postCustomItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postCustomItem), they will be deleted too.
-
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param sold_product_id: Item identifier (required)
-        :type sold_product_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_item_from_reservation_delete_serialize(
-            reservation_id=reservation_id,
-            sold_product_id=sold_product_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteItemFromReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _delete_item_from_reservation_delete_serialize(
-        self,
-        reservation_id,
-        sold_product_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if reservation_id is not None:
-            
-            _query_params.append(('reservationID', reservation_id))
-            
-        if sold_product_id is not None:
-            
-            _query_params.append(('soldProductID', sold_product_id))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'OAuth2', 
-            'api_key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/deleteItemFromReservation',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2396,7 +2113,7 @@ class ItemApi:
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
         sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
+        payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2437,7 +2154,7 @@ class ItemApi:
         :param sale_date: posting date
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
+        :type payments: List[PostItemRequestPaymentsInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2507,7 +2224,7 @@ class ItemApi:
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
         sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
+        payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2548,7 +2265,7 @@ class ItemApi:
         :param sale_date: posting date
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
+        :type payments: List[PostItemRequestPaymentsInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2618,7 +2335,7 @@ class ItemApi:
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
         sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
+        payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2659,7 +2376,7 @@ class ItemApi:
         :param sale_date: posting date
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
+        :type payments: List[PostItemRequestPaymentsInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2808,402 +2525,6 @@ class ItemApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/postItem',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def post_item_to_reservation_post(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
-        item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
-        item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
-        item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
-        item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
-        item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[date], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PostItemToReservationResponse:
-        """postItemToReservation
-
-        Adds an item to a reservation.
-
-        :param property_id: Property ID
-        :type property_id: str
-        :param reservation_id: Reservation identifier
-        :type reservation_id: str
-        :param item_id: Item identifier
-        :type item_id: str
-        :param item_quantity: Items quantity
-        :type item_quantity: int
-        :param item_price: Item price, if not sent, items registered price will be used
-        :type item_price: str
-        :param item_note: Item note
-        :type item_note: str
-        :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
-        :type item_paid: bool
-        :param sale_date: posting date
-        :type sale_date: date
-        :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_item_to_reservation_post_serialize(
-            property_id=property_id,
-            reservation_id=reservation_id,
-            item_id=item_id,
-            item_quantity=item_quantity,
-            item_price=item_price,
-            item_note=item_note,
-            item_paid=item_paid,
-            sale_date=sale_date,
-            payments=payments,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostItemToReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def post_item_to_reservation_post_with_http_info(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
-        item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
-        item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
-        item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
-        item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
-        item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[date], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PostItemToReservationResponse]:
-        """postItemToReservation
-
-        Adds an item to a reservation.
-
-        :param property_id: Property ID
-        :type property_id: str
-        :param reservation_id: Reservation identifier
-        :type reservation_id: str
-        :param item_id: Item identifier
-        :type item_id: str
-        :param item_quantity: Items quantity
-        :type item_quantity: int
-        :param item_price: Item price, if not sent, items registered price will be used
-        :type item_price: str
-        :param item_note: Item note
-        :type item_note: str
-        :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
-        :type item_paid: bool
-        :param sale_date: posting date
-        :type sale_date: date
-        :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_item_to_reservation_post_serialize(
-            property_id=property_id,
-            reservation_id=reservation_id,
-            item_id=item_id,
-            item_quantity=item_quantity,
-            item_price=item_price,
-            item_note=item_note,
-            item_paid=item_paid,
-            sale_date=sale_date,
-            payments=payments,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostItemToReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def post_item_to_reservation_post_without_preload_content(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
-        item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
-        item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
-        item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
-        item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
-        item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[date], Field(description="posting date")] = None,
-        payments: Annotated[Optional[List[PostItemToReservationRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """postItemToReservation
-
-        Adds an item to a reservation.
-
-        :param property_id: Property ID
-        :type property_id: str
-        :param reservation_id: Reservation identifier
-        :type reservation_id: str
-        :param item_id: Item identifier
-        :type item_id: str
-        :param item_quantity: Items quantity
-        :type item_quantity: int
-        :param item_price: Item price, if not sent, items registered price will be used
-        :type item_price: str
-        :param item_note: Item note
-        :type item_note: str
-        :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
-        :type item_paid: bool
-        :param sale_date: posting date
-        :type sale_date: date
-        :param payments: list of payments If the item is already paid
-        :type payments: List[PostItemToReservationRequestPaymentsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_item_to_reservation_post_serialize(
-            property_id=property_id,
-            reservation_id=reservation_id,
-            item_id=item_id,
-            item_quantity=item_quantity,
-            item_price=item_price,
-            item_note=item_note,
-            item_paid=item_paid,
-            sale_date=sale_date,
-            payments=payments,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostItemToReservationResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _post_item_to_reservation_post_serialize(
-        self,
-        property_id,
-        reservation_id,
-        item_id,
-        item_quantity,
-        item_price,
-        item_note,
-        item_paid,
-        sale_date,
-        payments,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-            'payments': 'csv',
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        if property_id is not None:
-            _form_params.append(('propertyID', property_id))
-        if reservation_id is not None:
-            _form_params.append(('reservationID', reservation_id))
-        if item_id is not None:
-            _form_params.append(('itemID', item_id))
-        if item_quantity is not None:
-            _form_params.append(('itemQuantity', item_quantity))
-        if item_price is not None:
-            _form_params.append(('itemPrice', item_price))
-        if item_note is not None:
-            _form_params.append(('itemNote', item_note))
-        if item_paid is not None:
-            _form_params.append(('itemPaid', item_paid))
-        if sale_date is not None:
-            _form_params.append(('saleDate', sale_date))
-        if payments is not None:
-            _form_params.append(('payments', payments))
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/x-www-form-urlencoded'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'OAuth2', 
-            'api_key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/postItemToReservation',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

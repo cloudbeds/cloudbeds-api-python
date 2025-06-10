@@ -25,8 +25,8 @@ from cloudbeds_pms_v1_3.models.get_rate_plans_response import GetRatePlansRespon
 from cloudbeds_pms_v1_3.models.get_rate_response import GetRateResponse
 from cloudbeds_pms_v1_3.models.post_patch_rate_request_rates_inner import PostPatchRateRequestRatesInner
 from cloudbeds_pms_v1_3.models.post_patch_rate_response import PostPatchRateResponse
-from cloudbeds_pms_v1_3.models.put_rate_request_rates_inner import PutRateRequestRatesInner
-from cloudbeds_pms_v1_3.models.put_rate_response import PutRateResponse
+from cloudbeds_pms_v1_3.models.post_put_rate_request_rates_inner import PostPutRateRequestRatesInner
+from cloudbeds_pms_v1_3.models.post_put_rate_response import PostPutRateResponse
 
 from cloudbeds_pms_v1_3.api_client import ApiClient, RequestSerialized
 from cloudbeds_pms_v1_3.api_response import ApiResponse
@@ -1423,9 +1423,9 @@ class RateApi:
 
 
     @validate_call
-    def put_rate_put(
+    def put_rate_post(
         self,
-        rates: Annotated[Optional[List[PutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
+        rates: Annotated[Optional[List[PostPutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1438,13 +1438,13 @@ class RateApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PutRateResponse:
+    ) -> PostPutRateResponse:
         """putRate
 
         Update the rate of the room based on rateID selected, based on the provided parameters. You can make multiple rate updates in a single API call. Providing a startDate and/or endDate will update rates only within the interval provided. Only non derived rates can be updated, requests to update a derived rate will return an error. This endpoint performs updates asynchronously,  rate updates are added to a queue and the endpoint returns a job reference ID. This job reference ID can be used to track job status notifications or to look up details of the update once it is completed. The API is limited to 30 interval per update, sending more than 30 will return an error.
 
         :param rates: Array of rates to update
-        :type rates: List[PutRateRequestRatesInner]
+        :type rates: List[PostPutRateRequestRatesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1467,7 +1467,7 @@ class RateApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._put_rate_put_serialize(
+        _param = self._put_rate_post_serialize(
             rates=rates,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1476,7 +1476,7 @@ class RateApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PutRateResponse",
+            '200': "PostPutRateResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1490,9 +1490,9 @@ class RateApi:
 
 
     @validate_call
-    def put_rate_put_with_http_info(
+    def put_rate_post_with_http_info(
         self,
-        rates: Annotated[Optional[List[PutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
+        rates: Annotated[Optional[List[PostPutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1505,13 +1505,13 @@ class RateApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PutRateResponse]:
+    ) -> ApiResponse[PostPutRateResponse]:
         """putRate
 
         Update the rate of the room based on rateID selected, based on the provided parameters. You can make multiple rate updates in a single API call. Providing a startDate and/or endDate will update rates only within the interval provided. Only non derived rates can be updated, requests to update a derived rate will return an error. This endpoint performs updates asynchronously,  rate updates are added to a queue and the endpoint returns a job reference ID. This job reference ID can be used to track job status notifications or to look up details of the update once it is completed. The API is limited to 30 interval per update, sending more than 30 will return an error.
 
         :param rates: Array of rates to update
-        :type rates: List[PutRateRequestRatesInner]
+        :type rates: List[PostPutRateRequestRatesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1534,7 +1534,7 @@ class RateApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._put_rate_put_serialize(
+        _param = self._put_rate_post_serialize(
             rates=rates,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1543,7 +1543,7 @@ class RateApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PutRateResponse",
+            '200': "PostPutRateResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1557,9 +1557,9 @@ class RateApi:
 
 
     @validate_call
-    def put_rate_put_without_preload_content(
+    def put_rate_post_without_preload_content(
         self,
-        rates: Annotated[Optional[List[PutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
+        rates: Annotated[Optional[List[PostPutRateRequestRatesInner]], Field(description="Array of rates to update")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1578,7 +1578,7 @@ class RateApi:
         Update the rate of the room based on rateID selected, based on the provided parameters. You can make multiple rate updates in a single API call. Providing a startDate and/or endDate will update rates only within the interval provided. Only non derived rates can be updated, requests to update a derived rate will return an error. This endpoint performs updates asynchronously,  rate updates are added to a queue and the endpoint returns a job reference ID. This job reference ID can be used to track job status notifications or to look up details of the update once it is completed. The API is limited to 30 interval per update, sending more than 30 will return an error.
 
         :param rates: Array of rates to update
-        :type rates: List[PutRateRequestRatesInner]
+        :type rates: List[PostPutRateRequestRatesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1601,7 +1601,7 @@ class RateApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._put_rate_put_serialize(
+        _param = self._put_rate_post_serialize(
             rates=rates,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1610,7 +1610,7 @@ class RateApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PutRateResponse",
+            '200': "PostPutRateResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1619,7 +1619,7 @@ class RateApi:
         return response_data.response
 
 
-    def _put_rate_put_serialize(
+    def _put_rate_post_serialize(
         self,
         rates,
         _request_auth,
@@ -1681,7 +1681,7 @@ class RateApi:
         ]
 
         return self.api_client.param_serialize(
-            method='PUT',
+            method='POST',
             resource_path='/putRate',
             path_params=_path_params,
             query_params=_query_params,

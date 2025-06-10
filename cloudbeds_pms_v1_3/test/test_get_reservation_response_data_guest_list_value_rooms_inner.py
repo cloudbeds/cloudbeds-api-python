@@ -35,6 +35,7 @@ class TestGetReservationResponseDataGuestListValueRoomsInner(unittest.TestCase):
         model = GetReservationResponseDataGuestListValueRoomsInner()
         if include_optional:
             return GetReservationResponseDataGuestListValueRoomsInner(
+                reservation_room_id = '',
                 room_id = '',
                 room_name = '',
                 room_type_name = '',

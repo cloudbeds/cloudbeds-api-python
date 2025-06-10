@@ -35,6 +35,7 @@ class TestGetReservationResponseDataAssignedInner(unittest.TestCase):
         model = GetReservationResponseDataAssignedInner()
         if include_optional:
             return GetReservationResponseDataAssignedInner(
+                reservation_room_id = '',
                 room_type_name = '',
                 room_type_name_short = '',
                 room_type_is_virtual = True,
@@ -52,7 +53,9 @@ class TestGetReservationResponseDataAssignedInner(unittest.TestCase):
                         date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         rate = 1.337, )
                     ],
-                room_total = 1.337
+                room_total = '',
+                market_name = '',
+                market_code = ''
             )
         else:
             return GetReservationResponseDataAssignedInner(

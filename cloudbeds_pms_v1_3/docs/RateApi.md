@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**get_rate_jobs_get**](RateApi.md#get_rate_jobs_get) | **GET** /getRateJobs | getRateJobs
 [**get_rate_plans_get**](RateApi.md#get_rate_plans_get) | **GET** /getRatePlans | getRatePlans
 [**patch_rate_post**](RateApi.md#patch_rate_post) | **POST** /patchRate | patchRate
-[**put_rate_put**](RateApi.md#put_rate_put) | **PUT** /putRate | putRate
+[**put_rate_post**](RateApi.md#put_rate_post) | **POST** /putRate | putRate
 
 
 # **get_rate_get**
@@ -372,8 +372,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **put_rate_put**
-> PutRateResponse put_rate_put(rates=rates)
+# **put_rate_post**
+> PostPutRateResponse put_rate_post(rates=rates)
 
 putRate
 
@@ -386,8 +386,8 @@ Update the rate of the room based on rateID selected, based on the provided para
 
 ```python
 import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.put_rate_request_rates_inner import PutRateRequestRatesInner
-from cloudbeds_pms_v1_3.models.put_rate_response import PutRateResponse
+from cloudbeds_pms_v1_3.models.post_put_rate_request_rates_inner import PostPutRateRequestRatesInner
+from cloudbeds_pms_v1_3.models.post_put_rate_response import PostPutRateResponse
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
 
@@ -414,15 +414,15 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.RateApi(api_client)
-    rates = [cloudbeds_pms_v1_3.PutRateRequestRatesInner()] # List[PutRateRequestRatesInner] | Array of rates to update (optional)
+    rates = [cloudbeds_pms_v1_3.PostPutRateRequestRatesInner()] # List[PostPutRateRequestRatesInner] | Array of rates to update (optional)
 
     try:
         # putRate
-        api_response = api_instance.put_rate_put(rates=rates)
-        print("The response of RateApi->put_rate_put:\n")
+        api_response = api_instance.put_rate_post(rates=rates)
+        print("The response of RateApi->put_rate_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RateApi->put_rate_put: %s\n" % e)
+        print("Exception when calling RateApi->put_rate_post: %s\n" % e)
 ```
 
 
@@ -432,11 +432,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rates** | [**List[PutRateRequestRatesInner]**](PutRateRequestRatesInner.md)| Array of rates to update | [optional] 
+ **rates** | [**List[PostPutRateRequestRatesInner]**](PostPutRateRequestRatesInner.md)| Array of rates to update | [optional] 
 
 ### Return type
 
-[**PutRateResponse**](PutRateResponse.md)
+[**PostPutRateResponse**](PostPutRateResponse.md)
 
 ### Authorization
 

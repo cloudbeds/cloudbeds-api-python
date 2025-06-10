@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**delete_app_property_settings_post**](AppSettingsApi.md#delete_app_property_settings_post) | **POST** /deleteAppPropertySettings | deleteAppPropertySettings
 [**get_app_property_settings_get**](AppSettingsApi.md#get_app_property_settings_get) | **GET** /getAppPropertySettings | getAppPropertySettings
 [**post_app_property_settings_post**](AppSettingsApi.md#post_app_property_settings_post) | **POST** /postAppPropertySettings | postAppPropertySettings
-[**post_bulk_app_property_settings_post**](AppSettingsApi.md#post_bulk_app_property_settings_post) | **POST** /postBulkAppPropertySettings | postBulkAppPropertySettings
 [**put_app_property_settings_post**](AppSettingsApi.md#put_app_property_settings_post) | **POST** /putAppPropertySettings | putAppPropertySettings
 
 
@@ -249,92 +248,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostAppPropertySettingResponse**](PostAppPropertySettingResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_bulk_app_property_settings_post**
-> PostBulkAppPropertySettingsResponse post_bulk_app_property_settings_post(property_id=property_id, app_client_id=app_client_id, settings=settings)
-
-postBulkAppPropertySettings
-
-
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* Api Key Authentication (api_key):
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_bulk_app_property_settings_response import PostBulkAppPropertySettingsResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.AppSettingsApi(api_client)
-    property_id = 'property_id_example' # str | Property ID (optional)
-    app_client_id = 'app_client_id_example' # str | Application Client ID (optional)
-    settings = 'settings_example' # str | JSON array of settings values (optional)
-
-    try:
-        # postBulkAppPropertySettings
-        api_response = api_instance.post_bulk_app_property_settings_post(property_id=property_id, app_client_id=app_client_id, settings=settings)
-        print("The response of AppSettingsApi->post_bulk_app_property_settings_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AppSettingsApi->post_bulk_app_property_settings_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Property ID | [optional] 
- **app_client_id** | **str**| Application Client ID | [optional] 
- **settings** | **str**| JSON array of settings values | [optional] 
-
-### Return type
-
-[**PostBulkAppPropertySettingsResponse**](PostBulkAppPropertySettingsResponse.md)
 
 ### Authorization
 

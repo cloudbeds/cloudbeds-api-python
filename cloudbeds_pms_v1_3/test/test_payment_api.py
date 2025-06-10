@@ -40,27 +40,6 @@ class TestPaymentApi(unittest.TestCase):
         """
         pass
 
-    def test_get_payments_get(self) -> None:
-        """Test case for get_payments_get
-
-        getPayments
-        """
-        pass
-
-    def test_get_pending_transactions_get(self) -> None:
-        """Test case for get_pending_transactions_get
-
-        getPendingTransactions
-        """
-        pass
-
-    def test_get_transactions_get(self) -> None:
-        """Test case for get_transactions_get
-
-        getTransactions
-        """
-        pass
-
     def test_post_charge_post(self) -> None:
         """Test case for post_charge_post
 
@@ -79,20 +58,6 @@ class TestPaymentApi(unittest.TestCase):
         """Test case for post_custom_payment_method_post
 
         postCustomPaymentMethod
-        """
-        pass
-
-    def test_post_payment_cash_post(self) -> None:
-        """Test case for post_payment_cash_post
-
-        postPaymentCash
-        """
-        pass
-
-    def test_post_payment_credit_card_post(self) -> None:
-        """Test case for post_payment_credit_card_post
-
-        postPaymentCreditCard
         """
         pass
 

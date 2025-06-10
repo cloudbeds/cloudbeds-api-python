@@ -5,14 +5,12 @@ All URIs are relative to *https://api.cloudbeds.com/api/v1.3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**append_custom_item_post**](ItemApi.md#append_custom_item_post) | **POST** /appendCustomItem | appendCustomItem
-[**delete_item_from_reservation_delete**](ItemApi.md#delete_item_from_reservation_delete) | **DELETE** /deleteItemFromReservation | deleteItemFromReservation
 [**get_item_categories_get**](ItemApi.md#get_item_categories_get) | **GET** /getItemCategories | getItemCategories
 [**get_item_get**](ItemApi.md#get_item_get) | **GET** /getItem | getItem
 [**get_items_get**](ItemApi.md#get_items_get) | **GET** /getItems | getItems
 [**post_custom_item_post**](ItemApi.md#post_custom_item_post) | **POST** /postCustomItem | postCustomItem
 [**post_item_category_post**](ItemApi.md#post_item_category_post) | **POST** /postItemCategory | postItemCategory
 [**post_item_post**](ItemApi.md#post_item_post) | **POST** /postItem | postItem
-[**post_item_to_reservation_post**](ItemApi.md#post_item_to_reservation_post) | **POST** /postItemToReservation | postItemToReservation
 [**post_items_to_inventory_post**](ItemApi.md#post_items_to_inventory_post) | **POST** /postItemsToInventory | postItemsToInventory
 [**post_void_item_post**](ItemApi.md#post_void_item_post) | **POST** /postVoidItem | postVoidItem
 [**put_item_to_inventory_put**](ItemApi.md#put_item_to_inventory_put) | **PUT** /putItemToInventory | putItemToInventory
@@ -112,90 +110,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_item_from_reservation_delete**
-> DeleteItemFromReservationResponse delete_item_from_reservation_delete(reservation_id, sold_product_id)
-
-deleteItemFromReservation
-
-Deletes the itemID transaction from the specified reservationID. If payments were sent in calls [postItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postItem) or [postCustomItem](https://api.cloudbeds.com/api/v1.1/docs/#api-Item-postCustomItem), they will be deleted too.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* Api Key Authentication (api_key):
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.delete_item_from_reservation_response import DeleteItemFromReservationResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier
-    sold_product_id = 'sold_product_id_example' # str | Item identifier
-
-    try:
-        # deleteItemFromReservation
-        api_response = api_instance.delete_item_from_reservation_delete(reservation_id, sold_product_id)
-        print("The response of ItemApi->delete_item_from_reservation_delete:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ItemApi->delete_item_from_reservation_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **reservation_id** | **str**| Reservation identifier | 
- **sold_product_id** | **str**| Item identifier | 
-
-### Return type
-
-[**DeleteItemFromReservationResponse**](DeleteItemFromReservationResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -668,8 +582,8 @@ Adds an item either to a reservation or to a house account.
 
 ```python
 import cloudbeds_pms_v1_3
+from cloudbeds_pms_v1_3.models.post_item_request_payments_inner import PostItemRequestPaymentsInner
 from cloudbeds_pms_v1_3.models.post_item_response import PostItemResponse
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_request_payments_inner import PostItemToReservationRequestPaymentsInner
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
 
@@ -707,7 +621,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     item_note = 'item_note_example' # str | Item note (optional)
     item_paid = False # bool | If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. (optional) (default to False)
     sale_date = '2013-10-20T19:20:30+01:00' # datetime | posting date (optional)
-    payments = [cloudbeds_pms_v1_3.PostItemToReservationRequestPaymentsInner()] # List[PostItemToReservationRequestPaymentsInner] | list of payments If the item is already paid (optional)
+    payments = [cloudbeds_pms_v1_3.PostItemRequestPaymentsInner()] # List[PostItemRequestPaymentsInner] | list of payments If the item is already paid (optional)
 
     try:
         # postItem
@@ -736,110 +650,11 @@ Name | Type | Description  | Notes
  **item_note** | **str**| Item note | [optional] 
  **item_paid** | **bool**| If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. | [optional] [default to False]
  **sale_date** | **datetime**| posting date | [optional] 
- **payments** | [**List[PostItemToReservationRequestPaymentsInner]**](PostItemToReservationRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
+ **payments** | [**List[PostItemRequestPaymentsInner]**](PostItemRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
 
 ### Return type
 
 [**PostItemResponse**](PostItemResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_item_to_reservation_post**
-> PostItemToReservationResponse post_item_to_reservation_post(property_id=property_id, reservation_id=reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
-
-postItemToReservation
-
-Adds an item to a reservation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* Api Key Authentication (api_key):
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_request_payments_inner import PostItemToReservationRequestPaymentsInner
-from cloudbeds_pms_v1_3.models.post_item_to_reservation_response import PostItemToReservationResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
-    property_id = 'property_id_example' # str | Property ID (optional)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier (optional)
-    item_id = 'item_id_example' # str | Item identifier (optional)
-    item_quantity = 56 # int | Items quantity (optional)
-    item_price = 'item_price_example' # str | Item price, if not sent, items registered price will be used (optional)
-    item_note = 'item_note_example' # str | Item note (optional)
-    item_paid = False # bool | If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. (optional) (default to False)
-    sale_date = '2013-10-20' # date | posting date (optional)
-    payments = [cloudbeds_pms_v1_3.PostItemToReservationRequestPaymentsInner()] # List[PostItemToReservationRequestPaymentsInner] | list of payments If the item is already paid (optional)
-
-    try:
-        # postItemToReservation
-        api_response = api_instance.post_item_to_reservation_post(property_id=property_id, reservation_id=reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
-        print("The response of ItemApi->post_item_to_reservation_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ItemApi->post_item_to_reservation_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Property ID | [optional] 
- **reservation_id** | **str**| Reservation identifier | [optional] 
- **item_id** | **str**| Item identifier | [optional] 
- **item_quantity** | **int**| Items quantity | [optional] 
- **item_price** | **str**| Item price, if not sent, items registered price will be used | [optional] 
- **item_note** | **str**| Item note | [optional] 
- **item_paid** | **bool**| If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. | [optional] [default to False]
- **sale_date** | **date**| posting date | [optional] 
- **payments** | [**List[PostItemToReservationRequestPaymentsInner]**](PostItemToReservationRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
-
-### Return type
-
-[**PostItemToReservationResponse**](PostItemToReservationResponse.md)
 
 ### Authorization
 

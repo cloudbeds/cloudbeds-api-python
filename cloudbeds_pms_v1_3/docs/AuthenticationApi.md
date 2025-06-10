@@ -4,75 +4,10 @@ All URIs are relative to *https://api.cloudbeds.com/api/v1.3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**access_token_check_post**](AuthenticationApi.md#access_token_check_post) | **POST** /access_token_check | access_token_check
 [**access_token_post**](AuthenticationApi.md#access_token_post) | **POST** /access_token | access_token
 [**oauth_metadata_get**](AuthenticationApi.md#oauth_metadata_get) | **GET** /oauth/metadata | metadata
 [**userinfo_get**](AuthenticationApi.md#userinfo_get) | **GET** /userinfo | userinfo
 
-
-# **access_token_check_post**
-> PostAccessTokenCheckResponse access_token_check_post()
-
-access_token_check
-
-A simple test method to determine if an API Key or an Access Token is valid. No request payload. Read the [Authentication guide](https://integrations.cloudbeds.com/hc/en-us/sections/14731510501915-Authentication) for implementation tips, user flows and testing advice.
-
-### Example
-
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_access_token_check_response import PostAccessTokenCheckResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.AuthenticationApi(api_client)
-
-    try:
-        # access_token_check
-        api_response = api_instance.access_token_check_post()
-        print("The response of AuthenticationApi->access_token_check_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->access_token_check_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**PostAccessTokenCheckResponse**](PostAccessTokenCheckResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **access_token_post**
 > PostAccessTokenResponse access_token_post(grant_type=grant_type, client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, code=code, refresh_token=refresh_token)

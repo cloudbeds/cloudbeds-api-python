@@ -60,6 +60,9 @@ class TestGetGuestResponse(unittest.TestCase):
                             custom_field_name = '', 
                             custom_field_value = '', )
                         ], 
+                    guest_requirements = [
+                        None
+                        ], 
                     special_requests = '', 
                     tax_id = '', 
                     company_tax_id = '', 

@@ -36,13 +36,13 @@ class TestGetTaxesAndFeesResponseDataInnerDateRangesInner(unittest.TestCase):
         if include_optional:
             return GetTaxesAndFeesResponseDataInnerDateRangesInner(
                 range = cloudbeds_pms_v1_3.models.range.range(),
-                amount = 1.337,
-                amount_adult = 1.337,
-                amount_child = 1.337,
+                amount = None,
+                amount_adult = None,
+                amount_child = None,
                 amount_rate_based = [
                     cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
-                        rate = 1.337, 
-                        percentage = 1.337, )
+                        rate = null, 
+                        percentage = null, )
                     ]
             )
         else:

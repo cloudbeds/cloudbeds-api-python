@@ -26,13 +26,6 @@ class TestHouseAccountApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_house_account_details_get(self) -> None:
-        """Test case for get_house_account_details_get
-
-        getHouseAccountDetails
-        """
-        pass
-
     def test_get_house_account_list_get(self) -> None:
         """Test case for get_house_account_list_get
 

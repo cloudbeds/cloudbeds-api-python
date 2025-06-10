@@ -75,13 +75,6 @@ class TestGuestApi(unittest.TestCase):
         """
         pass
 
-    def test_post_guest_credit_card_post(self) -> None:
-        """Test case for post_guest_credit_card_post
-
-        postGuestCreditCard
-        """
-        pass
-
     def test_post_guest_document_post(self) -> None:
         """Test case for post_guest_document_post
 

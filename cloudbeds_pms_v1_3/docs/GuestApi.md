@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**get_guests_by_filter_get**](GuestApi.md#get_guests_by_filter_get) | **GET** /getGuestsByFilter | getGuestsByFilter
 [**get_guests_by_status_get**](GuestApi.md#get_guests_by_status_get) | **GET** /getGuestsByStatus | getGuestsByStatus
 [**get_guests_modified_get**](GuestApi.md#get_guests_modified_get) | **GET** /getGuestsModified | getGuestsModified
-[**post_guest_credit_card_post**](GuestApi.md#post_guest_credit_card_post) | **POST** /postGuestCreditCard | postGuestCreditCard
 [**post_guest_document_post**](GuestApi.md#post_guest_document_post) | **POST** /postGuestDocument | postGuestDocument
 [**post_guest_note_post**](GuestApi.md#post_guest_note_post) | **POST** /postGuestNote | postGuestNote
 [**post_guest_photo_post**](GuestApi.md#post_guest_photo_post) | **POST** /postGuestPhoto | postGuestPhoto
@@ -679,100 +678,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_guest_credit_card_post**
-> PostGuestCreditCardResponse post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv, validate=validate)
-
-postGuestCreditCard
-
-Add a new credit card to guest file
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* Api Key Authentication (api_key):
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_guest_credit_card_response import PostGuestCreditCardResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.GuestApi(api_client)
-    reservation_id = 'reservation_id_example' # str | Reservation Unique Identifier (optional)
-    card_name = 'card_name_example' # str | Cardholder Name, as written in card (optional)
-    card_number = 'card_number_example' # str | Credit Card number (optional)
-    card_expiry_month = 56 # int | Credit Card expiration month (optional)
-    card_expiry_year = 56 # int | Credit Card expiration year (2 or 4 digits) (optional)
-    card_cvv = 'card_cvv_example' # str | Credit Card CVV code (optional)
-    validate = True # bool | should the card be validated? If true, the card will be validated against the payment gateway. (optional)
-
-    try:
-        # postGuestCreditCard
-        api_response = api_instance.post_guest_credit_card_post(reservation_id=reservation_id, card_name=card_name, card_number=card_number, card_expiry_month=card_expiry_month, card_expiry_year=card_expiry_year, card_cvv=card_cvv, validate=validate)
-        print("The response of GuestApi->post_guest_credit_card_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling GuestApi->post_guest_credit_card_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **reservation_id** | **str**| Reservation Unique Identifier | [optional] 
- **card_name** | **str**| Cardholder Name, as written in card | [optional] 
- **card_number** | **str**| Credit Card number | [optional] 
- **card_expiry_month** | **int**| Credit Card expiration month | [optional] 
- **card_expiry_year** | **int**| Credit Card expiration year (2 or 4 digits) | [optional] 
- **card_cvv** | **str**| Credit Card CVV code | [optional] 
- **validate** | **bool**| should the card be validated? If true, the card will be validated against the payment gateway. | [optional] 
-
-### Return type
-
-[**PostGuestCreditCardResponse**](PostGuestCreditCardResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

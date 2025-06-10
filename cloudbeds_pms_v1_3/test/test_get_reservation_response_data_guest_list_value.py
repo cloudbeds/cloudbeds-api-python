@@ -49,22 +49,25 @@ class TestGetReservationResponseDataGuestListValue(unittest.TestCase):
                 guest_country = '',
                 guest_zip = '',
                 guest_status = 'in_progress',
-                guest_birthdate = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                guest_birthdate = None,
                 guest_document_type = '',
                 guest_document_number = '',
-                guest_document_issue_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                guest_document_issue_date = None,
                 guest_document_issuing_country = '',
-                guest_document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                guest_document_expiration_date = None,
                 tax_id = '',
                 company_tax_id = '',
                 company_name = '',
-                assigned_room = '',
+                assigned_room = True,
                 is_anonymized = True,
                 room_id = '',
                 room_name = '',
                 room_type_name = '',
                 room_type_is_virtual = True,
                 is_main_guest = True,
+                guest_requirements = [
+                    None
+                    ],
                 custom_fields = [
                     cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner.GetReservationResponse_data_guestList_value_customFields_inner(
                         custom_field_name = '', 
@@ -72,6 +75,7 @@ class TestGetReservationResponseDataGuestListValue(unittest.TestCase):
                     ],
                 rooms = [
                     cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_rooms_inner.GetReservationResponse_data_guestList_value_rooms_inner(
+                        reservation_room_id = '', 
                         room_id = '', 
                         room_name = '', 
                         room_type_name = '', 
@@ -80,6 +84,7 @@ class TestGetReservationResponseDataGuestListValue(unittest.TestCase):
                     ],
                 unassigned_rooms = [
                     cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_unassigned_rooms_inner.GetReservationResponse_data_guestList_value_unassignedRooms_inner(
+                        reservation_room_id = '', 
                         room_type_id = '', 
                         room_type_name = '', 
                         room_type_is_virtual = True, 

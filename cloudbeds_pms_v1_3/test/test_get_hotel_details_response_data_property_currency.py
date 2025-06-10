@@ -37,7 +37,9 @@ class TestGetHotelDetailsResponseDataPropertyCurrency(unittest.TestCase):
             return GetHotelDetailsResponseDataPropertyCurrency(
                 currency_code = '',
                 currency_symbol = '',
-                currency_position = 'before'
+                currency_position = 'before',
+                currency_decimal_separator = '',
+                currency_thousands_separator = ''
             )
         else:
             return GetHotelDetailsResponseDataPropertyCurrency(

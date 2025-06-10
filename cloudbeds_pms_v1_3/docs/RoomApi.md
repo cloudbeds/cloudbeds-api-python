@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**post_room_block_post**](RoomApi.md#post_room_block_post) | **POST** /postRoomBlock | postRoomBlock
 [**post_room_check_in_post**](RoomApi.md#post_room_check_in_post) | **POST** /postRoomCheckIn | postRoomCheckIn
 [**post_room_check_out_post**](RoomApi.md#post_room_check_out_post) | **POST** /postRoomCheckOut | postRoomCheckOut
-[**post_room_type_post**](RoomApi.md#post_room_type_post) | **POST** /postRoomType | postRoomType
 [**put_room_block_put**](RoomApi.md#put_room_block_put) | **PUT** /putRoomBlock | putRoomBlock
 
 
@@ -1115,104 +1114,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostRoomCheckOutResponse**](PostRoomCheckOutResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_room_type_post**
-> PostRoomTypeResponse post_room_type_post(property_id=property_id, room_type_name=room_type_name, room_type_name_short=room_type_name_short, room_type_description=room_type_description, max_guests=max_guests, adults_included=adults_included, children_included=children_included, rooms_available=rooms_available, is_private=is_private)
-
-postRoomType
-
-Create a new accommodation type
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* Api Key Authentication (api_key):
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_room_type_response import PostRoomTypeResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.RoomApi(api_client)
-    property_id = 'property_id_example' # str | Property ID (optional)
-    room_type_name = 'room_type_name_example' # str | Room Type Name (optional)
-    room_type_name_short = 'room_type_name_short_example' # str | Room Type Short Name (optional)
-    room_type_description = 'room_type_description_example' # str | Room Type Description (optional)
-    max_guests = 56 # int | Max number of guests allowed in the room type (optional)
-    adults_included = 56 # int | Number of adults included on the basic room rate (optional)
-    children_included = 56 # int | Number of children included on the basic room rate (optional)
-    rooms_available = 56 # int | Number of rooms available, based on the parameters provided (optional)
-    is_private = True # bool | If room is private (true) or shared (false) (optional)
-
-    try:
-        # postRoomType
-        api_response = api_instance.post_room_type_post(property_id=property_id, room_type_name=room_type_name, room_type_name_short=room_type_name_short, room_type_description=room_type_description, max_guests=max_guests, adults_included=adults_included, children_included=children_included, rooms_available=rooms_available, is_private=is_private)
-        print("The response of RoomApi->post_room_type_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RoomApi->post_room_type_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Property ID | [optional] 
- **room_type_name** | **str**| Room Type Name | [optional] 
- **room_type_name_short** | **str**| Room Type Short Name | [optional] 
- **room_type_description** | **str**| Room Type Description | [optional] 
- **max_guests** | **int**| Max number of guests allowed in the room type | [optional] 
- **adults_included** | **int**| Number of adults included on the basic room rate | [optional] 
- **children_included** | **int**| Number of children included on the basic room rate | [optional] 
- **rooms_available** | **int**| Number of rooms available, based on the parameters provided | [optional] 
- **is_private** | **bool**| If room is private (true) or shared (false) | [optional] 
-
-### Return type
-
-[**PostRoomTypeResponse**](PostRoomTypeResponse.md)
 
 ### Authorization
 

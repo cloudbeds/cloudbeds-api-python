@@ -18,16 +18,13 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import List, Optional, Union
+from typing import Optional, Union
 from typing_extensions import Annotated
 from cloudbeds_pms_v1_3.models.delete_webhook_response import DeleteWebhookResponse
 from cloudbeds_pms_v1_3.models.get_app_settings_response import GetAppSettingsResponse
 from cloudbeds_pms_v1_3.models.get_app_state_response import GetAppStateResponse
 from cloudbeds_pms_v1_3.models.get_webhooks_response import GetWebhooksResponse
 from cloudbeds_pms_v1_3.models.post_app_error_response import PostAppErrorResponse
-from cloudbeds_pms_v1_3.models.post_app_settings_request_settings_inner import PostAppSettingsRequestSettingsInner
-from cloudbeds_pms_v1_3.models.post_app_settings_response import PostAppSettingsResponse
-from cloudbeds_pms_v1_3.models.post_app_state_internal_response import PostAppStateInternalResponse
 from cloudbeds_pms_v1_3.models.post_app_state_response import PostAppStateResponse
 from cloudbeds_pms_v1_3.models.post_government_receipt_response import PostGovernmentReceiptResponse
 from cloudbeds_pms_v1_3.models.post_webhook_response import PostWebhookResponse
@@ -309,6 +306,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -571,6 +570,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -595,7 +596,6 @@ class IntegrationApi:
     def get_app_state_get(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -611,12 +611,10 @@ class IntegrationApi:
     ) -> GetAppStateResponse:
         """getAppState
 
-        Get the current app integration state for a property.<br /> This call is only available for internal usage. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
+        Get the current app integration state for a property.<br /> This call is only available for third-party integration partners, and not for property client IDs. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
 
         :param property_id: Property identifier to be queried
         :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -641,7 +639,6 @@ class IntegrationApi:
 
         _param = self._get_app_state_get_serialize(
             property_id=property_id,
-            client_id=client_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -666,7 +663,6 @@ class IntegrationApi:
     def get_app_state_get_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -682,12 +678,10 @@ class IntegrationApi:
     ) -> ApiResponse[GetAppStateResponse]:
         """getAppState
 
-        Get the current app integration state for a property.<br /> This call is only available for internal usage. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
+        Get the current app integration state for a property.<br /> This call is only available for third-party integration partners, and not for property client IDs. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
 
         :param property_id: Property identifier to be queried
         :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -712,7 +706,6 @@ class IntegrationApi:
 
         _param = self._get_app_state_get_serialize(
             property_id=property_id,
-            client_id=client_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -737,7 +730,6 @@ class IntegrationApi:
     def get_app_state_get_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -753,12 +745,10 @@ class IntegrationApi:
     ) -> RESTResponseType:
         """getAppState
 
-        Get the current app integration state for a property.<br /> This call is only available for internal usage. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
+        Get the current app integration state for a property.<br /> This call is only available for third-party integration partners, and not for property client IDs. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
 
         :param property_id: Property identifier to be queried
         :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -783,7 +773,6 @@ class IntegrationApi:
 
         _param = self._get_app_state_get_serialize(
             property_id=property_id,
-            client_id=client_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -803,7 +792,6 @@ class IntegrationApi:
     def _get_app_state_get_serialize(
         self,
         property_id,
-        client_id,
         _request_auth,
         _content_type,
         _headers,
@@ -830,10 +818,6 @@ class IntegrationApi:
             
             _query_params.append(('propertyID', property_id))
             
-        if client_id is not None:
-            
-            _query_params.append(('clientID', client_id))
-            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -850,6 +834,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -1112,6 +1098,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -1528,598 +1516,6 @@ class IntegrationApi:
 
 
     @validate_call
-    def post_app_settings_post(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        settings: Annotated[Optional[List[PostAppSettingsRequestSettingsInner]], Field(description="An array of setings")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PostAppSettingsResponse:
-        """postAppSettings
-
-        Update the current app settings for a property.<br />
-
-        :param property_id: Property identifier to be queried
-        :type property_id: str
-        :param settings: An array of setings
-        :type settings: List[PostAppSettingsRequestSettingsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_settings_post_serialize(
-            property_id=property_id,
-            settings=settings,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppSettingsResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def post_app_settings_post_with_http_info(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        settings: Annotated[Optional[List[PostAppSettingsRequestSettingsInner]], Field(description="An array of setings")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PostAppSettingsResponse]:
-        """postAppSettings
-
-        Update the current app settings for a property.<br />
-
-        :param property_id: Property identifier to be queried
-        :type property_id: str
-        :param settings: An array of setings
-        :type settings: List[PostAppSettingsRequestSettingsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_settings_post_serialize(
-            property_id=property_id,
-            settings=settings,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppSettingsResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def post_app_settings_post_without_preload_content(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be queried")] = None,
-        settings: Annotated[Optional[List[PostAppSettingsRequestSettingsInner]], Field(description="An array of setings")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """postAppSettings
-
-        Update the current app settings for a property.<br />
-
-        :param property_id: Property identifier to be queried
-        :type property_id: str
-        :param settings: An array of setings
-        :type settings: List[PostAppSettingsRequestSettingsInner]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_settings_post_serialize(
-            property_id=property_id,
-            settings=settings,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppSettingsResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _post_app_settings_post_serialize(
-        self,
-        property_id,
-        settings,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-            'settings': 'csv',
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        if property_id is not None:
-            _form_params.append(('propertyID', property_id))
-        if settings is not None:
-            _form_params.append(('settings', settings))
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/x-www-form-urlencoded'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/postAppSettings',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def post_app_state_internal_post(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be updated")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
-        app_state: Annotated[Optional[StrictStr], Field(description="Current integration state between third-party and property.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PostAppStateInternalResponse:
-        """postAppStateInternal
-
-        Update app integration state for a property ID. <br /> This call is only available for internal usage. <br /> If an app is set to 'disabled', it will remove all active sessions Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
-
-        :param property_id: Property identifier to be updated
-        :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
-        :param app_state: Current integration state between third-party and property.
-        :type app_state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_state_internal_post_serialize(
-            property_id=property_id,
-            client_id=client_id,
-            app_state=app_state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppStateInternalResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def post_app_state_internal_post_with_http_info(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be updated")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
-        app_state: Annotated[Optional[StrictStr], Field(description="Current integration state between third-party and property.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PostAppStateInternalResponse]:
-        """postAppStateInternal
-
-        Update app integration state for a property ID. <br /> This call is only available for internal usage. <br /> If an app is set to 'disabled', it will remove all active sessions Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
-
-        :param property_id: Property identifier to be updated
-        :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
-        :param app_state: Current integration state between third-party and property.
-        :type app_state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_state_internal_post_serialize(
-            property_id=property_id,
-            client_id=client_id,
-            app_state=app_state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppStateInternalResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def post_app_state_internal_post_without_preload_content(
-        self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be updated")] = None,
-        client_id: Annotated[Optional[StrictStr], Field(description="Client identifier")] = None,
-        app_state: Annotated[Optional[StrictStr], Field(description="Current integration state between third-party and property.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """postAppStateInternal
-
-        Update app integration state for a property ID. <br /> This call is only available for internal usage. <br /> If an app is set to 'disabled', it will remove all active sessions Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
-
-        :param property_id: Property identifier to be updated
-        :type property_id: str
-        :param client_id: Client identifier
-        :type client_id: str
-        :param app_state: Current integration state between third-party and property.
-        :type app_state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._post_app_state_internal_post_serialize(
-            property_id=property_id,
-            client_id=client_id,
-            app_state=app_state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PostAppStateInternalResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _post_app_state_internal_post_serialize(
-        self,
-        property_id,
-        client_id,
-        app_state,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        if property_id is not None:
-            _form_params.append(('propertyID', property_id))
-        if client_id is not None:
-            _form_params.append(('clientID', client_id))
-        if app_state is not None:
-            _form_params.append(('appState', app_state))
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/x-www-form-urlencoded'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/postAppStateInternal',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def post_app_state_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property identifier to be updated")] = None,
@@ -2387,6 +1783,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -2765,6 +2163,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(
@@ -3083,6 +2483,8 @@ class IntegrationApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2', 
+            'api_key'
         ]
 
         return self.api_client.param_serialize(

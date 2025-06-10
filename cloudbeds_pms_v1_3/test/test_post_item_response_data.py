@@ -36,7 +36,7 @@ class TestPostItemResponseData(unittest.TestCase):
         if include_optional:
             return PostItemResponseData(
                 sold_product_id = '',
-                external_relation_id = '',
+                transaction_id = '',
                 transaction_status = '',
                 remaining_item_quantity = 56,
                 reorder_needed = True,

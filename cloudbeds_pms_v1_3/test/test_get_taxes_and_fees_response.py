@@ -40,22 +40,24 @@ class TestGetTaxesAndFeesResponse(unittest.TestCase):
                 data = [
                     cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner.GetTaxesAndFeesResponse_data_inner(
                         type = 'fee', 
-                        fee_id = 56, 
-                        tax_id = 56, 
+                        fee_id = '', 
+                        tax_id = '', 
                         name = '', 
                         code = '', 
-                        amount = 1.337, 
-                        amount_adult = 1.337, 
-                        amount_child = 1.337, 
+                        amount = '', 
+                        amount_adult = '', 
+                        amount_child = '', 
                         amount_rate_based = [
                             cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
-                                rate = 1.337, 
-                                percentage = 1.337, )
+                                rate = null, 
+                                percentage = null, )
                             ], 
                         amount_type = 'percentage', 
-                        available_for = product, 
+                        available_for = [
+                            'product'
+                            ], 
                         fees_charged = [
-                            56
+                            ''
                             ], 
                         inclusive_or_exclusive = 'inclusive', 
                         is_deleted = True, 
@@ -70,9 +72,9 @@ class TestGetTaxesAndFeesResponse(unittest.TestCase):
                         date_ranges = [
                             cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner(
                                 range = cloudbeds_pms_v1_3.models.range.range(), 
-                                amount = 1.337, 
-                                amount_adult = 1.337, 
-                                amount_child = 1.337, )
+                                amount = null, 
+                                amount_adult = null, 
+                                amount_child = null, )
                             ], )
                     ],
                 total = 56

@@ -7,7 +7,7 @@ Sold product details
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sold_product_id** | **str** | Sold product identifier (Usable to void this product in future). | [optional] 
-**external_relation_id** | **str** | Same as sold product ID in case of this endpoint. Together with external relation kind (ITEM) it can be used to get transaction from Accounting API | [optional] 
+**transaction_id** | **str** | Transaction identifier | [optional] 
 **transaction_status** | **str** | Transaction Status is returned \&quot;Pending\&quot; when sale date is in the future. | [optional] 
 **remaining_item_quantity** | **int** | Remaining number of items in stock (if applicable) | [optional] 
 **reorder_needed** | **bool** | true - Whether item is at or below value set for reorder threshold. | [optional] 

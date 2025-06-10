@@ -35,6 +35,7 @@ class TestGetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(uni
         model = GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner()
         if include_optional:
             return GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(
+                reservation_room_id = '',
                 room_type_id = '',
                 room_type_name = '',
                 room_type_is_virtual = True,

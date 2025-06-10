@@ -35,6 +35,7 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
         model = GetReservationsWithRateDetailsResponseDataInner()
         if include_optional:
             return GetReservationsWithRateDetailsResponseDataInner(
+                property_id = '',
                 reservation_id = '',
                 is_deleted = True,
                 date_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -61,7 +62,7 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                 source_reservation_id = 56,
                 property_currency = 56,
                 balance_detailed = [
-                    cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_inner.GetReservationResponse_data_balanceDetailed_inner(
+                    cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_one_of.GetReservationResponse_data_balanceDetailed_oneOf(
                         suggested_deposit = '', 
                         sub_total = 1.337, 
                         additional_items = 1.337, 
@@ -84,6 +85,7 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                         rate_name = '', 
                         adults = '', 
                         children = '', 
+                        reservation_room_id = '', 
                         room_id = '', 
                         room_name = '', 
                         room_check_in = '', 
@@ -91,9 +93,91 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                         room_status = 'cancelled', 
                         detailed_room_rates = [
                             None
-                            ], )
+                            ], 
+                        market_name = '', 
+                        market_code = '', )
                     ],
-                origin = ''
+                origin = '',
+                meal_plans = '',
+                guest_list = {
+                    'key' : cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value.GetReservationsResponse_data_inner_guestList_value(
+                        guest_id = '', 
+                        guest_name = '', 
+                        guest_first_name = '', 
+                        guest_last_name = '', 
+                        guest_gender = 'M', 
+                        guest_email = '', 
+                        guest_phone = '', 
+                        guest_cell_phone = '', 
+                        guest_address = '', 
+                        guest_address2 = '', 
+                        guest_city = '', 
+                        guest_state = '', 
+                        guest_country = '', 
+                        guest_zip = '', 
+                        guest_birthdate = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        guest_document_type = '', 
+                        guest_document_number = '', 
+                        guest_document_issue_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        guest_document_issuing_country = '', 
+                        guest_document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        tax_id = '', 
+                        company_tax_id = '', 
+                        company_name = '', 
+                        sub_reservation_id = '', 
+                        start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        assigned_room = '', 
+                        room_id = '', 
+                        room_name = '', 
+                        room_type_name = '', 
+                        room_type_is_virtual = True, 
+                        rooms = [
+                            cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_rooms_inner.GetReservationsResponse_data_inner_guestList_value_rooms_inner(
+                                reservation_room_id = '', 
+                                room_id = '', 
+                                room_name = '', 
+                                room_type_name = '', 
+                                room_type_is_virtual = True, 
+                                room_type_id = '', 
+                                room_type_name_short = '', 
+                                rate_id = '', 
+                                rate_plan_name = '', 
+                                room_status = 'in_house', 
+                                sub_reservation_id = '', )
+                            ], 
+                        unassigned_rooms = [
+                            cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_unassigned_rooms_inner.GetReservationsResponse_data_inner_guestList_value_unassignedRooms_inner(
+                                reservation_room_id = '', 
+                                room_type_id = '', 
+                                room_type_name = '', 
+                                room_type_is_virtual = True, 
+                                room_type_name_short = '', 
+                                rate_id = '', 
+                                rate_plan_name = '', 
+                                sub_reservation_id = '', )
+                            ], 
+                        guest_requirements = [
+                            None
+                            ], 
+                        custom_fields = [
+                            cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
+                                custom_field_name = '', 
+                                custom_field_value = '', )
+                            ], 
+                        is_anonymized = True, 
+                        is_main_guest = True, )
+                    },
+                third_party_identifier = '',
+                custom_fields = [
+                    cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
+                        custom_field_name = '', 
+                        custom_field_value = '', )
+                    ],
+                estimated_arrival_time = '',
+                total = 1.337,
+                balance = 1.337,
+                date_imported = ''
             )
         else:
             return GetReservationsWithRateDetailsResponseDataInner(
