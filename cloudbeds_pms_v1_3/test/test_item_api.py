@@ -33,13 +33,6 @@ class TestItemApi(unittest.TestCase):
         """
         pass
 
-    def test_delete_item_from_reservation_delete(self) -> None:
-        """Test case for delete_item_from_reservation_delete
-
-        deleteItemFromReservation
-        """
-        pass
-
     def test_get_item_categories_get(self) -> None:
         """Test case for get_item_categories_get
 
@@ -79,13 +72,6 @@ class TestItemApi(unittest.TestCase):
         """Test case for post_item_post
 
         postItem
-        """
-        pass
-
-    def test_post_item_to_reservation_post(self) -> None:
-        """Test case for post_item_to_reservation_post
-
-        postItemToReservation
         """
         pass
 

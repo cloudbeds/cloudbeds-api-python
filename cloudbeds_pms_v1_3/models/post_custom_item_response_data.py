@@ -27,9 +27,9 @@ class PostCustomItemResponseData(BaseModel):
     Sold product details
     """ # noqa: E501
     sold_product_id: Optional[StrictStr] = Field(default=None, description="Sold product identifier (Usable to void this product in future).", alias="soldProductID")
-    external_relation_id: Optional[StrictStr] = Field(default=None, description="Same as sold product ID in case of this endpoint. Together with external relation kind ITEM_POS it can be used to get transaction from Accounting API", alias="externalRelationID")
+    transaction_id: Optional[StrictStr] = Field(default=None, description="Transaction identifier", alias="transactionID")
     notice: Optional[StrictStr] = Field(default=None, description="In case that a referenceID was sent, for second time, this field will alert that nothing was created or updated.")
-    __properties: ClassVar[List[str]] = ["soldProductID", "externalRelationID", "notice"]
+    __properties: ClassVar[List[str]] = ["soldProductID", "transactionID", "notice"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class PostCustomItemResponseData(BaseModel):
 
         _obj = cls.model_validate({
             "soldProductID": obj.get("soldProductID"),
-            "externalRelationID": obj.get("externalRelationID"),
+            "transactionID": obj.get("transactionID"),
             "notice": obj.get("notice")
         })
         return _obj

@@ -54,8 +54,8 @@ class TestRateApi(unittest.TestCase):
         """
         pass
 
-    def test_put_rate_put(self) -> None:
-        """Test case for put_rate_put
+    def test_put_rate_post(self) -> None:
+        """Test case for put_rate_post
 
         putRate
         """

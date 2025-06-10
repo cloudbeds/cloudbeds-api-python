@@ -9,8 +9,6 @@ Method | HTTP request | Description
 [**get_app_state_get**](IntegrationApi.md#get_app_state_get) | **GET** /getAppState | getAppState
 [**get_webhooks_get**](IntegrationApi.md#get_webhooks_get) | **GET** /getWebhooks | getWebhooks
 [**post_app_error_post**](IntegrationApi.md#post_app_error_post) | **POST** /postAppError | postAppError
-[**post_app_settings_post**](IntegrationApi.md#post_app_settings_post) | **POST** /postAppSettings | postAppSettings
-[**post_app_state_internal_post**](IntegrationApi.md#post_app_state_internal_post) | **POST** /postAppStateInternal | postAppStateInternal
 [**post_app_state_post**](IntegrationApi.md#post_app_state_post) | **POST** /postAppState | postAppState
 [**post_government_receipt_post**](IntegrationApi.md#post_government_receipt_post) | **POST** /postGovernmentReceipt | postGovernmentReceipt
 [**post_webhook_post**](IntegrationApi.md#post_webhook_post) | **POST** /postWebhook | postWebhook
@@ -25,6 +23,8 @@ Remove subscription for webhook. Read the [Webhooks guide](https://integrations.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -38,6 +38,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -71,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -95,6 +107,8 @@ Get the current app settings for a property.<br />
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -108,6 +122,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -139,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -155,14 +181,16 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_app_state_get**
-> GetAppStateResponse get_app_state_get(property_id=property_id, client_id=client_id)
+> GetAppStateResponse get_app_state_get(property_id=property_id)
 
 getAppState
 
-Get the current app integration state for a property.<br /> This call is only available for internal usage. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
+Get the current app integration state for a property.<br /> This call is only available for third-party integration partners, and not for property client IDs. Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -176,17 +204,28 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.IntegrationApi(api_client)
     property_id = 'property_id_example' # str | Property identifier to be queried (optional)
-    client_id = 'client_id_example' # str | Client identifier (optional)
 
     try:
         # getAppState
-        api_response = api_instance.get_app_state_get(property_id=property_id, client_id=client_id)
+        api_response = api_instance.get_app_state_get(property_id=property_id)
         print("The response of IntegrationApi->get_app_state_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -201,7 +240,6 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property identifier to be queried | [optional] 
- **client_id** | **str**| Client identifier | [optional] 
 
 ### Return type
 
@@ -209,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -233,6 +271,8 @@ List webhooks for which the API client is subscribed to.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -246,6 +286,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -277,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -390,149 +442,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_app_settings_post**
-> PostAppSettingsResponse post_app_settings_post(property_id=property_id, settings=settings)
-
-postAppSettings
-
-Update the current app settings for a property.<br />
-
-### Example
-
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_app_settings_request_settings_inner import PostAppSettingsRequestSettingsInner
-from cloudbeds_pms_v1_3.models.post_app_settings_response import PostAppSettingsResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.IntegrationApi(api_client)
-    property_id = 'property_id_example' # str | Property identifier to be queried (optional)
-    settings = [cloudbeds_pms_v1_3.PostAppSettingsRequestSettingsInner()] # List[PostAppSettingsRequestSettingsInner] | An array of setings (optional)
-
-    try:
-        # postAppSettings
-        api_response = api_instance.post_app_settings_post(property_id=property_id, settings=settings)
-        print("The response of IntegrationApi->post_app_settings_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling IntegrationApi->post_app_settings_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Property identifier to be queried | [optional] 
- **settings** | [**List[PostAppSettingsRequestSettingsInner]**](PostAppSettingsRequestSettingsInner.md)| An array of setings | [optional] 
-
-### Return type
-
-[**PostAppSettingsResponse**](PostAppSettingsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_app_state_internal_post**
-> PostAppStateInternalResponse post_app_state_internal_post(property_id=property_id, client_id=client_id, app_state=app_state)
-
-postAppStateInternal
-
-Update app integration state for a property ID. <br /> This call is only available for internal usage. <br /> If an app is set to 'disabled', it will remove all active sessions Read the [Connecting/Disconnecting Apps guide](https://integrations.cloudbeds.com/hc/en-us/articles/360007613213-Connecting-Disconnecting-Apps) to further understand the use cases.
-
-### Example
-
-
-```python
-import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.post_app_state_internal_response import PostAppStateInternalResponse
-from cloudbeds_pms_v1_3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.cloudbeds.com/api/v1.3
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cloudbeds_pms_v1_3.Configuration(
-    host = "https://api.cloudbeds.com/api/v1.3"
-)
-
-
-# Enter a context with an instance of the API client
-with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cloudbeds_pms_v1_3.IntegrationApi(api_client)
-    property_id = 'property_id_example' # str | Property identifier to be updated (optional)
-    client_id = 'client_id_example' # str | Client identifier (optional)
-    app_state = 'app_state_example' # str | Current integration state between third-party and property. (optional)
-
-    try:
-        # postAppStateInternal
-        api_response = api_instance.post_app_state_internal_post(property_id=property_id, client_id=client_id, app_state=app_state)
-        print("The response of IntegrationApi->post_app_state_internal_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling IntegrationApi->post_app_state_internal_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Property identifier to be updated | [optional] 
- **client_id** | **str**| Client identifier | [optional] 
- **app_state** | **str**| Current integration state between third-party and property. | [optional] 
-
-### Return type
-
-[**PostAppStateInternalResponse**](PostAppStateInternalResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | 200 Response |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **post_app_state_post**
 > PostAppStateResponse post_app_state_post(property_id=property_id, app_state=app_state)
 
@@ -542,6 +451,8 @@ Update app integration state for a property ID. <br /> This call is only availab
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -555,6 +466,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -588,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -612,6 +535,8 @@ Add a Government Receipt to a Reservation or House Account
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -625,6 +550,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -670,7 +607,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -694,6 +631,8 @@ Subscribe a webhook for a specified event. Read the [Webhooks guide](https://int
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -707,6 +646,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -744,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 

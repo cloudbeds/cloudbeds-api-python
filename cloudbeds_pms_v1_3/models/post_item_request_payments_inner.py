@@ -17,18 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PostReservationCheckOutResponse(BaseModel):
+class PostItemRequestPaymentsInner(BaseModel):
     """
-    PostReservationCheckOutResponse
+    PostItemRequestPaymentsInner
     """ # noqa: E501
-    success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
-    message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false). If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "message"]
+    payment_type: Optional[StrictStr] = Field(default=None, description="Payment method. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.", alias="paymentType")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="payment amount")
+    notes: Optional[StrictStr] = Field(default=None, description="payment note")
+    __properties: ClassVar[List[str]] = ["paymentType", "amount", "notes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +49,7 @@ class PostReservationCheckOutResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PostReservationCheckOutResponse from a JSON string"""
+        """Create an instance of PostItemRequestPaymentsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,16 +70,16 @@ class PostReservationCheckOutResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if message (nullable) is None
+        # set to None if notes (nullable) is None
         # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
+        if self.notes is None and "notes" in self.model_fields_set:
+            _dict['notes'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PostReservationCheckOutResponse from a dict"""
+        """Create an instance of PostItemRequestPaymentsInner from a dict"""
         if obj is None:
             return None
 
@@ -86,8 +87,9 @@ class PostReservationCheckOutResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "message": obj.get("message")
+            "paymentType": obj.get("paymentType"),
+            "amount": obj.get("amount"),
+            "notes": obj.get("notes")
         })
         return _obj
 

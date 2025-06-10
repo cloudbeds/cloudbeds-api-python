@@ -35,8 +35,8 @@ class TestGetTaxesAndFeesResponseDataInnerAmountRateBasedInner(unittest.TestCase
         model = GetTaxesAndFeesResponseDataInnerAmountRateBasedInner()
         if include_optional:
             return GetTaxesAndFeesResponseDataInnerAmountRateBasedInner(
-                rate = 1.337,
-                percentage = 1.337
+                rate = None,
+                percentage = None
             )
         else:
             return GetTaxesAndFeesResponseDataInnerAmountRateBasedInner(

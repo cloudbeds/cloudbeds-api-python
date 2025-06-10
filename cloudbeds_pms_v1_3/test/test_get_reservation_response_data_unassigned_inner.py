@@ -35,6 +35,7 @@ class TestGetReservationResponseDataUnassignedInner(unittest.TestCase):
         model = GetReservationResponseDataUnassignedInner()
         if include_optional:
             return GetReservationResponseDataUnassignedInner(
+                reservation_room_id = '',
                 room_type_name = '',
                 room_type_is_virtual = True,
                 room_type_id = '',
@@ -48,7 +49,7 @@ class TestGetReservationResponseDataUnassignedInner(unittest.TestCase):
                         date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         rate = 1.337, )
                     ],
-                room_total = 1.337
+                room_total = ''
             )
         else:
             return GetReservationResponseDataUnassignedInner(

@@ -78,11 +78,14 @@ class TestGetReservationsResponse(unittest.TestCase):
                                 guest_name = '', 
                                 adults = '', 
                                 children = '', 
+                                reservation_room_id = '', 
                                 room_id = '', 
                                 room_name = '', 
                                 room_check_in = '', 
                                 room_check_out = '', 
-                                room_status = 'cancelled', )
+                                room_status = 'cancelled', 
+                                market_name = '', 
+                                market_code = '', )
                             ], 
                         guest_list = {
                             'key' : cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value.GetReservationsResponse_data_inner_guestList_value(
@@ -119,6 +122,7 @@ class TestGetReservationsResponse(unittest.TestCase):
                                 room_type_is_virtual = True, 
                                 unassigned_rooms = [
                                     cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_unassigned_rooms_inner.GetReservationsResponse_data_inner_guestList_value_unassignedRooms_inner(
+                                        reservation_room_id = '', 
                                         room_type_id = '', 
                                         room_type_name = '', 
                                         room_type_is_virtual = True, 
@@ -127,10 +131,14 @@ class TestGetReservationsResponse(unittest.TestCase):
                                         rate_plan_name = '', 
                                         sub_reservation_id = '', )
                                     ], 
+                                guest_requirements = [
+                                    None
+                                    ], 
                                 is_anonymized = True, 
                                 is_main_guest = True, )
                             }, 
-                        origin = '', )
+                        origin = '', 
+                        meal_plans = '', )
                     ],
                 count = 56,
                 total = 56

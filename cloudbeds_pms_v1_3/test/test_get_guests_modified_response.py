@@ -63,6 +63,9 @@ class TestGetGuestsModifiedResponse(unittest.TestCase):
                         guest_document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        guest_requirements = [
+                            None
+                            ], 
                         custom_fields = [
                             cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
                                 custom_field_name = '', 

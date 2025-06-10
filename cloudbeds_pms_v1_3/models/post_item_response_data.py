@@ -27,12 +27,12 @@ class PostItemResponseData(BaseModel):
     Sold product details
     """ # noqa: E501
     sold_product_id: Optional[StrictStr] = Field(default=None, description="Sold product identifier (Usable to void this product in future).", alias="soldProductID")
-    external_relation_id: Optional[StrictStr] = Field(default=None, description="Same as sold product ID in case of this endpoint. Together with external relation kind (ITEM) it can be used to get transaction from Accounting API", alias="externalRelationID")
+    transaction_id: Optional[StrictStr] = Field(default=None, description="Transaction identifier", alias="transactionID")
     transaction_status: Optional[StrictStr] = Field(default=None, description="Transaction Status is returned \"Pending\" when sale date is in the future.", alias="transactionStatus")
     remaining_item_quantity: Optional[StrictInt] = Field(default=None, description="Remaining number of items in stock (if applicable)", alias="remainingItemQuantity")
     reorder_needed: Optional[StrictBool] = Field(default=None, description="true - Whether item is at or below value set for reorder threshold.", alias="reorderNeeded")
     stop_sell_met: Optional[StrictBool] = Field(default=None, description="true - Whether item is at or below value set for stop-sell threshold.", alias="stopSellMet")
-    __properties: ClassVar[List[str]] = ["soldProductID", "externalRelationID", "transactionStatus", "remainingItemQuantity", "reorderNeeded", "stopSellMet"]
+    __properties: ClassVar[List[str]] = ["soldProductID", "transactionID", "transactionStatus", "remainingItemQuantity", "reorderNeeded", "stopSellMet"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +106,7 @@ class PostItemResponseData(BaseModel):
 
         _obj = cls.model_validate({
             "soldProductID": obj.get("soldProductID"),
-            "externalRelationID": obj.get("externalRelationID"),
+            "transactionID": obj.get("transactionID"),
             "transactionStatus": obj.get("transactionStatus"),
             "remainingItemQuantity": obj.get("remainingItemQuantity"),
             "reorderNeeded": obj.get("reorderNeeded"),

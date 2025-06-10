@@ -61,20 +61,6 @@ class TestIntegrationApi(unittest.TestCase):
         """
         pass
 
-    def test_post_app_settings_post(self) -> None:
-        """Test case for post_app_settings_post
-
-        postAppSettings
-        """
-        pass
-
-    def test_post_app_state_internal_post(self) -> None:
-        """Test case for post_app_state_internal_post
-
-        postAppStateInternal
-        """
-        pass
-
     def test_post_app_state_post(self) -> None:
         """Test case for post_app_state_post
 

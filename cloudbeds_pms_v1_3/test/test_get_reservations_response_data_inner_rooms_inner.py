@@ -43,11 +43,14 @@ class TestGetReservationsResponseDataInnerRoomsInner(unittest.TestCase):
                 guest_name = '',
                 adults = '',
                 children = '',
+                reservation_room_id = '',
                 room_id = '',
                 room_name = '',
                 room_check_in = '',
                 room_check_out = '',
-                room_status = 'cancelled'
+                room_status = 'cancelled',
+                market_name = '',
+                market_code = ''
             )
         else:
             return GetReservationsResponseDataInnerRoomsInner(

@@ -43,7 +43,9 @@ class TestGetCustomFieldsResponseDataInner(unittest.TestCase):
                 is_personal = True,
                 max_characters = 56,
                 type = 'input',
-                displayed = reservation
+                displayed = [
+                    'reservation'
+                    ]
             )
         else:
             return GetCustomFieldsResponseDataInner(

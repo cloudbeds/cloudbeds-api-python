@@ -50,7 +50,9 @@ class TestGetRatePlansResponseDataInner(unittest.TestCase):
                 derived_type = 'fixed',
                 derived_value = 1.337,
                 base_rate = 1.337,
-                days_of_week = Sun,
+                days_of_week = [
+                    'Sun'
+                    ],
                 add_ons = [
                     cloudbeds_pms_v1_3.models.get_rate_plans_response_data_inner_add_ons_inner.GetRatePlansResponse_data_inner_addOns_inner(
                         add_on_id = '', 

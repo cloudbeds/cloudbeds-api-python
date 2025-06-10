@@ -33,20 +33,6 @@ class TestAdjustmentApi(unittest.TestCase):
         """
         pass
 
-    def test_get_adjustment_get(self) -> None:
-        """Test case for get_adjustment_get
-
-        getAdjustment
-        """
-        pass
-
-    def test_get_adjustments_get(self) -> None:
-        """Test case for get_adjustments_get
-
-        getAdjustments
-        """
-        pass
-
     def test_post_adjustment_post(self) -> None:
         """Test case for post_adjustment_post
 

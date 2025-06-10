@@ -57,22 +57,25 @@ class TestGetReservationResponse(unittest.TestCase):
                             guest_country = '', 
                             guest_zip = '', 
                             guest_status = 'in_progress', 
-                            guest_birthdate = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                            guest_birthdate = null, 
                             guest_document_type = '', 
                             guest_document_number = '', 
-                            guest_document_issue_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                            guest_document_issue_date = null, 
                             guest_document_issuing_country = '', 
-                            guest_document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                            guest_document_expiration_date = null, 
                             tax_id = '', 
                             company_tax_id = '', 
                             company_name = '', 
-                            assigned_room = '', 
+                            assigned_room = True, 
                             is_anonymized = True, 
                             room_id = '', 
                             room_name = '', 
                             room_type_name = '', 
                             room_type_is_virtual = True, 
                             is_main_guest = True, 
+                            guest_requirements = [
+                                None
+                                ], 
                             custom_fields = [
                                 cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner.GetReservationResponse_data_guestList_value_customFields_inner(
                                     custom_field_name = '', 
@@ -80,6 +83,7 @@ class TestGetReservationResponse(unittest.TestCase):
                                 ], 
                             rooms = [
                                 cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_rooms_inner.GetReservationResponse_data_guestList_value_rooms_inner(
+                                    reservation_room_id = '', 
                                     room_id = '', 
                                     room_name = '', 
                                     room_type_name = '', 
@@ -88,6 +92,7 @@ class TestGetReservationResponse(unittest.TestCase):
                                 ], 
                             unassigned_rooms = [
                                 cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_unassigned_rooms_inner.GetReservationResponse_data_guestList_value_unassignedRooms_inner(
+                                    reservation_room_id = '', 
                                     room_type_id = '', 
                                     room_type_name = '', 
                                     room_type_is_virtual = True, 
@@ -104,17 +109,10 @@ class TestGetReservationResponse(unittest.TestCase):
                     status = 'confirmed', 
                     total = 1.337, 
                     balance = 1.337, 
-                    balance_detailed = [
-                        cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_inner.GetReservationResponse_data_balanceDetailed_inner(
-                            suggested_deposit = '', 
-                            sub_total = 1.337, 
-                            additional_items = 1.337, 
-                            taxes_fees = 1.337, 
-                            grand_total = 1.337, 
-                            paid = 1.337, )
-                        ], 
+                    balance_detailed = null, 
                     assigned = [
                         cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner.GetReservationResponse_data_assigned_inner(
+                            reservation_room_id = '', 
                             room_type_name = '', 
                             room_type_name_short = '', 
                             room_type_is_virtual = True, 
@@ -132,10 +130,13 @@ class TestGetReservationResponse(unittest.TestCase):
                                     date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                     rate = 1.337, )
                                 ], 
-                            room_total = 1.337, )
+                            room_total = '', 
+                            market_name = '', 
+                            market_code = '', )
                         ], 
                     unassigned = [
                         cloudbeds_pms_v1_3.models.get_reservation_response_data_unassigned_inner.GetReservationResponse_data_unassigned_inner(
+                            reservation_room_id = '', 
                             room_type_name = '', 
                             room_type_is_virtual = True, 
                             room_type_id = '', 
@@ -144,7 +145,7 @@ class TestGetReservationResponse(unittest.TestCase):
                             end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             adults = '', 
                             children = '', 
-                            room_total = 1.337, )
+                            room_total = '', )
                         ], 
                     cards_on_file = [
                         cloudbeds_pms_v1_3.models.get_reservation_response_data_cards_on_file_inner.GetReservationResponse_data_cardsOnFile_inner(
@@ -168,7 +169,8 @@ class TestGetReservationResponse(unittest.TestCase):
                             start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                         ], 
-                    origin = '', ),
+                    origin = '', 
+                    meal_plans = '', ),
                 message = ''
             )
         else:

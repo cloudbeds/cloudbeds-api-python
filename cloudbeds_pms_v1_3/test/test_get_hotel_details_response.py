@@ -50,7 +50,9 @@ class TestGetHotelDetailsResponse(unittest.TestCase):
                     property_currency = cloudbeds_pms_v1_3.models.get_hotel_details_response_data_property_currency.GetHotelDetailsResponse_data_propertyCurrency(
                         currency_code = '', 
                         currency_symbol = '', 
-                        currency_position = 'before', ), 
+                        currency_position = 'before', 
+                        currency_decimal_separator = '', 
+                        currency_thousands_separator = '', ), 
                     property_primary_language = '', 
                     property_additional_photos = [
                         cloudbeds_pms_v1_3.models.get_hotel_details_response_data_property_image_inner.GetHotelDetailsResponse_data_propertyImage_inner(

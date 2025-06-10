@@ -47,13 +47,6 @@ class TestAppSettingsApi(unittest.TestCase):
         """
         pass
 
-    def test_post_bulk_app_property_settings_post(self) -> None:
-        """Test case for post_bulk_app_property_settings_post
-
-        postBulkAppPropertySettings
-        """
-        pass
-
     def test_put_app_property_settings_post(self) -> None:
         """Test case for put_app_property_settings_post
 

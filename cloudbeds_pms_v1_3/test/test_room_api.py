@@ -110,13 +110,6 @@ class TestRoomApi(unittest.TestCase):
         """
         pass
 
-    def test_post_room_type_post(self) -> None:
-        """Test case for post_room_type_post
-
-        postRoomType
-        """
-        pass
-
     def test_put_room_block_put(self) -> None:
         """Test case for put_room_block_put
 

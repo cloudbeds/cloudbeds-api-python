@@ -33,13 +33,6 @@ class TestReservationApi(unittest.TestCase):
         """
         pass
 
-    def test_get_reservation_arrivals_get(self) -> None:
-        """Test case for get_reservation_arrivals_get
-
-        getReservationArrivals
-        """
-        pass
-
     def test_get_reservation_assignments_get(self) -> None:
         """Test case for get_reservation_assignments_get
 
@@ -47,31 +40,10 @@ class TestReservationApi(unittest.TestCase):
         """
         pass
 
-    def test_get_reservation_departures_get(self) -> None:
-        """Test case for get_reservation_departures_get
-
-        getReservationDepartures
-        """
-        pass
-
     def test_get_reservation_get(self) -> None:
         """Test case for get_reservation_get
 
         getReservation
-        """
-        pass
-
-    def test_get_reservation_in_house_get(self) -> None:
-        """Test case for get_reservation_in_house_get
-
-        getReservationInHouse
-        """
-        pass
-
-    def test_get_reservation_invoice_information_get(self) -> None:
-        """Test case for get_reservation_invoice_information_get
-
-        getReservationInvoiceInformation
         """
         pass
 
@@ -103,20 +75,6 @@ class TestReservationApi(unittest.TestCase):
         """
         pass
 
-    def test_post_reservation_check_in_post(self) -> None:
-        """Test case for post_reservation_check_in_post
-
-        postReservationCheckIn
-        """
-        pass
-
-    def test_post_reservation_check_out_post(self) -> None:
-        """Test case for post_reservation_check_out_post
-
-        postReservationCheckOut
-        """
-        pass
-
     def test_post_reservation_document_post(self) -> None:
         """Test case for post_reservation_document_post
 
@@ -135,13 +93,6 @@ class TestReservationApi(unittest.TestCase):
         """Test case for post_reservation_post
 
         postReservation
-        """
-        pass
-
-    def test_put_reservation_details_put(self) -> None:
-        """Test case for put_reservation_details_put
-
-        putReservationDetails
         """
         pass
 

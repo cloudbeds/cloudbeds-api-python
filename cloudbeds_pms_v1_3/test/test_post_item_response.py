@@ -36,7 +36,7 @@ class TestPostItemResponse(unittest.TestCase):
         if include_optional:
             return PostItemResponse(
                 success = True,
-                data = cloudbeds_pms_v1_3.models.post_item_to_reservation_response_data.PostItemToReservationResponse_data(
+                data = cloudbeds_pms_v1_3.models.post_item_response_data.PostItemResponse_data(
                     sold_product_id = '', 
                     transaction_id = '', 
                     transaction_status = '', 

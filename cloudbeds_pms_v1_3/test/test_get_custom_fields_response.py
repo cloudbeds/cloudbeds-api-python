@@ -46,7 +46,9 @@ class TestGetCustomFieldsResponse(unittest.TestCase):
                         is_personal = True, 
                         max_characters = 56, 
                         type = 'input', 
-                        displayed = reservation, )
+                        displayed = [
+                            'reservation'
+                            ], )
                     ],
                 message = ''
             )

@@ -68,6 +68,7 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                 room_type_is_virtual = True,
                 rooms = [
                     cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_rooms_inner.GetReservationsResponse_data_inner_guestList_value_rooms_inner(
+                        reservation_room_id = '', 
                         room_id = '', 
                         room_name = '', 
                         room_type_name = '', 
@@ -81,6 +82,7 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                     ],
                 unassigned_rooms = [
                     cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_unassigned_rooms_inner.GetReservationsResponse_data_inner_guestList_value_unassignedRooms_inner(
+                        reservation_room_id = '', 
                         room_type_id = '', 
                         room_type_name = '', 
                         room_type_is_virtual = True, 
@@ -88,6 +90,9 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                         rate_id = '', 
                         rate_plan_name = '', 
                         sub_reservation_id = '', )
+                    ],
+                guest_requirements = [
+                    None
                     ],
                 custom_fields = [
                     cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(

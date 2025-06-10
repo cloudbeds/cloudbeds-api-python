@@ -26,13 +26,6 @@ class TestAuthenticationApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_access_token_check_post(self) -> None:
-        """Test case for access_token_check_post
-
-        access_token_check
-        """
-        pass
-
     def test_access_token_post(self) -> None:
         """Test case for access_token_post
 
