@@ -160,6 +160,8 @@ Returns information on user who authorized connection
 
 ### Example
 
+* OAuth Authentication (OAuth2):
+* Api Key Authentication (api_key):
 
 ```python
 import cloudbeds_pms_v1_3
@@ -173,6 +175,18 @@ configuration = cloudbeds_pms_v1_3.Configuration(
     host = "https://api.cloudbeds.com/api/v1.3"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Configure API key authorization: api_key
+configuration.api_key['api_key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
@@ -206,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2), [api_key](../README.md#api_key)
 
 ### HTTP request headers
 
