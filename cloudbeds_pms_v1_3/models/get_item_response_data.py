@@ -57,8 +57,8 @@ class GetItemResponseData(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['product', 'service']):
-            raise ValueError("must be one of enum values ('product', 'service')")
+        if value not in set(['product', 'service', 'mealplan']):
+            raise ValueError("must be one of enum values ('product', 'service', 'mealplan')")
         return value
 
     model_config = ConfigDict(
