@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** | Phone type | [optional] 
 **value** | **str** | Phone number value | [optional] 
 
 ## Example

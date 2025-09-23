@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_groups_response_data_inner import GetGroupsResponseDataInner
 from typing import Optional, Set
@@ -29,18 +29,7 @@ class GetGroupsResponse(BaseModel):
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Success")
     data: Optional[List[GetGroupsResponseDataInner]] = Field(default=None, description="Data")
-    cell_phone: Optional[StrictStr] = Field(default=None, description="\"fax\"} data.contacts.phones.type Phone type", alias=""cell_phone",")
-    __properties: ClassVar[List[str]] = ["success", "data", "&quot;cell_phone&quot;,"]
-
-    @field_validator('cell_phone')
-    def cell_phone_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['home', 'work']):
-            raise ValueError("must be one of enum values ('home', 'work')")
-        return value
+    __properties: ClassVar[List[str]] = ["success", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,8 +90,7 @@ class GetGroupsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "data": [GetGroupsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
-            ""cell_phone",": obj.get(""cell_phone",")
+            "data": [GetGroupsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 
