@@ -41,12 +41,49 @@ class TestGetGroupsResponseDataInner(unittest.TestCase):
                 status = 'open',
                 created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 source_id = '',
+                source_name = '',
                 address1 = '',
                 address2 = '',
                 city = '',
                 zip = '',
                 state = '',
-                commission_type = 'fixed'
+                country_code = '',
+                commission_type = 'fixed',
+                tax_document_type = '',
+                tax_id_number = '',
+                legal_name = '',
+                contacts = [
+                    cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner.GetGroupsResponse_data_inner_contacts_inner(
+                        id = '', 
+                        group_profile_id = '', 
+                        primary = True, 
+                        anonymized = True, 
+                        first_name = '', 
+                        last_name = '', 
+                        role = '', 
+                        status = 'active', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        emails = [
+                            cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_emails_inner.GetGroupsResponse_data_inner_contacts_inner_emails_inner(
+                                type = 'personal', 
+                                value = '', )
+                            ], 
+                        phones = [
+                            cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_phones_inner.GetGroupsResponse_data_inner_contacts_inner_phones_inner(
+                                value = '', )
+                            ], 
+                        is_billing_recipient = True, 
+                        tax_id_number = '', 
+                        tax_document_type = '', 
+                        legal_name = '', 
+                        address_1 = '', 
+                        address_2 = '', 
+                        city = '', 
+                        state = '', 
+                        country_code = '', 
+                        zip = '', )
+                    ]
             )
         else:
             return GetGroupsResponseDataInner(

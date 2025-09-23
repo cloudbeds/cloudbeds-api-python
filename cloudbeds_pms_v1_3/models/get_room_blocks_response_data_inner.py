@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_room_block_request_rooms_inner import PostRoomBlockRequestRoomsInner
 from typing import Optional, Set
@@ -29,23 +29,12 @@ class GetRoomBlocksResponseDataInner(BaseModel):
     GetRoomBlocksResponseDataInner
     """ # noqa: E501
     room_block_id: Optional[StrictStr] = Field(default=None, description="Room block ID", alias="roomBlockID")
-    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block", alias="roomBlockType")
     room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
     start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
     rooms: Optional[List[PostRoomBlockRequestRoomsInner]] = Field(default=None, description="All rooms for Block ID")
     count: Optional[StrictInt] = Field(default=None, description="Number of results (properties) returned.")
-    __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockType", "roomBlockReason", "startDate", "endDate", "rooms", "count"]
-
-    @field_validator('room_block_type')
-    def room_block_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['blocked', 'out_of_service']):
-            raise ValueError("must be one of enum values ('blocked', 'out_of_service')")
-        return value
+    __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockReason", "startDate", "endDate", "rooms", "count"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +95,6 @@ class GetRoomBlocksResponseDataInner(BaseModel):
 
         _obj = cls.model_validate({
             "roomBlockID": obj.get("roomBlockID"),
-            "roomBlockType": obj.get("roomBlockType"),
             "roomBlockReason": obj.get("roomBlockReason"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),

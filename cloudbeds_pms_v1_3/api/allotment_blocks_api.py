@@ -1035,6 +1035,7 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
@@ -1068,6 +1069,8 @@ class AllotmentBlocksApi:
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
         :type allotment_block_type: str
+        :param room_type_id: Filters allotment blocks with the supplied Room Type ID.
+        :type room_type_id: str
         :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
         :param page_number: Which page in the results to access
@@ -1105,6 +1108,7 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
+            room_type_id=room_type_id,
             page_size=page_size,
             page_number=page_number,
             start_date=start_date,
@@ -1138,6 +1142,7 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
@@ -1171,6 +1176,8 @@ class AllotmentBlocksApi:
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
         :type allotment_block_type: str
+        :param room_type_id: Filters allotment blocks with the supplied Room Type ID.
+        :type room_type_id: str
         :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
         :param page_number: Which page in the results to access
@@ -1208,6 +1215,7 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
+            room_type_id=room_type_id,
             page_size=page_size,
             page_number=page_number,
             start_date=start_date,
@@ -1241,6 +1249,7 @@ class AllotmentBlocksApi:
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
@@ -1274,6 +1283,8 @@ class AllotmentBlocksApi:
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
         :type allotment_block_type: str
+        :param room_type_id: Filters allotment blocks with the supplied Room Type ID.
+        :type room_type_id: str
         :param page_size: Number of allotment blocks to return per page (min: 1, max: 100)
         :type page_size: int
         :param page_number: Which page in the results to access
@@ -1311,6 +1322,7 @@ class AllotmentBlocksApi:
             group_code=group_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
+            room_type_id=room_type_id,
             page_size=page_size,
             page_number=page_number,
             start_date=start_date,
@@ -1339,6 +1351,7 @@ class AllotmentBlocksApi:
         group_code,
         allotment_block_status,
         allotment_block_type,
+        room_type_id,
         page_size,
         page_number,
         start_date,
@@ -1388,6 +1401,10 @@ class AllotmentBlocksApi:
         if allotment_block_type is not None:
             
             _query_params.append(('allotmentBlockType', allotment_block_type))
+            
+        if room_type_id is not None:
+            
+            _query_params.append(('roomTypeID', room_type_id))
             
         if page_size is not None:
             

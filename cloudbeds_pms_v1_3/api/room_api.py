@@ -1536,6 +1536,7 @@ class RoomApi:
         max_guests: Annotated[Optional[StrictStr], Field(description="Max number of guests, used to filter")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1579,6 +1580,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1615,6 +1618,7 @@ class RoomApi:
             max_guests=max_guests,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1651,6 +1655,7 @@ class RoomApi:
         max_guests: Annotated[Optional[StrictStr], Field(description="Max number of guests, used to filter")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1694,6 +1699,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1730,6 +1737,7 @@ class RoomApi:
             max_guests=max_guests,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1766,6 +1774,7 @@ class RoomApi:
         max_guests: Annotated[Optional[StrictStr], Field(description="Max number of guests, used to filter")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1809,6 +1818,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1845,6 +1856,7 @@ class RoomApi:
             max_guests=max_guests,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1876,6 +1888,7 @@ class RoomApi:
         max_guests,
         page_number,
         page_size,
+        sort,
         _request_auth,
         _content_type,
         _headers,
@@ -1967,6 +1980,10 @@ class RoomApi:
         if page_size is not None:
             
             _query_params.append(('pageSize', page_size))
+            
+        if sort is not None:
+            
+            _query_params.append(('sort', sort))
             
         # process the header parameters
         # process the form parameters
@@ -2367,6 +2384,7 @@ class RoomApi:
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2400,6 +2418,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2431,6 +2451,7 @@ class RoomApi:
             include_room_relations=include_room_relations,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2462,6 +2483,7 @@ class RoomApi:
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2495,6 +2517,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2526,6 +2550,7 @@ class RoomApi:
             include_room_relations=include_room_relations,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2557,6 +2582,7 @@ class RoomApi:
         include_room_relations: Annotated[Optional[StrictInt], Field(description="Determines whether room relations info should be included in the response")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2590,6 +2616,8 @@ class RoomApi:
         :type page_number: int
         :param page_size: Page size
         :type page_size: int
+        :param sort: Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc`
+        :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2621,6 +2649,7 @@ class RoomApi:
             include_room_relations=include_room_relations,
             page_number=page_number,
             page_size=page_size,
+            sort=sort,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2647,6 +2676,7 @@ class RoomApi:
         include_room_relations,
         page_number,
         page_size,
+        sort,
         _request_auth,
         _content_type,
         _headers,
@@ -2718,6 +2748,10 @@ class RoomApi:
         if page_size is not None:
             
             _query_params.append(('pageSize', page_size))
+            
+        if sort is not None:
+            
+            _query_params.append(('sort', sort))
             
         # process the header parameters
         # process the form parameters
@@ -3420,11 +3454,16 @@ class RoomApi:
     def post_room_block_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3444,7 +3483,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block
+        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str
@@ -3454,6 +3493,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3483,6 +3532,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3507,11 +3561,16 @@ class RoomApi:
     def post_room_block_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3531,7 +3590,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block
+        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str
@@ -3541,6 +3600,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3570,6 +3639,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3594,11 +3668,16 @@ class RoomApi:
     def post_room_block_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3618,7 +3697,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block
+        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str
@@ -3628,6 +3707,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3657,6 +3746,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3681,6 +3775,11 @@ class RoomApi:
         start_date,
         end_date,
         rooms,
+        first_name,
+        last_name,
+        length_of_hold_in_hours,
+        email,
+        phone,
         _request_auth,
         _content_type,
         _headers,
@@ -3718,6 +3817,16 @@ class RoomApi:
             _form_params.append(('endDate', end_date))
         if rooms is not None:
             _form_params.append(('rooms', rooms))
+        if first_name is not None:
+            _form_params.append(('firstName', first_name))
+        if last_name is not None:
+            _form_params.append(('lastName', last_name))
+        if length_of_hold_in_hours is not None:
+            _form_params.append(('lengthOfHoldInHours', length_of_hold_in_hours))
+        if email is not None:
+            _form_params.append(('email', email))
+        if phone is not None:
+            _form_params.append(('phone', phone))
         # process the body parameter
 
 
@@ -4416,6 +4525,11 @@ class RoomApi:
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4445,6 +4559,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4474,6 +4598,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4503,6 +4632,11 @@ class RoomApi:
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4532,6 +4666,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4561,6 +4705,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4590,6 +4739,11 @@ class RoomApi:
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
         rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
+        first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
+        last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
+        length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
+        email: Annotated[Optional[StrictStr], Field(description="Email address - for courtesy hold updates")] = None,
+        phone: Annotated[Optional[StrictStr], Field(description="Phone number - for courtesy hold updates")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4619,6 +4773,16 @@ class RoomApi:
         :type end_date: date
         :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
+        :param first_name: First name - for courtesy hold updates
+        :type first_name: str
+        :param last_name: Last name - for courtesy hold updates
+        :type last_name: str
+        :param length_of_hold_in_hours: Length of hold in hours - for courtesy hold updates
+        :type length_of_hold_in_hours: int
+        :param email: Email address - for courtesy hold updates
+        :type email: str
+        :param phone: Phone number - for courtesy hold updates
+        :type phone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4648,6 +4812,11 @@ class RoomApi:
             start_date=start_date,
             end_date=end_date,
             rooms=rooms,
+            first_name=first_name,
+            last_name=last_name,
+            length_of_hold_in_hours=length_of_hold_in_hours,
+            email=email,
+            phone=phone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4672,6 +4841,11 @@ class RoomApi:
         start_date,
         end_date,
         rooms,
+        first_name,
+        last_name,
+        length_of_hold_in_hours,
+        email,
+        phone,
         _request_auth,
         _content_type,
         _headers,
@@ -4709,6 +4883,16 @@ class RoomApi:
             _form_params.append(('endDate', end_date))
         if rooms is not None:
             _form_params.append(('rooms', rooms))
+        if first_name is not None:
+            _form_params.append(('firstName', first_name))
+        if last_name is not None:
+            _form_params.append(('lastName', last_name))
+        if length_of_hold_in_hours is not None:
+            _form_params.append(('lengthOfHoldInHours', length_of_hold_in_hours))
+        if email is not None:
+            _form_params.append(('email', email))
+        if phone is not None:
+            _form_params.append(('phone', phone))
         # process the body parameter
 
 

@@ -40,6 +40,7 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                 tax_id = '',
                 name = '',
                 code = '',
+                kind = '',
                 amount = '',
                 amount_adult = '',
                 amount_child = '',

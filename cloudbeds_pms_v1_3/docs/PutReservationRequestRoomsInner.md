@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **adults** | **int** | Quantity of adults for the room. Mandatory if rooms are sent. | [optional] 
 **children** | **int** | Number of children for the room. Mandatory if rooms are sent. | [optional] 
 **rate_id** | **str** | Rate ID for the room. Optional. | [optional] 
+**adjust_price** | **bool** | Whether to adjust pricing when changing room types. If false, preserves existing rates. Default is true. | [optional] [default to True]
 
 ## Example
 

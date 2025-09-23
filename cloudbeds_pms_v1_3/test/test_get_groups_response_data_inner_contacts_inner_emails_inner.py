@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner import GetRoomBlocksResponseDataInner
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_emails_inner import GetGroupsResponseDataInnerContactsInnerEmailsInner
 
-class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
-    """GetRoomBlocksResponseDataInner unit test stubs"""
+class TestGetGroupsResponseDataInnerContactsInnerEmailsInner(unittest.TestCase):
+    """GetGroupsResponseDataInnerContactsInnerEmailsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,34 +25,26 @@ class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataInner:
-        """Test GetRoomBlocksResponseDataInner
+    def make_instance(self, include_optional) -> GetGroupsResponseDataInnerContactsInnerEmailsInner:
+        """Test GetGroupsResponseDataInnerContactsInnerEmailsInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetRoomBlocksResponseDataInner`
+        # uncomment below to create an instance of `GetGroupsResponseDataInnerContactsInnerEmailsInner`
         """
-        model = GetRoomBlocksResponseDataInner()
+        model = GetGroupsResponseDataInnerContactsInnerEmailsInner()
         if include_optional:
-            return GetRoomBlocksResponseDataInner(
-                room_block_id = '',
-                room_block_reason = '',
-                start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                rooms = [
-                    cloudbeds_pms_v1_3.models.post_room_block_request_rooms_inner.PostRoomBlockRequest_rooms_inner(
-                        room_id = '', 
-                        room_type_id = '', )
-                    ],
-                count = 56
+            return GetGroupsResponseDataInnerContactsInnerEmailsInner(
+                type = 'personal',
+                value = ''
             )
         else:
-            return GetRoomBlocksResponseDataInner(
+            return GetGroupsResponseDataInnerContactsInnerEmailsInner(
         )
         """
 
-    def testGetRoomBlocksResponseDataInner(self):
-        """Test GetRoomBlocksResponseDataInner"""
+    def testGetGroupsResponseDataInnerContactsInnerEmailsInner(self):
+        """Test GetGroupsResponseDataInnerContactsInnerEmailsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

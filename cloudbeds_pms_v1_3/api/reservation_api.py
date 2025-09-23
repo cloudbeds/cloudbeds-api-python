@@ -1240,6 +1240,7 @@ class ReservationApi:
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
@@ -1250,6 +1251,8 @@ class ReservationApi:
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1296,6 +1299,8 @@ class ReservationApi:
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
+        :param room_type_id: Filters reservation with the supplied Room Type ID.
+        :type room_type_id: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
         :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
@@ -1316,6 +1321,10 @@ class ReservationApi:
         :type last_name: str
         :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
         :type guest_id: str
+        :param allotment_block_code: Filters reservation with the supplied allotment block code.
+        :type allotment_block_code: str
+        :param group_code: Filters reservation with the supplied group code.
+        :type group_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1358,6 +1367,7 @@ class ReservationApi:
             dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
+            room_type_id=room_type_id,
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
@@ -1368,6 +1378,8 @@ class ReservationApi:
             first_name=first_name,
             last_name=last_name,
             guest_id=guest_id,
+            allotment_block_code=allotment_block_code,
+            group_code=group_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1407,6 +1419,7 @@ class ReservationApi:
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
@@ -1417,6 +1430,8 @@ class ReservationApi:
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1463,6 +1478,8 @@ class ReservationApi:
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
+        :param room_type_id: Filters reservation with the supplied Room Type ID.
+        :type room_type_id: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
         :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
@@ -1483,6 +1500,10 @@ class ReservationApi:
         :type last_name: str
         :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
         :type guest_id: str
+        :param allotment_block_code: Filters reservation with the supplied allotment block code.
+        :type allotment_block_code: str
+        :param group_code: Filters reservation with the supplied group code.
+        :type group_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1525,6 +1546,7 @@ class ReservationApi:
             dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
+            room_type_id=room_type_id,
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
@@ -1535,6 +1557,8 @@ class ReservationApi:
             first_name=first_name,
             last_name=last_name,
             guest_id=guest_id,
+            allotment_block_code=allotment_block_code,
+            group_code=group_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1574,6 +1598,7 @@ class ReservationApi:
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
         room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
@@ -1584,6 +1609,8 @@ class ReservationApi:
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1630,6 +1657,8 @@ class ReservationApi:
         :type room_id: str
         :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
         :type room_name: str
+        :param room_type_id: Filters reservation with the supplied Room Type ID.
+        :type room_type_id: str
         :param include_guests_details: If guests details should be included or not
         :type include_guests_details: bool
         :param include_guest_requirements: Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.
@@ -1650,6 +1679,10 @@ class ReservationApi:
         :type last_name: str
         :param guest_id: Filters reservation with the supplied Guest ID (Including additional guests).
         :type guest_id: str
+        :param allotment_block_code: Filters reservation with the supplied allotment block code.
+        :type allotment_block_code: str
+        :param group_code: Filters reservation with the supplied group code.
+        :type group_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1692,6 +1725,7 @@ class ReservationApi:
             dates_query_mode=dates_query_mode,
             room_id=room_id,
             room_name=room_name,
+            room_type_id=room_type_id,
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
@@ -1702,6 +1736,8 @@ class ReservationApi:
             first_name=first_name,
             last_name=last_name,
             guest_id=guest_id,
+            allotment_block_code=allotment_block_code,
+            group_code=group_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1736,6 +1772,7 @@ class ReservationApi:
         dates_query_mode,
         room_id,
         room_name,
+        room_type_id,
         include_guests_details,
         include_guest_requirements,
         include_custom_fields,
@@ -1746,6 +1783,8 @@ class ReservationApi:
         first_name,
         last_name,
         guest_id,
+        allotment_block_code,
+        group_code,
         sort_by_recent,
         page_number,
         page_size,
@@ -1895,6 +1934,10 @@ class ReservationApi:
             
             _query_params.append(('roomName', room_name))
             
+        if room_type_id is not None:
+            
+            _query_params.append(('roomTypeID', room_type_id))
+            
         if include_guests_details is not None:
             
             _query_params.append(('includeGuestsDetails', include_guests_details))
@@ -1934,6 +1977,14 @@ class ReservationApi:
         if guest_id is not None:
             
             _query_params.append(('guestID', guest_id))
+            
+        if allotment_block_code is not None:
+            
+            _query_params.append(('allotmentBlockCode', allotment_block_code))
+            
+        if group_code is not None:
+            
+            _query_params.append(('groupCode', group_code))
             
         if sort_by_recent is not None:
             
@@ -2002,6 +2053,7 @@ class ReservationApi:
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservations with the supplied Guest ID (Including additional guests).")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2049,6 +2101,8 @@ class ReservationApi:
         :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
+        :param guest_id: Filters reservations with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2090,6 +2144,7 @@ class ReservationApi:
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
+            guest_id=guest_id,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2129,6 +2184,7 @@ class ReservationApi:
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservations with the supplied Guest ID (Including additional guests).")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2176,6 +2232,8 @@ class ReservationApi:
         :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
+        :param guest_id: Filters reservations with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2217,6 +2275,7 @@ class ReservationApi:
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
+            guest_id=guest_id,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2256,6 +2315,7 @@ class ReservationApi:
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
+        guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservations with the supplied Guest ID (Including additional guests).")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
         _request_timeout: Union[
@@ -2303,6 +2363,8 @@ class ReservationApi:
         :type include_guest_requirements: bool
         :param include_custom_fields: If reservation custom fields should be included or not
         :type include_custom_fields: bool
+        :param guest_id: Filters reservations with the supplied Guest ID (Including additional guests).
+        :type guest_id: str
         :param page_number: Results page number
         :type page_number: int
         :param page_size: Results page size. Max = 100
@@ -2344,6 +2406,7 @@ class ReservationApi:
             include_guests_details=include_guests_details,
             include_guest_requirements=include_guest_requirements,
             include_custom_fields=include_custom_fields,
+            guest_id=guest_id,
             page_number=page_number,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -2378,6 +2441,7 @@ class ReservationApi:
         include_guests_details,
         include_guest_requirements,
         include_custom_fields,
+        guest_id,
         page_number,
         page_size,
         _request_auth,
@@ -2511,6 +2575,10 @@ class ReservationApi:
         if include_custom_fields is not None:
             
             _query_params.append(('includeCustomFields', include_custom_fields))
+            
+        if guest_id is not None:
+            
+            _query_params.append(('guestID', guest_id))
             
         if page_number is not None:
             

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Returns if the request could be completed | [optional] 
 **data** | [**List[GetRoomBlocksResponseDataInner]**](GetRoomBlocksResponseDataInner.md) | Room block details | [optional] 
+**room_block_type** | **str** | Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. &#39;courtesy_hold&#39; - Courtesy hold block. | [optional] 
 **message** | **str** | To be used in case any error occurs (if success &#x3D; false).  If success &#x3D; true, it does not exist. | [optional] 
 
 ## Example

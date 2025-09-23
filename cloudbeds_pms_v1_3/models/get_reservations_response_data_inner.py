@@ -42,6 +42,7 @@ class GetReservationsResponseDataInner(BaseModel):
     start_date: Optional[date] = Field(default=None, alias="startDate")
     end_date: Optional[date] = Field(default=None, alias="endDate")
     allotment_block_code: Optional[StrictStr] = Field(default=None, description="Allotment block code", alias="allotmentBlockCode")
+    group_code: Optional[StrictStr] = Field(default=None, description="Group profile code", alias="groupCode")
     adults: Optional[StrictInt] = None
     children: Optional[StrictInt] = None
     balance: Optional[Union[StrictFloat, StrictInt]] = None
@@ -55,7 +56,7 @@ class GetReservationsResponseDataInner(BaseModel):
     guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
     meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation meal plans", alias="mealPlans")
-    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "groupInventory", "subReservationID", "customFields", "rooms", "guestList", "origin", "mealPlans"]
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "dateCreated", "dateModified", "status", "guestID", "profileID", "guestName", "startDate", "endDate", "allotmentBlockCode", "groupCode", "adults", "children", "balance", "sourceName", "sourceID", "thirdPartyIdentifier", "groupInventory", "subReservationID", "customFields", "rooms", "guestList", "origin", "mealPlans"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -139,6 +140,11 @@ class GetReservationsResponseDataInner(BaseModel):
         if self.allotment_block_code is None and "allotment_block_code" in self.model_fields_set:
             _dict['allotmentBlockCode'] = None
 
+        # set to None if group_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_code is None and "group_code" in self.model_fields_set:
+            _dict['groupCode'] = None
+
         # set to None if group_inventory (nullable) is None
         # and model_fields_set contains the field
         if self.group_inventory is None and "group_inventory" in self.model_fields_set:
@@ -182,6 +188,7 @@ class GetReservationsResponseDataInner(BaseModel):
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
             "allotmentBlockCode": obj.get("allotmentBlockCode"),
+            "groupCode": obj.get("groupCode"),
             "adults": obj.get("adults"),
             "children": obj.get("children"),
             "balance": obj.get("balance"),

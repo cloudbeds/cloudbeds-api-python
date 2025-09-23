@@ -46,6 +46,7 @@ class TestGetReservationsResponseDataInner(unittest.TestCase):
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 allotment_block_code = '',
+                group_code = '',
                 adults = 56,
                 children = 56,
                 balance = 1.337,

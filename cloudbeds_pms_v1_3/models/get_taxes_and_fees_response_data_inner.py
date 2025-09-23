@@ -34,6 +34,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax.", alias="taxID")
     name: Optional[StrictStr] = Field(default=None, description="Name")
     code: Optional[StrictStr] = Field(default=None, description="Code")
+    kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\" or null. Only exists if type = tax.")
     amount: Optional[StrictStr] = Field(default=None, description="Amount")
     amount_adult: Optional[StrictStr] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
     amount_child: Optional[StrictStr] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
@@ -48,7 +49,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     expired_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was expired", alias="expiredAt")
     room_types: Optional[List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]] = Field(default=None, description="Room types this tax/fee applies to", alias="roomTypes")
     date_ranges: Optional[List[GetTaxesAndFeesResponseDataInnerDateRangesInner]] = Field(default=None, description="Date ranges when this tax/fee is applicable", alias="dateRanges")
-    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges"]
+    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -161,6 +162,11 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         if self.tax_id is None and "tax_id" in self.model_fields_set:
             _dict['taxID'] = None
 
+        # set to None if kind (nullable) is None
+        # and model_fields_set contains the field
+        if self.kind is None and "kind" in self.model_fields_set:
+            _dict['kind'] = None
+
         # set to None if amount_rate_based (nullable) is None
         # and model_fields_set contains the field
         if self.amount_rate_based is None and "amount_rate_based" in self.model_fields_set:
@@ -198,6 +204,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "taxID": obj.get("taxID"),
             "name": obj.get("name"),
             "code": obj.get("code"),
+            "kind": obj.get("kind"),
             "amount": obj.get("amount"),
             "amountAdult": obj.get("amountAdult"),
             "amountChild": obj.get("amountChild"),

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner import GetRoomBlocksResponseDataInner
 from typing import Optional, Set
@@ -29,8 +29,19 @@ class GetRoomBlocksResponse(BaseModel):
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
     data: Optional[List[GetRoomBlocksResponseDataInner]] = Field(default=None, description="Room block details")
+    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.", alias="roomBlockType")
     message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false).  If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "data", "message"]
+    __properties: ClassVar[List[str]] = ["success", "data", "roomBlockType", "message"]
+
+    @field_validator('room_block_type')
+    def room_block_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['blocked', 'out_of_service', 'courtesy_hold']):
+            raise ValueError("must be one of enum values ('blocked', 'out_of_service', 'courtesy_hold')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,6 +103,7 @@ class GetRoomBlocksResponse(BaseModel):
         _obj = cls.model_validate({
             "success": obj.get("success"),
             "data": [GetRoomBlocksResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "roomBlockType": obj.get("roomBlockType"),
             "message": obj.get("message")
         })
         return _obj

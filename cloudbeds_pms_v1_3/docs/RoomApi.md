@@ -392,7 +392,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_room_types_get**
-> GetRoomTypesResponse get_room_types_get(property_ids=property_ids, room_type_ids=room_type_ids, start_date=start_date, end_date=end_date, adults=adults, children=children, detailed_rates=detailed_rates, room_type_name=room_type_name, property_city=property_city, property_name=property_name, max_guests=max_guests, page_number=page_number, page_size=page_size)
+> GetRoomTypesResponse get_room_types_get(property_ids=property_ids, room_type_ids=room_type_ids, start_date=start_date, end_date=end_date, adults=adults, children=children, detailed_rates=detailed_rates, room_type_name=room_type_name, property_city=property_city, property_name=property_name, max_guests=max_guests, page_number=page_number, page_size=page_size, sort=sort)
 
 getRoomTypes
 
@@ -445,10 +445,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     max_guests = 'max_guests_example' # str | Max number of guests, used to filter (optional)
     page_number = 1 # int | Page number (optional) (default to 1)
     page_size = 20 # int | Page size (optional) (default to 20)
+    sort = 'sort_example' # str | Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `sorting_position`. Examples: - `sort=sorting_position` - `sort=sorting_position:desc` (optional)
 
     try:
         # getRoomTypes
-        api_response = api_instance.get_room_types_get(property_ids=property_ids, room_type_ids=room_type_ids, start_date=start_date, end_date=end_date, adults=adults, children=children, detailed_rates=detailed_rates, room_type_name=room_type_name, property_city=property_city, property_name=property_name, max_guests=max_guests, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_room_types_get(property_ids=property_ids, room_type_ids=room_type_ids, start_date=start_date, end_date=end_date, adults=adults, children=children, detailed_rates=detailed_rates, room_type_name=room_type_name, property_city=property_city, property_name=property_name, max_guests=max_guests, page_number=page_number, page_size=page_size, sort=sort)
         print("The response of RoomApi->get_room_types_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -475,6 +476,7 @@ Name | Type | Description  | Notes
  **max_guests** | **str**| Max number of guests, used to filter | [optional] 
  **page_number** | **int**| Page number | [optional] [default to 1]
  **page_size** | **int**| Page size | [optional] [default to 20]
+ **sort** | **str**| Sorting rules, semicolon-separated. Format: &#x60;field[:direction]&#x60;, where &#x60;direction&#x60; is &#x60;asc&#x60; or &#x60;desc&#x60;, defaults to &#x60;asc&#x60; if not provided. Valid fields: &#x60;sorting_position&#x60;. Examples: - &#x60;sort&#x3D;sorting_position&#x60; - &#x60;sort&#x3D;sorting_position:desc&#x60; | [optional] 
 
 ### Return type
 
@@ -588,7 +590,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_rooms_get**
-> GetRoomsResponse get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
+> GetRoomsResponse get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size, sort=sort)
 
 getRooms
 
@@ -636,10 +638,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     include_room_relations = 0 # int | Determines whether room relations info should be included in the response (optional) (default to 0)
     page_number = 1 # int | Page number (optional) (default to 1)
     page_size = 20 # int | Page size (optional) (default to 20)
+    sort = 'sort_example' # str | Sorting rules, semicolon-separated. Format: `field[:direction]`, where `direction` is `asc` or `desc`, defaults to `asc` if not provided. Valid fields: `room_position`, `sorting_position`. Examples: - `sort=room_position;sorting_position` - `sort=room_position:asc;sorting_position:desc` (optional)
 
     try:
         # getRooms
-        api_response = api_instance.get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_rooms_get(property_ids=property_ids, room_type_id=room_type_id, room_type_name_short=room_type_name_short, start_date=start_date, end_date=end_date, include_room_relations=include_room_relations, page_number=page_number, page_size=page_size, sort=sort)
         print("The response of RoomApi->get_rooms_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -661,6 +664,7 @@ Name | Type | Description  | Notes
  **include_room_relations** | **int**| Determines whether room relations info should be included in the response | [optional] [default to 0]
  **page_number** | **int**| Page number | [optional] [default to 1]
  **page_size** | **int**| Page size | [optional] [default to 20]
+ **sort** | **str**| Sorting rules, semicolon-separated. Format: &#x60;field[:direction]&#x60;, where &#x60;direction&#x60; is &#x60;asc&#x60; or &#x60;desc&#x60;, defaults to &#x60;asc&#x60; if not provided. Valid fields: &#x60;room_position&#x60;, &#x60;sorting_position&#x60;. Examples: - &#x60;sort&#x3D;room_position;sorting_position&#x60; - &#x60;sort&#x3D;room_position:asc;sorting_position:desc&#x60; | [optional] 
 
 ### Return type
 
@@ -864,7 +868,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_room_block_post**
-> PostRoomBlockResponse post_room_block_post(property_id=property_id, room_block_type=room_block_type, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms)
+> PostRoomBlockResponse post_room_block_post(property_id=property_id, room_block_type=room_block_type, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms, first_name=first_name, last_name=last_name, length_of_hold_in_hours=length_of_hold_in_hours, email=email, phone=phone)
 
 postRoomBlock
 
@@ -906,15 +910,20 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.RoomApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    room_block_type = 'room_block_type_example' # str | Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block (optional)
+    room_block_type = 'room_block_type_example' # str | Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block. (optional)
     room_block_reason = 'room_block_reason_example' # str | Room block reason (optional)
     start_date = '2013-10-20' # date | Room block start date (optional)
     end_date = '2013-10-20' # date | Room block end date (optional)
     rooms = [cloudbeds_pms_v1_3.PostRoomBlockRequestRoomsInner()] # List[PostRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. (optional)
+    first_name = 'first_name_example' # str | First name - for courtesy hold updates (optional)
+    last_name = 'last_name_example' # str | Last name - for courtesy hold updates (optional)
+    length_of_hold_in_hours = 56 # int | Length of hold in hours - for courtesy hold updates (optional)
+    email = 'email_example' # str | Email address - for courtesy hold updates (optional)
+    phone = 'phone_example' # str | Phone number - for courtesy hold updates (optional)
 
     try:
         # postRoomBlock
-        api_response = api_instance.post_room_block_post(property_id=property_id, room_block_type=room_block_type, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms)
+        api_response = api_instance.post_room_block_post(property_id=property_id, room_block_type=room_block_type, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms, first_name=first_name, last_name=last_name, length_of_hold_in_hours=length_of_hold_in_hours, email=email, phone=phone)
         print("The response of RoomApi->post_room_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -929,11 +938,16 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **room_block_type** | **str**| Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block | [optional] 
+ **room_block_type** | **str**| Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. &#39;courtesy_hold&#39; - Courtesy hold block. | [optional] 
  **room_block_reason** | **str**| Room block reason | [optional] 
  **start_date** | **date**| Room block start date | [optional] 
  **end_date** | **date**| Room block end date | [optional] 
  **rooms** | [**List[PostRoomBlockRequestRoomsInner]**](PostRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. | [optional] 
+ **first_name** | **str**| First name - for courtesy hold updates | [optional] 
+ **last_name** | **str**| Last name - for courtesy hold updates | [optional] 
+ **length_of_hold_in_hours** | **int**| Length of hold in hours - for courtesy hold updates | [optional] 
+ **email** | **str**| Email address - for courtesy hold updates | [optional] 
+ **phone** | **str**| Phone number - for courtesy hold updates | [optional] 
 
 ### Return type
 
@@ -1133,7 +1147,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_room_block_put**
-> PutRoomBlockResponse put_room_block_put(property_id=property_id, room_block_id=room_block_id, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms)
+> PutRoomBlockResponse put_room_block_put(property_id=property_id, room_block_id=room_block_id, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms, first_name=first_name, last_name=last_name, length_of_hold_in_hours=length_of_hold_in_hours, email=email, phone=phone)
 
 putRoomBlock
 
@@ -1180,10 +1194,15 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     start_date = '2013-10-20' # date | Room block start date (optional)
     end_date = '2013-10-20' # date | Room block end date (optional)
     rooms = [cloudbeds_pms_v1_3.PutRoomBlockRequestRoomsInner()] # List[PutRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. (optional)
+    first_name = 'first_name_example' # str | First name - for courtesy hold updates (optional)
+    last_name = 'last_name_example' # str | Last name - for courtesy hold updates (optional)
+    length_of_hold_in_hours = 56 # int | Length of hold in hours - for courtesy hold updates (optional)
+    email = 'email_example' # str | Email address - for courtesy hold updates (optional)
+    phone = 'phone_example' # str | Phone number - for courtesy hold updates (optional)
 
     try:
         # putRoomBlock
-        api_response = api_instance.put_room_block_put(property_id=property_id, room_block_id=room_block_id, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms)
+        api_response = api_instance.put_room_block_put(property_id=property_id, room_block_id=room_block_id, room_block_reason=room_block_reason, start_date=start_date, end_date=end_date, rooms=rooms, first_name=first_name, last_name=last_name, length_of_hold_in_hours=length_of_hold_in_hours, email=email, phone=phone)
         print("The response of RoomApi->put_room_block_put:\n")
         pprint(api_response)
     except Exception as e:
@@ -1203,6 +1222,11 @@ Name | Type | Description  | Notes
  **start_date** | **date**| Room block start date | [optional] 
  **end_date** | **date**| Room block end date | [optional] 
  **rooms** | [**List[PutRoomBlockRequestRoomsInner]**](PutRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. | [optional] 
+ **first_name** | **str**| First name - for courtesy hold updates | [optional] 
+ **last_name** | **str**| Last name - for courtesy hold updates | [optional] 
+ **length_of_hold_in_hours** | **int**| Length of hold in hours - for courtesy hold updates | [optional] 
+ **email** | **str**| Email address - for courtesy hold updates | [optional] 
+ **phone** | **str**| Phone number - for courtesy hold updates | [optional] 
 
 ### Return type
 

@@ -10,13 +10,19 @@ Name | Type | Description | Notes
 **type** | **str** | The type of the group | [optional] 
 **status** | **str** | Group status | [optional] 
 **created** | **datetime** | Group created time | [optional] 
-**source_id** | **str** | The third-party source ID for this group, can be null | [optional] 
+**source_id** | **str** | The third-party source ID for this group, can be empty | [optional] 
+**source_name** | **str** | The third-party source name for this group, can be empty | [optional] 
 **address1** | **str** | Address | [optional] 
 **address2** | **str** | Address2 | [optional] 
 **city** | **str** | City | [optional] 
 **zip** | **str** | Zip | [optional] 
 **state** | **str** | State | [optional] 
+**country_code** | **str** | Country code | [optional] 
 **commission_type** | **str** | Commission type | [optional] 
+**tax_document_type** | **str** | Tax document type | [optional] 
+**tax_id_number** | **str** | Tax ID number | [optional] 
+**legal_name** | **str** | Legal name | [optional] 
+**contacts** | [**List[GetGroupsResponseDataInnerContactsInner]**](GetGroupsResponseDataInnerContactsInner.md) | Group contacts | [optional] 
 
 ## Example
 

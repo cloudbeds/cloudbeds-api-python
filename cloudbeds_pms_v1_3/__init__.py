@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"
 
 # import apis into sdk package
 from cloudbeds_pms_v1_3.api.adjustment_api import AdjustmentApi
@@ -95,6 +95,9 @@ from cloudbeds_pms_v1_3.models.get_group_notes_response import GetGroupNotesResp
 from cloudbeds_pms_v1_3.models.get_group_notes_response_data import GetGroupNotesResponseData
 from cloudbeds_pms_v1_3.models.get_groups_response import GetGroupsResponse
 from cloudbeds_pms_v1_3.models.get_groups_response_data_inner import GetGroupsResponseDataInner
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner import GetGroupsResponseDataInnerContactsInner
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_emails_inner import GetGroupsResponseDataInnerContactsInnerEmailsInner
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_phones_inner import GetGroupsResponseDataInnerContactsInnerPhonesInner
 from cloudbeds_pms_v1_3.models.get_guest_list_response import GetGuestListResponse
 from cloudbeds_pms_v1_3.models.get_guest_list_response_data_value import GetGuestListResponseDataValue
 from cloudbeds_pms_v1_3.models.get_guest_list_response_data_value_guest_notes_inner import GetGuestListResponseDataValueGuestNotesInner

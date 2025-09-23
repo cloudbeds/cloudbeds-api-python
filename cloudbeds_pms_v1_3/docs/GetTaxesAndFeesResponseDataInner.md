@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Tax&#39;s unique identifier. Only exists if type &#x3D; tax. | [optional] 
 **name** | **str** | Name | [optional] 
 **code** | **str** | Code | [optional] 
+**kind** | **str** | Tax kind. Currently supports \&quot;vat\&quot; or null. Only exists if type &#x3D; tax. | [optional] 
 **amount** | **str** | Amount | [optional] 
 **amount_adult** | **str** | Amount charged per adult. Only applicable if amountType &#x3D; fixed_per_person (Per Person Per Night) | [optional] 
 **amount_child** | **str** | Amount charged per children. Only applicable if amountType &#x3D; fixed_per_person (Per Person Per Night) | [optional] 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +34,8 @@ class PutReservationRequestRoomsInner(BaseModel):
     adults: Optional[StrictInt] = Field(default=None, description="Quantity of adults for the room. Mandatory if rooms are sent.")
     children: Optional[StrictInt] = Field(default=None, description="Number of children for the room. Mandatory if rooms are sent.")
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID for the room. Optional.", alias="rateID")
-    __properties: ClassVar[List[str]] = ["subReservationID", "roomTypeID", "checkinDate", "checkoutDate", "adults", "children", "rateID"]
+    adjust_price: Optional[StrictBool] = Field(default=True, description="Whether to adjust pricing when changing room types. If false, preserves existing rates. Default is true.", alias="adjustPrice")
+    __properties: ClassVar[List[str]] = ["subReservationID", "roomTypeID", "checkinDate", "checkoutDate", "adults", "children", "rateID", "adjustPrice"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,6 +111,11 @@ class PutReservationRequestRoomsInner(BaseModel):
         if self.rate_id is None and "rate_id" in self.model_fields_set:
             _dict['rateID'] = None
 
+        # set to None if adjust_price (nullable) is None
+        # and model_fields_set contains the field
+        if self.adjust_price is None and "adjust_price" in self.model_fields_set:
+            _dict['adjustPrice'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +134,8 @@ class PutReservationRequestRoomsInner(BaseModel):
             "checkoutDate": obj.get("checkoutDate"),
             "adults": obj.get("adults"),
             "children": obj.get("children"),
-            "rateID": obj.get("rateID")
+            "rateID": obj.get("rateID"),
+            "adjustPrice": obj.get("adjustPrice") if obj.get("adjustPrice") is not None else True
         })
         return _obj
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **start_date** | **date** |  | [optional] 
 **end_date** | **date** |  | [optional] 
 **allotment_block_code** | **str** | Allotment block code | [optional] 
+**group_code** | **str** | Group profile code | [optional] 
 **adults** | **int** |  | [optional] 
 **children** | **int** |  | [optional] 
 **balance** | **float** |  | [optional] 

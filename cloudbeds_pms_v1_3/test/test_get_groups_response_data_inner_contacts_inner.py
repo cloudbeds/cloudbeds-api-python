@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner import GetRoomBlocksResponseDataInner
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner import GetGroupsResponseDataInnerContactsInner
 
-class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
-    """GetRoomBlocksResponseDataInner unit test stubs"""
+class TestGetGroupsResponseDataInnerContactsInner(unittest.TestCase):
+    """GetGroupsResponseDataInnerContactsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,34 +25,53 @@ class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataInner:
-        """Test GetRoomBlocksResponseDataInner
+    def make_instance(self, include_optional) -> GetGroupsResponseDataInnerContactsInner:
+        """Test GetGroupsResponseDataInnerContactsInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetRoomBlocksResponseDataInner`
+        # uncomment below to create an instance of `GetGroupsResponseDataInnerContactsInner`
         """
-        model = GetRoomBlocksResponseDataInner()
+        model = GetGroupsResponseDataInnerContactsInner()
         if include_optional:
-            return GetRoomBlocksResponseDataInner(
-                room_block_id = '',
-                room_block_reason = '',
-                start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                rooms = [
-                    cloudbeds_pms_v1_3.models.post_room_block_request_rooms_inner.PostRoomBlockRequest_rooms_inner(
-                        room_id = '', 
-                        room_type_id = '', )
+            return GetGroupsResponseDataInnerContactsInner(
+                id = '',
+                group_profile_id = '',
+                primary = True,
+                anonymized = True,
+                first_name = '',
+                last_name = '',
+                role = '',
+                status = 'active',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                emails = [
+                    cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_emails_inner.GetGroupsResponse_data_inner_contacts_inner_emails_inner(
+                        type = 'personal', 
+                        value = '', )
                     ],
-                count = 56
+                phones = [
+                    cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_phones_inner.GetGroupsResponse_data_inner_contacts_inner_phones_inner(
+                        value = '', )
+                    ],
+                is_billing_recipient = True,
+                tax_id_number = '',
+                tax_document_type = '',
+                legal_name = '',
+                address_1 = '',
+                address_2 = '',
+                city = '',
+                state = '',
+                country_code = '',
+                zip = ''
             )
         else:
-            return GetRoomBlocksResponseDataInner(
+            return GetGroupsResponseDataInnerContactsInner(
         )
         """
 
-    def testGetRoomBlocksResponseDataInner(self):
-        """Test GetRoomBlocksResponseDataInner"""
+    def testGetGroupsResponseDataInnerContactsInner(self):
+        """Test GetGroupsResponseDataInnerContactsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

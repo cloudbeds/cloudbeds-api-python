@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner import GetGroupsResponseDataInnerContactsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,14 +33,20 @@ class GetGroupsResponseDataInner(BaseModel):
     type: Optional[StrictStr] = Field(default=None, description="The type of the group")
     status: Optional[StrictStr] = Field(default=None, description="Group status")
     created: Optional[datetime] = Field(default=None, description="Group created time")
-    source_id: Optional[StrictStr] = Field(default=None, description="The third-party source ID for this group, can be null", alias="sourceID")
+    source_id: Optional[StrictStr] = Field(default=None, description="The third-party source ID for this group, can be empty", alias="sourceID")
+    source_name: Optional[StrictStr] = Field(default=None, description="The third-party source name for this group, can be empty", alias="sourceName")
     address1: Optional[StrictStr] = Field(default=None, description="Address")
     address2: Optional[StrictStr] = Field(default=None, description="Address2")
     city: Optional[StrictStr] = Field(default=None, description="City")
     zip: Optional[StrictStr] = Field(default=None, description="Zip")
     state: Optional[StrictStr] = Field(default=None, description="State")
+    country_code: Optional[StrictStr] = Field(default=None, description="Country code", alias="countryCode")
     commission_type: Optional[StrictStr] = Field(default=None, description="Commission type", alias="commissionType")
-    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "address1", "address2", "city", "zip", "state", "commissionType"]
+    tax_document_type: Optional[StrictStr] = Field(default=None, description="Tax document type", alias="taxDocumentType")
+    tax_id_number: Optional[StrictStr] = Field(default=None, description="Tax ID number", alias="taxIdNumber")
+    legal_name: Optional[StrictStr] = Field(default=None, description="Legal name", alias="legalName")
+    contacts: Optional[List[GetGroupsResponseDataInnerContactsInner]] = Field(default=None, description="Group contacts")
+    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "sourceName", "address1", "address2", "city", "zip", "state", "countryCode", "commissionType", "taxDocumentType", "taxIdNumber", "legalName", "contacts"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -110,6 +117,68 @@ class GetGroupsResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in contacts (list)
+        _items = []
+        if self.contacts:
+            for _item_contacts in self.contacts:
+                if _item_contacts:
+                    _items.append(_item_contacts.to_dict())
+            _dict['contacts'] = _items
+        # set to None if address1 (nullable) is None
+        # and model_fields_set contains the field
+        if self.address1 is None and "address1" in self.model_fields_set:
+            _dict['address1'] = None
+
+        # set to None if address2 (nullable) is None
+        # and model_fields_set contains the field
+        if self.address2 is None and "address2" in self.model_fields_set:
+            _dict['address2'] = None
+
+        # set to None if city (nullable) is None
+        # and model_fields_set contains the field
+        if self.city is None and "city" in self.model_fields_set:
+            _dict['city'] = None
+
+        # set to None if zip (nullable) is None
+        # and model_fields_set contains the field
+        if self.zip is None and "zip" in self.model_fields_set:
+            _dict['zip'] = None
+
+        # set to None if state (nullable) is None
+        # and model_fields_set contains the field
+        if self.state is None and "state" in self.model_fields_set:
+            _dict['state'] = None
+
+        # set to None if country_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.country_code is None and "country_code" in self.model_fields_set:
+            _dict['countryCode'] = None
+
+        # set to None if commission_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.commission_type is None and "commission_type" in self.model_fields_set:
+            _dict['commissionType'] = None
+
+        # set to None if tax_document_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_document_type is None and "tax_document_type" in self.model_fields_set:
+            _dict['taxDocumentType'] = None
+
+        # set to None if tax_id_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_id_number is None and "tax_id_number" in self.model_fields_set:
+            _dict['taxIdNumber'] = None
+
+        # set to None if legal_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.legal_name is None and "legal_name" in self.model_fields_set:
+            _dict['legalName'] = None
+
+        # set to None if contacts (nullable) is None
+        # and model_fields_set contains the field
+        if self.contacts is None and "contacts" in self.model_fields_set:
+            _dict['contacts'] = None
+
         return _dict
 
     @classmethod
@@ -128,12 +197,18 @@ class GetGroupsResponseDataInner(BaseModel):
             "status": obj.get("status"),
             "created": obj.get("created"),
             "sourceID": obj.get("sourceID"),
+            "sourceName": obj.get("sourceName"),
             "address1": obj.get("address1"),
             "address2": obj.get("address2"),
             "city": obj.get("city"),
             "zip": obj.get("zip"),
             "state": obj.get("state"),
-            "commissionType": obj.get("commissionType")
+            "countryCode": obj.get("countryCode"),
+            "commissionType": obj.get("commissionType"),
+            "taxDocumentType": obj.get("taxDocumentType"),
+            "taxIdNumber": obj.get("taxIdNumber"),
+            "legalName": obj.get("legalName"),
+            "contacts": [GetGroupsResponseDataInnerContactsInner.from_dict(_item) for _item in obj["contacts"]] if obj.get("contacts") is not None else None
         })
         return _obj
 

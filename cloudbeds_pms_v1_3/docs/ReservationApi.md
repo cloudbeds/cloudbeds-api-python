@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservations_get**
-> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+> GetReservationsResponse get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, room_type_id=room_type_id, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, allotment_block_code=allotment_block_code, group_code=group_code, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
 
 getReservations
 
@@ -412,6 +412,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     dates_query_mode = booking # str | If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms. (optional) (default to booking)
     room_id = 'room_id_example' # str | Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored. (optional)
     room_name = 'room_name_example' # str | Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. (optional)
+    room_type_id = 'room_type_id_example' # str | Filters reservation with the supplied Room Type ID. (optional)
     include_guests_details = False # bool | If guests details should be included or not (optional) (default to False)
     include_guest_requirements = False # bool | Includes guest requirements data in the response. Requires `includeGuestsDetails=true`. (optional) (default to False)
     include_custom_fields = False # bool | If reservation custom fields should be included or not (optional) (default to False)
@@ -422,13 +423,15 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     first_name = 'first_name_example' # str | Filters reservation with the supplied primary guest first name. (optional)
     last_name = 'last_name_example' # str | Filters reservation with the supplied primary guest last name. (optional)
     guest_id = 'guest_id_example' # str | Filters reservation with the supplied Guest ID (Including additional guests). (optional)
+    allotment_block_code = 'allotment_block_code_example' # str | Filters reservation with the supplied allotment block code. (optional)
+    group_code = 'group_code_example' # str | Filters reservation with the supplied group code. (optional)
     sort_by_recent = True # bool | Sort response results by most recent action (optional)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getReservations
-        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_reservations_get(property_id=property_id, status=status, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, check_in_from=check_in_from, check_in_to=check_in_to, check_out_from=check_out_from, check_out_to=check_out_to, dates_query_mode=dates_query_mode, room_id=room_id, room_name=room_name, room_type_id=room_type_id, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, include_all_rooms=include_all_rooms, source_id=source_id, source_reservation_id=source_reservation_id, rate_plan_id=rate_plan_id, first_name=first_name, last_name=last_name, guest_id=guest_id, allotment_block_code=allotment_block_code, group_code=group_code, sort_by_recent=sort_by_recent, page_number=page_number, page_size=page_size)
         print("The response of ReservationApi->get_reservations_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -455,6 +458,7 @@ Name | Type | Description  | Notes
  **dates_query_mode** | **str**| If we should consider the booking&#39;s check-in/check-out dates or the start and end dates for the associated rooms. | [optional] [default to booking]
  **room_id** | **str**| Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored. | [optional] 
  **room_name** | **str**| Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. | [optional] 
+ **room_type_id** | **str**| Filters reservation with the supplied Room Type ID. | [optional] 
  **include_guests_details** | **bool**| If guests details should be included or not | [optional] [default to False]
  **include_guest_requirements** | **bool**| Includes guest requirements data in the response. Requires &#x60;includeGuestsDetails&#x3D;true&#x60;. | [optional] [default to False]
  **include_custom_fields** | **bool**| If reservation custom fields should be included or not | [optional] [default to False]
@@ -465,6 +469,8 @@ Name | Type | Description  | Notes
  **first_name** | **str**| Filters reservation with the supplied primary guest first name. | [optional] 
  **last_name** | **str**| Filters reservation with the supplied primary guest last name. | [optional] 
  **guest_id** | **str**| Filters reservation with the supplied Guest ID (Including additional guests). | [optional] 
+ **allotment_block_code** | **str**| Filters reservation with the supplied allotment block code. | [optional] 
+ **group_code** | **str**| Filters reservation with the supplied group code. | [optional] 
  **sort_by_recent** | **bool**| Sort response results by most recent action | [optional] 
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]
@@ -491,7 +497,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_reservations_with_rate_details_get**
-> GetReservationsWithRateDetailsResponse get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, page_number=page_number, page_size=page_size)
+> GetReservationsWithRateDetailsResponse get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, guest_id=guest_id, page_number=page_number, page_size=page_size)
 
 getReservationsWithRateDetails
 
@@ -545,12 +551,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     include_guests_details = False # bool | If guests details should be included or not (optional) (default to False)
     include_guest_requirements = False # bool | Includes guest requirements data in the response. Requires `includeGuestsDetails=true`. (optional) (default to False)
     include_custom_fields = False # bool | If reservation custom fields should be included or not (optional) (default to False)
+    guest_id = 'guest_id_example' # str | Filters reservations with the supplied Guest ID (Including additional guests). (optional)
     page_number = 1 # int | Results page number (optional) (default to 1)
     page_size = 100 # int | Results page size. Max = 100 (optional) (default to 100)
 
     try:
         # getReservationsWithRateDetails
-        api_response = api_instance.get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_reservations_with_rate_details_get(property_id=property_id, results_from=results_from, results_to=results_to, modified_from=modified_from, modified_to=modified_to, sort_by_recent=sort_by_recent, reservation_id=reservation_id, reservation_check_out_from=reservation_check_out_from, reservation_check_out_to=reservation_check_out_to, include_deleted=include_deleted, exclude_statuses=exclude_statuses, include_guests_details=include_guests_details, include_guest_requirements=include_guest_requirements, include_custom_fields=include_custom_fields, guest_id=guest_id, page_number=page_number, page_size=page_size)
         print("The response of ReservationApi->get_reservations_with_rate_details_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -578,6 +585,7 @@ Name | Type | Description  | Notes
  **include_guests_details** | **bool**| If guests details should be included or not | [optional] [default to False]
  **include_guest_requirements** | **bool**| Includes guest requirements data in the response. Requires &#x60;includeGuestsDetails&#x3D;true&#x60;. | [optional] [default to False]
  **include_custom_fields** | **bool**| If reservation custom fields should be included or not | [optional] [default to False]
+ **guest_id** | **str**| Filters reservations with the supplied Guest ID (Including additional guests). | [optional] 
  **page_number** | **int**| Results page number | [optional] [default to 1]
  **page_size** | **int**| Results page size. Max &#x3D; 100 | [optional] [default to 100]
 

@@ -41,7 +41,8 @@ class TestPutReservationRequestRoomsInner(unittest.TestCase):
                 checkout_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 adults = 56,
                 children = 56,
-                rate_id = ''
+                rate_id = '',
+                adjust_price = True
             )
         else:
             return PutReservationRequestRoomsInner(

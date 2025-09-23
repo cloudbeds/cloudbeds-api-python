@@ -17,29 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_groups_response_data_inner import GetGroupsResponseDataInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetGroupsResponse(BaseModel):
+class GetGroupsResponseDataInnerContactsInnerEmailsInner(BaseModel):
     """
-    GetGroupsResponse
+    GetGroupsResponseDataInnerContactsInnerEmailsInner
     """ # noqa: E501
-    success: Optional[StrictBool] = Field(default=None, description="Success")
-    data: Optional[List[GetGroupsResponseDataInner]] = Field(default=None, description="Data")
-    cell_phone: Optional[StrictStr] = Field(default=None, description="\"fax\"} data.contacts.phones.type Phone type", alias=""cell_phone",")
-    __properties: ClassVar[List[str]] = ["success", "data", "&quot;cell_phone&quot;,"]
+    type: Optional[StrictStr] = Field(default=None, description="Email type")
+    value: Optional[StrictStr] = Field(default=None, description="Email address value")
+    __properties: ClassVar[List[str]] = ["type", "value"]
 
-    @field_validator('cell_phone')
-    def cell_phone_validate_enum(cls, value):
+    @field_validator('type')
+    def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['home', 'work']):
-            raise ValueError("must be one of enum values ('home', 'work')")
+        if value not in set(['personal', 'business']):
+            raise ValueError("must be one of enum values ('personal', 'business')")
         return value
 
     model_config = ConfigDict(
@@ -60,7 +58,7 @@ class GetGroupsResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetGroupsResponse from a JSON string"""
+        """Create an instance of GetGroupsResponseDataInnerContactsInnerEmailsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,18 +79,11 @@ class GetGroupsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
-        if self.data:
-            for _item_data in self.data:
-                if _item_data:
-                    _items.append(_item_data.to_dict())
-            _dict['data'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetGroupsResponse from a dict"""
+        """Create an instance of GetGroupsResponseDataInnerContactsInnerEmailsInner from a dict"""
         if obj is None:
             return None
 
@@ -100,9 +91,8 @@ class GetGroupsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "data": [GetGroupsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
-            ""cell_phone",": obj.get(""cell_phone",")
+            "type": obj.get("type"),
+            "value": obj.get("value")
         })
         return _obj
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **success** | **bool** | Returns if the request could be completed | [optional] 
 **property_id** | **str** | Property ID | [optional] 
 **room_block_id** | **str** | Room block ID | [optional] 
-**room_block_type** | **str** | Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block | [optional] 
+**courtesy_hold** | **str** | roomBlockType Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. &#39;courtesy_hold&#39; - Courtesy hold. | [optional] 
 **room_block_reason** | **str** | Room block reason | [optional] 
 **start_date** | **date** | Room block start date | [optional] 
 **end_date** | **date** | Room block end date | [optional] 
