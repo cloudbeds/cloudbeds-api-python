@@ -31,22 +31,22 @@ class PutRoomBlockResponse(BaseModel):
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
     property_id: Optional[StrictStr] = Field(default=None, description="Property ID", alias="propertyID")
     room_block_id: Optional[StrictStr] = Field(default=None, description="Room block ID", alias="roomBlockID")
-    courtesy_hold: Optional[StrictStr] = Field(default=None, description="roomBlockType Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold.", alias=""courtesy_hold"}")
+    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold.", alias="roomBlockType")
     room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
     start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
     rooms: Optional[List[PostRoomBlockResponseRoomsInner]] = Field(default=None, description="All rooms for room block")
     message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false).  If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "propertyID", "roomBlockID", "&quot;courtesy_hold&quot;}", "roomBlockReason", "startDate", "endDate", "rooms", "message"]
+    __properties: ClassVar[List[str]] = ["success", "propertyID", "roomBlockID", "roomBlockType", "roomBlockReason", "startDate", "endDate", "rooms", "message"]
 
-    @field_validator('courtesy_hold')
-    def courtesy_hold_validate_enum(cls, value):
+    @field_validator('room_block_type')
+    def room_block_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['blocked', 'out_of_service']):
-            raise ValueError("must be one of enum values ('blocked', 'out_of_service')")
+        if value not in set(['blocked', 'out_of_service', 'courtesy_hold']):
+            raise ValueError("must be one of enum values ('blocked', 'out_of_service', 'courtesy_hold')")
         return value
 
     model_config = ConfigDict(
@@ -110,7 +110,7 @@ class PutRoomBlockResponse(BaseModel):
             "success": obj.get("success"),
             "propertyID": obj.get("propertyID"),
             "roomBlockID": obj.get("roomBlockID"),
-            ""courtesy_hold"}": obj.get(""courtesy_hold"}"),
+            "roomBlockType": obj.get("roomBlockType"),
             "roomBlockReason": obj.get("roomBlockReason"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
