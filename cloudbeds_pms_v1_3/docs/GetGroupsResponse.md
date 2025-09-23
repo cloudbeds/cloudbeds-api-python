@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Success | [optional] 
 **data** | [**List[GetGroupsResponseDataInner]**](GetGroupsResponseDataInner.md) | Data | [optional] 
-**cell_phone** | **str** | \&quot;fax\&quot;} data.contacts.phones.type Phone type | [optional] 
 
 ## Example
 

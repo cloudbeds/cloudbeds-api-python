@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,8 +26,19 @@ class GetGroupsResponseDataInnerContactsInnerPhonesInner(BaseModel):
     """
     GetGroupsResponseDataInnerContactsInnerPhonesInner
     """ # noqa: E501
+    type: Optional[StrictStr] = Field(default=None, description="Phone type")
     value: Optional[StrictStr] = Field(default=None, description="Phone number value")
-    __properties: ClassVar[List[str]] = ["value"]
+    __properties: ClassVar[List[str]] = ["type", "value"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['home', 'work', 'cell_phone', 'fax']):
+            raise ValueError("must be one of enum values ('home', 'work', 'cell_phone', 'fax')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +91,7 @@ class GetGroupsResponseDataInnerContactsInnerPhonesInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "type": obj.get("type"),
             "value": obj.get("value")
         })
         return _obj

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 
 # import apis into sdk package
 from cloudbeds_pms_v1_3.api.adjustment_api import AdjustmentApi
