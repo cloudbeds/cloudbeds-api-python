@@ -3,13 +3,13 @@
     "version": "7.11.0"
   },
   "generatorName": "python",
-  "inputSpec": "public_accessa/api/v1.3/docs/cb-v1.3-openapi-3.0.1.yaml",
+  "inputSpec": "../mfd/public_accessa/api/v1.3/docs/cb-v1.3-openapi-3.0.1.yaml",
   "outputDir": ".",
   "validateSpec": false,
   "additionalProperties": {
     "packageName": "cloudbeds_pms_v1_3",
     "projectName": "Cloudbeds PMS V1.3",
-    "packageVersion": "1.5.2",
+    "packageVersion": "1.5.3",
     "packageDescription": "OpenAPI client for Cloudbeds PMS v1.3 API.",
     "generateSourceCodeOnly": true,
     "packageUrl": "https://github.com/cloudbeds/cloudbeds-api-python/tree/release/v1"

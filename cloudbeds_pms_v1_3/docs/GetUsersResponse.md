@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Returns if the request could be completed | [optional] 
-**data** | [**List[GetUsersResponseDataInner]**](GetUsersResponseDataInner.md) | Details for the users | [optional] 
+**data** | **object** | Container of user arrays, indexed by property ID (e.g., \&quot;1\&quot;). | [optional] 
 
 ## Example
 

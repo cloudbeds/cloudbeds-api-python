@@ -1063,7 +1063,7 @@ Name | Type | Description  | Notes
 
 postRoomCheckOut
 
-Check-out a room already assigned for a guest. If all rooms are checked out, the reservation status will update accordingly to \"Checked Out\" as well.
+Check-out a room already assigned for a guest. If all rooms are checked out, the reservation status will update accordingly to "Checked Out" as well.
 
 ### Example
 
