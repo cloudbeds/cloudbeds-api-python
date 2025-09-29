@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.5.2"
+__version__ = "1.5.3"
 
 # import apis into sdk package
 from cloudbeds_pms_v1_3.api.adjustment_api import AdjustmentApi
@@ -227,8 +227,6 @@ from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_room_types
 from cloudbeds_pms_v1_3.models.get_userinfo_response import GetUserinfoResponse
 from cloudbeds_pms_v1_3.models.get_userinfo_response_roles_inner import GetUserinfoResponseRolesInner
 from cloudbeds_pms_v1_3.models.get_users_response import GetUsersResponse
-from cloudbeds_pms_v1_3.models.get_users_response_data_inner import GetUsersResponseDataInner
-from cloudbeds_pms_v1_3.models.get_users_response_data_inner_user_role import GetUsersResponseDataInnerUserRole
 from cloudbeds_pms_v1_3.models.get_webhooks_response import GetWebhooksResponse
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner import GetWebhooksResponseDataInner
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_event import GetWebhooksResponseDataInnerEvent

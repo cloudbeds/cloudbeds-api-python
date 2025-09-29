@@ -209,8 +209,6 @@ cloudbeds_pms_v1_3/docs/GetTaxesAndFeesResponseDataInnerRoomTypesInner.md
 cloudbeds_pms_v1_3/docs/GetUserinfoResponse.md
 cloudbeds_pms_v1_3/docs/GetUserinfoResponseRolesInner.md
 cloudbeds_pms_v1_3/docs/GetUsersResponse.md
-cloudbeds_pms_v1_3/docs/GetUsersResponseDataInner.md
-cloudbeds_pms_v1_3/docs/GetUsersResponseDataInnerUserRole.md
 cloudbeds_pms_v1_3/docs/GetWebhooksResponse.md
 cloudbeds_pms_v1_3/docs/GetWebhooksResponseDataInner.md
 cloudbeds_pms_v1_3/docs/GetWebhooksResponseDataInnerEvent.md
@@ -533,8 +531,6 @@ cloudbeds_pms_v1_3/models/get_taxes_and_fees_response_data_inner_room_types_inne
 cloudbeds_pms_v1_3/models/get_userinfo_response.py
 cloudbeds_pms_v1_3/models/get_userinfo_response_roles_inner.py
 cloudbeds_pms_v1_3/models/get_users_response.py
-cloudbeds_pms_v1_3/models/get_users_response_data_inner.py
-cloudbeds_pms_v1_3/models/get_users_response_data_inner_user_role.py
 cloudbeds_pms_v1_3/models/get_webhooks_response.py
 cloudbeds_pms_v1_3/models/get_webhooks_response_data_inner.py
 cloudbeds_pms_v1_3/models/get_webhooks_response_data_inner_event.py

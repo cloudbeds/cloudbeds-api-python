@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_users_response_data_inner import GetUsersResponseDataInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class GetUsersResponse(BaseModel):
     GetUsersResponse
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
-    data: Optional[List[GetUsersResponseDataInner]] = Field(default=None, description="Details for the users")
+    data: Optional[Dict[str, Any]] = Field(default=None, description="Container of user arrays, indexed by property ID (e.g., \"1\").")
     __properties: ClassVar[List[str]] = ["success", "data"]
 
     model_config = ConfigDict(
@@ -70,13 +69,6 @@ class GetUsersResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
-        if self.data:
-            for _item_data in self.data:
-                if _item_data:
-                    _items.append(_item_data.to_dict())
-            _dict['data'] = _items
         return _dict
 
     @classmethod
@@ -90,7 +82,7 @@ class GetUsersResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "data": [GetUsersResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": obj.get("data")
         })
         return _obj
 
