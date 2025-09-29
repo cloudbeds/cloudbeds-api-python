@@ -3,7 +3,7 @@
     "version": "7.11.0"
   },
   "generatorName": "python",
-  "inputSpec": "../mfd/public_accessa/api/v1.3/docs/cb-v1.3-openapi-3.0.1.yaml",
+  "inputSpec": "public_accessa/api/v1.3/docs/cb-v1.3-openapi-3.0.1.yaml",
   "outputDir": ".",
   "validateSpec": false,
   "additionalProperties": {
