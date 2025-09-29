@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 getHotelDetails
 
-Returns the details of a specific hotel, identified by "propertyID"
+Returns the details of a specific hotel, identified by \"propertyID\"
 
 ### Example
 
