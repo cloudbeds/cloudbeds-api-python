@@ -27,10 +27,11 @@ class GetPaymentMethodsResponseDataMethodsInner(BaseModel):
     """
     GetPaymentMethodsResponseDataMethodsInner
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Payment Type")
+    method: Optional[StrictStr] = Field(default=None, description="Payment Method")
+    code: Optional[StrictStr] = Field(default=None, description="Payment Code")
     name: Optional[StrictStr] = Field(default=None, description="Payment Name (in given lang)")
     card_types: Optional[List[GetPaymentMethodsResponseDataMethodsInnerCardTypesInner]] = Field(default=None, description="IF type = 'credit' the enabled card types. Having the array's keys as its type and the value as its name.", alias="cardTypes")
-    __properties: ClassVar[List[str]] = ["type", "name", "cardTypes"]
+    __properties: ClassVar[List[str]] = ["method", "code", "name", "cardTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +96,8 @@ class GetPaymentMethodsResponseDataMethodsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
+            "method": obj.get("method"),
+            "code": obj.get("code"),
             "name": obj.get("name"),
             "cardTypes": [GetPaymentMethodsResponseDataMethodsInnerCardTypesInner.from_dict(_item) for _item in obj["cardTypes"]] if obj.get("cardTypes") is not None else None
         })
