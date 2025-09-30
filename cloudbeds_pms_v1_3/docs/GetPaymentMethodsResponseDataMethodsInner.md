@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Payment Type | [optional] 
+**method** | **str** | Payment Method | [optional] 
+**code** | **str** | Payment Code | [optional] 
 **name** | **str** | Payment Name (in given lang) | [optional] 
 **card_types** | [**List[GetPaymentMethodsResponseDataMethodsInnerCardTypesInner]**](GetPaymentMethodsResponseDataMethodsInnerCardTypesInner.md) | IF type &#x3D; &#39;credit&#39; the enabled card types. Having the array&#39;s keys as its type and the value as its name. | [optional] 
 
