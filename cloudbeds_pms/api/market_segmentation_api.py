@@ -24,7 +24,6 @@ from cloudbeds_pms.models.group_list_response_schema import GroupListResponseSch
 from cloudbeds_pms.models.group_response_schema import GroupResponseSchema
 from cloudbeds_pms.models.group_update_request_schema import GroupUpdateRequestSchema
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
-from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.segment_create_request_schema import SegmentCreateRequestSchema
 from cloudbeds_pms.models.segment_list_reservations_response_schema import SegmentListReservationsResponseSchema
 from cloudbeds_pms.models.segment_list_response_schema import SegmentListResponseSchema
@@ -3546,7 +3545,7 @@ class MarketSegmentationApi:
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3572,7 +3571,7 @@ class MarketSegmentationApi:
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3631,7 +3630,7 @@ class MarketSegmentationApi:
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3657,7 +3656,7 @@ class MarketSegmentationApi:
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3716,7 +3715,7 @@ class MarketSegmentationApi:
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3742,7 +3741,7 @@ class MarketSegmentationApi:
         :param limit: The maximum number of items to return in the response. Default is 100.
         :type limit: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

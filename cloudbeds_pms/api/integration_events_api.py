@@ -24,7 +24,6 @@ from cloudbeds_pms.models.integration_event_list_response_schema import Integrat
 from cloudbeds_pms.models.integration_event_response_schema import IntegrationEventResponseSchema
 from cloudbeds_pms.models.integration_event_update_request_schema import IntegrationEventUpdateRequestSchema
 from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
-from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.query_parameter_sort_schema import QueryParameterSortSchema
 
 from cloudbeds_pms.api_client import ApiClient, RequestSerialized
@@ -347,7 +346,7 @@ class IntegrationEventsApi:
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -373,7 +372,7 @@ class IntegrationEventsApi:
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -433,7 +432,7 @@ class IntegrationEventsApi:
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -459,7 +458,7 @@ class IntegrationEventsApi:
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -519,7 +518,7 @@ class IntegrationEventsApi:
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
         limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        filters: Annotated[Optional[QueryParameterDynamicFilterSchema], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
+        filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -545,7 +544,7 @@ class IntegrationEventsApi:
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
         :type offset: LimitOffsetPaginationSchema
         :param filters: This parameter should be formatted as a list of strings separated by ;
-        :type filters: QueryParameterDynamicFilterSchema
+        :type filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
