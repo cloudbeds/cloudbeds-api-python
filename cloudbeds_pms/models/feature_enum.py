@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Cloudbeds API
+    Cloudbeds API v2
 
     <p>Welcome to the documentation for <strong>Cloudbeds API Version v2</strong>! If you are looking to learn how to use the Cloudbeds API to access guest information, reservations, or similar data for your Cloudbeds customers, then you've come to the right place.</p><p>In this document you will find all the API methods we provide along with explanations for parameters and response examples.</p><p>If you have questions about different implementation steps (e.g. how to implement OAuth 2.0), please refer to our <a href='https://integrations.cloudbeds.com/hc/en-us'>Integrations Portal</a>.</p><p>Be sure to <a href='https://go.pardot.com/l/308041/2018-07-24/qb2lg'>subscribe</a> to the monthly Cloudbeds API announcement mailing list to receive information on new additions and improvements to the Cloudbeds API and related developer tools.</p><p><strong>Endpoint:</strong> https://api.cloudbeds.com/{method}</p><p><strong>HTTPS:</strong> Our API requires HTTPS. We'll respond with an appropriate error if you're not using it.</p><p><strong>Request Format:</strong> HTTP GET, POST and PUT (Content-Type: application/x-www-form-urlencoded)</p><p><strong>Response Format:</strong> JSON</p><p><strong>Response Header:</strong> X-Request-ID is added to response headers in all calls to help accelerate support and troubleshooting.</p><p><strong><a href='https://integrations.cloudbeds.com/hc/en-us/articles/14104678058267-API-Documentation#postman-collection'><img src='https://run.pstmn.io/button.svg' alt='Run in Postman'></a></strong> use this link to access our Public collection in Postman.</p>
 
@@ -30,6 +30,13 @@ class FeatureEnum(str, Enum):
     FEATURE_DOT_INTEGRATIONS_DOT_GENERATE_MINUS_DUMMY_MINUS_DOORLOCK_MINUS_KEYS = 'feature.integrations.generate-dummy-doorlock-keys'
     FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION = 'feature.distribution.market-segmentation'
     FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION_MINUS_ENABLE_MINUS_CUSTOM_MINUS_GROUP = 'feature.distribution.market-segmentation-enable-custom-group'
+    FEATURE_DOT_INVENTORY_DOT_RATE_MINUS_PLANS = 'feature.inventory.rate-plans'
+    FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_NEW_MINUS_SYSTEM_MINUS_ENABLED = 'feature.distribution.age-policy-new-system-enabled'
+    FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_DUAL_MINUS_WRITE_MINUS_ENABLED = 'feature.distribution.age-policy-dual-write-enabled'
+    FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_VALIDATION_MINUS_ENABLED = 'feature.distribution.age-policy-validation-enabled'
+    FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_AUTO_MINUS_ROLLBACK_MINUS_ENABLED = 'feature.distribution.age-policy-auto-rollback-enabled'
+    FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_CENTRALIZED_MINUS_SERVICE_MINUS_LAYER = 'feature.distribution.age-policy-centralized-service-layer'
+    FEATURE_DOT_PROP_MINUS_STAFF_DOT_PROPERTY_MINUS_FEATURE_MINUS_CACHE = 'feature.prop-staff.property-feature-cache'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

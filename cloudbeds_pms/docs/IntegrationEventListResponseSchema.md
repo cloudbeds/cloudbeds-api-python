@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[IntegrationEventResponseSchema]**](IntegrationEventResponseSchema.md) |  | 
+**total** | **int** | The total number of items available | 
 
 ## Example
 

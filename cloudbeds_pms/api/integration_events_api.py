@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Cloudbeds API
+    Cloudbeds API v2
 
     <p>Welcome to the documentation for <strong>Cloudbeds API Version v2</strong>! If you are looking to learn how to use the Cloudbeds API to access guest information, reservations, or similar data for your Cloudbeds customers, then you've come to the right place.</p><p>In this document you will find all the API methods we provide along with explanations for parameters and response examples.</p><p>If you have questions about different implementation steps (e.g. how to implement OAuth 2.0), please refer to our <a href='https://integrations.cloudbeds.com/hc/en-us'>Integrations Portal</a>.</p><p>Be sure to <a href='https://go.pardot.com/l/308041/2018-07-24/qb2lg'>subscribe</a> to the monthly Cloudbeds API announcement mailing list to receive information on new additions and improvements to the Cloudbeds API and related developer tools.</p><p><strong>Endpoint:</strong> https://api.cloudbeds.com/{method}</p><p><strong>HTTPS:</strong> Our API requires HTTPS. We'll respond with an appropriate error if you're not using it.</p><p><strong>Request Format:</strong> HTTP GET, POST and PUT (Content-Type: application/x-www-form-urlencoded)</p><p><strong>Response Format:</strong> JSON</p><p><strong>Response Header:</strong> X-Request-ID is added to response headers in all calls to help accelerate support and troubleshooting.</p><p><strong><a href='https://integrations.cloudbeds.com/hc/en-us/articles/14104678058267-API-Documentation#postman-collection'><img src='https://run.pstmn.io/button.svg' alt='Run in Postman'></a></strong> use this link to access our Public collection in Postman.</p>
 
@@ -657,6 +657,7 @@ class IntegrationEventsApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'default'
         ]
 
         return self.api_client.param_serialize(
@@ -682,7 +683,6 @@ class IntegrationEventsApi:
         self,
         id: StrictStr,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        integration_event_update_request_schema: Annotated[IntegrationEventUpdateRequestSchema, Field(description="Integration event data")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -703,8 +703,6 @@ class IntegrationEventsApi:
         :type id: str
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param integration_event_update_request_schema: Integration event data (required)
-        :type integration_event_update_request_schema: IntegrationEventUpdateRequestSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -730,7 +728,6 @@ class IntegrationEventsApi:
         _param = self._integration_event_controller_retry_serialize(
             id=id,
             x_property_id=x_property_id,
-            integration_event_update_request_schema=integration_event_update_request_schema,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -760,7 +757,6 @@ class IntegrationEventsApi:
         self,
         id: StrictStr,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        integration_event_update_request_schema: Annotated[IntegrationEventUpdateRequestSchema, Field(description="Integration event data")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -781,8 +777,6 @@ class IntegrationEventsApi:
         :type id: str
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param integration_event_update_request_schema: Integration event data (required)
-        :type integration_event_update_request_schema: IntegrationEventUpdateRequestSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -808,7 +802,6 @@ class IntegrationEventsApi:
         _param = self._integration_event_controller_retry_serialize(
             id=id,
             x_property_id=x_property_id,
-            integration_event_update_request_schema=integration_event_update_request_schema,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -838,7 +831,6 @@ class IntegrationEventsApi:
         self,
         id: StrictStr,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        integration_event_update_request_schema: Annotated[IntegrationEventUpdateRequestSchema, Field(description="Integration event data")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -859,8 +851,6 @@ class IntegrationEventsApi:
         :type id: str
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
-        :param integration_event_update_request_schema: Integration event data (required)
-        :type integration_event_update_request_schema: IntegrationEventUpdateRequestSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -886,7 +876,6 @@ class IntegrationEventsApi:
         _param = self._integration_event_controller_retry_serialize(
             id=id,
             x_property_id=x_property_id,
-            integration_event_update_request_schema=integration_event_update_request_schema,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -911,7 +900,6 @@ class IntegrationEventsApi:
         self,
         id,
         x_property_id,
-        integration_event_update_request_schema,
         _request_auth,
         _content_type,
         _headers,
@@ -941,8 +929,6 @@ class IntegrationEventsApi:
             _header_params['x-property-id'] = x_property_id
         # process the form parameters
         # process the body parameter
-        if integration_event_update_request_schema is not None:
-            _body_params = integration_event_update_request_schema
 
 
         # set the HTTP header `Accept`
@@ -953,22 +939,10 @@ class IntegrationEventsApi:
                 ]
             )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
+            'default'
         ]
 
         return self.api_client.param_serialize(

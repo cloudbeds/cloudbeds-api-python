@@ -96,6 +96,7 @@ Get a list of integration events for a specific property.
 
 ### Example
 
+* OAuth Authentication (default):
 
 ```python
 import cloudbeds_pms
@@ -112,6 +113,12 @@ configuration = cloudbeds_pms.Configuration(
     host = "https://api.cloudbeds.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms.ApiClient(configuration) as api_client:
@@ -151,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[default](../README.md#default)
 
 ### HTTP request headers
 
@@ -171,16 +178,16 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **integration_event_controller_retry**
-> object integration_event_controller_retry(id, x_property_id, integration_event_update_request_schema)
+> object integration_event_controller_retry(id, x_property_id)
 
 Retry an integration event.
 
 ### Example
 
+* OAuth Authentication (default):
 
 ```python
 import cloudbeds_pms
-from cloudbeds_pms.models.integration_event_update_request_schema import IntegrationEventUpdateRequestSchema
 from cloudbeds_pms.rest import ApiException
 from pprint import pprint
 
@@ -190,6 +197,12 @@ configuration = cloudbeds_pms.Configuration(
     host = "https://api.cloudbeds.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with cloudbeds_pms.ApiClient(configuration) as api_client:
@@ -197,11 +210,10 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms.IntegrationEventsApi(api_client)
     id = 'id_example' # str | 
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
-    integration_event_update_request_schema = cloudbeds_pms.IntegrationEventUpdateRequestSchema() # IntegrationEventUpdateRequestSchema | Integration event data
 
     try:
         # Retry an integration event.
-        api_response = api_instance.integration_event_controller_retry(id, x_property_id, integration_event_update_request_schema)
+        api_response = api_instance.integration_event_controller_retry(id, x_property_id)
         print("The response of IntegrationEventsApi->integration_event_controller_retry:\n")
         pprint(api_response)
     except Exception as e:
@@ -217,7 +229,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  | 
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
- **integration_event_update_request_schema** | [**IntegrationEventUpdateRequestSchema**](IntegrationEventUpdateRequestSchema.md)| Integration event data | 
 
 ### Return type
 
@@ -225,11 +236,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[default](../README.md#default)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
