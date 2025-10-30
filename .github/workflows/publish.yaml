@@ -108,6 +108,16 @@ jobs:
           find $(cat PACKAGE) -mindepth 1 ! -name 'py.typed' -delete
           java -jar openapi-generator-cli.jar generate -c openapitools.json
 
+      - name: Setup Python
+        if: github.ref_name == 'main'
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      - name: Simplify filters parameter
+        if: github.ref_name == 'main'
+        run: python simplify_filters_param.py
+
       - name: Git Setup
         if: inputs.version == ''
         run: |
