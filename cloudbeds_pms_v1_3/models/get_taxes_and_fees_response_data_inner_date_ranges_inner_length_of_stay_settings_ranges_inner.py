@@ -17,33 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
+class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner(BaseModel):
     """
-    
+    GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner
     """ # noqa: E501
-    property_check_in_time: Optional[StrictStr] = Field(default=None, alias="propertyCheckInTime")
-    property_check_out_time: Optional[StrictStr] = Field(default=None, alias="propertyCheckOutTime")
-    property_late_check_out_allowed: Optional[StrictBool] = Field(default=None, alias="propertyLateCheckOutAllowed")
-    property_late_check_out_type: Optional[StrictStr] = Field(default=None, description="If the property accepts late check-out, defines if the value is fixed, or a percentage of the daily rate", alias="propertyLateCheckOutType")
-    property_late_check_out_value: Optional[StrictStr] = Field(default=None, description="The fixed value, or percentage of the daily rate, to be charged on a late check-out", alias="propertyLateCheckOutValue")
-    property_terms_and_conditions: Optional[StrictStr] = Field(default=None, description="Text describing the terms and conditions to be displayed to guest", alias="propertyTermsAndConditions")
-    property_full_payment_before_checkin: Optional[StrictBool] = Field(default=None, description="If the property requires the full payment amount of the reservation to be collected prior to check-in", alias="propertyFullPaymentBeforeCheckin")
-    __properties: ClassVar[List[str]] = ["propertyCheckInTime", "propertyCheckOutTime", "propertyLateCheckOutAllowed", "propertyLateCheckOutType", "propertyLateCheckOutValue", "propertyTermsAndConditions", "propertyFullPaymentBeforeCheckin"]
-
-    @field_validator('property_late_check_out_type')
-    def property_late_check_out_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['value', 'percent', 'fixed']):
-            raise ValueError("must be one of enum values ('value', 'percent', 'fixed')")
-        return value
+    minimum_nights: Optional[StrictInt] = Field(default=None, description="Minimum number of nights required for this range", alias="minimumNights")
+    maximum_nights: Optional[StrictInt] = Field(default=None, description="Maximum number of nights for this range (null means no limit)", alias="maximumNights")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount for this range")
+    amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per adult for this range", alias="amountAdult")
+    amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per child for this range", alias="amountChild")
+    amount_rate_based: Optional[List[Dict[str, Any]]] = Field(default=None, description="Rate-based amounts for this range", alias="amountRateBased")
+    __properties: ClassVar[List[str]] = ["minimumNights", "maximumNights", "amount", "amountAdult", "amountChild", "amountRateBased"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,7 +52,7 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetHotelDetailsResponseDataPropertyPolicy from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,11 +73,36 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if maximum_nights (nullable) is None
+        # and model_fields_set contains the field
+        if self.maximum_nights is None and "maximum_nights" in self.model_fields_set:
+            _dict['maximumNights'] = None
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
+        # set to None if amount_adult (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_adult is None and "amount_adult" in self.model_fields_set:
+            _dict['amountAdult'] = None
+
+        # set to None if amount_child (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_child is None and "amount_child" in self.model_fields_set:
+            _dict['amountChild'] = None
+
+        # set to None if amount_rate_based (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_rate_based is None and "amount_rate_based" in self.model_fields_set:
+            _dict['amountRateBased'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetHotelDetailsResponseDataPropertyPolicy from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner from a dict"""
         if obj is None:
             return None
 
@@ -96,13 +110,12 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "propertyCheckInTime": obj.get("propertyCheckInTime"),
-            "propertyCheckOutTime": obj.get("propertyCheckOutTime"),
-            "propertyLateCheckOutAllowed": obj.get("propertyLateCheckOutAllowed"),
-            "propertyLateCheckOutType": obj.get("propertyLateCheckOutType"),
-            "propertyLateCheckOutValue": obj.get("propertyLateCheckOutValue"),
-            "propertyTermsAndConditions": obj.get("propertyTermsAndConditions"),
-            "propertyFullPaymentBeforeCheckin": obj.get("propertyFullPaymentBeforeCheckin")
+            "minimumNights": obj.get("minimumNights"),
+            "maximumNights": obj.get("maximumNights"),
+            "amount": obj.get("amount"),
+            "amountAdult": obj.get("amountAdult"),
+            "amountChild": obj.get("amountChild"),
+            "amountRateBased": obj.get("amountRateBased")
         })
         return _obj
 

@@ -17,32 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_ranges_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
+class GetTaxesAndFeesResponseDataInnerLengthOfStaySettings(BaseModel):
     """
-    
+    Length of Stay configuration settings
     """ # noqa: E501
-    property_check_in_time: Optional[StrictStr] = Field(default=None, alias="propertyCheckInTime")
-    property_check_out_time: Optional[StrictStr] = Field(default=None, alias="propertyCheckOutTime")
-    property_late_check_out_allowed: Optional[StrictBool] = Field(default=None, alias="propertyLateCheckOutAllowed")
-    property_late_check_out_type: Optional[StrictStr] = Field(default=None, description="If the property accepts late check-out, defines if the value is fixed, or a percentage of the daily rate", alias="propertyLateCheckOutType")
-    property_late_check_out_value: Optional[StrictStr] = Field(default=None, description="The fixed value, or percentage of the daily rate, to be charged on a late check-out", alias="propertyLateCheckOutValue")
-    property_terms_and_conditions: Optional[StrictStr] = Field(default=None, description="Text describing the terms and conditions to be displayed to guest", alias="propertyTermsAndConditions")
-    property_full_payment_before_checkin: Optional[StrictBool] = Field(default=None, description="If the property requires the full payment amount of the reservation to be collected prior to check-in", alias="propertyFullPaymentBeforeCheckin")
-    __properties: ClassVar[List[str]] = ["propertyCheckInTime", "propertyCheckOutTime", "propertyLateCheckOutAllowed", "propertyLateCheckOutType", "propertyLateCheckOutValue", "propertyTermsAndConditions", "propertyFullPaymentBeforeCheckin"]
+    application_type: Optional[StrictStr] = Field(default=None, description="Application type for Length of Stay rules:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>progressive_application</td><td>Apply tax/fee when minimum nights are reached</td></tr> <tr><td>retroactive_adjustment</td><td>Apply adjustments retroactively when conditions are met</td></tr> </table>", alias="applicationType")
+    ranges: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner]] = Field(default=None, description="Night-based ranges for Length of Stay configuration")
+    __properties: ClassVar[List[str]] = ["applicationType", "ranges"]
 
-    @field_validator('property_late_check_out_type')
-    def property_late_check_out_type_validate_enum(cls, value):
+    @field_validator('application_type')
+    def application_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['value', 'percent', 'fixed']):
-            raise ValueError("must be one of enum values ('value', 'percent', 'fixed')")
+        if value not in set(['progressive_application', 'retroactive_adjustment']):
+            raise ValueError("must be one of enum values ('progressive_application', 'retroactive_adjustment')")
         return value
 
     model_config = ConfigDict(
@@ -63,7 +59,7 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetHotelDetailsResponseDataPropertyPolicy from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,11 +80,28 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in ranges (list)
+        _items = []
+        if self.ranges:
+            for _item_ranges in self.ranges:
+                if _item_ranges:
+                    _items.append(_item_ranges.to_dict())
+            _dict['ranges'] = _items
+        # set to None if application_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.application_type is None and "application_type" in self.model_fields_set:
+            _dict['applicationType'] = None
+
+        # set to None if ranges (nullable) is None
+        # and model_fields_set contains the field
+        if self.ranges is None and "ranges" in self.model_fields_set:
+            _dict['ranges'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetHotelDetailsResponseDataPropertyPolicy from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a dict"""
         if obj is None:
             return None
 
@@ -96,13 +109,8 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "propertyCheckInTime": obj.get("propertyCheckInTime"),
-            "propertyCheckOutTime": obj.get("propertyCheckOutTime"),
-            "propertyLateCheckOutAllowed": obj.get("propertyLateCheckOutAllowed"),
-            "propertyLateCheckOutType": obj.get("propertyLateCheckOutType"),
-            "propertyLateCheckOutValue": obj.get("propertyLateCheckOutValue"),
-            "propertyTermsAndConditions": obj.get("propertyTermsAndConditions"),
-            "propertyFullPaymentBeforeCheckin": obj.get("propertyFullPaymentBeforeCheckin")
+            "applicationType": obj.get("applicationType"),
+            "ranges": [GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner.from_dict(_item) for _item in obj["ranges"]] if obj.get("ranges") is not None else None
         })
         return _obj
 

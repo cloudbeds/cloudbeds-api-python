@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_available_room_types_get**
-> GetAvailableRoomTypesResponse get_available_room_types_get(start_date, end_date, rooms, adults, children, property_ids=property_ids, promo_code=promo_code, detailed_rates=detailed_rates, sort=sort, order=order, min_rate=min_rate, max_rate=max_rate, page_number=page_number, page_size=page_size)
+> GetAvailableRoomTypesResponse get_available_room_types_get(start_date, end_date, rooms, adults, children, property_ids=property_ids, promo_code=promo_code, detailed_rates=detailed_rates, include_shared_rooms=include_shared_rooms, sort=sort, order=order, min_rate=min_rate, max_rate=max_rate, page_number=page_number, page_size=page_size)
 
 getAvailableRoomTypes
 
@@ -152,6 +152,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_ids = 'property_ids_example' # str | Property ID list, comma-separated, i.e. 37,345,89 (optional)
     promo_code = 'promo_code_example' # str | Promotional code (optional)
     detailed_rates = False # bool | If detailed rates are expected (optional) (default to False)
+    include_shared_rooms = False # bool | Include shared rooms in the result for multiple adults/children (optional) (default to False)
     sort = 'sort_example' # str | Sort parameter (optional)
     order = asc # str |  (optional) (default to asc)
     min_rate = 3.4 # float | Minimum daily rate. Used to filter results (optional)
@@ -161,7 +162,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getAvailableRoomTypes
-        api_response = api_instance.get_available_room_types_get(start_date, end_date, rooms, adults, children, property_ids=property_ids, promo_code=promo_code, detailed_rates=detailed_rates, sort=sort, order=order, min_rate=min_rate, max_rate=max_rate, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_available_room_types_get(start_date, end_date, rooms, adults, children, property_ids=property_ids, promo_code=promo_code, detailed_rates=detailed_rates, include_shared_rooms=include_shared_rooms, sort=sort, order=order, min_rate=min_rate, max_rate=max_rate, page_number=page_number, page_size=page_size)
         print("The response of RoomApi->get_available_room_types_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -183,6 +184,7 @@ Name | Type | Description  | Notes
  **property_ids** | **str**| Property ID list, comma-separated, i.e. 37,345,89 | [optional] 
  **promo_code** | **str**| Promotional code | [optional] 
  **detailed_rates** | **bool**| If detailed rates are expected | [optional] [default to False]
+ **include_shared_rooms** | **bool**| Include shared rooms in the result for multiple adults/children | [optional] [default to False]
  **sort** | **str**| Sort parameter | [optional] 
  **order** | **str**|  | [optional] [default to asc]
  **min_rate** | **float**| Minimum daily rate. Used to filter results | [optional] 

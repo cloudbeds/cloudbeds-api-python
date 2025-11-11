@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings import GetTaxesAndFeesResponseDataInnerLengthOfStaySettings
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_room_types_inner import GetTaxesAndFeesResponseDataInnerRoomTypesInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -49,7 +50,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     expired_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was expired", alias="expiredAt")
     room_types: Optional[List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]] = Field(default=None, description="Room types this tax/fee applies to", alias="roomTypes")
     date_ranges: Optional[List[GetTaxesAndFeesResponseDataInnerDateRangesInner]] = Field(default=None, description="Date ranges when this tax/fee is applicable", alias="dateRanges")
-    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges"]
+    length_of_stay_settings: Optional[GetTaxesAndFeesResponseDataInnerLengthOfStaySettings] = Field(default=None, alias="lengthOfStaySettings")
+    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges", "lengthOfStaySettings"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -152,6 +154,9 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
                 if _item_date_ranges:
                     _items.append(_item_date_ranges.to_dict())
             _dict['dateRanges'] = _items
+        # override the default output from pydantic by calling `to_dict()` of length_of_stay_settings
+        if self.length_of_stay_settings:
+            _dict['lengthOfStaySettings'] = self.length_of_stay_settings.to_dict()
         # set to None if fee_id (nullable) is None
         # and model_fields_set contains the field
         if self.fee_id is None and "fee_id" in self.model_fields_set:
@@ -187,6 +192,11 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         if self.date_ranges is None and "date_ranges" in self.model_fields_set:
             _dict['dateRanges'] = None
 
+        # set to None if length_of_stay_settings (nullable) is None
+        # and model_fields_set contains the field
+        if self.length_of_stay_settings is None and "length_of_stay_settings" in self.model_fields_set:
+            _dict['lengthOfStaySettings'] = None
+
         return _dict
 
     @classmethod
@@ -218,7 +228,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "createdAt": obj.get("createdAt"),
             "expiredAt": obj.get("expiredAt"),
             "roomTypes": [GetTaxesAndFeesResponseDataInnerRoomTypesInner.from_dict(_item) for _item in obj["roomTypes"]] if obj.get("roomTypes") is not None else None,
-            "dateRanges": [GetTaxesAndFeesResponseDataInnerDateRangesInner.from_dict(_item) for _item in obj["dateRanges"]] if obj.get("dateRanges") is not None else None
+            "dateRanges": [GetTaxesAndFeesResponseDataInnerDateRangesInner.from_dict(_item) for _item in obj["dateRanges"]] if obj.get("dateRanges") is not None else None,
+            "lengthOfStaySettings": GetTaxesAndFeesResponseDataInnerLengthOfStaySettings.from_dict(obj["lengthOfStaySettings"]) if obj.get("lengthOfStaySettings") is not None else None
         })
         return _obj
 
