@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_allotment_blocks_get**
-> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date)
+> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
 
 getAllotmentBlocks
 
@@ -332,11 +332,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     page_size = 56 # int | Number of allotment blocks to return per page (min: 1, max: 100) (optional)
     page_number = 56 # int | Which page in the results to access (optional)
     start_date = '2013-10-20' # date | Interval start date (optional)
-    end_date = '2013-10-20' # date | Interval start date (optional)
+    end_date = '2013-10-20' # date | Interval end date (optional)
+    for_update = True # bool | If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. (optional)
 
     try:
         # getAllotmentBlocks
-        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date)
+        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
         print("The response of AllotmentBlocksApi->get_allotment_blocks_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -360,7 +361,8 @@ Name | Type | Description  | Notes
  **page_size** | **int**| Number of allotment blocks to return per page (min: 1, max: 100) | [optional] 
  **page_number** | **int**| Which page in the results to access | [optional] 
  **start_date** | **date**| Interval start date | [optional] 
- **end_date** | **date**| Interval start date | [optional] 
+ **end_date** | **date**| Interval end date | [optional] 
+ **for_update** | **bool**| If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. | [optional] 
 
 ### Return type
 

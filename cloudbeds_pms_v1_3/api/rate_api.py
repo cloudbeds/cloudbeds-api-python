@@ -724,6 +724,7 @@ class RateApi:
         adults: Annotated[Optional[StrictInt], Field(description="Number of adults")] = None,
         children: Annotated[Optional[StrictInt], Field(description="Number of children")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If the rates need detailed information")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -761,6 +762,8 @@ class RateApi:
         :type children: int
         :param detailed_rates: If the rates need detailed information
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -794,6 +797,7 @@ class RateApi:
             adults=adults,
             children=children,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -827,6 +831,7 @@ class RateApi:
         adults: Annotated[Optional[StrictInt], Field(description="Number of adults")] = None,
         children: Annotated[Optional[StrictInt], Field(description="Number of children")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If the rates need detailed information")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -864,6 +869,8 @@ class RateApi:
         :type children: int
         :param detailed_rates: If the rates need detailed information
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -897,6 +904,7 @@ class RateApi:
             adults=adults,
             children=children,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -930,6 +938,7 @@ class RateApi:
         adults: Annotated[Optional[StrictInt], Field(description="Number of adults")] = None,
         children: Annotated[Optional[StrictInt], Field(description="Number of children")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If the rates need detailed information")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -967,6 +976,8 @@ class RateApi:
         :type children: int
         :param detailed_rates: If the rates need detailed information
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1000,6 +1011,7 @@ class RateApi:
             adults=adults,
             children=children,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1028,6 +1040,7 @@ class RateApi:
         adults,
         children,
         detailed_rates,
+        include_shared_rooms,
         _request_auth,
         _content_type,
         _headers,
@@ -1107,6 +1120,10 @@ class RateApi:
         if detailed_rates is not None:
             
             _query_params.append(('detailedRates', detailed_rates))
+            
+        if include_shared_rooms is not None:
+            
+            _query_params.append(('includeSharedRooms', include_shared_rooms))
             
         # process the header parameters
         # process the form parameters

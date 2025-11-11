@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **amount_adult** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult.md) |  | [optional] 
 **amount_child** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild**](GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild.md) |  | [optional] 
 **amount_rate_based** | [**List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]**](GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.md) | Rules defined for Rate-Based taxes/fees. Only applicable if amountType &#x3D; percentage_rate_based (Rate-based) | [optional] 
+**length_of_stay_settings** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings.md) |  | [optional] 
 
 ## Example
 

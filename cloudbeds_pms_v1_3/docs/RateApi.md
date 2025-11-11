@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_rate_plans_get**
-> GetRatePlansResponse get_rate_plans_get(start_date, end_date, property_ids=property_ids, rate_ids=rate_ids, room_type_id=room_type_id, promo_code=promo_code, include_promo_code=include_promo_code, adults=adults, children=children, detailed_rates=detailed_rates)
+> GetRatePlansResponse get_rate_plans_get(start_date, end_date, property_ids=property_ids, rate_ids=rate_ids, room_type_id=room_type_id, promo_code=promo_code, include_promo_code=include_promo_code, adults=adults, children=children, detailed_rates=detailed_rates, include_shared_rooms=include_shared_rooms)
 
 getRatePlans
 
@@ -240,10 +240,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     adults = 56 # int | Number of adults (optional)
     children = 56 # int | Number of children (optional)
     detailed_rates = False # bool | If the rates need detailed information (optional) (default to False)
+    include_shared_rooms = False # bool | Include shared rooms in the result for multiple adults/children (optional) (default to False)
 
     try:
         # getRatePlans
-        api_response = api_instance.get_rate_plans_get(start_date, end_date, property_ids=property_ids, rate_ids=rate_ids, room_type_id=room_type_id, promo_code=promo_code, include_promo_code=include_promo_code, adults=adults, children=children, detailed_rates=detailed_rates)
+        api_response = api_instance.get_rate_plans_get(start_date, end_date, property_ids=property_ids, rate_ids=rate_ids, room_type_id=room_type_id, promo_code=promo_code, include_promo_code=include_promo_code, adults=adults, children=children, detailed_rates=detailed_rates, include_shared_rooms=include_shared_rooms)
         print("The response of RateApi->get_rate_plans_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -267,6 +268,7 @@ Name | Type | Description  | Notes
  **adults** | **int**| Number of adults | [optional] 
  **children** | **int**| Number of children | [optional] 
  **detailed_rates** | **bool**| If the rates need detailed information | [optional] [default to False]
+ **include_shared_rooms** | **bool**| Include shared rooms in the result for multiple adults/children | [optional] [default to False]
 
 ### Return type
 

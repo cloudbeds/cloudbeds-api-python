@@ -1039,7 +1039,8 @@ class AllotmentBlocksApi:
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1077,8 +1078,10 @@ class AllotmentBlocksApi:
         :type page_number: int
         :param start_date: Interval start date
         :type start_date: date
-        :param end_date: Interval start date
+        :param end_date: Interval end date
         :type end_date: date
+        :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
+        :type for_update: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1113,6 +1116,7 @@ class AllotmentBlocksApi:
             page_number=page_number,
             start_date=start_date,
             end_date=end_date,
+            for_update=for_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1146,7 +1150,8 @@ class AllotmentBlocksApi:
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1184,8 +1189,10 @@ class AllotmentBlocksApi:
         :type page_number: int
         :param start_date: Interval start date
         :type start_date: date
-        :param end_date: Interval start date
+        :param end_date: Interval end date
         :type end_date: date
+        :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
+        :type for_update: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1220,6 +1227,7 @@ class AllotmentBlocksApi:
             page_number=page_number,
             start_date=start_date,
             end_date=end_date,
+            for_update=for_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1253,7 +1261,8 @@ class AllotmentBlocksApi:
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
+        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1291,8 +1300,10 @@ class AllotmentBlocksApi:
         :type page_number: int
         :param start_date: Interval start date
         :type start_date: date
-        :param end_date: Interval start date
+        :param end_date: Interval end date
         :type end_date: date
+        :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
+        :type for_update: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1327,6 +1338,7 @@ class AllotmentBlocksApi:
             page_number=page_number,
             start_date=start_date,
             end_date=end_date,
+            for_update=for_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1356,6 +1368,7 @@ class AllotmentBlocksApi:
         page_number,
         start_date,
         end_date,
+        for_update,
         _request_auth,
         _content_type,
         _headers,
@@ -1439,6 +1452,10 @@ class AllotmentBlocksApi:
                 )
             else:
                 _query_params.append(('endDate', end_date))
+            
+        if for_update is not None:
+            
+            _query_params.append(('forUpdate', for_update))
             
         # process the header parameters
         # process the form parameters

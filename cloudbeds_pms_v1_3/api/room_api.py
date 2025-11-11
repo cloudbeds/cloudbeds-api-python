@@ -346,6 +346,7 @@ class RoomApi:
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If detailed rates are expected")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Sort parameter")] = None,
         order: Optional[StrictStr] = None,
         min_rate: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Minimum daily rate. Used to filter results")] = None,
@@ -385,6 +386,8 @@ class RoomApi:
         :type promo_code: str
         :param detailed_rates: If detailed rates are expected
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param sort: Sort parameter
         :type sort: str
         :param order: 
@@ -428,6 +431,7 @@ class RoomApi:
             property_ids=property_ids,
             promo_code=promo_code,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             sort=sort,
             order=order,
             min_rate=min_rate,
@@ -465,6 +469,7 @@ class RoomApi:
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If detailed rates are expected")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Sort parameter")] = None,
         order: Optional[StrictStr] = None,
         min_rate: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Minimum daily rate. Used to filter results")] = None,
@@ -504,6 +509,8 @@ class RoomApi:
         :type promo_code: str
         :param detailed_rates: If detailed rates are expected
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param sort: Sort parameter
         :type sort: str
         :param order: 
@@ -547,6 +554,7 @@ class RoomApi:
             property_ids=property_ids,
             promo_code=promo_code,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             sort=sort,
             order=order,
             min_rate=min_rate,
@@ -584,6 +592,7 @@ class RoomApi:
         property_ids: Annotated[Optional[StrictStr], Field(description="Property ID list, comma-separated, i.e. 37,345,89")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code")] = None,
         detailed_rates: Annotated[Optional[StrictBool], Field(description="If detailed rates are expected")] = None,
+        include_shared_rooms: Annotated[Optional[StrictBool], Field(description="Include shared rooms in the result for multiple adults/children")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Sort parameter")] = None,
         order: Optional[StrictStr] = None,
         min_rate: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Minimum daily rate. Used to filter results")] = None,
@@ -623,6 +632,8 @@ class RoomApi:
         :type promo_code: str
         :param detailed_rates: If detailed rates are expected
         :type detailed_rates: bool
+        :param include_shared_rooms: Include shared rooms in the result for multiple adults/children
+        :type include_shared_rooms: bool
         :param sort: Sort parameter
         :type sort: str
         :param order: 
@@ -666,6 +677,7 @@ class RoomApi:
             property_ids=property_ids,
             promo_code=promo_code,
             detailed_rates=detailed_rates,
+            include_shared_rooms=include_shared_rooms,
             sort=sort,
             order=order,
             min_rate=min_rate,
@@ -698,6 +710,7 @@ class RoomApi:
         property_ids,
         promo_code,
         detailed_rates,
+        include_shared_rooms,
         sort,
         order,
         min_rate,
@@ -775,6 +788,10 @@ class RoomApi:
         if detailed_rates is not None:
             
             _query_params.append(('detailedRates', detailed_rates))
+            
+        if include_shared_rooms is not None:
+            
+            _query_params.append(('includeSharedRooms', include_shared_rooms))
             
         if sort is not None:
             
