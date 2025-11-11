@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
@@ -31,7 +31,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     """
     GetTaxesAndFeesResponseDataInnerDateRangesInner
     """ # noqa: E501
-    range: Optional[Dict[str, Any]] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
+    range: Optional[StrictStr] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
     amount: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount] = None
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild] = Field(default=None, alias="amountChild")

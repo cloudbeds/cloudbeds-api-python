@@ -19,20 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_ranges_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_ranges_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner(BaseModel):
+class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner(BaseModel):
     """
-    GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner
+    GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner
     """ # noqa: E501
     minimum_nights: Optional[StrictInt] = Field(default=None, description="Minimum number of nights required for this range", alias="minimumNights")
     maximum_nights: Optional[StrictInt] = Field(default=None, description="Maximum number of nights for this range (null means no limit)", alias="maximumNights")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount for this range (uses same amountType as the parent tax/fee)")
     amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per adult for this range (uses same amountType as the parent tax/fee)", alias="amountAdult")
     amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per child for this range (uses same amountType as the parent tax/fee)", alias="amountChild")
-    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner]] = Field(default=None, description="Rate-based amounts for this range (uses same amountType as the parent tax/fee)", alias="amountRateBased")
+    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner]] = Field(default=None, description="Rate-based amounts for this range (uses same amountType as the parent tax/fee)", alias="amountRateBased")
     __properties: ClassVar[List[str]] = ["minimumNights", "maximumNights", "amount", "amountAdult", "amountChild", "amountRateBased"]
 
     model_config = ConfigDict(
@@ -53,7 +53,7 @@ class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner(BaseModel)
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -110,7 +110,7 @@ class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner(BaseModel)
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner from a dict"""
         if obj is None:
             return None
 
@@ -123,7 +123,7 @@ class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner(BaseModel)
             "amount": obj.get("amount"),
             "amountAdult": obj.get("amountAdult"),
             "amountChild": obj.get("amountChild"),
-            "amountRateBased": [GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None
+            "amountRateBased": [GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None
         })
         return _obj
 

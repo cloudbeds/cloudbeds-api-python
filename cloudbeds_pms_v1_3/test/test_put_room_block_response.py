@@ -38,7 +38,7 @@ class TestPutRoomBlockResponse(unittest.TestCase):
                 success = True,
                 property_id = '',
                 room_block_id = '',
-                courtesy_hold = 'blocked',
+                room_block_type = 'blocked',
                 room_block_reason = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),

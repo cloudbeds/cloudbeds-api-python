@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_payment_methods_response_data_gateway_inner import GetPaymentMethodsResponseDataGatewayInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings_one_of_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner
 
-class TestGetPaymentMethodsResponseDataGatewayInner(unittest.TestCase):
-    """GetPaymentMethodsResponseDataGatewayInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,32 @@ class TestGetPaymentMethodsResponseDataGatewayInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetPaymentMethodsResponseDataGatewayInner:
-        """Test GetPaymentMethodsResponseDataGatewayInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner:
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetPaymentMethodsResponseDataGatewayInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner`
         """
-        model = GetPaymentMethodsResponseDataGatewayInner()
+        model = GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner()
         if include_optional:
-            return GetPaymentMethodsResponseDataGatewayInner(
-                name = '',
-                currency = ''
+            return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner(
+                minimum_nights = 56,
+                maximum_nights = 56,
+                amount = 1.337,
+                amount_adult = 1.337,
+                amount_child = 1.337,
+                amount_rate_based = [
+                    None
+                    ]
             )
         else:
-            return GetPaymentMethodsResponseDataGatewayInner(
+            return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner(
         )
         """
 
-    def testGetPaymentMethodsResponseDataGatewayInner(self):
-        """Test GetPaymentMethodsResponseDataGatewayInner"""
+    def testGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner(self):
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

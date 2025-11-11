@@ -17,18 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetUsersResponseDataInnerUserRole(BaseModel):
+class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner(BaseModel):
     """
-    Details for the role
+    GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner
     """ # noqa: E501
-    name: Optional[StrictStr] = Field(default=None, description="Role's name")
-    description: Optional[StrictStr] = Field(default=None, description="Role's description")
-    __properties: ClassVar[List[str]] = ["name", "description"]
+    rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Maximum rate for which this percentage is valid")
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Percentage applied for the rate")
+    __properties: ClassVar[List[str]] = ["rate", "percentage"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +48,7 @@ class GetUsersResponseDataInnerUserRole(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetUsersResponseDataInnerUserRole from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,7 +73,7 @@ class GetUsersResponseDataInnerUserRole(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetUsersResponseDataInnerUserRole from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner from a dict"""
         if obj is None:
             return None
 
@@ -81,8 +81,8 @@ class GetUsersResponseDataInnerUserRole(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "description": obj.get("description")
+            "rate": obj.get("rate"),
+            "percentage": obj.get("percentage")
         })
         return _obj
 

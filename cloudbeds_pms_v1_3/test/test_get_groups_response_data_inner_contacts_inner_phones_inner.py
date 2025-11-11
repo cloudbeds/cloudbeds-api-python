@@ -35,6 +35,7 @@ class TestGetGroupsResponseDataInnerContactsInnerPhonesInner(unittest.TestCase):
         model = GetGroupsResponseDataInnerContactsInnerPhonesInner()
         if include_optional:
             return GetGroupsResponseDataInnerContactsInnerPhonesInner(
+                type = 'home',
                 value = ''
             )
         else:

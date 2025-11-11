@@ -13,105 +13,134 @@
 
 
 from __future__ import annotations
-import pprint
-import re  # noqa: F401
 import json
+import pprint
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Any, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
+from pydantic import StrictStr, Field
+from typing import Union, List, Set, Optional, Dict
+from typing_extensions import Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_ranges_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner
-from typing import Optional, Set
-from typing_extensions import Self
+GETTAXESANDFEESRESPONSEDATAINNERLENGTHOFSTAYSETTINGS_ONE_OF_SCHEMAS = ["GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf", "List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]"]
 
 class GetTaxesAndFeesResponseDataInnerLengthOfStaySettings(BaseModel):
     """
-    Length of Stay configuration settings
-    """ # noqa: E501
-    application_type: Optional[StrictStr] = Field(default=None, description="Application type for Length of Stay rules:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>progressive_application</td><td>Apply tax/fee when minimum nights are reached</td></tr> <tr><td>retroactive_adjustment</td><td>Apply adjustments retroactively when conditions are met</td></tr> </table>", alias="applicationType")
-    ranges: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner]] = Field(default=None, description="Night-based ranges for Length of Stay configuration")
-    __properties: ClassVar[List[str]] = ["applicationType", "ranges"]
-
-    @field_validator('application_type')
-    def application_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['progressive_application', 'retroactive_adjustment']):
-            raise ValueError("must be one of enum values ('progressive_application', 'retroactive_adjustment')")
-        return value
+    Length of Stay configuration settings. Returns object when settings exist, empty array [] when no settings configured.
+    """
+    # data type: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
+    oneof_schema_1_validator: Optional[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf] = None
+    # data type: List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]
+    oneof_schema_2_validator: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]] = None
+    actual_instance: Optional[Union[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]]] = None
+    one_of_schemas: Set[str] = { "GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf", "List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]" }
 
     model_config = ConfigDict(
-        populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
 
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        if v is None:
+            return v
+
+        instance = GetTaxesAndFeesResponseDataInnerLengthOfStaySettings.model_construct()
+        error_messages = []
+        match = 0
+        # validate data type: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
+        if not isinstance(v, GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf`")
+        else:
+            match += 1
+        # validate data type: List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]
+        try:
+            instance.oneof_schema_2_validator = v
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerLengthOfStaySettings with oneOf schemas: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerLengthOfStaySettings with oneOf schemas: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: Optional[str]) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        if json_str is None:
+            return instance
+
+        error_messages = []
+        match = 0
+
+        # deserialize data into GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
+        try:
+            instance.actual_instance = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]
+        try:
+            # validation
+            instance.oneof_schema_2_validator = json.loads(json_str)
+            # assign value to actual_instance
+            instance.actual_instance = instance.oneof_schema_2_validator
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerLengthOfStaySettings with oneOf schemas: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerLengthOfStaySettings with oneOf schemas: GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of each item in ranges (list)
-        _items = []
-        if self.ranges:
-            for _item_ranges in self.ranges:
-                if _item_ranges:
-                    _items.append(_item_ranges.to_dict())
-            _dict['ranges'] = _items
-        # set to None if application_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.application_type is None and "application_type" in self.model_fields_set:
-            _dict['applicationType'] = None
-
-        # set to None if ranges (nullable) is None
-        # and model_fields_set contains the field
-        if self.ranges is None and "ranges" in self.model_fields_set:
-            _dict['ranges'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf, List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf]]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            # primitive type
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "applicationType": obj.get("applicationType"),
-            "ranges": [GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInner.from_dict(_item) for _item in obj["ranges"]] if obj.get("ranges") is not None else None
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

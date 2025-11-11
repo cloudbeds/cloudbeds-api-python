@@ -52,6 +52,7 @@ class TestGetGroupsResponseDataInnerContactsInner(unittest.TestCase):
                     ],
                 phones = [
                     cloudbeds_pms_v1_3.models.get_groups_response_data_inner_contacts_inner_phones_inner.GetGroupsResponse_data_inner_contacts_inner_phones_inner(
+                        type = 'home', 
                         value = '', )
                     ],
                 is_billing_recipient = True,
