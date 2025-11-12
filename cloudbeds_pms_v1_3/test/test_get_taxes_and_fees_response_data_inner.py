@@ -68,7 +68,7 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                     ],
                 date_ranges = [
                     cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner(
-                        range = cloudbeds_pms_v1_3.models.range.range(), 
+                        range = '', 
                         amount = null, 
                         amount_adult = null, 
                         amount_child = null, 
@@ -76,8 +76,10 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                             cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
                                 rate = null, 
                                 percentage = null, )
-                            ], )
-                    ]
+                            ], 
+                        length_of_stay_settings = null, )
+                    ],
+                length_of_stay_settings = None
             )
         else:
             return GetTaxesAndFeesResponseDataInner(

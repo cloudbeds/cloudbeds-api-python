@@ -1,13 +1,13 @@
 # GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings
 
-Length of Stay configuration settings specific to this date range
+Length of Stay configuration settings specific to this date range. Returns object when settings exist, empty array [] when no settings configured.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **application_type** | **str** | Application type for Length of Stay rules | [optional] 
-**ranges** | [**List[GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner]**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner.md) | Night-based ranges for Length of Stay configuration | [optional] 
+**ranges** | [**List[GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner]**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner.md) | Night-based ranges for Length of Stay configuration | [optional] 
 
 ## Example
 

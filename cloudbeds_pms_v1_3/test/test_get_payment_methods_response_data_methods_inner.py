@@ -35,7 +35,8 @@ class TestGetPaymentMethodsResponseDataMethodsInner(unittest.TestCase):
         model = GetPaymentMethodsResponseDataMethodsInner()
         if include_optional:
             return GetPaymentMethodsResponseDataMethodsInner(
-                type = '',
+                method = '',
+                code = '',
                 name = '',
                 card_types = [
                     cloudbeds_pms_v1_3.models.get_payment_methods_response_data_methods_inner_card_types_inner.GetPaymentMethodsResponse_data_methods_inner_cardTypes_inner(

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **property_id** | **str** | Property ID | [optional] 
 **methods** | [**List[GetPaymentMethodsResponseDataMethodsInner]**](GetPaymentMethodsResponseDataMethodsInner.md) | List of active methods enabled | [optional] 
-**gateway** | [**List[GetPaymentMethodsResponseDataGatewayInner]**](GetPaymentMethodsResponseDataGatewayInner.md) | Payment Gateway used by property | [optional] 
+**gateway** | [**GetPaymentMethodsResponseDataGateway**](GetPaymentMethodsResponseDataGateway.md) |  | [optional] 
 
 ## Example
 

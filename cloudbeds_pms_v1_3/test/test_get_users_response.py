@@ -36,21 +36,7 @@ class TestGetUsersResponse(unittest.TestCase):
         if include_optional:
             return GetUsersResponse(
                 success = True,
-                data = [
-                    cloudbeds_pms_v1_3.models.get_users_response_data_inner.GetUsersResponse_data_inner(
-                        user_id = '', 
-                        first_name = '', 
-                        last_name = '', 
-                        email = '', 
-                        language = '', 
-                        user_role = cloudbeds_pms_v1_3.models.get_users_response_data_inner_user_role.GetUsersResponse_data_inner_userRole(
-                            name = '', 
-                            description = '', ), 
-                        active = 'yes', 
-                        last_login = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                        property_id = '', 
-                        organization_id = '', )
-                    ]
+                data = None
             )
         else:
             return GetUsersResponse(

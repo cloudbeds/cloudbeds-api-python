@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_users_response_data_inner import GetUsersResponseDataInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
 
-class TestGetUsersResponseDataInner(unittest.TestCase):
-    """GetUsersResponseDataInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,36 +25,38 @@ class TestGetUsersResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetUsersResponseDataInner:
-        """Test GetUsersResponseDataInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf:
+        """Test GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetUsersResponseDataInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf`
         """
-        model = GetUsersResponseDataInner()
+        model = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf()
         if include_optional:
-            return GetUsersResponseDataInner(
-                user_id = '',
-                first_name = '',
-                last_name = '',
-                email = '',
-                language = '',
-                user_role = cloudbeds_pms_v1_3.models.get_users_response_data_inner_user_role.GetUsersResponse_data_inner_userRole(
-                    name = '', 
-                    description = '', ),
-                active = 'yes',
-                last_login = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                property_id = '',
-                organization_id = ''
+            return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf(
+                application_type = 'progressive_application',
+                ranges = [
+                    cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_ranges_inner.GetTaxesAndFeesResponse_data_inner_lengthOfStaySettings_oneOf_ranges_inner(
+                        minimum_nights = 56, 
+                        maximum_nights = 56, 
+                        amount = 1.337, 
+                        amount_adult = 1.337, 
+                        amount_child = 1.337, 
+                        amount_rate_based = [
+                            cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_ranges_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_lengthOfStaySettings_oneOf_ranges_inner_amountRateBased_inner(
+                                rate = 1.337, 
+                                percentage = 1.337, )
+                            ], )
+                    ]
             )
         else:
-            return GetUsersResponseDataInner(
+            return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf(
         )
         """
 
-    def testGetUsersResponseDataInner(self):
-        """Test GetUsersResponseDataInner"""
+    def testGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf(self):
+        """Test GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

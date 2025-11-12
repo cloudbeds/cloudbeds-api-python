@@ -17,38 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_users_response_data_inner_user_role import GetUsersResponseDataInnerUserRole
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetUsersResponseDataInner(BaseModel):
+class GetPaymentMethodsResponseDataGateway(BaseModel):
     """
-    GetUsersResponseDataInner
+    Payment Gateway used by property
     """ # noqa: E501
-    user_id: Optional[StrictStr] = Field(default=None, description="User ID", alias="userID")
-    first_name: Optional[StrictStr] = Field(default=None, description="First Name", alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, description="Last Name", alias="lastName")
-    email: Optional[StrictStr] = Field(default=None, description="Email")
-    language: Optional[StrictStr] = Field(default=None, description="User Language|Property Default Language. See the full list of available language parameters <a target=\"_blank\" href=\"https://integrations.cloudbeds.com/hc/en-us/articles/360007144993-FAQ#methods-and-parameters\">here</a>")
-    user_role: Optional[GetUsersResponseDataInnerUserRole] = Field(default=None, alias="userRole")
-    active: Optional[StrictStr] = None
-    last_login: Optional[date] = Field(default=None, description="Date and time of the last login event", alias="lastLogin")
-    property_id: Optional[StrictStr] = Field(default=None, description="Property numeric identifier", alias="propertyId")
-    organization_id: Optional[StrictStr] = Field(default=None, description="Organization ID", alias="organizationID")
-    __properties: ClassVar[List[str]] = ["userID", "firstName", "lastName", "email", "language", "userRole", "active", "lastLogin", "propertyId", "organizationID"]
-
-    @field_validator('active')
-    def active_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['yes', 'no']):
-            raise ValueError("must be one of enum values ('yes', 'no')")
-        return value
+    name: Optional[StrictStr] = Field(default=None, description="Gateway name")
+    currency: Optional[StrictStr] = Field(default=None, description="3 letters iso code")
+    __properties: ClassVar[List[str]] = ["name", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,7 +48,7 @@ class GetUsersResponseDataInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetUsersResponseDataInner from a JSON string"""
+        """Create an instance of GetPaymentMethodsResponseDataGateway from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,19 +69,11 @@ class GetUsersResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of user_role
-        if self.user_role:
-            _dict['userRole'] = self.user_role.to_dict()
-        # set to None if organization_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organization_id is None and "organization_id" in self.model_fields_set:
-            _dict['organizationID'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetUsersResponseDataInner from a dict"""
+        """Create an instance of GetPaymentMethodsResponseDataGateway from a dict"""
         if obj is None:
             return None
 
@@ -109,16 +81,8 @@ class GetUsersResponseDataInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "userID": obj.get("userID"),
-            "firstName": obj.get("firstName"),
-            "lastName": obj.get("lastName"),
-            "email": obj.get("email"),
-            "language": obj.get("language"),
-            "userRole": GetUsersResponseDataInnerUserRole.from_dict(obj["userRole"]) if obj.get("userRole") is not None else None,
-            "active": obj.get("active"),
-            "lastLogin": obj.get("lastLogin"),
-            "propertyId": obj.get("propertyId"),
-            "organizationID": obj.get("organizationID")
+            "name": obj.get("name"),
+            "currency": obj.get("currency")
         })
         return _obj
 

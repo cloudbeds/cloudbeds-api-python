@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_payment_methods_response_data_gateway_inner import GetPaymentMethodsResponseDataGatewayInner
+from cloudbeds_pms_v1_3.models.get_payment_methods_response_data_gateway import GetPaymentMethodsResponseDataGateway
 from cloudbeds_pms_v1_3.models.get_payment_methods_response_data_methods_inner import GetPaymentMethodsResponseDataMethodsInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,7 @@ class GetPaymentMethodsResponseData(BaseModel):
     """ # noqa: E501
     property_id: Optional[StrictStr] = Field(default=None, description="Property ID", alias="propertyID")
     methods: Optional[List[GetPaymentMethodsResponseDataMethodsInner]] = Field(default=None, description="List of active methods enabled")
-    gateway: Optional[List[GetPaymentMethodsResponseDataGatewayInner]] = Field(default=None, description="Payment Gateway used by property")
+    gateway: Optional[GetPaymentMethodsResponseDataGateway] = None
     __properties: ClassVar[List[str]] = ["propertyID", "methods", "gateway"]
 
     model_config = ConfigDict(
@@ -79,13 +79,9 @@ class GetPaymentMethodsResponseData(BaseModel):
                 if _item_methods:
                     _items.append(_item_methods.to_dict())
             _dict['methods'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in gateway (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of gateway
         if self.gateway:
-            for _item_gateway in self.gateway:
-                if _item_gateway:
-                    _items.append(_item_gateway.to_dict())
-            _dict['gateway'] = _items
+            _dict['gateway'] = self.gateway.to_dict()
         return _dict
 
     @classmethod
@@ -100,7 +96,7 @@ class GetPaymentMethodsResponseData(BaseModel):
         _obj = cls.model_validate({
             "propertyID": obj.get("propertyID"),
             "methods": [GetPaymentMethodsResponseDataMethodsInner.from_dict(_item) for _item in obj["methods"]] if obj.get("methods") is not None else None,
-            "gateway": [GetPaymentMethodsResponseDataGatewayInner.from_dict(_item) for _item in obj["gateway"]] if obj.get("gateway") is not None else None
+            "gateway": GetPaymentMethodsResponseDataGateway.from_dict(obj["gateway"]) if obj.get("gateway") is not None else None
         })
         return _obj
 

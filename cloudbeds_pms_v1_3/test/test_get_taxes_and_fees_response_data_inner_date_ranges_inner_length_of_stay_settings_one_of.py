@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_ranges_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings_one_of import GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf
 
-class TestGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner(unittest.TestCase):
-    """GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,36 @@ class TestGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountR
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner:
-        """Test GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf:
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf`
         """
-        model = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner()
+        model = GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf()
         if include_optional:
-            return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner(
-                rate = 1.337,
-                percentage = 1.337
+            return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf(
+                application_type = 'progressive_application',
+                ranges = [
+                    cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings_one_of_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner_lengthOfStaySettings_oneOf_ranges_inner(
+                        minimum_nights = 56, 
+                        maximum_nights = 56, 
+                        amount = 1.337, 
+                        amount_adult = 1.337, 
+                        amount_child = 1.337, 
+                        amount_rate_based = [
+                            None
+                            ], )
+                    ]
             )
         else:
-            return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner(
+            return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf(
         )
         """
 
-    def testGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner(self):
-        """Test GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsRangesInnerAmountRateBasedInner"""
+    def testGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf(self):
+        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

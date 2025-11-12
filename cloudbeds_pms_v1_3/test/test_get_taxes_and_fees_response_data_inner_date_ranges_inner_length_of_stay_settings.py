@@ -37,7 +37,7 @@ class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings(un
             return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings(
                 application_type = 'progressive_application',
                 ranges = [
-                    cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner_lengthOfStaySettings_ranges_inner(
+                    cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings_one_of_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner_lengthOfStaySettings_oneOf_ranges_inner(
                         minimum_nights = 56, 
                         maximum_nights = 56, 
                         amount = 1.337, 

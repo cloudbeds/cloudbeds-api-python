@@ -1,6 +1,5 @@
-# GetTaxesAndFeesResponseDataInnerLengthOfStaySettings
+# GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
 
-Length of Stay configuration settings. Returns object when settings exist, empty array [] when no settings configured.
 
 ## Properties
 
@@ -12,19 +11,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings import GetTaxesAndFeesResponseDataInnerLengthOfStaySettings
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a JSON string
-get_taxes_and_fees_response_data_inner_length_of_stay_settings_instance = GetTaxesAndFeesResponseDataInnerLengthOfStaySettings.from_json(json)
+# create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf from a JSON string
+get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_instance = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf.from_json(json)
 # print the JSON string representation of the object
-print(GetTaxesAndFeesResponseDataInnerLengthOfStaySettings.to_json())
+print(GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf.to_json())
 
 # convert the object into a dict
-get_taxes_and_fees_response_data_inner_length_of_stay_settings_dict = get_taxes_and_fees_response_data_inner_length_of_stay_settings_instance.to_dict()
-# create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettings from a dict
-get_taxes_and_fees_response_data_inner_length_of_stay_settings_from_dict = GetTaxesAndFeesResponseDataInnerLengthOfStaySettings.from_dict(get_taxes_and_fees_response_data_inner_length_of_stay_settings_dict)
+get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_dict = get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_instance.to_dict()
+# create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf from a dict
+get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_from_dict = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf.from_dict(get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

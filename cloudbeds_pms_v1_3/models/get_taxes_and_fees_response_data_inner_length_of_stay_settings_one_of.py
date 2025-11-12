@@ -17,22 +17,29 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings_one_of_ranges_inner import GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner(BaseModel):
+class GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf(BaseModel):
     """
-    GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner
+    GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf
     """ # noqa: E501
-    minimum_nights: Optional[StrictInt] = Field(default=None, description="Minimum number of nights required for this range", alias="minimumNights")
-    maximum_nights: Optional[StrictInt] = Field(default=None, description="Maximum number of nights for this range (null means no limit)", alias="maximumNights")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount for this range")
-    amount_adult: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per adult for this range", alias="amountAdult")
-    amount_child: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount per child for this range", alias="amountChild")
-    amount_rate_based: Optional[List[Dict[str, Any]]] = Field(default=None, description="Rate-based amounts for this range", alias="amountRateBased")
-    __properties: ClassVar[List[str]] = ["minimumNights", "maximumNights", "amount", "amountAdult", "amountChild", "amountRateBased"]
+    application_type: Optional[StrictStr] = Field(default=None, description="Application type for Length of Stay rules:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>progressive_application</td><td>Apply tax/fee when minimum nights are reached</td></tr> <tr><td>retroactive_adjustment</td><td>Apply adjustments retroactively when conditions are met</td></tr> </table>", alias="applicationType")
+    ranges: Optional[List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner]] = Field(default=None, description="Night-based ranges for Length of Stay configuration")
+    __properties: ClassVar[List[str]] = ["applicationType", "ranges"]
+
+    @field_validator('application_type')
+    def application_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['progressive_application', 'retroactive_adjustment']):
+            raise ValueError("must be one of enum values ('progressive_application', 'retroactive_adjustment')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +59,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesI
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner from a JSON string"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,36 +80,28 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesI
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if maximum_nights (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of each item in ranges (list)
+        _items = []
+        if self.ranges:
+            for _item_ranges in self.ranges:
+                if _item_ranges:
+                    _items.append(_item_ranges.to_dict())
+            _dict['ranges'] = _items
+        # set to None if application_type (nullable) is None
         # and model_fields_set contains the field
-        if self.maximum_nights is None and "maximum_nights" in self.model_fields_set:
-            _dict['maximumNights'] = None
+        if self.application_type is None and "application_type" in self.model_fields_set:
+            _dict['applicationType'] = None
 
-        # set to None if amount (nullable) is None
+        # set to None if ranges (nullable) is None
         # and model_fields_set contains the field
-        if self.amount is None and "amount" in self.model_fields_set:
-            _dict['amount'] = None
-
-        # set to None if amount_adult (nullable) is None
-        # and model_fields_set contains the field
-        if self.amount_adult is None and "amount_adult" in self.model_fields_set:
-            _dict['amountAdult'] = None
-
-        # set to None if amount_child (nullable) is None
-        # and model_fields_set contains the field
-        if self.amount_child is None and "amount_child" in self.model_fields_set:
-            _dict['amountChild'] = None
-
-        # set to None if amount_rate_based (nullable) is None
-        # and model_fields_set contains the field
-        if self.amount_rate_based is None and "amount_rate_based" in self.model_fields_set:
-            _dict['amountRateBased'] = None
+        if self.ranges is None and "ranges" in self.model_fields_set:
+            _dict['ranges'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesInner from a dict"""
+        """Create an instance of GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOf from a dict"""
         if obj is None:
             return None
 
@@ -110,12 +109,8 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsRangesI
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "minimumNights": obj.get("minimumNights"),
-            "maximumNights": obj.get("maximumNights"),
-            "amount": obj.get("amount"),
-            "amountAdult": obj.get("amountAdult"),
-            "amountChild": obj.get("amountChild"),
-            "amountRateBased": obj.get("amountRateBased")
+            "applicationType": obj.get("applicationType"),
+            "ranges": [GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInner.from_dict(_item) for _item in obj["ranges"]] if obj.get("ranges") is not None else None
         })
         return _obj
 

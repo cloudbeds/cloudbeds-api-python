@@ -40,7 +40,8 @@ class TestGetPaymentMethodsResponse(unittest.TestCase):
                     property_id = '', 
                     methods = [
                         cloudbeds_pms_v1_3.models.get_payment_methods_response_data_methods_inner.GetPaymentMethodsResponse_data_methods_inner(
-                            type = '', 
+                            method = '', 
+                            code = '', 
                             name = '', 
                             card_types = [
                                 cloudbeds_pms_v1_3.models.get_payment_methods_response_data_methods_inner_card_types_inner.GetPaymentMethodsResponse_data_methods_inner_cardTypes_inner(
@@ -48,11 +49,9 @@ class TestGetPaymentMethodsResponse(unittest.TestCase):
                                     card_name = '', )
                                 ], )
                         ], 
-                    gateway = [
-                        cloudbeds_pms_v1_3.models.get_payment_methods_response_data_gateway_inner.GetPaymentMethodsResponse_data_gateway_inner(
-                            name = '', 
-                            currency = '', )
-                        ], )
+                    gateway = cloudbeds_pms_v1_3.models.get_payment_methods_response_data_gateway.GetPaymentMethodsResponse_data_gateway(
+                        name = '', 
+                        currency = '', ), )
             )
         else:
             return GetPaymentMethodsResponse(
