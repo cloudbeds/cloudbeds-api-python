@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_adult import GetTaxesAndFeesResponseDataInnerAmountAdult
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_child import GetTaxesAndFeesResponseDataInnerAmountChild
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_length_of_stay_settings import GetTaxesAndFeesResponseDataInnerLengthOfStaySettings
@@ -37,11 +39,11 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     code: Optional[StrictStr] = Field(default=None, description="Code")
     kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\" or null. Only exists if type = tax.")
     amount: Optional[StrictStr] = Field(default=None, description="Amount")
-    amount_adult: Optional[StrictStr] = Field(default=None, description="Amount charged per adult. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountAdult")
-    amount_child: Optional[StrictStr] = Field(default=None, description="Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)", alias="amountChild")
+    amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
+    amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
     amount_type: Optional[StrictStr] = Field(default=None, description="Amount type. They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>percentage</td><td>Percentage of Total Amount</td></tr> <tr><td>fixed</td><td>Fixed per Room Night / Item</td></tr> <tr><td>fixed_per_person</td><td>Fixed per Person per Night</td></tr> <tr><td>fixed_per_accomodation</td><td>Fixed per Accomodation</td></tr> <tr><td>fixed_per_reservation</td><td>Fixed per Reservation</td></tr> <tr><td>percentage_rate_based</td><td>Rate-based</td></tr> </table>", alias="amountType")
-    available_for: Optional[List[StrictStr]] = Field(default=None, description="Where this tax/fee is available?<br/>They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>product</td><td>Items</td></tr> <tr><td>rate</td><td>Reservations</td></tr> <tr><td>fee</td><td>Fees -- this tax is charged on top of some fees</td></tr> </table>", alias="availableFor")
+    available_for: Optional[List[StrictStr]] = Field(default=None, description="Where this tax/fee is available?<br/>They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>product</td><td>Items</td></tr> <tr><td>rate</td><td>Reservations</td></tr> <tr><td>fee</td><td>Fees -- this tax is charged on top of some fees</td></tr> <tr><td>custom_item</td><td>Custom item - this tax was charged for a custom item</td></tr> </table>", alias="availableFor")
     fees_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Fee IDs charged by the current tax. Only exists if type = tax.", alias="feesCharged")
     inclusive_or_exclusive: Optional[StrictStr] = Field(default=None, description="If this tax/fee is inclusive or exclusive", alias="inclusiveOrExclusive")
     is_deleted: Optional[StrictBool] = Field(default=None, description="Flag indicating if tax was deleted from the system", alias="isDeleted")
@@ -80,8 +82,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['product', 'rate', 'fee']):
-                raise ValueError("each list item must be one of ('product', 'rate', 'fee')")
+            if i not in set(['product', 'rate', 'fee', 'custom_item']):
+                raise ValueError("each list item must be one of ('product', 'rate', 'fee', 'custom_item')")
         return value
 
     @field_validator('inclusive_or_exclusive')
@@ -133,6 +135,12 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of amount_adult
+        if self.amount_adult:
+            _dict['amountAdult'] = self.amount_adult.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount_child
+        if self.amount_child:
+            _dict['amountChild'] = self.amount_child.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in amount_rate_based (list)
         _items = []
         if self.amount_rate_based:
@@ -216,8 +224,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "code": obj.get("code"),
             "kind": obj.get("kind"),
             "amount": obj.get("amount"),
-            "amountAdult": obj.get("amountAdult"),
-            "amountChild": obj.get("amountChild"),
+            "amountAdult": GetTaxesAndFeesResponseDataInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
+            "amountChild": GetTaxesAndFeesResponseDataInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
             "amountRateBased": [GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None,
             "amountType": obj.get("amountType"),
             "availableFor": obj.get("availableFor"),

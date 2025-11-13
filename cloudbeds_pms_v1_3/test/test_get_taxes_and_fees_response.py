@@ -46,8 +46,8 @@ class TestGetTaxesAndFeesResponse(unittest.TestCase):
                         code = '', 
                         kind = '', 
                         amount = '', 
-                        amount_adult = '', 
-                        amount_child = '', 
+                        amount_adult = null, 
+                        amount_child = null, 
                         amount_rate_based = [
                             cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
                                 rate = null, 
@@ -74,8 +74,7 @@ class TestGetTaxesAndFeesResponse(unittest.TestCase):
                             cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner.GetTaxesAndFeesResponse_data_inner_dateRanges_inner(
                                 range = '', 
                                 amount = null, 
-                                amount_adult = null, 
-                                amount_child = null, 
+                                max_length = null, 
                                 length_of_stay_settings = null, )
                             ], 
                         length_of_stay_settings = null, )

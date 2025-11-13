@@ -45,6 +45,7 @@ class TaxesAndFeesApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
+        include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -68,6 +69,8 @@ class TaxesAndFeesApi:
         :type include_deleted: bool
         :param include_expired: If the response should include expired taxes and fees
         :type include_expired: bool
+        :param include_custom_item_taxes: If the response should include custom item taxes
+        :type include_custom_item_taxes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -94,6 +97,7 @@ class TaxesAndFeesApi:
             property_id=property_id,
             include_deleted=include_deleted,
             include_expired=include_expired,
+            include_custom_item_taxes=include_custom_item_taxes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -120,6 +124,7 @@ class TaxesAndFeesApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
+        include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -143,6 +148,8 @@ class TaxesAndFeesApi:
         :type include_deleted: bool
         :param include_expired: If the response should include expired taxes and fees
         :type include_expired: bool
+        :param include_custom_item_taxes: If the response should include custom item taxes
+        :type include_custom_item_taxes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -169,6 +176,7 @@ class TaxesAndFeesApi:
             property_id=property_id,
             include_deleted=include_deleted,
             include_expired=include_expired,
+            include_custom_item_taxes=include_custom_item_taxes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -195,6 +203,7 @@ class TaxesAndFeesApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
+        include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -218,6 +227,8 @@ class TaxesAndFeesApi:
         :type include_deleted: bool
         :param include_expired: If the response should include expired taxes and fees
         :type include_expired: bool
+        :param include_custom_item_taxes: If the response should include custom item taxes
+        :type include_custom_item_taxes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -244,6 +255,7 @@ class TaxesAndFeesApi:
             property_id=property_id,
             include_deleted=include_deleted,
             include_expired=include_expired,
+            include_custom_item_taxes=include_custom_item_taxes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -265,6 +277,7 @@ class TaxesAndFeesApi:
         property_id,
         include_deleted,
         include_expired,
+        include_custom_item_taxes,
         _request_auth,
         _content_type,
         _headers,
@@ -298,6 +311,10 @@ class TaxesAndFeesApi:
         if include_expired is not None:
             
             _query_params.append(('includeExpired', include_expired))
+            
+        if include_custom_item_taxes is not None:
+            
+            _query_params.append(('includeCustomItemTaxes', include_custom_item_taxes))
             
         # process the header parameters
         # process the form parameters

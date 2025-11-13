@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner import GetTaxesAndFeesResponseDataInnerDateRangesInner
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_adult import GetTaxesAndFeesResponseDataInnerAmountAdult
 
-class TestGetTaxesAndFeesResponseDataInnerDateRangesInner(unittest.TestCase):
-    """GetTaxesAndFeesResponseDataInnerDateRangesInner unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerAmountAdult(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerAmountAdult unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,35 +25,24 @@ class TestGetTaxesAndFeesResponseDataInnerDateRangesInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerDateRangesInner:
-        """Test GetTaxesAndFeesResponseDataInnerDateRangesInner
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerAmountAdult:
+        """Test GetTaxesAndFeesResponseDataInnerAmountAdult
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerDateRangesInner`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerAmountAdult`
         """
-        model = GetTaxesAndFeesResponseDataInnerDateRangesInner()
+        model = GetTaxesAndFeesResponseDataInnerAmountAdult()
         if include_optional:
-            return GetTaxesAndFeesResponseDataInnerDateRangesInner(
-                range = '',
-                amount = None,
-                amount_adult = None,
-                amount_child = None,
-                max_length = None,
-                amount_rate_based = [
-                    cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner.GetTaxesAndFeesResponse_data_inner_amountRateBased_inner(
-                        rate = null, 
-                        percentage = null, )
-                    ],
-                length_of_stay_settings = None
+            return GetTaxesAndFeesResponseDataInnerAmountAdult(
             )
         else:
-            return GetTaxesAndFeesResponseDataInnerDateRangesInner(
+            return GetTaxesAndFeesResponseDataInnerAmountAdult(
         )
         """
 
-    def testGetTaxesAndFeesResponseDataInnerDateRangesInner(self):
-        """Test GetTaxesAndFeesResponseDataInnerDateRangesInner"""
+    def testGetTaxesAndFeesResponseDataInnerAmountAdult(self):
+        """Test GetTaxesAndFeesResponseDataInnerAmountAdult"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

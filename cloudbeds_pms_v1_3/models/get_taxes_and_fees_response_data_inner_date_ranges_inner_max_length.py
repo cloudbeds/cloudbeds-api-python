@@ -21,11 +21,11 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-GETTAXESANDFEESRESPONSEDATAINNERDATERANGESINNERAMOUNTCHILD_ONE_OF_SCHEMAS = ["float", "str"]
+GETTAXESANDFEESRESPONSEDATAINNERDATERANGESINNERMAXLENGTH_ONE_OF_SCHEMAS = ["float", "str"]
 
-class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild(BaseModel):
+class GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength(BaseModel):
     """
-    Amount charged per children. Only applicable if amountType = fixed_per_person (Per Person Per Night)
+    Maximum amount of nights where this applies. Only applicable if amountType = fixed_per_person (Per Person Per Night)
     """
     # data type: str
     oneof_schema_1_validator: Optional[StrictStr] = None
@@ -52,7 +52,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild(BaseModel):
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild.model_construct()
+        instance = GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength.model_construct()
         error_messages = []
         match = 0
         # validate data type: str
@@ -69,10 +69,10 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild(BaseModel):
             error_messages.append(str(e))
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -108,10 +108,10 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 
