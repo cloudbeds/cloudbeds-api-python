@@ -19,11 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_adult import GetTaxesAndFeesResponseDataInnerAmountAdult
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_child import GetTaxesAndFeesResponseDataInnerAmountChild
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount_adult import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount_child import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings import GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_max_length import GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,11 +34,12 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     """ # noqa: E501
     range: Optional[StrictStr] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
     amount: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount] = None
-    amount_adult: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult] = Field(default=None, alias="amountAdult")
-    amount_child: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild] = Field(default=None, alias="amountChild")
+    amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
+    amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
+    max_length: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength] = Field(default=None, alias="maxLength")
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
     length_of_stay_settings: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings] = Field(default=None, alias="lengthOfStaySettings")
-    __properties: ClassVar[List[str]] = ["range", "amount", "amountAdult", "amountChild", "amountRateBased", "lengthOfStaySettings"]
+    __properties: ClassVar[List[str]] = ["range", "amount", "amountAdult", "amountChild", "maxLength", "amountRateBased", "lengthOfStaySettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +89,9 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of amount_child
         if self.amount_child:
             _dict['amountChild'] = self.amount_child.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of max_length
+        if self.max_length:
+            _dict['maxLength'] = self.max_length.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in amount_rate_based (list)
         _items = []
         if self.amount_rate_based:
@@ -121,8 +126,9 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
         _obj = cls.model_validate({
             "range": obj.get("range"),
             "amount": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
-            "amountAdult": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
-            "amountChild": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
+            "amountAdult": GetTaxesAndFeesResponseDataInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
+            "amountChild": GetTaxesAndFeesResponseDataInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
+            "maxLength": GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength.from_dict(obj["maxLength"]) if obj.get("maxLength") is not None else None,
             "amountRateBased": [GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None,
             "lengthOfStaySettings": GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings.from_dict(obj["lengthOfStaySettings"]) if obj.get("lengthOfStaySettings") is not None else None
         })

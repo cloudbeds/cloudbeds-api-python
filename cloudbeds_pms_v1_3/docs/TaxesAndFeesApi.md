@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_taxes_and_fees_get**
-> GetTaxesAndFeesResponse get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired)
+> GetTaxesAndFeesResponse get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes)
 
 getTaxesAndFees
 
@@ -51,10 +51,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_id = 'property_id_example' # str | Property ID (optional)
     include_deleted = False # bool | If the response should include deleted taxes and fees (optional) (default to False)
     include_expired = False # bool | If the response should include expired taxes and fees (optional) (default to False)
+    include_custom_item_taxes = False # bool | If the response should include custom item taxes (optional) (default to False)
 
     try:
         # getTaxesAndFees
-        api_response = api_instance.get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired)
+        api_response = api_instance.get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes)
         print("The response of TaxesAndFeesApi->get_taxes_and_fees_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
  **property_id** | **str**| Property ID | [optional] 
  **include_deleted** | **bool**| If the response should include deleted taxes and fees | [optional] [default to False]
  **include_expired** | **bool**| If the response should include expired taxes and fees | [optional] [default to False]
+ **include_custom_item_taxes** | **bool**| If the response should include custom item taxes | [optional] [default to False]
 
 ### Return type
 
