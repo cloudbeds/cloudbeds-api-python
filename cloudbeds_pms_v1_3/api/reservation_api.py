@@ -2040,7 +2040,7 @@ class ReservationApi:
     def get_reservations_with_rate_details_get(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago")] = None,
+        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date")] = None,
         results_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date")] = None,
         modified_from: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
         modified_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
@@ -2071,11 +2071,11 @@ class ReservationApi:
     ) -> GetReservationsWithRateDetailsResponse:
         """getReservationsWithRateDetails
 
-        Returns a list of reservations with added information regarding booked rates and sources. The results are limited to 2 years in the past unless resutsFrom parameter is set to another date.<br /> Please note that some reservations modification may not be reflected in this timestamp.
+        Returns a list of reservations with added information regarding booked rates and sources.<br /> Please note that some reservations modification may not be reflected in this timestamp.
 
         :param property_id: Property ID
         :type property_id: str
-        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago
+        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date
         :type results_from: datetime
         :param results_to: Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date
         :type results_to: datetime
@@ -2171,7 +2171,7 @@ class ReservationApi:
     def get_reservations_with_rate_details_get_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago")] = None,
+        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date")] = None,
         results_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date")] = None,
         modified_from: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
         modified_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
@@ -2202,11 +2202,11 @@ class ReservationApi:
     ) -> ApiResponse[GetReservationsWithRateDetailsResponse]:
         """getReservationsWithRateDetails
 
-        Returns a list of reservations with added information regarding booked rates and sources. The results are limited to 2 years in the past unless resutsFrom parameter is set to another date.<br /> Please note that some reservations modification may not be reflected in this timestamp.
+        Returns a list of reservations with added information regarding booked rates and sources.<br /> Please note that some reservations modification may not be reflected in this timestamp.
 
         :param property_id: Property ID
         :type property_id: str
-        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago
+        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date
         :type results_from: datetime
         :param results_to: Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date
         :type results_to: datetime
@@ -2302,7 +2302,7 @@ class ReservationApi:
     def get_reservations_with_rate_details_get_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago")] = None,
+        results_from: Annotated[Optional[datetime], Field(description="Inferior limit datetime, used to filter reservations, based on booking date")] = None,
         results_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date")] = None,
         modified_from: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
         modified_to: Annotated[Optional[datetime], Field(description="Superior limit datetime, used to filter reservations, based on modification date.")] = None,
@@ -2333,11 +2333,11 @@ class ReservationApi:
     ) -> RESTResponseType:
         """getReservationsWithRateDetails
 
-        Returns a list of reservations with added information regarding booked rates and sources. The results are limited to 2 years in the past unless resutsFrom parameter is set to another date.<br /> Please note that some reservations modification may not be reflected in this timestamp.
+        Returns a list of reservations with added information regarding booked rates and sources.<br /> Please note that some reservations modification may not be reflected in this timestamp.
 
         :param property_id: Property ID
         :type property_id: str
-        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago
+        :param results_from: Inferior limit datetime, used to filter reservations, based on booking date
         :type results_from: datetime
         :param results_to: Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date
         :type results_to: datetime

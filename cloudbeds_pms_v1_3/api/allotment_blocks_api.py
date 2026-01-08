@@ -359,6 +359,7 @@ class AllotmentBlocksApi:
     def create_allotment_block_post(
         self,
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
@@ -386,6 +387,8 @@ class AllotmentBlocksApi:
 
         :param group_code: The unique identifier of the group profile the allotment block should be created
         :type group_code: str
+        :param event_code: The unique identifier of the event the allotment block should be created
+        :type event_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
@@ -426,6 +429,7 @@ class AllotmentBlocksApi:
 
         _param = self._create_allotment_block_post_serialize(
             group_code=group_code,
+            event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
             rate_plan_id=rate_plan_id,
@@ -458,6 +462,7 @@ class AllotmentBlocksApi:
     def create_allotment_block_post_with_http_info(
         self,
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
@@ -485,6 +490,8 @@ class AllotmentBlocksApi:
 
         :param group_code: The unique identifier of the group profile the allotment block should be created
         :type group_code: str
+        :param event_code: The unique identifier of the event the allotment block should be created
+        :type event_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
@@ -525,6 +532,7 @@ class AllotmentBlocksApi:
 
         _param = self._create_allotment_block_post_serialize(
             group_code=group_code,
+            event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
             rate_plan_id=rate_plan_id,
@@ -557,6 +565,7 @@ class AllotmentBlocksApi:
     def create_allotment_block_post_without_preload_content(
         self,
         group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="The rate plan ID. Required if rateType is \\\"rate_plan\\\".")] = None,
@@ -584,6 +593,8 @@ class AllotmentBlocksApi:
 
         :param group_code: The unique identifier of the group profile the allotment block should be created
         :type group_code: str
+        :param event_code: The unique identifier of the event the allotment block should be created
+        :type event_code: str
         :param allotment_block_name: The name for the allotment block
         :type allotment_block_name: str
         :param rate_type: The rate type for the associated intervals
@@ -624,6 +635,7 @@ class AllotmentBlocksApi:
 
         _param = self._create_allotment_block_post_serialize(
             group_code=group_code,
+            event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
             rate_plan_id=rate_plan_id,
@@ -651,6 +663,7 @@ class AllotmentBlocksApi:
     def _create_allotment_block_post_serialize(
         self,
         group_code,
+        event_code,
         allotment_block_name,
         rate_type,
         rate_plan_id,
@@ -686,6 +699,8 @@ class AllotmentBlocksApi:
         # process the form parameters
         if group_code is not None:
             _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if allotment_block_name is not None:
             _form_params.append(('allotmentBlockName', allotment_block_name))
         if rate_type is not None:
@@ -1033,6 +1048,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
@@ -1066,6 +1082,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param event_code: An event code
+        :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
@@ -1109,6 +1127,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
             room_type_id=room_type_id,
@@ -1144,6 +1163,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
@@ -1177,6 +1197,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param event_code: An event code
+        :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
@@ -1220,6 +1242,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
             room_type_id=room_type_id,
@@ -1255,6 +1278,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
@@ -1288,6 +1312,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param event_code: An event code
+        :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
         :param allotment_block_type: The type of allotment block
@@ -1331,6 +1357,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
             room_type_id=room_type_id,
@@ -1361,6 +1388,7 @@ class AllotmentBlocksApi:
         allotment_block_code,
         allotment_block_name,
         group_code,
+        event_code,
         allotment_block_status,
         allotment_block_type,
         room_type_id,
@@ -1406,6 +1434,10 @@ class AllotmentBlocksApi:
         if group_code is not None:
             
             _query_params.append(('groupCode', group_code))
+            
+        if event_code is not None:
+            
+            _query_params.append(('eventCode', event_code))
             
         if allotment_block_status is not None:
             

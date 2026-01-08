@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner import GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_auto_release_inner import GetAllotmentBlocksResponseDataInnerAutoReleaseInner
@@ -35,13 +35,25 @@ class GetAllotmentBlocksResponseDataInner(BaseModel):
     allotment_block_id: Optional[StrictStr] = Field(default=None, description="Allotment block ID", alias="allotmentBlockId")
     rate_type: Optional[StrictStr] = Field(default=None, description="Rate type for the allotment block", alias="rateType")
     rate_plan_id: Optional[StrictStr] = Field(default=None, description="Rate plan ID if applicable", alias="ratePlanId")
+    rate_plan: Optional[StrictStr] = Field(default=None, description="Rate plan name if applicable", alias="ratePlan")
     allotment_type: Optional[StrictStr] = Field(default=None, description="the type of allotment block", alias="allotmentType")
     group_id: Optional[StrictStr] = Field(default=None, description="Group profile ID associated to the allotment block", alias="groupId")
     group_code: Optional[StrictStr] = Field(default=None, description="Group profile code associated to the allotment block", alias="groupCode")
+    event_id: Optional[StrictStr] = Field(default=None, description="Event ID associated to the allotment block", alias="eventId")
+    event_code: Optional[StrictStr] = Field(default=None, description="Event code associated to the allotment block", alias="eventCode")
+    booking_code_url: Optional[StrictStr] = Field(default=None, description="URL for the booking engine with the allotment block code pre-filled", alias="bookingCodeUrl")
     is_auto_release: Optional[StrictBool] = Field(default=None, description="If the allotment block is configured for auto-release", alias="isAutoRelease")
     auto_release: Optional[List[GetAllotmentBlocksResponseDataInnerAutoReleaseInner]] = Field(default=None, description="auto-release data if applicable", alias="autoRelease")
+    release_status: Optional[StrictStr] = Field(default=None, description="Current status of the inventory release process", alias="releaseStatus")
+    release_schedule_status: Optional[StrictStr] = Field(default=None, description="Human-readable description of release schedule", alias="releaseScheduleStatus")
+    release_schedule_type: Optional[StrictStr] = Field(default=None, description="The release scheduling method for inventory release", alias="releaseScheduleType")
+    release_date: Optional[StrictStr] = Field(default=None, description="Release date", alias="releaseDate")
+    reservations_count: Optional[StrictInt] = Field(default=None, description="Number of linked reservations", alias="reservationsCount")
+    rooms_held: Optional[StrictInt] = Field(default=None, description="Total rooms held", alias="roomsHeld")
+    rooms_picked_up: Optional[StrictInt] = Field(default=None, description="Rooms picked up", alias="roomsPickedUp")
+    rooms_remaining: Optional[StrictInt] = Field(default=None, description="Rooms remaining", alias="roomsRemaining")
     allotment_intervals: Optional[List[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner]] = Field(default=None, description="array of interval data by room type", alias="allotmentIntervals")
-    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "allotmentType", "groupId", "groupCode", "isAutoRelease", "autoRelease", "allotmentIntervals"]
+    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "ratePlan", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "bookingCodeUrl", "isAutoRelease", "autoRelease", "releaseStatus", "releaseScheduleStatus", "releaseScheduleType", "releaseDate", "reservationsCount", "roomsHeld", "roomsPickedUp", "roomsRemaining", "allotmentIntervals"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,11 +127,23 @@ class GetAllotmentBlocksResponseDataInner(BaseModel):
             "allotmentBlockId": obj.get("allotmentBlockId"),
             "rateType": obj.get("rateType"),
             "ratePlanId": obj.get("ratePlanId"),
+            "ratePlan": obj.get("ratePlan"),
             "allotmentType": obj.get("allotmentType"),
             "groupId": obj.get("groupId"),
             "groupCode": obj.get("groupCode"),
+            "eventId": obj.get("eventId"),
+            "eventCode": obj.get("eventCode"),
+            "bookingCodeUrl": obj.get("bookingCodeUrl"),
             "isAutoRelease": obj.get("isAutoRelease"),
             "autoRelease": [GetAllotmentBlocksResponseDataInnerAutoReleaseInner.from_dict(_item) for _item in obj["autoRelease"]] if obj.get("autoRelease") is not None else None,
+            "releaseStatus": obj.get("releaseStatus"),
+            "releaseScheduleStatus": obj.get("releaseScheduleStatus"),
+            "releaseScheduleType": obj.get("releaseScheduleType"),
+            "releaseDate": obj.get("releaseDate"),
+            "reservationsCount": obj.get("reservationsCount"),
+            "roomsHeld": obj.get("roomsHeld"),
+            "roomsPickedUp": obj.get("roomsPickedUp"),
+            "roomsRemaining": obj.get("roomsRemaining"),
             "allotmentIntervals": [GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None
         })
         return _obj

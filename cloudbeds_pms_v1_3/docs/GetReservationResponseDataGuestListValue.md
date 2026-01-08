@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **room_type_name** | **str** | Room Type Name where guest is assigned | [optional] 
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
 **is_main_guest** | **bool** | If the guest is the main guest of the reservation or not | [optional] 
-**guest_requirements** | **List[object]** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
+**guest_requirements** | **object** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **custom_fields** | [**List[GetReservationResponseDataGuestListValueCustomFieldsInner]**](GetReservationResponseDataGuestListValueCustomFieldsInner.md) | List of custom fields | [optional] 
 **rooms** | [**List[GetReservationResponseDataGuestListValueRoomsInner]**](GetReservationResponseDataGuestListValueRoomsInner.md) | List of all rooms that guest is assigned to | [optional] 
 **unassigned_rooms** | [**List[GetReservationResponseDataGuestListValueUnassignedRoomsInner]**](GetReservationResponseDataGuestListValueUnassignedRoomsInner.md) | List of unassigned rooms | [optional] 

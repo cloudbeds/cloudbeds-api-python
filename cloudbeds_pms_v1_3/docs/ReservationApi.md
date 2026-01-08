@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 getReservationsWithRateDetails
 
-Returns a list of reservations with added information regarding booked rates and sources. The results are limited to 2 years in the past unless resutsFrom parameter is set to another date.<br /> Please note that some reservations modification may not be reflected in this timestamp.
+Returns a list of reservations with added information regarding booked rates and sources.<br /> Please note that some reservations modification may not be reflected in this timestamp.
 
 ### Example
 
@@ -538,7 +538,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ReservationApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    results_from = '2013-10-20T19:20:30+01:00' # datetime | Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago (optional)
+    results_from = '2013-10-20T19:20:30+01:00' # datetime | Inferior limit datetime, used to filter reservations, based on booking date (optional)
     results_to = '2013-10-20T19:20:30+01:00' # datetime | Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date (optional)
     modified_from = '2013-10-20T19:20:30+01:00' # datetime | Superior limit datetime, used to filter reservations, based on modification date. (optional)
     modified_to = '2013-10-20T19:20:30+01:00' # datetime | Superior limit datetime, used to filter reservations, based on modification date. (optional)
@@ -572,7 +572,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **results_from** | **datetime**| Inferior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations starting 2 years ago | [optional] 
+ **results_from** | **datetime**| Inferior limit datetime, used to filter reservations, based on booking date | [optional] 
  **results_to** | **datetime**| Superior limit datetime, used to filter reservations, based on booking date. If it is not set, will return the reservations up to current date | [optional] 
  **modified_from** | **datetime**| Superior limit datetime, used to filter reservations, based on modification date. | [optional] 
  **modified_to** | **datetime**| Superior limit datetime, used to filter reservations, based on modification date. | [optional] 

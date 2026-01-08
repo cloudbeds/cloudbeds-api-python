@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **document_issuing_country** | **str** | Document Issuing Country (2-digits code) | [optional] 
 **document_expiration_date** | [**GetGuestResponseDataDocumentExpirationDate**](GetGuestResponseDataDocumentExpirationDate.md) |  | [optional] 
 **custom_fields** | [**List[GetGuestResponseDataCustomFieldsInner]**](GetGuestResponseDataCustomFieldsInner.md) |  | [optional] 
-**guest_requirements** | **List[object]** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
+**guest_requirements** | **object** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **special_requests** | **str** | Special requests made by the guest at the time of the booking | [optional] 
 **tax_id** | **str** | Tax ID | [optional] 
 **company_tax_id** | **str** | Company tax ID | [optional] 

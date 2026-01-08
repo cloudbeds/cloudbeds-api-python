@@ -49,7 +49,7 @@ class GetGuestResponseData(BaseModel):
     document_issuing_country: Optional[StrictStr] = Field(default=None, description="Document Issuing Country (2-digits code)", alias="documentIssuingCountry")
     document_expiration_date: Optional[GetGuestResponseDataDocumentExpirationDate] = Field(default=None, alias="documentExpirationDate")
     custom_fields: Optional[List[GetGuestResponseDataCustomFieldsInner]] = Field(default=None, alias="customFields")
-    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
+    guest_requirements: Optional[Dict[str, Any]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     special_requests: Optional[StrictStr] = Field(default=None, description="Special requests made by the guest at the time of the booking", alias="specialRequests")
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Company tax ID", alias="companyTaxID")

@@ -53,7 +53,7 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
     guest_document_expiration_date: Optional[date] = Field(default=None, description="Document Expiration Date", alias="guestDocumentExpirationDate")
     start_date: Optional[datetime] = Field(default=None, description="Check-in date", alias="startDate")
     end_date: Optional[datetime] = Field(default=None, description="Check-out date", alias="endDate")
-    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
+    guest_requirements: Optional[Dict[str, Any]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of custom fields", alias="customFields")
     date_modified: Optional[datetime] = Field(default=None, description="Guest modification date", alias="dateModified")
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")

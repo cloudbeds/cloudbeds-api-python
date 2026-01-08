@@ -57,7 +57,7 @@ class GetGuestListResponseDataValue(BaseModel):
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Company tax ID", alias="companyTaxID")
     company_name: Optional[StrictStr] = Field(default=None, description="Company name", alias="companyName")
     guest_opt_in: Optional[StrictBool] = Field(default=None, description="If guest has opted-in to marketing communication or not", alias="guestOptIn")
-    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
+    guest_requirements: Optional[Dict[str, Any]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestRequirements=true`.", alias="guestRequirements")
     guest_notes: Optional[List[GetGuestListResponseDataValueGuestNotesInner]] = Field(default=None, description="Guest Notes", alias="guestNotes")
     status: Optional[StrictStr] = Field(default=None, description="Reservation status<br /> in_progress - Reservation is pending confirmation<br /> confirmed - Reservation is confirmed<br /> not_confirmed - Reservation not passed confirmation<br /> canceled - Reservation is canceled<br /> checked_in - Guest is in hotel<br /> checked_out - Guest already left hotel<br /> no_show - Guest didn't showed up on check-in date")
     is_merged: Optional[StrictBool] = Field(default=None, description="Flag indicating that guest was merged", alias="isMerged")

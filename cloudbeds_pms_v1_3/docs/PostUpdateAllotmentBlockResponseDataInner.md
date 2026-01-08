@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **allotment_type** | **str** | the type of allotment block | [optional] 
 **group_id** | **str** | Group profile ID associated to the allotment block | [optional] 
 **group_code** | **str** | Group profile code associated to the allotment block | [optional] 
+**event_id** | **str** | Event ID associated to the allotment block | [optional] 
+**event_code** | **str** | Event code associated to the allotment block | [optional] 
 **is_auto_release** | **bool** | If the allotment block is configured for auto-release | [optional] 
 **auto_release** | [**PostCreateAllotmentBlockResponseDataInnerAutoRelease**](PostCreateAllotmentBlockResponseDataInnerAutoRelease.md) |  | [optional] 
 **allotment_intervals** | [**List[PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner]**](PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner.md) | array of interval data by room type | [optional] 

@@ -63,7 +63,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
     rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueRoomsInner]] = Field(default=None, description="List of all rooms that guest is assigned to")
     unassigned_rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner]] = Field(default=None, description="List of all unassigned rooms", alias="unassignedRooms")
-    guest_requirements: Optional[List[Dict[str, Any]]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestsDetails=true` and `includeGuestRequirements=true`.", alias="guestRequirements")
+    guest_requirements: Optional[Dict[str, Any]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestsDetails=true` and `includeGuestRequirements=true`.", alias="guestRequirements")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of guest custom fields", alias="customFields")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     is_main_guest: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest is the main guest on the reservation", alias="isMainGuest")
