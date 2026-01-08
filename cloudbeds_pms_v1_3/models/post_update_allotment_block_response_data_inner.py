@@ -38,10 +38,12 @@ class PostUpdateAllotmentBlockResponseDataInner(BaseModel):
     allotment_type: Optional[StrictStr] = Field(default=None, description="the type of allotment block", alias="allotmentType")
     group_id: Optional[StrictStr] = Field(default=None, description="Group profile ID associated to the allotment block", alias="groupId")
     group_code: Optional[StrictStr] = Field(default=None, description="Group profile code associated to the allotment block", alias="groupCode")
+    event_id: Optional[StrictStr] = Field(default=None, description="Event ID associated to the allotment block", alias="eventId")
+    event_code: Optional[StrictStr] = Field(default=None, description="Event code associated to the allotment block", alias="eventCode")
     is_auto_release: Optional[StrictBool] = Field(default=None, description="If the allotment block is configured for auto-release", alias="isAutoRelease")
     auto_release: Optional[PostCreateAllotmentBlockResponseDataInnerAutoRelease] = Field(default=None, alias="autoRelease")
     allotment_intervals: Optional[List[PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner]] = Field(default=None, description="array of interval data by room type", alias="allotmentIntervals")
-    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "allotmentType", "groupId", "groupCode", "isAutoRelease", "autoRelease", "allotmentIntervals"]
+    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "isAutoRelease", "autoRelease", "allotmentIntervals"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,6 +116,8 @@ class PostUpdateAllotmentBlockResponseDataInner(BaseModel):
             "allotmentType": obj.get("allotmentType"),
             "groupId": obj.get("groupId"),
             "groupCode": obj.get("groupCode"),
+            "eventId": obj.get("eventId"),
+            "eventCode": obj.get("eventCode"),
             "isAutoRelease": obj.get("isAutoRelease"),
             "autoRelease": PostCreateAllotmentBlockResponseDataInnerAutoRelease.from_dict(obj["autoRelease"]) if obj.get("autoRelease") is not None else None,
             "allotmentIntervals": [PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None

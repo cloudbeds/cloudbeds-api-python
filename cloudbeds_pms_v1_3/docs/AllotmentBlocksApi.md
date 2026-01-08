@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_allotment_block_post**
-> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
+> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
 
 createAllotmentBlock
 
@@ -143,6 +143,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.AllotmentBlocksApi(api_client)
     group_code = 'group_code_example' # str | The unique identifier of the group profile the allotment block should be created (optional)
+    event_code = 'event_code_example' # str | The unique identifier of the event the allotment block should be created (optional)
     allotment_block_name = 'allotment_block_name_example' # str | The name for the allotment block (optional)
     rate_type = 'rate_type_example' # str | The rate type for the associated intervals (optional)
     rate_plan_id = 'rate_plan_id_example' # str | The rate plan ID. Required if rateType is \\\"rate_plan\\\". (optional)
@@ -154,7 +155,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # createAllotmentBlock
-        api_response = api_instance.create_allotment_block_post(group_code=group_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
+        api_response = api_instance.create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
         print("The response of AllotmentBlocksApi->create_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -169,6 +170,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_code** | **str**| The unique identifier of the group profile the allotment block should be created | [optional] 
+ **event_code** | **str**| The unique identifier of the event the allotment block should be created | [optional] 
  **allotment_block_name** | **str**| The name for the allotment block | [optional] 
  **rate_type** | **str**| The rate type for the associated intervals | [optional] 
  **rate_plan_id** | **str**| The rate plan ID. Required if rateType is \\\&quot;rate_plan\\\&quot;. | [optional] 
@@ -282,7 +284,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_allotment_blocks_get**
-> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
+> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
 
 getAllotmentBlocks
 
@@ -326,6 +328,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     allotment_block_code = 'allotment_block_code_example' # str | Allotment block code (optional)
     allotment_block_name = 'allotment_block_name_example' # str | Allotment block name (optional)
     group_code = 'group_code_example' # str | A group profile code (optional)
+    event_code = 'event_code_example' # str | An event code (optional)
     allotment_block_status = 'allotment_block_status_example' # str | Allotment block status(es) (optional)
     allotment_block_type = 'allotment_block_type_example' # str | The type of allotment block (optional)
     room_type_id = 'room_type_id_example' # str | Filters allotment blocks with the supplied Room Type ID. (optional)
@@ -337,7 +340,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getAllotmentBlocks
-        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
+        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
         print("The response of AllotmentBlocksApi->get_allotment_blocks_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -355,6 +358,7 @@ Name | Type | Description  | Notes
  **allotment_block_code** | **str**| Allotment block code | [optional] 
  **allotment_block_name** | **str**| Allotment block name | [optional] 
  **group_code** | **str**| A group profile code | [optional] 
+ **event_code** | **str**| An event code | [optional] 
  **allotment_block_status** | **str**| Allotment block status(es) | [optional] 
  **allotment_block_type** | **str**| The type of allotment block | [optional] 
  **room_type_id** | **str**| Filters allotment blocks with the supplied Room Type ID. | [optional] 

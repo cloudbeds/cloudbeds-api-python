@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **guest_document_expiration_date** | **date** | Document Expiration Date | [optional] 
 **start_date** | **datetime** | Check-in date | [optional] 
 **end_date** | **datetime** | Check-out date | [optional] 
-**guest_requirements** | **List[object]** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
+**guest_requirements** | **object** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **custom_fields** | [**List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]**](GetGuestsModifiedResponseDataInnerCustomFieldsInner.md) | List of custom fields | [optional] 
 **date_modified** | **datetime** | Guest modification date | [optional] 
 **tax_id** | **str** | Tax ID | [optional] 
