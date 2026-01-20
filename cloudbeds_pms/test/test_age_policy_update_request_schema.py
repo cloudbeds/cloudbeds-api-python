@@ -37,13 +37,16 @@ class TestAgePolicyUpdateRequestSchema(unittest.TestCase):
             return AgePolicyUpdateRequestSchema(
                 id = '1-b',
                 config = 'single',
-                provides_cribs = True,
                 extra_guests_config = 'per_age_group',
+                groups = [{"id":"group-2","groupType":"child","minAge":0,"maxAge":17,"applyRateFromId":"group-1"}],
                 custom_label = 'Adults'
             )
         else:
             return AgePolicyUpdateRequestSchema(
                 id = '1-b',
+                config = 'single',
+                extra_guests_config = 'per_age_group',
+                groups = [{"id":"group-2","groupType":"child","minAge":0,"maxAge":17,"applyRateFromId":"group-1"}],
         )
         """
 

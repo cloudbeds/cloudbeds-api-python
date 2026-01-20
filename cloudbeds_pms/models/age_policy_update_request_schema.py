@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms.models.age_policy_update_request_schema_groups_inner import AgePolicyUpdateRequestSchemaGroupsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,18 +28,15 @@ class AgePolicyUpdateRequestSchema(BaseModel):
     AgePolicyUpdateRequestSchema
     """ # noqa: E501
     id: StrictStr = Field(description="Age Policy ID.")
-    config: Optional[StrictStr] = Field(default=None, description="Configuration.")
-    provides_cribs: Optional[StrictBool] = Field(default=None, description="Does property provide cribs?", alias="providesCribs")
-    extra_guests_config: Optional[StrictStr] = Field(default=None, description="Extra guests configuration.", alias="extraGuestsConfig")
+    config: StrictStr = Field(description="Configuration.")
+    extra_guests_config: StrictStr = Field(description="Extra guests configuration.", alias="extraGuestsConfig")
+    groups: List[AgePolicyUpdateRequestSchemaGroupsInner] = Field(description="List of age groups.")
     custom_label: Optional[StrictStr] = Field(default=None, description="Custom label (Adults or Guests)", alias="customLabel")
-    __properties: ClassVar[List[str]] = ["id", "config", "providesCribs", "extraGuestsConfig", "customLabel"]
+    __properties: ClassVar[List[str]] = ["id", "config", "extraGuestsConfig", "groups", "customLabel"]
 
     @field_validator('config')
     def config_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['single', 'multiple']):
             raise ValueError("must be one of enum values ('single', 'multiple')")
         return value
@@ -46,9 +44,6 @@ class AgePolicyUpdateRequestSchema(BaseModel):
     @field_validator('extra_guests_config')
     def extra_guests_config_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['per_age_group', 'per_each_guest']):
             raise ValueError("must be one of enum values ('per_age_group', 'per_each_guest')")
         return value
@@ -92,21 +87,13 @@ class AgePolicyUpdateRequestSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if config (nullable) is None
-        # and model_fields_set contains the field
-        if self.config is None and "config" in self.model_fields_set:
-            _dict['config'] = None
-
-        # set to None if provides_cribs (nullable) is None
-        # and model_fields_set contains the field
-        if self.provides_cribs is None and "provides_cribs" in self.model_fields_set:
-            _dict['providesCribs'] = None
-
-        # set to None if extra_guests_config (nullable) is None
-        # and model_fields_set contains the field
-        if self.extra_guests_config is None and "extra_guests_config" in self.model_fields_set:
-            _dict['extraGuestsConfig'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
+        _items = []
+        if self.groups:
+            for _item_groups in self.groups:
+                if _item_groups:
+                    _items.append(_item_groups.to_dict())
+            _dict['groups'] = _items
         # set to None if custom_label (nullable) is None
         # and model_fields_set contains the field
         if self.custom_label is None and "custom_label" in self.model_fields_set:
@@ -126,8 +113,8 @@ class AgePolicyUpdateRequestSchema(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "config": obj.get("config"),
-            "providesCribs": obj.get("providesCribs"),
             "extraGuestsConfig": obj.get("extraGuestsConfig"),
+            "groups": [AgePolicyUpdateRequestSchemaGroupsInner.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None,
             "customLabel": obj.get("customLabel")
         })
         return _obj

@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **terms** | **Dict[str, str]** | Terms and conditions in multiple languages. | [optional] 
 **intervals** | [**List[RatePlanIntervalRequestSchema]**](RatePlanIntervalRequestSchema.md) | List of rate plan intervals. | [optional] 
 **addons** | [**List[RatePlanAddonRequestSchema]**](RatePlanAddonRequestSchema.md) | List of addons. | [optional] 
+**segment_id** | **int** | Segment ID associated with the rate plan. | [optional] 
+**policy_id** | **int** | Policy ID associated with the rate plan. | [optional] 
 
 ## Example
 

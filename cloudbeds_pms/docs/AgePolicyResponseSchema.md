@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
 **config** | **str** |  | 
-**provides_cribs** | **bool** |  | 
-**custom_label** | **str** |  | [optional] 
 **extra_guests_config** | **str** |  | 
+**custom_label** | **str** |  | [optional] 
+**groups** | [**List[AgeGroupResponseSchema]**](AgeGroupResponseSchema.md) |  | [optional] 
 **created_at** | **str** |  | 
 **updated_at** | **str** |  | [optional] 
 

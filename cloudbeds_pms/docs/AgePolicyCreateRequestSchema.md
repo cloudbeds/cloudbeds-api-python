@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config** | **str** | Configuration. | 
-**provides_cribs** | **bool** | Does property provide cribs? | 
 **extra_guests_config** | **str** | Extra guests configuration. | 
+**groups** | [**List[AgePolicyCreateRequestSchemaGroupsInner]**](AgePolicyCreateRequestSchemaGroupsInner.md) | List of age groups. | 
 **custom_label** | **str** | Custom label (Adults or Guests) | [optional] 
 
 ## Example

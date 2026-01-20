@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class MoneySchema(BaseModel):
     """
-    MoneySchema
+    Money representation with amount in smallest currency unit and ISO 4217 currency code
     """ # noqa: E501
-    amount: StrictStr
-    currency_code: StrictStr = Field(alias="currencyCode")
+    amount: StrictStr = Field(description="Amount in the smallest representable units of the currency (e.g., cents for USD). For example, USD $124.39 would be \"12439\".")
+    currency_code: StrictStr = Field(description="ISO 4217 currency code", alias="currencyCode")
     __properties: ClassVar[List[str]] = ["amount", "currencyCode"]
 
     model_config = ConfigDict(

@@ -43,7 +43,9 @@ class RatePlanCreateRequestSchema(BaseModel):
     terms: Optional[Dict[str, StrictStr]] = Field(default=None, description="Terms and conditions in multiple languages.")
     intervals: Optional[List[RatePlanIntervalRequestSchema]] = Field(default=None, description="List of rate plan intervals.")
     addons: Optional[List[RatePlanAddonRequestSchema]] = Field(default=None, description="List of addons.")
-    __properties: ClassVar[List[str]] = ["isActive", "roomTypeId", "name", "description", "namePrivate", "allotmentBlockId", "promoCode", "sources", "derivedValue", "derivedRatePlanId", "derivedType", "terms", "intervals", "addons"]
+    segment_id: Optional[StrictInt] = Field(default=None, description="Segment ID associated with the rate plan.", alias="segmentId")
+    policy_id: Optional[StrictInt] = Field(default=None, description="Policy ID associated with the rate plan.", alias="policyId")
+    __properties: ClassVar[List[str]] = ["isActive", "roomTypeId", "name", "description", "namePrivate", "allotmentBlockId", "promoCode", "sources", "derivedValue", "derivedRatePlanId", "derivedType", "terms", "intervals", "addons", "segmentId", "policyId"]
 
     @field_validator('derived_type')
     def derived_type_validate_enum(cls, value):
@@ -148,6 +150,16 @@ class RatePlanCreateRequestSchema(BaseModel):
         if self.addons is None and "addons" in self.model_fields_set:
             _dict['addons'] = None
 
+        # set to None if segment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.segment_id is None and "segment_id" in self.model_fields_set:
+            _dict['segmentId'] = None
+
+        # set to None if policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.policy_id is None and "policy_id" in self.model_fields_set:
+            _dict['policyId'] = None
+
         return _dict
 
     @classmethod
@@ -173,7 +185,9 @@ class RatePlanCreateRequestSchema(BaseModel):
             "derivedType": obj.get("derivedType") if obj.get("derivedType") is not None else 'fixed',
             "terms": obj.get("terms"),
             "intervals": [RatePlanIntervalRequestSchema.from_dict(_item) for _item in obj["intervals"]] if obj.get("intervals") is not None else None,
-            "addons": [RatePlanAddonRequestSchema.from_dict(_item) for _item in obj["addons"]] if obj.get("addons") is not None else None
+            "addons": [RatePlanAddonRequestSchema.from_dict(_item) for _item in obj["addons"]] if obj.get("addons") is not None else None,
+            "segmentId": obj.get("segmentId"),
+            "policyId": obj.get("policyId")
         })
         return _obj
 

@@ -8,7 +8,7 @@
   "additionalProperties": {
     "packageName": "cloudbeds_pms",
     "projectName": "Cloudbeds PMS",
-    "packageVersion": "2.7.0",
+    "packageVersion": "2.8.0",
     "packageDescription": "OpenAPI client for Cloudbeds PMS API.",
     "generateSourceCodeOnly": true,
     "packageUrl": "https://github.com/cloudbeds/cloudbeds-api-python"

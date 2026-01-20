@@ -35,13 +35,13 @@ class TestMoneySchema(unittest.TestCase):
         model = MoneySchema()
         if include_optional:
             return MoneySchema(
-                amount = '',
-                currency_code = ''
+                amount = '12439',
+                currency_code = 'USD'
             )
         else:
             return MoneySchema(
-                amount = '',
-                currency_code = '',
+                amount = '12439',
+                currency_code = 'USD',
         )
         """
 

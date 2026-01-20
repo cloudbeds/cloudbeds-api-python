@@ -46,7 +46,8 @@ class RatePlanResponseSchema(BaseModel):
     intervals: Optional[List[RatePlanIntervalResponseSchema]] = None
     created_at: Optional[datetime] = Field(default=None, alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "isActive", "isDeleted", "derivedRatePlanId", "isDerived", "derivedType", "derivedValue", "addons", "promoCode", "sources", "name", "description", "namePrivate", "terms", "intervals", "createdAt", "updatedAt"]
+    policy_id: Optional[StrictInt] = Field(default=None, alias="policyId")
+    __properties: ClassVar[List[str]] = ["id", "isActive", "isDeleted", "derivedRatePlanId", "isDerived", "derivedType", "derivedValue", "addons", "promoCode", "sources", "name", "description", "namePrivate", "terms", "intervals", "createdAt", "updatedAt", "policyId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -156,6 +157,11 @@ class RatePlanResponseSchema(BaseModel):
         if self.intervals is None and "intervals" in self.model_fields_set:
             _dict['intervals'] = None
 
+        # set to None if policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.policy_id is None and "policy_id" in self.model_fields_set:
+            _dict['policyId'] = None
+
         return _dict
 
     @classmethod
@@ -184,7 +190,8 @@ class RatePlanResponseSchema(BaseModel):
             "terms": obj.get("terms"),
             "intervals": [RatePlanIntervalResponseSchema.from_dict(_item) for _item in obj["intervals"]] if obj.get("intervals") is not None else None,
             "createdAt": obj.get("createdAt"),
-            "updatedAt": obj.get("updatedAt")
+            "updatedAt": obj.get("updatedAt"),
+            "policyId": obj.get("policyId")
         })
         return _obj
 

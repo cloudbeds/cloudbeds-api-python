@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amenities** | [**List[GetAmenityCatalogResponseSchemaAmenitiesInner]**](GetAmenityCatalogResponseSchemaAmenitiesInner.md) | List of amenities in the catalog | 
+**amenities** | [**List[AmenityItemSchema]**](AmenityItemSchema.md) | List of amenities in the catalog | 
 
 ## Example
 

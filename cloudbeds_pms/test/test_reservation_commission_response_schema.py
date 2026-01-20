@@ -39,8 +39,8 @@ class TestReservationCommissionResponseSchema(unittest.TestCase):
                 property_id = '',
                 reservation_id = '',
                 effective_commission = cloudbeds_pms.models.money_schema.MoneySchema(
-                    amount = '', 
-                    currency_code = '', ),
+                    amount = '12439', 
+                    currency_code = 'USD', ),
                 effective_commission_type = '',
                 estimated_commission_from_source = None,
                 estimated_commissionable_revenue = None,
@@ -56,8 +56,8 @@ class TestReservationCommissionResponseSchema(unittest.TestCase):
                 property_id = '',
                 reservation_id = '',
                 effective_commission = cloudbeds_pms.models.money_schema.MoneySchema(
-                    amount = '', 
-                    currency_code = '', ),
+                    amount = '12439', 
+                    currency_code = 'USD', ),
                 effective_commission_type = '',
                 created_at = '',
                 updated_at = '',

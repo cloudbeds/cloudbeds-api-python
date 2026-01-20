@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Rate Plan ID. | 
 **is_active** | **bool** | Whether the rate plan is active. | [optional] 
-**promo_code** | **str** | Promotional code for the rate plan. | [optional] [default to 'true']
+**allotment_block_id** | **str** | The allotment block&#39;s ID this rate belongs to. | [optional] 
+**promo_code** | **str** | Promotional code for the rate plan. | [optional] 
 **sources** | **List[str]** | List of sources for the rate plan. | [optional] 
 **derived_value** | **float** | Value for the derived rate plan. | [optional] [default to 0]
 **derived_rate_plan_id** | **int** | Derived rate plan ID. | [optional] 
@@ -16,7 +17,10 @@ Name | Type | Description | Notes
 **description** | **Dict[str, str]** | Description in multiple languages. | [optional] 
 **name_private** | **Dict[str, str]** | Internal name in multiple languages. | [optional] 
 **terms** | **Dict[str, str]** | Terms and conditions in multiple languages. | [optional] 
+**intervals** | [**List[RatePlanIntervalRequestSchema]**](RatePlanIntervalRequestSchema.md) | List of rate plan intervals. | [optional] 
 **addons** | [**List[RatePlanAddonRequestSchema]**](RatePlanAddonRequestSchema.md) | List of addons for the rate plan. | [optional] 
+**segment_id** | **int** | Segment ID associated with the rate plan. | [optional] 
+**policy_id** | **int** | Policy ID associated with the rate plan. | [optional] 
 
 ## Example
 

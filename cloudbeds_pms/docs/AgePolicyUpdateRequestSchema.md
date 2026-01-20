@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Age Policy ID. | 
-**config** | **str** | Configuration. | [optional] 
-**provides_cribs** | **bool** | Does property provide cribs? | [optional] 
-**extra_guests_config** | **str** | Extra guests configuration. | [optional] 
+**config** | **str** | Configuration. | 
+**extra_guests_config** | **str** | Extra guests configuration. | 
+**groups** | [**List[AgePolicyUpdateRequestSchemaGroupsInner]**](AgePolicyUpdateRequestSchemaGroupsInner.md) | List of age groups. | 
 **custom_label** | **str** | Custom label (Adults or Guests) | [optional] 
 
 ## Example

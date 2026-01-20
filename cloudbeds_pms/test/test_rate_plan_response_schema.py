@@ -68,7 +68,8 @@ class TestRatePlanResponseSchema(unittest.TestCase):
                         child_days = [{"1":10,"2":15},{"1":5,"2":10},{"1":5,"2":10},{"1":5,"2":10},{"1":5,"2":10},{"1":10,"2":15},{"1":12,"2":18}], )
                     ],
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                policy_id = 9888000
             )
         else:
             return RatePlanResponseSchema(

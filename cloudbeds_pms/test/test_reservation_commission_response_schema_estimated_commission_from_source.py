@@ -35,13 +35,13 @@ class TestReservationCommissionResponseSchemaEstimatedCommissionFromSource(unitt
         model = ReservationCommissionResponseSchemaEstimatedCommissionFromSource()
         if include_optional:
             return ReservationCommissionResponseSchemaEstimatedCommissionFromSource(
-                amount = '',
-                currency_code = ''
+                amount = '12439',
+                currency_code = 'USD'
             )
         else:
             return ReservationCommissionResponseSchemaEstimatedCommissionFromSource(
-                amount = '',
-                currency_code = '',
+                amount = '12439',
+                currency_code = 'USD',
         )
         """
 

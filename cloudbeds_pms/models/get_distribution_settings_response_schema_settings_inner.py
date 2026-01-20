@@ -37,8 +37,8 @@ class GetDistributionSettingsResponseSchemaSettingsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled']):
-            raise ValueError("must be one of enum values ('example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled')")
+        if value not in set(['example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled', 'allow_ota_reservation_cancellation', 'allow_ota_reservation_reconciliation']):
+            raise ValueError("must be one of enum values ('example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled', 'allow_ota_reservation_cancellation', 'allow_ota_reservation_reconciliation')")
         return value
 
     @field_validator('permission')

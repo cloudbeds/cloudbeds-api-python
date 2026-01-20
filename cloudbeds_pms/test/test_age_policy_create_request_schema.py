@@ -36,15 +36,15 @@ class TestAgePolicyCreateRequestSchema(unittest.TestCase):
         if include_optional:
             return AgePolicyCreateRequestSchema(
                 config = 'single',
-                provides_cribs = True,
                 extra_guests_config = 'per_age_group',
+                groups = [{"groupType":"child","minAge":0,"maxAge":17}],
                 custom_label = 'Adults'
             )
         else:
             return AgePolicyCreateRequestSchema(
                 config = 'single',
-                provides_cribs = True,
                 extra_guests_config = 'per_age_group',
+                groups = [{"groupType":"child","minAge":0,"maxAge":17}],
         )
         """
 

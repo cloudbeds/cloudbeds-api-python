@@ -1,12 +1,13 @@
 # MoneySchema
 
+Money representation with amount in smallest currency unit and ISO 4217 currency code
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **str** |  | 
-**currency_code** | **str** |  | 
+**amount** | **str** | Amount in the smallest representable units of the currency (e.g., cents for USD). For example, USD $124.39 would be \&quot;12439\&quot;. | 
+**currency_code** | **str** | ISO 4217 currency code | 
 
 ## Example
 

@@ -33,6 +33,13 @@ class TestItemsApi(unittest.TestCase):
         """
         pass
 
+    def test_item_controller_create_items(self) -> None:
+        """Test case for item_controller_create_items
+
+        Post one or more items to a reservation, house account, or group profile
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

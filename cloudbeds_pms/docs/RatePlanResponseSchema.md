@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **intervals** | [**List[RatePlanIntervalResponseSchema]**](RatePlanIntervalResponseSchema.md) |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
+**policy_id** | **int** |  | [optional] 
 
 ## Example
 

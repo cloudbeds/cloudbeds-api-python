@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** |  | 
 **errors** | [**BadRequestResponseSchemaErrors**](BadRequestResponseSchemaErrors.md) |  | [optional] 
+**code** | **str** | Error code identifying the type of error | [optional] 
 
 ## Example
 

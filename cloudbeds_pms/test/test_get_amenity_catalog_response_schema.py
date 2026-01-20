@@ -36,9 +36,9 @@ class TestGetAmenityCatalogResponseSchema(unittest.TestCase):
         if include_optional:
             return GetAmenityCatalogResponseSchema(
                 amenities = [
-                    cloudbeds_pms.models.get_amenity_catalog_response_schema_amenities_inner.GetAmenityCatalogResponseSchema_amenities_inner(
-                        code = 'wifi-complimentary', 
-                        name = 'WiFi Complimentary', 
+                    cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
+                        code = 'wifi', 
+                        name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
                     ]
@@ -46,9 +46,9 @@ class TestGetAmenityCatalogResponseSchema(unittest.TestCase):
         else:
             return GetAmenityCatalogResponseSchema(
                 amenities = [
-                    cloudbeds_pms.models.get_amenity_catalog_response_schema_amenities_inner.GetAmenityCatalogResponseSchema_amenities_inner(
-                        code = 'wifi-complimentary', 
-                        name = 'WiFi Complimentary', 
+                    cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
+                        code = 'wifi', 
+                        name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
                     ],

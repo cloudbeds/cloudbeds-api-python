@@ -64,7 +64,9 @@ class TestRatePlanCreateRequestSchema(unittest.TestCase):
                     cloudbeds_pms.models.rate_plan_addon_request_schema.RatePlanAddonRequestSchema(
                         addon_id = '', 
                         settings = 'package_inclusive', )
-                    ]
+                    ],
+                segment_id = 789,
+                policy_id = 321
             )
         else:
             return RatePlanCreateRequestSchema(

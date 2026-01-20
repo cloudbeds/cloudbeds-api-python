@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms.models.bad_request_response_schema_errors import BadRequestResponseSchemaErrors
 from typing import Optional, Set
@@ -29,7 +29,8 @@ class BadRequestResponseSchema(BaseModel):
     """ # noqa: E501
     message: StrictStr
     errors: Optional[BadRequestResponseSchemaErrors] = None
-    __properties: ClassVar[List[str]] = ["message", "errors"]
+    code: Optional[StrictStr] = Field(default=None, description="Error code identifying the type of error")
+    __properties: ClassVar[List[str]] = ["message", "errors", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +79,11 @@ class BadRequestResponseSchema(BaseModel):
         if self.errors is None and "errors" in self.model_fields_set:
             _dict['errors'] = None
 
+        # set to None if code (nullable) is None
+        # and model_fields_set contains the field
+        if self.code is None and "code" in self.model_fields_set:
+            _dict['code'] = None
+
         return _dict
 
     @classmethod
@@ -91,7 +97,8 @@ class BadRequestResponseSchema(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "errors": BadRequestResponseSchemaErrors.from_dict(obj["errors"]) if obj.get("errors") is not None else None
+            "errors": BadRequestResponseSchemaErrors.from_dict(obj["errors"]) if obj.get("errors") is not None else None,
+            "code": obj.get("code")
         })
         return _obj
 

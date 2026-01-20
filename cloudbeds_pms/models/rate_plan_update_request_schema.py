@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, Stri
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from cloudbeds_pms.models.rate_plan_addon_request_schema import RatePlanAddonRequestSchema
+from cloudbeds_pms.models.rate_plan_interval_request_schema import RatePlanIntervalRequestSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,8 @@ class RatePlanUpdateRequestSchema(BaseModel):
     """ # noqa: E501
     id: StrictStr = Field(description="Rate Plan ID.")
     is_active: Optional[StrictBool] = Field(default=None, description="Whether the rate plan is active.", alias="isActive")
-    promo_code: Optional[Annotated[str, Field(strict=True, max_length=50)]] = Field(default='true', description="Promotional code for the rate plan.", alias="promoCode")
+    allotment_block_id: Optional[StrictStr] = Field(default=None, description="The allotment block's ID this rate belongs to.", alias="allotmentBlockId")
+    promo_code: Optional[Annotated[str, Field(strict=True, max_length=50)]] = Field(default=None, description="Promotional code for the rate plan.", alias="promoCode")
     sources: Optional[List[StrictStr]] = Field(default=None, description="List of sources for the rate plan.")
     derived_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=0, description="Value for the derived rate plan.", alias="derivedValue")
     derived_rate_plan_id: Optional[StrictInt] = Field(default=None, description="Derived rate plan ID.", alias="derivedRatePlanId")
@@ -39,8 +41,11 @@ class RatePlanUpdateRequestSchema(BaseModel):
     description: Optional[Dict[str, StrictStr]] = Field(default=None, description="Description in multiple languages.")
     name_private: Optional[Dict[str, StrictStr]] = Field(default=None, description="Internal name in multiple languages.", alias="namePrivate")
     terms: Optional[Dict[str, StrictStr]] = Field(default=None, description="Terms and conditions in multiple languages.")
+    intervals: Optional[List[RatePlanIntervalRequestSchema]] = Field(default=None, description="List of rate plan intervals.")
     addons: Optional[List[RatePlanAddonRequestSchema]] = Field(default=None, description="List of addons for the rate plan.")
-    __properties: ClassVar[List[str]] = ["id", "isActive", "promoCode", "sources", "derivedValue", "derivedRatePlanId", "derivedType", "name", "description", "namePrivate", "terms", "addons"]
+    segment_id: Optional[StrictInt] = Field(default=None, description="Segment ID associated with the rate plan.", alias="segmentId")
+    policy_id: Optional[StrictInt] = Field(default=None, description="Policy ID associated with the rate plan.", alias="policyId")
+    __properties: ClassVar[List[str]] = ["id", "isActive", "allotmentBlockId", "promoCode", "sources", "derivedValue", "derivedRatePlanId", "derivedType", "name", "description", "namePrivate", "terms", "intervals", "addons", "segmentId", "policyId"]
 
     @field_validator('derived_type')
     def derived_type_validate_enum(cls, value):
@@ -91,6 +96,13 @@ class RatePlanUpdateRequestSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in intervals (list)
+        _items = []
+        if self.intervals:
+            for _item_intervals in self.intervals:
+                if _item_intervals:
+                    _items.append(_item_intervals.to_dict())
+            _dict['intervals'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in addons (list)
         _items = []
         if self.addons:
@@ -98,6 +110,11 @@ class RatePlanUpdateRequestSchema(BaseModel):
                 if _item_addons:
                     _items.append(_item_addons.to_dict())
             _dict['addons'] = _items
+        # set to None if allotment_block_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.allotment_block_id is None and "allotment_block_id" in self.model_fields_set:
+            _dict['allotmentBlockId'] = None
+
         # set to None if promo_code (nullable) is None
         # and model_fields_set contains the field
         if self.promo_code is None and "promo_code" in self.model_fields_set:
@@ -138,10 +155,25 @@ class RatePlanUpdateRequestSchema(BaseModel):
         if self.terms is None and "terms" in self.model_fields_set:
             _dict['terms'] = None
 
+        # set to None if intervals (nullable) is None
+        # and model_fields_set contains the field
+        if self.intervals is None and "intervals" in self.model_fields_set:
+            _dict['intervals'] = None
+
         # set to None if addons (nullable) is None
         # and model_fields_set contains the field
         if self.addons is None and "addons" in self.model_fields_set:
             _dict['addons'] = None
+
+        # set to None if segment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.segment_id is None and "segment_id" in self.model_fields_set:
+            _dict['segmentId'] = None
+
+        # set to None if policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.policy_id is None and "policy_id" in self.model_fields_set:
+            _dict['policyId'] = None
 
         return _dict
 
@@ -157,7 +189,8 @@ class RatePlanUpdateRequestSchema(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "isActive": obj.get("isActive"),
-            "promoCode": obj.get("promoCode") if obj.get("promoCode") is not None else 'true',
+            "allotmentBlockId": obj.get("allotmentBlockId"),
+            "promoCode": obj.get("promoCode"),
             "sources": obj.get("sources"),
             "derivedValue": obj.get("derivedValue") if obj.get("derivedValue") is not None else 0,
             "derivedRatePlanId": obj.get("derivedRatePlanId"),
@@ -166,7 +199,10 @@ class RatePlanUpdateRequestSchema(BaseModel):
             "description": obj.get("description"),
             "namePrivate": obj.get("namePrivate"),
             "terms": obj.get("terms"),
-            "addons": [RatePlanAddonRequestSchema.from_dict(_item) for _item in obj["addons"]] if obj.get("addons") is not None else None
+            "intervals": [RatePlanIntervalRequestSchema.from_dict(_item) for _item in obj["intervals"]] if obj.get("intervals") is not None else None,
+            "addons": [RatePlanAddonRequestSchema.from_dict(_item) for _item in obj["addons"]] if obj.get("addons") is not None else None,
+            "segmentId": obj.get("segmentId"),
+            "policyId": obj.get("policyId")
         })
         return _obj
 

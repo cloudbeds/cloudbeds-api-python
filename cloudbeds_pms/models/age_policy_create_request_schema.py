@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms.models.age_policy_create_request_schema_groups_inner import AgePolicyCreateRequestSchemaGroupsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,10 +28,10 @@ class AgePolicyCreateRequestSchema(BaseModel):
     AgePolicyCreateRequestSchema
     """ # noqa: E501
     config: StrictStr = Field(description="Configuration.")
-    provides_cribs: StrictBool = Field(description="Does property provide cribs?", alias="providesCribs")
     extra_guests_config: StrictStr = Field(description="Extra guests configuration.", alias="extraGuestsConfig")
+    groups: List[AgePolicyCreateRequestSchemaGroupsInner] = Field(description="List of age groups.")
     custom_label: Optional[StrictStr] = Field(default=None, description="Custom label (Adults or Guests)", alias="customLabel")
-    __properties: ClassVar[List[str]] = ["config", "providesCribs", "extraGuestsConfig", "customLabel"]
+    __properties: ClassVar[List[str]] = ["config", "extraGuestsConfig", "groups", "customLabel"]
 
     @field_validator('config')
     def config_validate_enum(cls, value):
@@ -85,6 +86,13 @@ class AgePolicyCreateRequestSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
+        _items = []
+        if self.groups:
+            for _item_groups in self.groups:
+                if _item_groups:
+                    _items.append(_item_groups.to_dict())
+            _dict['groups'] = _items
         # set to None if custom_label (nullable) is None
         # and model_fields_set contains the field
         if self.custom_label is None and "custom_label" in self.model_fields_set:
@@ -103,8 +111,8 @@ class AgePolicyCreateRequestSchema(BaseModel):
 
         _obj = cls.model_validate({
             "config": obj.get("config"),
-            "providesCribs": obj.get("providesCribs"),
             "extraGuestsConfig": obj.get("extraGuestsConfig"),
+            "groups": [AgePolicyCreateRequestSchemaGroupsInner.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None,
             "customLabel": obj.get("customLabel")
         })
         return _obj

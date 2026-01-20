@@ -37,9 +37,17 @@ class TestAgePolicyResponseSchema(unittest.TestCase):
             return AgePolicyResponseSchema(
                 id = '',
                 config = '',
-                provides_cribs = True,
-                custom_label = '',
                 extra_guests_config = '',
+                custom_label = '',
+                groups = [
+                    cloudbeds_pms.models.age_group_response_schema.AgeGroupResponseSchema(
+                        id = '', 
+                        group_type = '', 
+                        min_age = 56, 
+                        max_age = 56, 
+                        created_at = '', 
+                        updated_at = '', )
+                    ],
                 created_at = '',
                 updated_at = ''
             )
@@ -47,7 +55,6 @@ class TestAgePolicyResponseSchema(unittest.TestCase):
             return AgePolicyResponseSchema(
                 id = '',
                 config = '',
-                provides_cribs = True,
                 extra_guests_config = '',
                 created_at = '',
         )

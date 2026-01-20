@@ -35,13 +35,13 @@ class TestUpdateReservationRoomResponseSchemaTotal(unittest.TestCase):
         model = UpdateReservationRoomResponseSchemaTotal()
         if include_optional:
             return UpdateReservationRoomResponseSchemaTotal(
-                amount = '',
-                currency_code = ''
+                amount = '12439',
+                currency_code = 'USD'
             )
         else:
             return UpdateReservationRoomResponseSchemaTotal(
-                amount = '',
-                currency_code = '',
+                amount = '12439',
+                currency_code = 'USD',
         )
         """
 

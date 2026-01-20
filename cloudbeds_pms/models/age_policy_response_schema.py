@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms.models.age_group_response_schema import AgeGroupResponseSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,12 +29,12 @@ class AgePolicyResponseSchema(BaseModel):
     """ # noqa: E501
     id: StrictStr
     config: StrictStr
-    provides_cribs: StrictBool = Field(alias="providesCribs")
-    custom_label: Optional[StrictStr] = Field(default=None, alias="customLabel")
     extra_guests_config: StrictStr = Field(alias="extraGuestsConfig")
+    custom_label: Optional[StrictStr] = Field(default=None, alias="customLabel")
+    groups: Optional[List[AgeGroupResponseSchema]] = None
     created_at: StrictStr = Field(alias="createdAt")
     updated_at: Optional[StrictStr] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "config", "providesCribs", "customLabel", "extraGuestsConfig", "createdAt", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["id", "config", "extraGuestsConfig", "customLabel", "groups", "createdAt", "updatedAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,10 +75,22 @@ class AgePolicyResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
+        _items = []
+        if self.groups:
+            for _item_groups in self.groups:
+                if _item_groups:
+                    _items.append(_item_groups.to_dict())
+            _dict['groups'] = _items
         # set to None if custom_label (nullable) is None
         # and model_fields_set contains the field
         if self.custom_label is None and "custom_label" in self.model_fields_set:
             _dict['customLabel'] = None
+
+        # set to None if groups (nullable) is None
+        # and model_fields_set contains the field
+        if self.groups is None and "groups" in self.model_fields_set:
+            _dict['groups'] = None
 
         # set to None if updated_at (nullable) is None
         # and model_fields_set contains the field
@@ -98,9 +111,9 @@ class AgePolicyResponseSchema(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "config": obj.get("config"),
-            "providesCribs": obj.get("providesCribs"),
-            "customLabel": obj.get("customLabel"),
             "extraGuestsConfig": obj.get("extraGuestsConfig"),
+            "customLabel": obj.get("customLabel"),
+            "groups": [AgeGroupResponseSchema.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None,
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt")
         })

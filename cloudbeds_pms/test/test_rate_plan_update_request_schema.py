@@ -37,7 +37,8 @@ class TestRatePlanUpdateRequestSchema(unittest.TestCase):
             return RatePlanUpdateRequestSchema(
                 id = '123',
                 is_active = True,
-                promo_code = 'true',
+                allotment_block_id = '4567',
+                promo_code = 'SUMMER2023',
                 sources = ["source1","source2"],
                 derived_value = 150.5,
                 derived_rate_plan_id = 456,
@@ -46,11 +47,26 @@ class TestRatePlanUpdateRequestSchema(unittest.TestCase):
                 description = {"en":"Our standard rate plan","es":"Nuestro plan de tarifas estándar"},
                 name_private = {"en":"Standard Internal","es":"Estándar Interno"},
                 terms = {"en":"Standard terms apply","es":"Se aplican términos estándar"},
+                intervals = [
+                    cloudbeds_pms.models.rate_plan_interval_request_schema.RatePlanIntervalRequestSchema(
+                        start_date = 'Mon Jan 27 00:00:00 UTC 2025', 
+                        end_date = 'Thu Feb 27 00:00:00 UTC 2025', 
+                        name = 'Winter Season', 
+                        room_type_id = '82828', 
+                        min_overlap = 1, 
+                        max_overlap = 10, 
+                        group_code = '990', 
+                        days = [65.5,50,50,50,50,70,70.5], 
+                        adult_days = [{"3":35,"4":35},{"3":20,"4":20},{"3":20,"4":20},{"3":20,"4":20},{"3":20,"4":20},{"3":35,"4":35},{"3":40,"4":40}], 
+                        child_days = [{"1":10,"2":15},{"1":5,"2":10},{"1":5,"2":10},{"1":5,"2":10},{"1":5,"2":10},{"1":10,"2":15},{"1":12,"2":18}], )
+                    ],
                 addons = [
                     cloudbeds_pms.models.rate_plan_addon_request_schema.RatePlanAddonRequestSchema(
                         addon_id = '', 
                         settings = 'package_inclusive', )
-                    ]
+                    ],
+                segment_id = 789,
+                policy_id = 321
             )
         else:
             return RatePlanUpdateRequestSchema(

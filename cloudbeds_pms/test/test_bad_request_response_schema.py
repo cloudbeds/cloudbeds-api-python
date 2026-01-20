@@ -36,7 +36,8 @@ class TestBadRequestResponseSchema(unittest.TestCase):
         if include_optional:
             return BadRequestResponseSchema(
                 message = '',
-                errors = None
+                errors = None,
+                code = 'INVALID_REQUEST'
             )
         else:
             return BadRequestResponseSchema(
