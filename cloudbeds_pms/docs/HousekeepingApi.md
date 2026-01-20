@@ -19,7 +19,6 @@ Housekeeping inspection list
 ```python
 import cloudbeds_pms
 from cloudbeds_pms.models.inspection_list_response_schema import InspectionListResponseSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.rest import ApiException
 from pprint import pprint
@@ -42,8 +41,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.HousekeepingApi(api_client)
     property_id = 1 # int | The property ID
-    limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
-    offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
+    limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
+    offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
     filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
 
     try:
@@ -63,8 +62,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **int**| The property ID | 
- **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
- **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
+ **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
+ **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
  **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
 
 ### Return type

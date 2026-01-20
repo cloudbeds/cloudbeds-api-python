@@ -348,7 +348,6 @@ Get a list of Market Segmentation Groups.
 ```python
 import cloudbeds_pms
 from cloudbeds_pms.models.group_list_response_schema import GroupListResponseSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.rest import ApiException
 from pprint import pprint
 
@@ -370,8 +369,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.MarketSegmentationApi(api_client)
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
-    offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
-    limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
+    offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
+    limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
 
     try:
         # Get a list of Market Segmentation Groups.
@@ -390,8 +389,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
- **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
- **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
+ **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
+ **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
 
 ### Return type
 
@@ -981,7 +980,6 @@ Get a list of Market Segmentation Segments.
 
 ```python
 import cloudbeds_pms
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.segment_list_response_schema import SegmentListResponseSchema
 from cloudbeds_pms.rest import ApiException
@@ -1006,8 +1004,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms.MarketSegmentationApi(api_client)
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
     enabled = false # bool | List only enabled segments.
-    offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
-    limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
+    offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
+    limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
     filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
 
     try:
@@ -1028,8 +1026,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
  **enabled** | **bool**| List only enabled segments. | 
- **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
- **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
+ **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
+ **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
  **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
 
 ### Return type
@@ -1067,7 +1065,6 @@ Get a list of reservations linked to a Market Segmentation Segment.
 
 ```python
 import cloudbeds_pms
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.segment_list_reservations_response_schema import SegmentListReservationsResponseSchema
 from cloudbeds_pms.rest import ApiException
 from pprint import pprint
@@ -1092,8 +1089,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
     id = '1-b' # str | Segment ID.
     active = false # bool | List only active reservations.
-    offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
-    limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
+    offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
+    limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
 
     try:
         # Get a list of reservations linked to a Market Segmentation Segment.
@@ -1114,8 +1111,8 @@ Name | Type | Description  | Notes
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
  **id** | **str**| Segment ID. | 
  **active** | **bool**| List only active reservations. | 
- **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
- **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
+ **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
+ **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
 
 ### Return type
 

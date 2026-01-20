@@ -23,7 +23,6 @@ from cloudbeds_pms.models.group_create_request_schema import GroupCreateRequestS
 from cloudbeds_pms.models.group_list_response_schema import GroupListResponseSchema
 from cloudbeds_pms.models.group_response_schema import GroupResponseSchema
 from cloudbeds_pms.models.group_update_request_schema import GroupUpdateRequestSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.segment_create_request_schema import SegmentCreateRequestSchema
 from cloudbeds_pms.models.segment_list_reservations_response_schema import SegmentListReservationsResponseSchema
 from cloudbeds_pms.models.segment_list_response_schema import SegmentListResponseSchema
@@ -1205,8 +1204,8 @@ class MarketSegmentationApi:
     def group_controller_index(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1226,9 +1225,9 @@ class MarketSegmentationApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1282,8 +1281,8 @@ class MarketSegmentationApi:
     def group_controller_index_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1303,9 +1302,9 @@ class MarketSegmentationApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1359,8 +1358,8 @@ class MarketSegmentationApi:
     def group_controller_index_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1380,9 +1379,9 @@ class MarketSegmentationApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3543,8 +3542,8 @@ class MarketSegmentationApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -3567,9 +3566,9 @@ class MarketSegmentationApi:
         :param enabled: List only enabled segments. (required)
         :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3628,8 +3627,8 @@ class MarketSegmentationApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -3652,9 +3651,9 @@ class MarketSegmentationApi:
         :param enabled: List only enabled segments. (required)
         :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3713,8 +3712,8 @@ class MarketSegmentationApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         enabled: Annotated[StrictBool, Field(description="List only enabled segments.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -3737,9 +3736,9 @@ class MarketSegmentationApi:
         :param enabled: List only enabled segments. (required)
         :type enabled: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3877,8 +3876,8 @@ class MarketSegmentationApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         id: Annotated[StrictStr, Field(description="Segment ID.")],
         active: Annotated[StrictBool, Field(description="List only active reservations.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3902,9 +3901,9 @@ class MarketSegmentationApi:
         :param active: List only active reservations. (required)
         :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3962,8 +3961,8 @@ class MarketSegmentationApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         id: Annotated[StrictStr, Field(description="Segment ID.")],
         active: Annotated[StrictBool, Field(description="List only active reservations.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3987,9 +3986,9 @@ class MarketSegmentationApi:
         :param active: List only active reservations. (required)
         :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4047,8 +4046,8 @@ class MarketSegmentationApi:
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         id: Annotated[StrictStr, Field(description="Segment ID.")],
         active: Annotated[StrictBool, Field(description="List only active reservations.")],
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4072,9 +4071,9 @@ class MarketSegmentationApi:
         :param active: List only active reservations. (required)
         :type active: bool
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

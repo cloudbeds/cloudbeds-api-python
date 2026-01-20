@@ -101,7 +101,6 @@ Get a list of integration events for a specific property.
 ```python
 import cloudbeds_pms
 from cloudbeds_pms.models.integration_event_list_response_schema import IntegrationEventListResponseSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_dynamic_filter_schema import QueryParameterDynamicFilterSchema
 from cloudbeds_pms.models.query_parameter_sort_schema import QueryParameterSortSchema
 from cloudbeds_pms.rest import ApiException
@@ -126,8 +125,8 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms.IntegrationEventsApi(api_client)
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
     sort = cloudbeds_pms.QueryParameterSortSchema() # QueryParameterSortSchema | A string specifying fields for sorting with optional directions (e.g., asc or desc). (optional)
-    limit = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The maximum number of items to return in the response. Default is 100. (optional)
-    offset = cloudbeds_pms.LimitOffsetPaginationSchema() # LimitOffsetPaginationSchema | The number of items to skip before starting to collect the result set. Used for pagination. (optional)
+    limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
+    offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
     filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
 
     try:
@@ -148,8 +147,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
  **sort** | [**QueryParameterSortSchema**](.md)| A string specifying fields for sorting with optional directions (e.g., asc or desc). | [optional] 
- **limit** | [**LimitOffsetPaginationSchema**](.md)| The maximum number of items to return in the response. Default is 100. | [optional] 
- **offset** | [**LimitOffsetPaginationSchema**](.md)| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] 
+ **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
+ **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
  **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
 
 ### Return type

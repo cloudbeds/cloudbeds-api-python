@@ -20,7 +20,6 @@ from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
 from cloudbeds_pms.models.addons_response_schema import AddonsResponseSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 
 from cloudbeds_pms.api_client import ApiClient, RequestSerialized
 from cloudbeds_pms.api_response import ApiResponse
@@ -44,8 +43,8 @@ class AddonsApi:
     def addon_controller_get_addons(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         accept_language: Annotated[Optional[StrictStr], Field(description="The preferred language(s) for localized strings (e.g., en-US)")] = None,
         _request_timeout: Union[
@@ -68,9 +67,9 @@ class AddonsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param accept_language: The preferred language(s) for localized strings (e.g., en-US)
@@ -131,8 +130,8 @@ class AddonsApi:
     def addon_controller_get_addons_with_http_info(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         accept_language: Annotated[Optional[StrictStr], Field(description="The preferred language(s) for localized strings (e.g., en-US)")] = None,
         _request_timeout: Union[
@@ -155,9 +154,9 @@ class AddonsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param accept_language: The preferred language(s) for localized strings (e.g., en-US)
@@ -218,8 +217,8 @@ class AddonsApi:
     def addon_controller_get_addons_without_preload_content(
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         accept_language: Annotated[Optional[StrictStr], Field(description="The preferred language(s) for localized strings (e.g., en-US)")] = None,
         _request_timeout: Union[
@@ -242,9 +241,9 @@ class AddonsApi:
         :param x_property_id: A numeric, comma-separated string representing the property IDs, sent in the header. (required)
         :type x_property_id: str
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param accept_language: The preferred language(s) for localized strings (e.g., en-US)
