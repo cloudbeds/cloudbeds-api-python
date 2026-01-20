@@ -23,7 +23,6 @@ from cloudbeds_pms.models.integration_event_create_request_schema import Integra
 from cloudbeds_pms.models.integration_event_list_response_schema import IntegrationEventListResponseSchema
 from cloudbeds_pms.models.integration_event_response_schema import IntegrationEventResponseSchema
 from cloudbeds_pms.models.integration_event_update_request_schema import IntegrationEventUpdateRequestSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 from cloudbeds_pms.models.query_parameter_sort_schema import QueryParameterSortSchema
 
 from cloudbeds_pms.api_client import ApiClient, RequestSerialized
@@ -344,8 +343,8 @@ class IntegrationEventsApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -368,9 +367,9 @@ class IntegrationEventsApi:
         :param sort: A string specifying fields for sorting with optional directions (e.g., asc or desc).
         :type sort: QueryParameterSortSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -430,8 +429,8 @@ class IntegrationEventsApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -454,9 +453,9 @@ class IntegrationEventsApi:
         :param sort: A string specifying fields for sorting with optional directions (e.g., asc or desc).
         :type sort: QueryParameterSortSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -516,8 +515,8 @@ class IntegrationEventsApi:
         self,
         x_property_id: Annotated[StrictStr, Field(description="A numeric, comma-separated string representing the property IDs, sent in the header.")],
         sort: Annotated[Optional[QueryParameterSortSchema], Field(description="A string specifying fields for sorting with optional directions (e.g., asc or desc).")] = None,
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -540,9 +539,9 @@ class IntegrationEventsApi:
         :param sort: A string specifying fields for sorting with optional directions (e.g., asc or desc).
         :type sort: QueryParameterSortSchema
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one

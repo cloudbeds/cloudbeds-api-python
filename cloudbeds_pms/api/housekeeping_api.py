@@ -20,7 +20,6 @@ from pydantic import Field, StrictInt
 from typing import Optional
 from typing_extensions import Annotated
 from cloudbeds_pms.models.inspection_list_response_schema import InspectionListResponseSchema
-from cloudbeds_pms.models.limit_offset_pagination_schema import LimitOffsetPaginationSchema
 
 from cloudbeds_pms.api_client import ApiClient, RequestSerialized
 from cloudbeds_pms.api_response import ApiResponse
@@ -44,8 +43,8 @@ class HousekeepingApi:
     def call_27abd48cb30106ec3251cf3baf34174c(
         self,
         property_id: Annotated[StrictInt, Field(description="The property ID")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -66,9 +65,9 @@ class HousekeepingApi:
         :param property_id: The property ID (required)
         :type property_id: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -123,8 +122,8 @@ class HousekeepingApi:
     def call_27abd48cb30106ec3251cf3baf34174c_with_http_info(
         self,
         property_id: Annotated[StrictInt, Field(description="The property ID")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -145,9 +144,9 @@ class HousekeepingApi:
         :param property_id: The property ID (required)
         :type property_id: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
@@ -202,8 +201,8 @@ class HousekeepingApi:
     def call_27abd48cb30106ec3251cf3baf34174c_without_preload_content(
         self,
         property_id: Annotated[StrictInt, Field(description="The property ID")],
-        limit: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
-        offset: Annotated[Optional[LimitOffsetPaginationSchema], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The maximum number of items to return in the response. Default is 100.")] = None,
+        offset: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="The number of items to skip before starting to collect the result set. Used for pagination.")] = None,
         filters: Annotated[Optional[str], Field(description="This parameter should be formatted as a list of strings separated by ;")] = None,
         _request_timeout: Union[
             None,
@@ -224,9 +223,9 @@ class HousekeepingApi:
         :param property_id: The property ID (required)
         :type property_id: int
         :param limit: The maximum number of items to return in the response. Default is 100.
-        :type limit: LimitOffsetPaginationSchema
+        :type limit: int
         :param offset: The number of items to skip before starting to collect the result set. Used for pagination.
-        :type offset: LimitOffsetPaginationSchema
+        :type offset: int
         :param filters: This parameter should be formatted as a list of strings separated by ;
         :type filters: str
         :param _request_timeout: timeout setting for this request. If one
