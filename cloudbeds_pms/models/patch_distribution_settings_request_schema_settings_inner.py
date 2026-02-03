@@ -32,9 +32,10 @@ class PatchDistributionSettingsRequestSchemaSettingsInner(BaseModel):
 
     @field_validator('key')
     def key_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled', 'allow_ota_reservation_cancellation', 'allow_ota_reservation_reconciliation']):
-            raise ValueError("must be one of enum values ('example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled', 'allow_ota_reservation_cancellation', 'allow_ota_reservation_reconciliation')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['example_setting_key', 'is_channel_revenue_allocation_enabled', 'is_channel_derived_rate_plan_mapping_enabled', 'groups_data_sync_enabled_channels', 'full_reservation_sync_enabled_channels', 'is_distribution_enabled', 'allow_ota_reservation_cancellation', 'allow_ota_reservation_reconciliation', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

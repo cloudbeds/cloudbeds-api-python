@@ -42,6 +42,8 @@ The operator to use for the filter
 
 * `IS_NOT_EMPTY` (value: `'is_not_empty'`)
 
+* `UNKNOWN_DEFAULT_OPEN_API` (value: `'unknown_default_open_api'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -43,16 +43,18 @@ class IntegrationEventResponseSchema(BaseModel):
 
     @field_validator('status')
     def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['open', 'completed']):
-            raise ValueError("must be one of enum values ('open', 'completed')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['open', 'completed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('result')
     def result_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['failure', 'success']):
-            raise ValueError("must be one of enum values ('failure', 'success')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['failure', 'success', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

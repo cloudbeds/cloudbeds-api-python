@@ -31,12 +31,13 @@ class ImportTaskToggleProcessingRequestSchema(BaseModel):
 
     @field_validator('action')
     def action_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['start', 'stop']):
-            raise ValueError("must be one of enum values ('start', 'stop')")
+        _allowed_values = set(['start', 'stop', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

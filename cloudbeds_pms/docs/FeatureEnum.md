@@ -34,6 +34,8 @@ The operator to use for the filter
 
 * `FEATURE_DOT_PROP_MINUS_STAFF_DOT_PROPERTY_MINUS_FEATURE_MINUS_CACHE` (value: `'feature.prop-staff.property-feature-cache'`)
 
+* `UNKNOWN_DEFAULT_OPEN_API` (value: `'unknown_default_open_api'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -32,19 +32,21 @@ class ImportTaskCreateRequestSchema(BaseModel):
 
     @field_validator('type')
     def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['addon', 'group', 'item', 'reservation', 'room_type', 'rooming_list']):
-            raise ValueError("must be one of enum values ('addon', 'group', 'item', 'reservation', 'room_type', 'rooming_list')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['addon', 'group', 'item', 'reservation', 'room_type', 'rooming_list', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('priority')
     def priority_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['standard', 'high']):
-            raise ValueError("must be one of enum values ('standard', 'high')")
+        _allowed_values = set(['standard', 'high', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

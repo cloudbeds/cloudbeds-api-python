@@ -43,22 +43,24 @@ class EventCreateRequestSchema(BaseModel):
 
     @field_validator('status')
     def status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['lead', 'proposal', 'tentative', 'qualified', 'definite', 'open', 'closed', 'closed_lost', 'canceled']):
-            raise ValueError("must be one of enum values ('lead', 'proposal', 'tentative', 'qualified', 'definite', 'open', 'closed', 'closed_lost', 'canceled')")
+        _allowed_values = set(['lead', 'proposal', 'tentative', 'qualified', 'definite', 'open', 'closed', 'closed_lost', 'canceled', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('transaction_mode')
     def transaction_mode_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['none', 'post_into_group']):
-            raise ValueError("must be one of enum values ('none', 'post_into_group')")
+        _allowed_values = set(['none', 'post_into_group', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

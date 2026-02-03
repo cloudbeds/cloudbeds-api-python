@@ -41,23 +41,26 @@ class ImportTaskGetResponseSchema(BaseModel):
 
     @field_validator('type')
     def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['addon', 'item', 'reservation', 'room_type']):
-            raise ValueError("must be one of enum values ('addon', 'item', 'reservation', 'room_type')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['addon', 'item', 'reservation', 'room_type', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('priority')
     def priority_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['standard', 'high']):
-            raise ValueError("must be one of enum values ('standard', 'high')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['standard', 'high', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('import_status')
     def import_status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'updates_parsing_complete', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns']):
-            raise ValueError("must be one of enum values ('uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'updates_parsing_complete', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'updates_parsing_complete', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

@@ -41,10 +41,15 @@ class FeatureEnum(str, Enum):
     FEATURE_DOT_INVENTORY_DOT_DERIVED_MINUS_RATE_MINUS_PLANS_MINUS_FROM_MINUS_ANOTHER_MINUS_DERIVED_MINUS_RATE_MINUS_PLANS = 'feature.inventory.derived-rate-plans-from-another-derived-rate-plans'
     FEATURE_DOT_INVENTORY_DOT_ENABLE_MINUS_RATE_MINUS_SNAPSHOTS = 'feature.inventory.enable-rate-snapshots'
     FEATURE_DOT_PROP_MINUS_STAFF_DOT_PROPERTY_MINUS_FEATURE_MINUS_CACHE = 'feature.prop-staff.property-feature-cache'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FeatureEnum from a JSON string"""
         return cls(json.loads(json_str))
 
+    @classmethod
+    def _missing_(cls, value):
+        """Handle unknown enum values by returning the unknown default case."""
+        return cls.UNKNOWN_DEFAULT_OPEN_API
 

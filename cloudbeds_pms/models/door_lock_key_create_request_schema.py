@@ -45,19 +45,21 @@ class DoorLockKeyCreateRequestSchema(BaseModel):
 
     @field_validator('key_type')
     def key_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['key_card', 'access_code', 'mobile_key']):
-            raise ValueError("must be one of enum values ('key_card', 'access_code', 'mobile_key')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['key_card', 'access_code', 'mobile_key', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['processing', 'completed']):
-            raise ValueError("must be one of enum values ('processing', 'completed')")
+        _allowed_values = set(['processing', 'completed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

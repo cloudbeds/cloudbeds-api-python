@@ -35,9 +35,10 @@ class AgePolicyUpdateRequestSchemaGroupsInner(BaseModel):
 
     @field_validator('group_type')
     def group_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['child', 'adult']):
-            raise ValueError("must be one of enum values ('child', 'adult')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['child', 'adult', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

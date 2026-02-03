@@ -34,22 +34,24 @@ class AgePolicyPatchRequestSchema(BaseModel):
 
     @field_validator('config')
     def config_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['single', 'multiple']):
-            raise ValueError("must be one of enum values ('single', 'multiple')")
+        _allowed_values = set(['single', 'multiple', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('extra_guests_config')
     def extra_guests_config_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['per_age_group', 'per_each_guest']):
-            raise ValueError("must be one of enum values ('per_age_group', 'per_each_guest')")
+        _allowed_values = set(['per_age_group', 'per_each_guest', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

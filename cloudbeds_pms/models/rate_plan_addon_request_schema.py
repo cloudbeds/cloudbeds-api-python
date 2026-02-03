@@ -32,9 +32,10 @@ class RatePlanAddonRequestSchema(BaseModel):
 
     @field_validator('settings')
     def settings_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['package_inclusive', 'show_as_combined', 'show_as_separate']):
-            raise ValueError("must be one of enum values ('package_inclusive', 'show_as_combined', 'show_as_separate')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['package_inclusive', 'show_as_combined', 'show_as_separate', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

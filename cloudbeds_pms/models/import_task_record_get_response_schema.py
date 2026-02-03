@@ -40,9 +40,10 @@ class ImportTaskRecordGetResponseSchema(BaseModel):
 
     @field_validator('import_status')
     def import_status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns']):
-            raise ValueError("must be one of enum values ('uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns')")
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['uploaded', 'parsing', 'parsing_complete', 'parsing_complete_with_errors', 'processing', 'complete', 'complete_with_errors', 'error_file_handler', 'error_file_resource', 'error_file_parsing', 'error_file_empty', 'error_missing_columns', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(
