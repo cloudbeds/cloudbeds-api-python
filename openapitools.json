@@ -5,13 +5,15 @@
   "generatorName": "python",
   "inputSpec": "public_accessa/api/v2/docs/cb-v2-openapi-3.0.0.yaml",
   "outputDir": ".",
+  "templateDir": "templates",
   "additionalProperties": {
     "packageName": "cloudbeds_pms",
     "projectName": "Cloudbeds PMS",
     "packageVersion": "2.9.0",
     "packageDescription": "OpenAPI client for Cloudbeds PMS API.",
     "generateSourceCodeOnly": true,
-    "packageUrl": "https://github.com/cloudbeds/cloudbeds-api-python"
+    "packageUrl": "https://github.com/cloudbeds/cloudbeds-api-python",
+    "enumUnknownDefaultCase": true
   },
   "files": {
     "README_onlypackage.mustache": {
