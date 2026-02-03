@@ -42,9 +42,13 @@ class TestGetAllotmentBlocksResponseDataInner(unittest.TestCase):
                 allotment_block_id = '',
                 rate_type = '',
                 rate_plan_id = '',
+                rate_plan = '',
                 allotment_type = '',
                 group_id = '',
                 group_code = '',
+                event_id = '',
+                event_code = '',
+                booking_code_url = '',
                 is_auto_release = True,
                 auto_release = [
                     cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_auto_release_inner.GetAllotmentBlocksResponse_data_inner_autoRelease_inner(
@@ -52,6 +56,14 @@ class TestGetAllotmentBlocksResponseDataInner(unittest.TestCase):
                         days = 56, 
                         release_time = '', )
                     ],
+                release_status = '',
+                release_schedule_status = '',
+                release_schedule_type = '',
+                release_date = '',
+                reservations_count = 56,
+                rooms_held = 56,
+                rooms_picked_up = 56,
+                rooms_remaining = 56,
                 allotment_intervals = [
                     cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner.GetAllotmentBlocksResponse_data_inner_allotmentIntervals_inner(
                         room_type_id = '', 

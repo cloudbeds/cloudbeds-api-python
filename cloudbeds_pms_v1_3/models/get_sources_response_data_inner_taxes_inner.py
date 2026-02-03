@@ -35,22 +35,24 @@ class GetSourcesResponseDataInnerTaxesInner(BaseModel):
 
     @field_validator('amount_type')
     def amount_type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['percentage', 'fixed']):
-            raise ValueError("must be one of enum values ('percentage', 'fixed')")
+        _allowed_values = set(['percentage', 'fixed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['exclusive', 'inclusive']):
-            raise ValueError("must be one of enum values ('exclusive', 'inclusive')")
+        _allowed_values = set(['exclusive', 'inclusive', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

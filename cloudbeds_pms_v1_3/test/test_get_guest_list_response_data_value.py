@@ -64,9 +64,7 @@ class TestGetGuestListResponseDataValue(unittest.TestCase):
                 company_tax_id = '',
                 company_name = '',
                 guest_opt_in = True,
-                guest_requirements = [
-                    None
-                    ],
+                guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(),
                 guest_notes = [
                     cloudbeds_pms_v1_3.models.get_guest_list_response_data_value_guest_notes_inner.GetGuestListResponse_data_value_guestNotes_inner(
                         id = '', 

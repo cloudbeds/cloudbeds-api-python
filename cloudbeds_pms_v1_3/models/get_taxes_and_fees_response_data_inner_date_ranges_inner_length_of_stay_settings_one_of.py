@@ -33,12 +33,13 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOf(B
 
     @field_validator('application_type')
     def application_type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['progressive_application', 'retroactive_adjustment']):
-            raise ValueError("must be one of enum values ('progressive_application', 'retroactive_adjustment')")
+        _allowed_values = set(['progressive_application', 'retroactive_adjustment', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

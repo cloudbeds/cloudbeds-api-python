@@ -37,12 +37,13 @@ class GetHotelDetailsResponseDataPropertyPolicy(BaseModel):
 
     @field_validator('property_late_check_out_type')
     def property_late_check_out_type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['value', 'percent', 'fixed']):
-            raise ValueError("must be one of enum values ('value', 'percent', 'fixed')")
+        _allowed_values = set(['value', 'percent', 'fixed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

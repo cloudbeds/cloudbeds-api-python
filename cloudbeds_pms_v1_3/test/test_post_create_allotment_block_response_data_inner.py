@@ -45,6 +45,8 @@ class TestPostCreateAllotmentBlockResponseDataInner(unittest.TestCase):
                 allotment_type = '',
                 group_id = '',
                 group_code = '',
+                event_id = '',
+                event_code = '',
                 is_auto_release = True,
                 auto_release = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_auto_release.PostCreateAllotmentBlockResponse_data_inner_autoRelease(
                     release_type = 'all_dates', 

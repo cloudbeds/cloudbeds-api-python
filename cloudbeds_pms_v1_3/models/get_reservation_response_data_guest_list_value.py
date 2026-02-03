@@ -68,22 +68,24 @@ class GetReservationResponseDataGuestListValue(BaseModel):
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['M', 'F', 'N/A']):
-            raise ValueError("must be one of enum values ('M', 'F', 'N/A')")
+        _allowed_values = set(['M', 'F', 'N/A', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('guest_status')
     def guest_status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['in_progress', 'call2confirm', 'confirmed', 'canceled', 'checked_in', 'checked_out', 'not_confirmed', 'no_show', 'paypal_init', 'pending_payment', 'not_checked_in', 'in_house']):
-            raise ValueError("must be one of enum values ('in_progress', 'call2confirm', 'confirmed', 'canceled', 'checked_in', 'checked_out', 'not_confirmed', 'no_show', 'paypal_init', 'pending_payment', 'not_checked_in', 'in_house')")
+        _allowed_values = set(['in_progress', 'call2confirm', 'confirmed', 'canceled', 'checked_in', 'checked_out', 'not_confirmed', 'no_show', 'paypal_init', 'pending_payment', 'not_checked_in', 'in_house', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

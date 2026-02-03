@@ -71,9 +71,7 @@ class TestGetReservationResponseData(unittest.TestCase):
                         room_type_name = '', 
                         room_type_is_virtual = True, 
                         is_main_guest = True, 
-                        guest_requirements = [
-                            None
-                            ], 
+                        guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                         custom_fields = [
                             cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner.GetReservationResponse_data_guestList_value_customFields_inner(
                                 custom_field_name = '', 

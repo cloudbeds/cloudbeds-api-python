@@ -51,25 +51,21 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                 profile_id = '',
                 guest_country = 56,
                 source_name = '',
-                source = [
-                    cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_source_inner.GetReservationsWithRateDetailsResponse_data_inner_source_inner(
-                        name = '', 
-                        payment_collect = 'hotel', 
-                        source_id = '', 
-                        category = '', )
-                    ],
+                source = cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_source.GetReservationsWithRateDetailsResponse_data_inner_source(
+                    name = '', 
+                    payment_collect = 'hotel', 
+                    source_id = '', 
+                    category = '', ),
                 source_category = 56,
                 source_reservation_id = 56,
                 property_currency = 56,
-                balance_detailed = [
-                    cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_one_of.GetReservationResponse_data_balanceDetailed_oneOf(
-                        suggested_deposit = '', 
-                        sub_total = 1.337, 
-                        additional_items = 1.337, 
-                        taxes_fees = 1.337, 
-                        grand_total = 1.337, 
-                        paid = 1.337, )
-                    ],
+                balance_detailed = cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_balance_detailed.GetReservationsWithRateDetailsResponse_data_inner_balanceDetailed(
+                    suggested_deposit = '', 
+                    sub_total = 1.337, 
+                    additional_items = 1.337, 
+                    taxes_fees = 1.337, 
+                    grand_total = 1.337, 
+                    paid = 1.337, ),
                 detailed_rates = [
                     None
                     ],
@@ -157,9 +153,7 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                                 rate_plan_name = '', 
                                 sub_reservation_id = '', )
                             ], 
-                        guest_requirements = [
-                            None
-                            ], 
+                        guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                         custom_fields = [
                             cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
                                 custom_field_name = '', 

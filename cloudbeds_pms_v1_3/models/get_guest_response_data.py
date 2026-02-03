@@ -62,12 +62,13 @@ class GetGuestResponseData(BaseModel):
 
     @field_validator('gender')
     def gender_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['M', 'F', 'N/A']):
-            raise ValueError("must be one of enum values ('M', 'F', 'N/A')")
+        _allowed_values = set(['M', 'F', 'N/A', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

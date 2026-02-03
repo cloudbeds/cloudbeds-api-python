@@ -143,9 +143,7 @@ class TestGetReservationsResponseDataInner(unittest.TestCase):
                                 rate_plan_name = '', 
                                 sub_reservation_id = '', )
                             ], 
-                        guest_requirements = [
-                            None
-                            ], 
+                        guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                         custom_fields = [
                             cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
                                 custom_field_name = '', 

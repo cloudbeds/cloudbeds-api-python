@@ -46,22 +46,24 @@ class PostReservationResponse(BaseModel):
 
     @field_validator('status')
     def status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['not_confirmed', 'confirmed']):
-            raise ValueError("must be one of enum values ('not_confirmed', 'confirmed')")
+        _allowed_values = set(['not_confirmed', 'confirmed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['M', 'F', 'N/A']):
-            raise ValueError("must be one of enum values ('M', 'F', 'N/A')")
+        _allowed_values = set(['M', 'F', 'N/A', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

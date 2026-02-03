@@ -46,22 +46,24 @@ class GetHousekeepingStatusResponseDataInner(BaseModel):
 
     @field_validator('room_condition')
     def room_condition_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['dirty', 'clean']):
-            raise ValueError("must be one of enum values ('dirty', 'clean')")
+        _allowed_values = set(['dirty', 'clean', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('frontdesk_status')
     def frontdesk_status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['check-in', 'check-out', 'stayover', 'turnover', 'unused']):
-            raise ValueError("must be one of enum values ('check-in', 'check-out', 'stayover', 'turnover', 'unused')")
+        _allowed_values = set(['check-in', 'check-out', 'stayover', 'turnover', 'unused', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

@@ -58,9 +58,7 @@ class TestGetGuestResponseData(unittest.TestCase):
                         custom_field_name = '', 
                         custom_field_value = '', )
                     ],
-                guest_requirements = [
-                    None
-                    ],
+                guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(),
                 special_requests = '',
                 tax_id = '',
                 company_tax_id = '',

@@ -39,33 +39,35 @@ class GetCustomFieldsResponseDataInner(BaseModel):
 
     @field_validator('apply_to')
     def apply_to_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['reservation', 'guest']):
-            raise ValueError("must be one of enum values ('reservation', 'guest')")
+        _allowed_values = set(['reservation', 'guest', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['input', 'text']):
-            raise ValueError("must be one of enum values ('input', 'text')")
+        _allowed_values = set(['input', 'text', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('displayed')
     def displayed_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        for i in value:
-            if i not in set(['reservation', 'booking', 'card']):
-                raise ValueError("each list item must be one of ('reservation', 'booking', 'card')")
+        _allowed_values = set(['reservation', 'booking', 'card', 'unknown_default_open_api'])
+        # Map unknown values to the fallback
+        return [i if i in _allowed_values else 'unknown_default_open_api' for i in value]
         return value
 
     model_config = ConfigDict(

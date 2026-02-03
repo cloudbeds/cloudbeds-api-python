@@ -36,12 +36,13 @@ class GetHouseAccountListResponseDataInner(BaseModel):
 
     @field_validator('account_status')
     def account_status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['open', 'closed']):
-            raise ValueError("must be one of enum values ('open', 'closed')")
+        _allowed_values = set(['open', 'closed', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

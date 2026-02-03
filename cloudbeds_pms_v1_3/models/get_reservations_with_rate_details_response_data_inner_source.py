@@ -34,12 +34,13 @@ class GetReservationsWithRateDetailsResponseDataInnerSource(BaseModel):
 
     @field_validator('payment_collect')
     def payment_collect_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['hotel', 'collect']):
-            raise ValueError("must be one of enum values ('hotel', 'collect')")
+        _allowed_values = set(['hotel', 'collect', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

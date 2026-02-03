@@ -33,12 +33,13 @@ class PostEmailScheduleRequestScheduleReservationEvent(BaseModel):
 
     @field_validator('event')
     def event_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['after_booking', 'after_check_out', 'after_check_in', 'before_check_out', 'before_check_in']):
-            raise ValueError("must be one of enum values ('after_booking', 'after_check_out', 'after_check_in', 'before_check_out', 'before_check_in')")
+        _allowed_values = set(['after_booking', 'after_check_out', 'after_check_in', 'before_check_out', 'before_check_in', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

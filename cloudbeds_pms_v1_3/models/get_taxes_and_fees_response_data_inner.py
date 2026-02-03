@@ -57,43 +57,46 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
 
     @field_validator('type')
     def type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['fee', 'tax']):
-            raise ValueError("must be one of enum values ('fee', 'tax')")
+        _allowed_values = set(['fee', 'tax', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('amount_type')
     def amount_type_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['percentage', 'fixed', 'fixed_per_person', 'fixed_per_accomodation', 'fixed_per_reservation', 'percentage_rate_based']):
-            raise ValueError("must be one of enum values ('percentage', 'fixed', 'fixed_per_person', 'fixed_per_accomodation', 'fixed_per_reservation', 'percentage_rate_based')")
+        _allowed_values = set(['percentage', 'fixed', 'fixed_per_person', 'fixed_per_accomodation', 'fixed_per_reservation', 'percentage_rate_based', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     @field_validator('available_for')
     def available_for_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        for i in value:
-            if i not in set(['product', 'rate', 'fee', 'custom_item']):
-                raise ValueError("each list item must be one of ('product', 'rate', 'fee', 'custom_item')")
+        _allowed_values = set(['product', 'rate', 'fee', 'custom_item', 'unknown_default_open_api'])
+        # Map unknown values to the fallback
+        return [i if i in _allowed_values else 'unknown_default_open_api' for i in value]
         return value
 
     @field_validator('inclusive_or_exclusive')
     def inclusive_or_exclusive_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
         if value is None:
             return value
 
-        if value not in set(['inclusive', 'exclusive']):
-            raise ValueError("must be one of enum values ('inclusive', 'exclusive')")
+        _allowed_values = set(['inclusive', 'exclusive', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
         return value
 
     model_config = ConfigDict(

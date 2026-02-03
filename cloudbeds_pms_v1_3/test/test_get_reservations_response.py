@@ -132,9 +132,7 @@ class TestGetReservationsResponse(unittest.TestCase):
                                         rate_plan_name = '', 
                                         sub_reservation_id = '', )
                                     ], 
-                                guest_requirements = [
-                                    None
-                                    ], 
+                                guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                                 is_anonymized = True, 
                                 is_main_guest = True, )
                             }, 
