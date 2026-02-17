@@ -70,6 +70,16 @@ jobs:
           echo "Latest MFD tag: $MFD_TAG"
           gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      - name: Patch OpenAPI Spec
+        run: |
+          pip install pyyaml
+          python scripts/patch_openapi_spec.py
+
       - name: Get next version
         run: |
           if [ -n "${{ inputs.version }}" ]; then

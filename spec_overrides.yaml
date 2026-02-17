@@ -1,0 +1,28 @@
+# Temporary OpenAPI spec overrides.
+# Each entry patches a specific path in the spec before code generation.
+# Remove entries once the upstream spec includes the fix.
+#
+# Usage:
+#   python scripts/patch_openapi_spec.py
+#
+# Path format: dot-separated keys into the spec YAML.
+# The "schema" value replaces whatever exists at that path.
+#
+# Examples:
+#
+# Override a property type (e.g. datetime -> datetime|string):
+#   - path: "components.schemas.GetReservationsResponseDataInner.properties.dateCreated"
+#     schema:
+#       anyOf:
+#         - type: string
+#           format: date-time
+#         - type: string
+#       description: "Creation datetime (format: Y-m-d H:i:s)"
+#
+# Add a new property to an existing schema:
+#   - path: "components.schemas.SomeModel.properties.newField"
+#     schema:
+#       type: string
+#       description: "A field not yet in the upstream spec"
+
+overrides: [ ]
