@@ -7,8 +7,8 @@ on:
         description: 'Optional version to use (bypasses version bump and git commits if provided)'
         required: false
         default: ""
-      mfd-tag:
-        description: 'The MFD tag to use for API docs'
+      mfd-ref:
+        description: 'The MFD ref (branch, tag, or SHA) to use for API docs'
         required: false
         default: ""
 
@@ -63,12 +63,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          MFD_TAG='${{ inputs.mfd-tag }}'
-          if [[ -z "${MFD_TAG}" ]]; then
-            MFD_TAG=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
+          MFD_REF='${{ inputs.mfd-ref }}'
+          if [[ -z "${MFD_REF}" ]]; then
+            MFD_REF=$(gh api /repos/cloudbeds/mfd/releases/latest | jq -r '.tag_name')
           fi
-          echo "Latest MFD tag: $MFD_TAG"
-          gh api /repos/cloudbeds/mfd/tarball/$MFD_TAG | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
+          echo "Using MFD ref: $MFD_REF"
+          gh api /repos/cloudbeds/mfd/tarball/$MFD_REF | tar --strip-components=1 --wildcards -zxf - '*/public_accessa/api'
 
       - name: Get next version
         run: |
