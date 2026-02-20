@@ -26,9 +26,9 @@ from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_v
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetReservationsResponseDataInnerGuestListValue(BaseModel):
+class GetReservationsWithRateDetailsResponseDataInnerGuestListValue(BaseModel):
     """
-    GetReservationsResponseDataInnerGuestListValue
+    GetReservationsWithRateDetailsResponseDataInnerGuestListValue
     """ # noqa: E501
     guest_id: Optional[StrictStr] = Field(default=None, description="ID of the guest", alias="guestID")
     guest_name: Optional[StrictStr] = Field(default=None, alias="guestName")
@@ -44,7 +44,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
     guest_state: Optional[StrictStr] = Field(default=None, alias="guestState")
     guest_country: Optional[StrictStr] = Field(default=None, alias="guestCountry")
     guest_zip: Optional[StrictStr] = Field(default=None, alias="guestZip")
-    guest_birthdate: Optional[StrictStr] = Field(default=None, alias="guestBirthdate")
+    guest_birthdate: Optional[date] = Field(default=None, alias="guestBirthdate")
     guest_document_type: Optional[StrictStr] = Field(default=None, alias="guestDocumentType")
     guest_document_number: Optional[StrictStr] = Field(default=None, alias="guestDocumentNumber")
     guest_document_issue_date: Optional[StrictStr] = Field(default=None, alias="guestDocumentIssueDate")
@@ -98,7 +98,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetReservationsResponseDataInnerGuestListValue from a JSON string"""
+        """Create an instance of GetReservationsWithRateDetailsResponseDataInnerGuestListValue from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -329,7 +329,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetReservationsResponseDataInnerGuestListValue from a dict"""
+        """Create an instance of GetReservationsWithRateDetailsResponseDataInnerGuestListValue from a dict"""
         if obj is None:
             return None
 

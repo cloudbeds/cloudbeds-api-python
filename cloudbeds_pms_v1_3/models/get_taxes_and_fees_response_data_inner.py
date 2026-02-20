@@ -37,7 +37,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax.", alias="taxID")
     name: Optional[StrictStr] = Field(default=None, description="Name")
     code: Optional[StrictStr] = Field(default=None, description="Code")
-    kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\" or null. Only exists if type = tax.")
+    kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\", \"municipal_tax\" or null. Only exists if type = tax.")
     amount: Optional[StrictStr] = Field(default=None, description="Amount")
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")

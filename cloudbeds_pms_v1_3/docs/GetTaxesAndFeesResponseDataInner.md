@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Tax&#39;s unique identifier. Only exists if type &#x3D; tax. | [optional] 
 **name** | **str** | Name | [optional] 
 **code** | **str** | Code | [optional] 
-**kind** | **str** | Tax kind. Currently supports \&quot;vat\&quot; or null. Only exists if type &#x3D; tax. | [optional] 
+**kind** | **str** | Tax kind. Currently supports \&quot;vat\&quot;, \&quot;municipal_tax\&quot; or null. Only exists if type &#x3D; tax. | [optional] 
 **amount** | **str** | Amount | [optional] 
 **amount_adult** | [**GetTaxesAndFeesResponseDataInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerAmountAdult.md) |  | [optional] 
 **amount_child** | [**GetTaxesAndFeesResponseDataInnerAmountChild**](GetTaxesAndFeesResponseDataInnerAmountChild.md) |  | [optional] 

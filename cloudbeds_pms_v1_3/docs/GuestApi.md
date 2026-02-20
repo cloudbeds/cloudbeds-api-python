@@ -1003,11 +1003,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_state = 'guest_state_example' # str |  (optional)
     guest_zip = 'guest_zip_example' # str |  (optional)
     guest_birth_date = '2013-10-20' # date |  (optional)
-    guest_document_type = 'guest_document_type_example' # str | Document Type<br /> dni - Identity card<br /> nie - Residence permit<br /> na - non selection<br /> (optional)
+    guest_document_type = 'guest_document_type_example' # str | Document Type<br /> dni - Identity card<br /> nie - Residence permit<br /> na - non selection<br /> cpf - Brazilian Tax ID<br /> (optional)
     guest_document_number = 'guest_document_number_example' # str | (mandatory when guestDocumentType is sent) (optional)
-    guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI) (optional)
+    guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or CPF) (optional)
     guest_document_issuing_country = 'guest_document_issuing_country_example' # str | Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) (optional)
-    guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or NIE) (optional)
+    guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI, NIE, or CPF) (optional)
     guest_requirements = None # List[object] | Object with guest requirements information. (optional)
     custom_fields = [cloudbeds_pms_v1_3.PostGuestRequestCustomFieldsInner()] # List[PostGuestRequestCustomFieldsInner] | Only guest custom fields are allowed. (optional)
     guest_note = 'guest_note_example' # str | Note to be added to the Guest (optional)
@@ -1047,11 +1047,11 @@ Name | Type | Description  | Notes
  **guest_state** | **str**|  | [optional] 
  **guest_zip** | **str**|  | [optional] 
  **guest_birth_date** | **date**|  | [optional] 
- **guest_document_type** | **str**| Document Type&lt;br /&gt; dni - Identity card&lt;br /&gt; nie - Residence permit&lt;br /&gt; na - non selection&lt;br /&gt; | [optional] 
+ **guest_document_type** | **str**| Document Type&lt;br /&gt; dni - Identity card&lt;br /&gt; nie - Residence permit&lt;br /&gt; na - non selection&lt;br /&gt; cpf - Brazilian Tax ID&lt;br /&gt; | [optional] 
  **guest_document_number** | **str**| (mandatory when guestDocumentType is sent) | [optional] 
- **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI) | [optional] 
+ **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or CPF) | [optional] 
  **guest_document_issuing_country** | **str**| Valid ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) | [optional] 
- **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or NIE) | [optional] 
+ **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI, NIE, or CPF) | [optional] 
  **guest_requirements** | [**List[object]**](object.md)| Object with guest requirements information. | [optional] 
  **custom_fields** | [**List[PostGuestRequestCustomFieldsInner]**](PostGuestRequestCustomFieldsInner.md)| Only guest custom fields are allowed. | [optional] 
  **guest_note** | **str**| Note to be added to the Guest | [optional] 
@@ -1320,11 +1320,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_state = 'guest_state_example' # str |  (optional)
     guest_zip = 'guest_zip_example' # str |  (optional)
     guest_birth_date = '2013-10-20' # date |  (optional)
-    guest_document_type = 'guest_document_type_example' # str | It is mandatory to send all document information<br /> na - non selection<br /> dni - Identity card<br /> nie - Residence permit<br /> (optional)
+    guest_document_type = 'guest_document_type_example' # str | It is mandatory to send all document information<br /> na - non selection<br /> dni - Identity card<br /> nie - Residence permit<br /> cpf - Brazilian Tax ID<br /> (optional)
     guest_document_number = 'guest_document_number_example' # str | (mandatory when guestDocumentType is sent) (optional)
-    guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI) (optional)
+    guest_document_issue_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or CPF) (optional)
     guest_document_issuing_country = 'guest_document_issuing_country_example' # str | ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) (optional)
-    guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI or NIE) (optional)
+    guest_document_expiration_date = '2013-10-20' # date | (mandatory when guestDocumentType is sent and is not DNI, NIE, or CPF) (optional)
     guest_requirements = None # List[object] | Object with guest requirements information. (optional)
     guest_custom_fields = [cloudbeds_pms_v1_3.PutGuestRequestGuestCustomFieldsInner()] # List[PutGuestRequestGuestCustomFieldsInner] |  (optional)
     guest_company_name = 'guest_company_name_example' # str | Guest company name (optional)
@@ -1362,11 +1362,11 @@ Name | Type | Description  | Notes
  **guest_state** | **str**|  | [optional] 
  **guest_zip** | **str**|  | [optional] 
  **guest_birth_date** | **date**|  | [optional] 
- **guest_document_type** | **str**| It is mandatory to send all document information&lt;br /&gt; na - non selection&lt;br /&gt; dni - Identity card&lt;br /&gt; nie - Residence permit&lt;br /&gt; | [optional] 
+ **guest_document_type** | **str**| It is mandatory to send all document information&lt;br /&gt; na - non selection&lt;br /&gt; dni - Identity card&lt;br /&gt; nie - Residence permit&lt;br /&gt; cpf - Brazilian Tax ID&lt;br /&gt; | [optional] 
  **guest_document_number** | **str**| (mandatory when guestDocumentType is sent) | [optional] 
- **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI) | [optional] 
+ **guest_document_issue_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or CPF) | [optional] 
  **guest_document_issuing_country** | **str**| ISO-Code for Country (2 characters) (mandatory when guestDocumentType is sent) | [optional] 
- **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI or NIE) | [optional] 
+ **guest_document_expiration_date** | **date**| (mandatory when guestDocumentType is sent and is not DNI, NIE, or CPF) | [optional] 
  **guest_requirements** | [**List[object]**](object.md)| Object with guest requirements information. | [optional] 
  **guest_custom_fields** | [**List[PutGuestRequestGuestCustomFieldsInner]**](PutGuestRequestGuestCustomFieldsInner.md)|  | [optional] 
  **guest_company_name** | **str**| Guest company name | [optional] 

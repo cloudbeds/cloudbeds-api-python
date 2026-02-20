@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**policy_id** | **str** | Policy ID to associate with the interval | [optional] 
 **room_type_id** | **str** | Room type id | [optional] 
 **availability** | [**List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]**](PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.md) | Interval availability data by day in interval | [optional] 
 

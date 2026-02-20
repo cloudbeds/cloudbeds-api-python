@@ -35,6 +35,7 @@ class TestPostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(unitt
         model = PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner()
         if include_optional:
             return PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(
+                policy_id = '',
                 room_type_id = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
@@ -50,7 +51,10 @@ class TestPostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(unitt
                         adult3 = '', 
                         child1 = '', 
                         child2 = '', 
-                        child3 = '', ), ),
+                        child3 = '', ), 
+                    rooms = [
+                        ''
+                        ], ),
                 restrictions = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_restrictions.PostCreateAllotmentBlockResponse_data_inner_allotmentIntervals_inner_restrictions(
                     min_los = 56, 
                     max_los = 56, 

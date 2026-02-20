@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,9 +26,11 @@ class PostRoomBlockResponseRoomsInner(BaseModel):
     """
     PostRoomBlockResponseRoomsInner
     """ # noqa: E501
+    event_id: Optional[StrictStr] = Field(default=None, description="Event ID (unique identifier for this specific room's block entry)", alias="eventID")
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID", alias="roomID")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room Type ID", alias="roomTypeID")
-    __properties: ClassVar[List[str]] = ["roomID", "roomTypeID"]
+    is_source: Optional[StrictBool] = Field(default=None, description="Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room.", alias="isSource")
+    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,8 +83,10 @@ class PostRoomBlockResponseRoomsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "eventID": obj.get("eventID"),
             "roomID": obj.get("roomID"),
-            "roomTypeID": obj.get("roomTypeID")
+            "roomTypeID": obj.get("roomTypeID"),
+            "isSource": obj.get("isSource")
         })
         return _obj
 

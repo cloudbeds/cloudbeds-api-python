@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner import PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner
 from typing import Optional, Set
@@ -27,8 +27,9 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
     """
     PostCreateAllotmentBlockRequestAllotmentIntervalsInner
     """ # noqa: E501
+    policy_id: Optional[StrictStr] = Field(default=None, description="Policy ID to associate with the interval", alias="policyId")
     availability: Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]] = None
-    __properties: ClassVar[List[str]] = ["availability"]
+    __properties: ClassVar[List[str]] = ["policyId", "availability"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,11 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
                 if _item_availability:
                     _items.append(_item_availability.to_dict())
             _dict['availability'] = _items
+        # set to None if policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.policy_id is None and "policy_id" in self.model_fields_set:
+            _dict['policyId'] = None
+
         return _dict
 
     @classmethod
@@ -88,6 +94,7 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "policyId": obj.get("policyId"),
             "availability": [PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.from_dict(_item) for _item in obj["availability"]] if obj.get("availability") is not None else None
         })
         return _obj

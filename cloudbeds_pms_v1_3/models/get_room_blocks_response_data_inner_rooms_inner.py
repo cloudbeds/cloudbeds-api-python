@@ -17,22 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions(BaseModel):
+class GetRoomBlocksResponseDataInnerRoomsInner(BaseModel):
     """
-    Interval restrictions if applicable
+    GetRoomBlocksResponseDataInnerRoomsInner
     """ # noqa: E501
-    min_los: Optional[StrictInt] = Field(default=None, description="Minimum length of stay requirement", alias="minLos")
-    max_los: Optional[StrictInt] = Field(default=None, description="Maximum length of stay requirement", alias="maxLos")
-    cut_off_days: Optional[StrictInt] = Field(default=None, description="How many days before arrival should guests be required to book", alias="cutOffDays")
-    last_minute_booking_days: Optional[StrictInt] = Field(default=None, description="How many days before the arrival guests are allowed to book", alias="lastMinuteBookingDays")
-    closed_to_arrival: Optional[StrictInt] = Field(default=None, description="If the interval dates are closed for arrival", alias="closedToArrival")
-    closed_to_departure: Optional[StrictInt] = Field(default=None, description="If the interval dates are closed for departure the number of applicable keys varies here based on the occupancy settings for the room type.", alias="closedToDeparture")
-    __properties: ClassVar[List[str]] = ["minLos", "maxLos", "cutOffDays", "lastMinuteBookingDays", "closedToArrival", "closedToDeparture"]
+    event_id: Optional[StrictStr] = Field(default=None, description="Event ID (unique identifier for this specific room's block entry)", alias="eventID")
+    room_id: Optional[StrictStr] = Field(default=None, description="Room ID", alias="roomID")
+    room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeID")
+    is_source: Optional[StrictBool] = Field(default=None, description="Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room.", alias="isSource")
+    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +50,7 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRes
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions from a JSON string"""
+        """Create an instance of GetRoomBlocksResponseDataInnerRoomsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,41 +71,11 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRes
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if min_los (nullable) is None
-        # and model_fields_set contains the field
-        if self.min_los is None and "min_los" in self.model_fields_set:
-            _dict['minLos'] = None
-
-        # set to None if max_los (nullable) is None
-        # and model_fields_set contains the field
-        if self.max_los is None and "max_los" in self.model_fields_set:
-            _dict['maxLos'] = None
-
-        # set to None if cut_off_days (nullable) is None
-        # and model_fields_set contains the field
-        if self.cut_off_days is None and "cut_off_days" in self.model_fields_set:
-            _dict['cutOffDays'] = None
-
-        # set to None if last_minute_booking_days (nullable) is None
-        # and model_fields_set contains the field
-        if self.last_minute_booking_days is None and "last_minute_booking_days" in self.model_fields_set:
-            _dict['lastMinuteBookingDays'] = None
-
-        # set to None if closed_to_arrival (nullable) is None
-        # and model_fields_set contains the field
-        if self.closed_to_arrival is None and "closed_to_arrival" in self.model_fields_set:
-            _dict['closedToArrival'] = None
-
-        # set to None if closed_to_departure (nullable) is None
-        # and model_fields_set contains the field
-        if self.closed_to_departure is None and "closed_to_departure" in self.model_fields_set:
-            _dict['closedToDeparture'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions from a dict"""
+        """Create an instance of GetRoomBlocksResponseDataInnerRoomsInner from a dict"""
         if obj is None:
             return None
 
@@ -115,12 +83,10 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRes
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "minLos": obj.get("minLos"),
-            "maxLos": obj.get("maxLos"),
-            "cutOffDays": obj.get("cutOffDays"),
-            "lastMinuteBookingDays": obj.get("lastMinuteBookingDays"),
-            "closedToArrival": obj.get("closedToArrival"),
-            "closedToDeparture": obj.get("closedToDeparture")
+            "eventID": obj.get("eventID"),
+            "roomID": obj.get("roomID"),
+            "roomTypeID": obj.get("roomTypeID"),
+            "isSource": obj.get("isSource")
         })
         return _obj
 

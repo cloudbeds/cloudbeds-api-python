@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **var_date** | **date** | the day within the interval (YYYY-MM-DD) | [optional] 
 **rate** | **str** | the price if applicable | [optional] 
 **guest_pricing** | [**PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing**](PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.md) |  | [optional] 
-**restrictions** | [**PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions**](PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.md) |  | [optional] 
+**restrictions** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.md) |  | [optional] 
+**rooms** | **List[str]** | Array of room IDs assigned to this date the number of applicable keys varies here based on the occupancy settings for the room type. | [optional] 
 
 ## Example
 

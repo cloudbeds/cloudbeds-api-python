@@ -43,8 +43,8 @@ class GetReservationsResponseDataInner(BaseModel):
     end_date: Optional[date] = Field(default=None, alias="endDate")
     allotment_block_code: Optional[StrictStr] = Field(default=None, description="Allotment block code", alias="allotmentBlockCode")
     group_code: Optional[StrictStr] = Field(default=None, description="Group profile code", alias="groupCode")
-    adults: Optional[StrictInt] = None
-    children: Optional[StrictInt] = None
+    adults: Optional[StrictStr] = None
+    children: Optional[StrictStr] = None
     balance: Optional[Union[StrictFloat, StrictInt]] = None
     source_name: Optional[StrictStr] = Field(default=None, description="Source of reservation", alias="sourceName")
     source_id: Optional[StrictStr] = Field(default=None, description="Booking source unique id", alias="sourceID")

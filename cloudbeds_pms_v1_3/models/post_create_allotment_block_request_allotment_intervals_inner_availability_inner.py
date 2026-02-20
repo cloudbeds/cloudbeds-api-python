@@ -34,7 +34,8 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
     rate: Optional[StrictStr] = Field(default=None, description="the price if applicable")
     guest_pricing: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing] = Field(default=None, alias="guestPricing")
     restrictions: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions] = None
-    __properties: ClassVar[List[str]] = ["date", "blockAllotted", "rate", "guestPricing", "restrictions"]
+    rooms: Optional[List[StrictStr]] = Field(default=None, description="Array of room IDs assigned to this date")
+    __properties: ClassVar[List[str]] = ["date", "blockAllotted", "rate", "guestPricing", "restrictions", "rooms"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +97,11 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
         if self.restrictions is None and "restrictions" in self.model_fields_set:
             _dict['restrictions'] = None
 
+        # set to None if rooms (nullable) is None
+        # and model_fields_set contains the field
+        if self.rooms is None and "rooms" in self.model_fields_set:
+            _dict['rooms'] = None
+
         return _dict
 
     @classmethod
@@ -112,7 +118,8 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
             "blockAllotted": obj.get("blockAllotted"),
             "rate": obj.get("rate"),
             "guestPricing": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None,
-            "restrictions": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None
+            "restrictions": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None,
+            "rooms": obj.get("rooms")
         })
         return _obj
 

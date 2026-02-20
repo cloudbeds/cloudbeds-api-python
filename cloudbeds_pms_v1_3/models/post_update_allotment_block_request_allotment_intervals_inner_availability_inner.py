@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner_restrictions import PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner_guest_pricing import PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing
-from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner_restrictions import PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,8 +33,9 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
     var_date: Optional[date] = Field(default=None, description="the day within the interval (YYYY-MM-DD)", alias="date")
     rate: Optional[StrictStr] = Field(default=None, description="the price if applicable")
     guest_pricing: Optional[PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing] = Field(default=None, alias="guestPricing")
-    restrictions: Optional[PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions] = None
-    __properties: ClassVar[List[str]] = ["blockAllotted", "date", "rate", "guestPricing", "restrictions"]
+    restrictions: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions] = None
+    rooms: Optional[List[StrictStr]] = Field(default=None, description="Array of room IDs assigned to this date the number of applicable keys varies here based on the occupancy settings for the room type.")
+    __properties: ClassVar[List[str]] = ["blockAllotted", "date", "rate", "guestPricing", "restrictions", "rooms"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +107,11 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
         if self.restrictions is None and "restrictions" in self.model_fields_set:
             _dict['restrictions'] = None
 
+        # set to None if rooms (nullable) is None
+        # and model_fields_set contains the field
+        if self.rooms is None and "rooms" in self.model_fields_set:
+            _dict['rooms'] = None
+
         return _dict
 
     @classmethod
@@ -122,7 +128,8 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
             "date": obj.get("date"),
             "rate": obj.get("rate"),
             "guestPricing": PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None,
-            "restrictions": PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None
+            "restrictions": PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None,
+            "rooms": obj.get("rooms")
         })
         return _obj
 

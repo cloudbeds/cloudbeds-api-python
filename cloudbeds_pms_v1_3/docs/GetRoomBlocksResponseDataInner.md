@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **room_block_reason** | **str** | Room block reason | [optional] 
 **start_date** | **date** | Room block start date | [optional] 
 **end_date** | **date** | Room block end date | [optional] 
-**rooms** | [**List[PostRoomBlockRequestRoomsInner]**](PostRoomBlockRequestRoomsInner.md) | All rooms for Block ID | [optional] 
+**rooms** | [**List[GetRoomBlocksResponseDataInnerRoomsInner]**](GetRoomBlocksResponseDataInnerRoomsInner.md) | All rooms for Block ID. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration). | [optional] 
 **count** | **int** | Number of results (properties) returned. | [optional] 
 
 ## Example

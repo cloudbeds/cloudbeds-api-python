@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
+from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_guest_list_value import GetReservationsWithRateDetailsResponseDataInnerGuestListValue
 
-class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
-    """GetReservationsResponseDataInnerGuestListValue unit test stubs"""
+class TestGetReservationsWithRateDetailsResponseDataInnerGuestListValue(unittest.TestCase):
+    """GetReservationsWithRateDetailsResponseDataInnerGuestListValue unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetReservationsResponseDataInnerGuestListValue:
-        """Test GetReservationsResponseDataInnerGuestListValue
+    def make_instance(self, include_optional) -> GetReservationsWithRateDetailsResponseDataInnerGuestListValue:
+        """Test GetReservationsWithRateDetailsResponseDataInnerGuestListValue
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetReservationsResponseDataInnerGuestListValue`
+        # uncomment below to create an instance of `GetReservationsWithRateDetailsResponseDataInnerGuestListValue`
         """
-        model = GetReservationsResponseDataInnerGuestListValue()
+        model = GetReservationsWithRateDetailsResponseDataInnerGuestListValue()
         if include_optional:
-            return GetReservationsResponseDataInnerGuestListValue(
+            return GetReservationsWithRateDetailsResponseDataInnerGuestListValue(
                 guest_id = '',
                 guest_name = '',
                 guest_first_name = '',
@@ -49,7 +49,7 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                 guest_state = '',
                 guest_country = '',
                 guest_zip = '',
-                guest_birthdate = '',
+                guest_birthdate = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 guest_document_type = '',
                 guest_document_number = '',
                 guest_document_issue_date = '',
@@ -101,12 +101,12 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                 is_main_guest = True
             )
         else:
-            return GetReservationsResponseDataInnerGuestListValue(
+            return GetReservationsWithRateDetailsResponseDataInnerGuestListValue(
         )
         """
 
-    def testGetReservationsResponseDataInnerGuestListValue(self):
-        """Test GetReservationsResponseDataInnerGuestListValue"""
+    def testGetReservationsWithRateDetailsResponseDataInnerGuestListValue(self):
+        """Test GetReservationsWithRateDetailsResponseDataInnerGuestListValue"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

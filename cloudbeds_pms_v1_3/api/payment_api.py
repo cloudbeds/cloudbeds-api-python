@@ -601,6 +601,7 @@ class PaymentApi:
         amount: Annotated[Optional[StrictStr], Field(description="Amount to charge")] = None,
         currency: Annotated[Optional[StrictStr], Field(description="Currency to charge")] = None,
         description: Annotated[Optional[StrictStr], Field(description="Description of the payment to display on folio")] = None,
+        card_token: Annotated[Optional[StrictStr], Field(description="cardToken provided by Cloudbeds vault")] = None,
         payment_method_id: Annotated[Optional[StrictStr], Field(description="Payment method UUID")] = None,
         is_deposit: Annotated[Optional[StrictBool], Field(description="determine if this payment is a deposit (default: false)")] = None,
         redirect_url: Annotated[Optional[StrictStr], Field(description="client will be redirected to this page after he completed 3ds challenge. User will be redirected with HTTP get redirect and parameter **result** will be added to query string with possible values: - **failed** if 3ds challenge is not passed - **successful** if 3ds challenge is passed If not provided for card with 3ds the request will be rejected")] = None,
@@ -637,6 +638,8 @@ class PaymentApi:
         :type currency: str
         :param description: Description of the payment to display on folio
         :type description: str
+        :param card_token: cardToken provided by Cloudbeds vault
+        :type card_token: str
         :param payment_method_id: Payment method UUID
         :type payment_method_id: str
         :param is_deposit: determine if this payment is a deposit (default: false)
@@ -674,6 +677,7 @@ class PaymentApi:
             amount=amount,
             currency=currency,
             description=description,
+            card_token=card_token,
             payment_method_id=payment_method_id,
             is_deposit=is_deposit,
             redirect_url=redirect_url,
@@ -708,6 +712,7 @@ class PaymentApi:
         amount: Annotated[Optional[StrictStr], Field(description="Amount to charge")] = None,
         currency: Annotated[Optional[StrictStr], Field(description="Currency to charge")] = None,
         description: Annotated[Optional[StrictStr], Field(description="Description of the payment to display on folio")] = None,
+        card_token: Annotated[Optional[StrictStr], Field(description="cardToken provided by Cloudbeds vault")] = None,
         payment_method_id: Annotated[Optional[StrictStr], Field(description="Payment method UUID")] = None,
         is_deposit: Annotated[Optional[StrictBool], Field(description="determine if this payment is a deposit (default: false)")] = None,
         redirect_url: Annotated[Optional[StrictStr], Field(description="client will be redirected to this page after he completed 3ds challenge. User will be redirected with HTTP get redirect and parameter **result** will be added to query string with possible values: - **failed** if 3ds challenge is not passed - **successful** if 3ds challenge is passed If not provided for card with 3ds the request will be rejected")] = None,
@@ -744,6 +749,8 @@ class PaymentApi:
         :type currency: str
         :param description: Description of the payment to display on folio
         :type description: str
+        :param card_token: cardToken provided by Cloudbeds vault
+        :type card_token: str
         :param payment_method_id: Payment method UUID
         :type payment_method_id: str
         :param is_deposit: determine if this payment is a deposit (default: false)
@@ -781,6 +788,7 @@ class PaymentApi:
             amount=amount,
             currency=currency,
             description=description,
+            card_token=card_token,
             payment_method_id=payment_method_id,
             is_deposit=is_deposit,
             redirect_url=redirect_url,
@@ -815,6 +823,7 @@ class PaymentApi:
         amount: Annotated[Optional[StrictStr], Field(description="Amount to charge")] = None,
         currency: Annotated[Optional[StrictStr], Field(description="Currency to charge")] = None,
         description: Annotated[Optional[StrictStr], Field(description="Description of the payment to display on folio")] = None,
+        card_token: Annotated[Optional[StrictStr], Field(description="cardToken provided by Cloudbeds vault")] = None,
         payment_method_id: Annotated[Optional[StrictStr], Field(description="Payment method UUID")] = None,
         is_deposit: Annotated[Optional[StrictBool], Field(description="determine if this payment is a deposit (default: false)")] = None,
         redirect_url: Annotated[Optional[StrictStr], Field(description="client will be redirected to this page after he completed 3ds challenge. User will be redirected with HTTP get redirect and parameter **result** will be added to query string with possible values: - **failed** if 3ds challenge is not passed - **successful** if 3ds challenge is passed If not provided for card with 3ds the request will be rejected")] = None,
@@ -851,6 +860,8 @@ class PaymentApi:
         :type currency: str
         :param description: Description of the payment to display on folio
         :type description: str
+        :param card_token: cardToken provided by Cloudbeds vault
+        :type card_token: str
         :param payment_method_id: Payment method UUID
         :type payment_method_id: str
         :param is_deposit: determine if this payment is a deposit (default: false)
@@ -888,6 +899,7 @@ class PaymentApi:
             amount=amount,
             currency=currency,
             description=description,
+            card_token=card_token,
             payment_method_id=payment_method_id,
             is_deposit=is_deposit,
             redirect_url=redirect_url,
@@ -917,6 +929,7 @@ class PaymentApi:
         amount,
         currency,
         description,
+        card_token,
         payment_method_id,
         is_deposit,
         redirect_url,
@@ -960,6 +973,8 @@ class PaymentApi:
             _form_params.append(('currency', currency))
         if description is not None:
             _form_params.append(('description', description))
+        if card_token is not None:
+            _form_params.append(('cardToken', card_token))
         if payment_method_id is not None:
             _form_params.append(('paymentMethodId', payment_method_id))
         if is_deposit is not None:
@@ -1661,6 +1676,7 @@ class PaymentApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier is necessary if reservationID not sent")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group Code. Required if neither reservationID nor houseAccountID is sent")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.")] = None,
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Amount paid on this transaction")] = None,
@@ -1682,7 +1698,7 @@ class PaymentApi:
     ) -> PostPaymentResponse:
         """postPayment
 
-        Add a payment to a specified reservation or house account. If both Reservation ID and HouseAccountID are informed, only the former is taken in consideration.
+        Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupCode.
 
         :param property_id: Property ID
         :type property_id: str
@@ -1690,6 +1706,8 @@ class PaymentApi:
         :type reservation_id: str
         :param house_account_id: House Account identifier is necessary if reservationID not sent
         :type house_account_id: str
+        :param group_code: Group Code. Required if neither reservationID nor houseAccountID is sent
+        :type group_code: str
         :param sub_reservation_id: The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.
         :type sub_reservation_id: str
         :param type: Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.
@@ -1728,6 +1746,7 @@ class PaymentApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
+            group_code=group_code,
             sub_reservation_id=sub_reservation_id,
             type=type,
             amount=amount,
@@ -1760,6 +1779,7 @@ class PaymentApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier is necessary if reservationID not sent")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group Code. Required if neither reservationID nor houseAccountID is sent")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.")] = None,
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Amount paid on this transaction")] = None,
@@ -1781,7 +1801,7 @@ class PaymentApi:
     ) -> ApiResponse[PostPaymentResponse]:
         """postPayment
 
-        Add a payment to a specified reservation or house account. If both Reservation ID and HouseAccountID are informed, only the former is taken in consideration.
+        Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupCode.
 
         :param property_id: Property ID
         :type property_id: str
@@ -1789,6 +1809,8 @@ class PaymentApi:
         :type reservation_id: str
         :param house_account_id: House Account identifier is necessary if reservationID not sent
         :type house_account_id: str
+        :param group_code: Group Code. Required if neither reservationID nor houseAccountID is sent
+        :type group_code: str
         :param sub_reservation_id: The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.
         :type sub_reservation_id: str
         :param type: Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.
@@ -1827,6 +1849,7 @@ class PaymentApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
+            group_code=group_code,
             sub_reservation_id=sub_reservation_id,
             type=type,
             amount=amount,
@@ -1859,6 +1882,7 @@ class PaymentApi:
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
         house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier is necessary if reservationID not sent")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group Code. Required if neither reservationID nor houseAccountID is sent")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.")] = None,
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Amount paid on this transaction")] = None,
@@ -1880,7 +1904,7 @@ class PaymentApi:
     ) -> RESTResponseType:
         """postPayment
 
-        Add a payment to a specified reservation or house account. If both Reservation ID and HouseAccountID are informed, only the former is taken in consideration.
+        Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupCode.
 
         :param property_id: Property ID
         :type property_id: str
@@ -1888,6 +1912,8 @@ class PaymentApi:
         :type reservation_id: str
         :param house_account_id: House Account identifier is necessary if reservationID not sent
         :type house_account_id: str
+        :param group_code: Group Code. Required if neither reservationID nor houseAccountID is sent
+        :type group_code: str
         :param sub_reservation_id: The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent.
         :type sub_reservation_id: str
         :param type: Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods.
@@ -1926,6 +1952,7 @@ class PaymentApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
+            group_code=group_code,
             sub_reservation_id=sub_reservation_id,
             type=type,
             amount=amount,
@@ -1953,6 +1980,7 @@ class PaymentApi:
         property_id,
         reservation_id,
         house_account_id,
+        group_code,
         sub_reservation_id,
         type,
         amount,
@@ -1989,6 +2017,8 @@ class PaymentApi:
             _form_params.append(('reservationID', reservation_id))
         if house_account_id is not None:
             _form_params.append(('houseAccountID', house_account_id))
+        if group_code is not None:
+            _form_params.append(('groupCode', group_code))
         if sub_reservation_id is not None:
             _form_params.append(('subReservationID', sub_reservation_id))
         if type is not None:

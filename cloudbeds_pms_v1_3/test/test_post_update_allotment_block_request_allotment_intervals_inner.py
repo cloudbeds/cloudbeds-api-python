@@ -35,6 +35,7 @@ class TestPostUpdateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
         model = PostUpdateAllotmentBlockRequestAllotmentIntervalsInner()
         if include_optional:
             return PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(
+                policy_id = '',
                 room_type_id = '',
                 availability = [
                     cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner.PostUpdateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner(
@@ -48,13 +49,16 @@ class TestPostUpdateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
                             child1 = '', 
                             child2 = '', 
                             child3 = '', ), 
-                        restrictions = cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner_restrictions.PostUpdateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner_restrictions(
+                        restrictions = cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner_restrictions.PostCreateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner_restrictions(
                             min_los = 56, 
                             max_los = 56, 
                             cut_off_days = 56, 
                             last_minute_booking_days = 56, 
                             closed_to_arrival = 56, 
-                            closed_to_departure = 56, ), )
+                            closed_to_departure = 56, ), 
+                        rooms = [
+                            ''
+                            ], )
                     ]
             )
         else:

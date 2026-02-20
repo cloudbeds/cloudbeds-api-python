@@ -71,6 +71,7 @@ class TestGetAllotmentBlocksResponse(unittest.TestCase):
                         rooms_remaining = 56, 
                         allotment_intervals = [
                             cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner.GetAllotmentBlocksResponse_data_inner_allotmentIntervals_inner(
+                                policy_id = '', 
                                 room_type_id = '', 
                                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 

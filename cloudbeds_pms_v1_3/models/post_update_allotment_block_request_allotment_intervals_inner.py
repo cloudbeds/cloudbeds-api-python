@@ -27,9 +27,10 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
     """
     PostUpdateAllotmentBlockRequestAllotmentIntervalsInner
     """ # noqa: E501
+    policy_id: Optional[StrictStr] = Field(default=None, description="Policy ID to associate with the interval", alias="policyId")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type id", alias="roomTypeId")
     availability: Optional[List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]] = Field(default=None, description="Interval availability data by day in interval")
-    __properties: ClassVar[List[str]] = ["roomTypeId", "availability"]
+    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "availability"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +78,11 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
                 if _item_availability:
                     _items.append(_item_availability.to_dict())
             _dict['availability'] = _items
+        # set to None if policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.policy_id is None and "policy_id" in self.model_fields_set:
+            _dict['policyId'] = None
+
         # set to None if room_type_id (nullable) is None
         # and model_fields_set contains the field
         if self.room_type_id is None and "room_type_id" in self.model_fields_set:
@@ -99,6 +105,7 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "policyId": obj.get("policyId"),
             "roomTypeId": obj.get("roomTypeId"),
             "availability": [PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.from_dict(_item) for _item in obj["availability"]] if obj.get("availability") is not None else None
         })

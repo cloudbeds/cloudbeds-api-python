@@ -29,12 +29,13 @@ class GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner(BaseModel):
     """
     GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner
     """ # noqa: E501
+    policy_id: Optional[StrictStr] = Field(default=None, description="Policy ID associated with the interval", alias="policyId")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeId")
     start_date: Optional[date] = Field(default=None, description="Interval start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Interval end date", alias="endDate")
     availability: Optional[List[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInner]] = Field(default=None, description="Interval availability data by day in interval")
     restrictions: Optional[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerRestrictions] = None
-    __properties: ClassVar[List[str]] = ["roomTypeId", "startDate", "endDate", "availability", "restrictions"]
+    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "startDate", "endDate", "availability", "restrictions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +98,7 @@ class GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "policyId": obj.get("policyId"),
             "roomTypeId": obj.get("roomTypeId"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),

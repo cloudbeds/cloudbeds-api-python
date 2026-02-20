@@ -51,7 +51,10 @@ class TestPostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInne
                     cut_off_days = 56, 
                     last_minute_booking_days = 56, 
                     closed_to_arrival = 56, 
-                    closed_to_departure = 56, )
+                    closed_to_departure = 56, ),
+                rooms = [
+                    ''
+                    ]
             )
         else:
             return PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(

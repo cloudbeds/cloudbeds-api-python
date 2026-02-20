@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **block_confirmed** | **int** | Number of units booked for the room type for this day | [optional] 
 **rate** | **str** | the price | [optional] 
 **guest_pricing** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.md) |  | [optional] 
+**rooms** | **List[str]** | Array of room IDs assigned to this date | [optional] 
 
 ## Example
 

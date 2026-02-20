@@ -54,6 +54,7 @@ class TestPostUpdateAllotmentBlockResponseDataInner(unittest.TestCase):
                     release_time = '', ),
                 allotment_intervals = [
                     cloudbeds_pms_v1_3.models.post_update_allotment_block_response_data_inner_allotment_intervals_inner.PostUpdateAllotmentBlockResponse_data_inner_allotmentIntervals_inner(
+                        policy_id = '', 
                         room_type_id = '', 
                         availability = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability.PostCreateAllotmentBlockResponse_data_inner_allotmentIntervals_inner_availability(
                             date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
@@ -67,7 +68,10 @@ class TestPostUpdateAllotmentBlockResponseDataInner(unittest.TestCase):
                                 adult3 = '', 
                                 child1 = '', 
                                 child2 = '', 
-                                child3 = '', ), ), 
+                                child3 = '', ), 
+                            rooms = [
+                                ''
+                                ], ), 
                         restrictions = cloudbeds_pms_v1_3.models.post_update_allotment_block_response_data_inner_allotment_intervals_inner_restrictions.PostUpdateAllotmentBlockResponse_data_inner_allotmentIntervals_inner_restrictions(
                             min_los = 56, 
                             max_los = 56, 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**policy_id** | **str** | Policy ID to associate with the interval | [optional] 
 **availability** | [**List[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.md) |  | [optional] 
 
 ## Example

@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.post_room_block_request_rooms_inner import PostRoomBlockRequestRoomsInner
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner import GetRoomBlocksResponseDataInnerRoomsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +32,7 @@ class GetRoomBlocksResponseDataInner(BaseModel):
     room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
     start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
-    rooms: Optional[List[PostRoomBlockRequestRoomsInner]] = Field(default=None, description="All rooms for Block ID")
+    rooms: Optional[List[GetRoomBlocksResponseDataInnerRoomsInner]] = Field(default=None, description="All rooms for Block ID. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration).")
     count: Optional[StrictInt] = Field(default=None, description="Number of results (properties) returned.")
     __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockReason", "startDate", "endDate", "rooms", "count"]
 
@@ -98,7 +98,7 @@ class GetRoomBlocksResponseDataInner(BaseModel):
             "roomBlockReason": obj.get("roomBlockReason"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
-            "rooms": [PostRoomBlockRequestRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
+            "rooms": [GetRoomBlocksResponseDataInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
             "count": obj.get("count")
         })
         return _obj

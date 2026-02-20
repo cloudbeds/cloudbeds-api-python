@@ -34,7 +34,8 @@ class PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabili
     block_confirmed: Optional[StrictInt] = Field(default=None, description="Number of units booked for the room type for this day", alias="blockConfirmed")
     rate: Optional[StrictStr] = Field(default=None, description="the price")
     guest_pricing: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing] = Field(default=None, alias="guestPricing")
-    __properties: ClassVar[List[str]] = ["date", "blockRemaining", "blockAllotted", "blockConfirmed", "rate", "guestPricing"]
+    rooms: Optional[List[StrictStr]] = Field(default=None, description="Array of room IDs assigned to this date")
+    __properties: ClassVar[List[str]] = ["date", "blockRemaining", "blockAllotted", "blockConfirmed", "rate", "guestPricing", "rooms"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +96,8 @@ class PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabili
             "blockAllotted": obj.get("blockAllotted"),
             "blockConfirmed": obj.get("blockConfirmed"),
             "rate": obj.get("rate"),
-            "guestPricing": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None
+            "guestPricing": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None,
+            "rooms": obj.get("rooms")
         })
         return _obj
 

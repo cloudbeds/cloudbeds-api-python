@@ -46,7 +46,10 @@ class TestPostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvaila
                     adult3 = '', 
                     child1 = '', 
                     child2 = '', 
-                    child3 = '', )
+                    child3 = '', ),
+                rooms = [
+                    ''
+                    ]
             )
         else:
             return PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability(

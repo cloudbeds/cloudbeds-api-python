@@ -35,8 +35,10 @@ class TestPostRoomBlockResponseRoomsInner(unittest.TestCase):
         model = PostRoomBlockResponseRoomsInner()
         if include_optional:
             return PostRoomBlockResponseRoomsInner(
+                event_id = '',
                 room_id = '',
-                room_type_id = ''
+                room_type_id = '',
+                is_source = True
             )
         else:
             return PostRoomBlockResponseRoomsInner(

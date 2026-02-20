@@ -35,6 +35,7 @@ class TestPostCreateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
         model = PostCreateAllotmentBlockRequestAllotmentIntervalsInner()
         if include_optional:
             return PostCreateAllotmentBlockRequestAllotmentIntervalsInner(
+                policy_id = '',
                 availability = [
                     cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner.PostCreateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner(
                         date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
@@ -53,7 +54,10 @@ class TestPostCreateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
                             cut_off_days = 56, 
                             last_minute_booking_days = 56, 
                             closed_to_arrival = 56, 
-                            closed_to_departure = 56, ), )
+                            closed_to_departure = 56, ), 
+                        rooms = [
+                            ''
+                            ], )
                     ]
             )
         else:

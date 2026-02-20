@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner_restrictions import PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner import GetRoomBlocksResponseDataInnerRoomsInner
 
-class TestPostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions(unittest.TestCase):
-    """PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions unit test stubs"""
+class TestGetRoomBlocksResponseDataInnerRoomsInner(unittest.TestCase):
+    """GetRoomBlocksResponseDataInnerRoomsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,28 @@ class TestPostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInne
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions:
-        """Test PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions
+    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataInnerRoomsInner:
+        """Test GetRoomBlocksResponseDataInnerRoomsInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions`
+        # uncomment below to create an instance of `GetRoomBlocksResponseDataInnerRoomsInner`
         """
-        model = PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions()
+        model = GetRoomBlocksResponseDataInnerRoomsInner()
         if include_optional:
-            return PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions(
-                min_los = 56,
-                max_los = 56,
-                cut_off_days = 56,
-                last_minute_booking_days = 56,
-                closed_to_arrival = 56,
-                closed_to_departure = 56
+            return GetRoomBlocksResponseDataInnerRoomsInner(
+                event_id = '',
+                room_id = '',
+                room_type_id = '',
+                is_source = True
             )
         else:
-            return PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions(
+            return GetRoomBlocksResponseDataInnerRoomsInner(
         )
         """
 
-    def testPostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions(self):
-        """Test PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions"""
+    def testGetRoomBlocksResponseDataInnerRoomsInner(self):
+        """Test GetRoomBlocksResponseDataInnerRoomsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**policy_id** | **str** | Policy ID associated with the interval | [optional] 
 **room_type_id** | **str** | Room type ID | [optional] 
 **start_date** | **date** | Interval start date | [optional] 
 **end_date** | **date** | Interval end date | [optional] 

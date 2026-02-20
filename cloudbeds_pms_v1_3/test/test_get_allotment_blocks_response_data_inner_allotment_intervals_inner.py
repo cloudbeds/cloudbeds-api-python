@@ -35,6 +35,7 @@ class TestGetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner(unittest.Te
         model = GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner()
         if include_optional:
             return GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner(
+                policy_id = '',
                 room_type_id = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),

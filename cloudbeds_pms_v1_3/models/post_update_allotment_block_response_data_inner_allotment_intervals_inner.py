@@ -28,10 +28,11 @@ class PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
     """
     PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner
     """ # noqa: E501
+    policy_id: Optional[StrictStr] = Field(default=None, description="Policy ID associated with the interval", alias="policyId")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeId")
     availability: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability] = None
     restrictions: Optional[PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions] = None
-    __properties: ClassVar[List[str]] = ["roomTypeId", "availability", "restrictions"]
+    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "availability", "restrictions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +91,7 @@ class PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "policyId": obj.get("policyId"),
             "roomTypeId": obj.get("roomTypeId"),
             "availability": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability.from_dict(obj["availability"]) if obj.get("availability") is not None else None,
             "restrictions": PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None

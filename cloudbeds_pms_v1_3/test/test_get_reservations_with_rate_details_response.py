@@ -52,16 +52,16 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                         reservation_check_out = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         guest_id = '', 
                         profile_id = '', 
-                        guest_country = 56, 
+                        guest_country = '', 
                         source_name = '', 
                         source = cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_source.GetReservationsWithRateDetailsResponse_data_inner_source(
                             name = '', 
                             payment_collect = 'hotel', 
                             source_id = '', 
                             category = '', ), 
-                        source_category = 56, 
-                        source_reservation_id = 56, 
-                        property_currency = 56, 
+                        source_category = '', 
+                        source_reservation_id = '', 
+                        property_currency = '', 
                         balance_detailed = cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_balance_detailed.GetReservationsWithRateDetailsResponse_data_inner_balanceDetailed(
                             suggested_deposit = '', 
                             sub_total = 1.337, 
@@ -69,9 +69,7 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                             taxes_fees = 1.337, 
                             grand_total = 1.337, 
                             paid = 1.337, ), 
-                        detailed_rates = [
-                            None
-                            ], 
+                        detailed_rates = cloudbeds_pms_v1_3.models.detailed_rates.detailedRates(), 
                         rooms = [
                             cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_rooms_inner.GetReservationsWithRateDetailsResponse_data_inner_rooms_inner(
                                 room_type_id = '', 
@@ -99,7 +97,7 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                         origin = '', 
                         meal_plans = '', 
                         guest_list = {
-                            'key' : cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value.GetReservationsResponse_data_inner_guestList_value(
+                            'key' : cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_guest_list_value.GetReservationsWithRateDetailsResponse_data_inner_guestList_value(
                                 guest_id = '', 
                                 guest_name = '', 
                                 guest_first_name = '', 
@@ -117,16 +115,16 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                                 guest_birthdate = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 guest_document_type = '', 
                                 guest_document_number = '', 
-                                guest_document_issue_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                                guest_document_issue_date = '', 
                                 guest_document_issuing_country = '', 
-                                guest_document_expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                                guest_document_expiration_date = '', 
                                 tax_id = '', 
                                 company_tax_id = '', 
                                 company_name = '', 
                                 sub_reservation_id = '', 
                                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                                assigned_room = '', 
+                                assigned_room = True, 
                                 room_id = '', 
                                 room_name = '', 
                                 room_type_name = '', 

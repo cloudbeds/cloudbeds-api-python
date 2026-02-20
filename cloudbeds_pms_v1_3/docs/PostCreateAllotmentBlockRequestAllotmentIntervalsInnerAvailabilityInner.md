@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **rate** | **str** | the price if applicable | [optional] 
 **guest_pricing** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.md) |  | [optional] 
 **restrictions** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.md) |  | [optional] 
+**rooms** | **List[str]** | Array of room IDs assigned to this date | [optional] 
 
 ## Example
 
