@@ -43,7 +43,8 @@ class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
                     cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner.GetRoomBlocksResponse_data_inner_rooms_inner(
                         event_id = '', 
                         room_id = '', 
-                        room_type_id = '', )
+                        room_type_id = '', 
+                        is_source = True, )
                     ],
                 count = 56
             )

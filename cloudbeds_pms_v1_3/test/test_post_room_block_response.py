@@ -46,7 +46,8 @@ class TestPostRoomBlockResponse(unittest.TestCase):
                     cloudbeds_pms_v1_3.models.post_room_block_response_rooms_inner.PostRoomBlockResponse_rooms_inner(
                         event_id = '', 
                         room_id = '', 
-                        room_type_id = '', )
+                        room_type_id = '', 
+                        is_source = True, )
                     ],
                 message = ''
             )

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **event_id** | **str** | Event ID (unique identifier for this specific room&#39;s block entry) | [optional] 
 **room_id** | **str** | Room ID | [optional] 
 **room_type_id** | **str** | Room Type ID | [optional] 
+**is_source** | **bool** | Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room. | [optional] 
 
 ## Example
 

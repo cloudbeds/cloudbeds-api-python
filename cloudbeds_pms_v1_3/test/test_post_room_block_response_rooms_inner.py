@@ -37,7 +37,8 @@ class TestPostRoomBlockResponseRoomsInner(unittest.TestCase):
             return PostRoomBlockResponseRoomsInner(
                 event_id = '',
                 room_id = '',
-                room_type_id = ''
+                room_type_id = '',
+                is_source = True
             )
         else:
             return PostRoomBlockResponseRoomsInner(

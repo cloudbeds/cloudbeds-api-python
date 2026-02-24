@@ -2895,7 +2895,7 @@ class ReservationApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2917,7 +2917,7 @@ class ReservationApi:
         :type property_id: str
         :param reservation_id: Reservation Unique Identifier
         :type reservation_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2970,7 +2970,7 @@ class ReservationApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2992,7 +2992,7 @@ class ReservationApi:
         :type property_id: str
         :param reservation_id: Reservation Unique Identifier
         :type reservation_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3045,7 +3045,7 @@ class ReservationApi:
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation Unique Identifier")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3067,7 +3067,7 @@ class ReservationApi:
         :type property_id: str
         :param reservation_id: Reservation Unique Identifier
         :type reservation_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

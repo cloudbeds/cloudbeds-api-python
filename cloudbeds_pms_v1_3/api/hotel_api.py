@@ -1008,7 +1008,7 @@ class HotelApi:
     def post_file_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
@@ -1029,7 +1029,7 @@ class HotelApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param group_code: optional - the group code if the file is to be attached to a group profile
         :type group_code: str
@@ -1083,7 +1083,7 @@ class HotelApi:
     def post_file_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
@@ -1104,7 +1104,7 @@ class HotelApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param group_code: optional - the group code if the file is to be attached to a group profile
         :type group_code: str
@@ -1158,7 +1158,7 @@ class HotelApi:
     def post_file_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB")] = None,
+        file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="optional - the group code if the file is to be attached to a group profile")] = None,
         _request_timeout: Union[
             None,
@@ -1179,7 +1179,7 @@ class HotelApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB
+        :param file: Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB
         :type file: bytearray
         :param group_code: optional - the group code if the file is to be attached to a group profile
         :type group_code: str

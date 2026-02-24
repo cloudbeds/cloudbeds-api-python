@@ -32,7 +32,7 @@ class GetRoomBlocksResponseDataInner(BaseModel):
     room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
     start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
-    rooms: Optional[List[GetRoomBlocksResponseDataInnerRoomsInner]] = Field(default=None, description="All rooms for Block ID")
+    rooms: Optional[List[GetRoomBlocksResponseDataInnerRoomsInner]] = Field(default=None, description="All rooms for Block ID. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration).")
     count: Optional[StrictInt] = Field(default=None, description="Number of results (properties) returned.")
     __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockReason", "startDate", "endDate", "rooms", "count"]
 

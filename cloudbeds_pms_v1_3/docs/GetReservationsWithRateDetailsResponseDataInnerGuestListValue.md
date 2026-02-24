@@ -1,4 +1,4 @@
-# GetReservationsResponseDataInnerGuestListValue
+# GetReservationsWithRateDetailsResponseDataInnerGuestListValue
 
 
 ## Properties
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **guest_state** | **str** |  | [optional] 
 **guest_country** | **str** |  | [optional] 
 **guest_zip** | **str** |  | [optional] 
-**guest_birthdate** | **str** |  | [optional] 
+**guest_birthdate** | **date** |  | [optional] 
 **guest_document_type** | **str** |  | [optional] 
 **guest_document_number** | **str** |  | [optional] 
 **guest_document_issue_date** | **str** |  | [optional] 
@@ -46,19 +46,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
+from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_guest_list_value import GetReservationsWithRateDetailsResponseDataInnerGuestListValue
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of GetReservationsResponseDataInnerGuestListValue from a JSON string
-get_reservations_response_data_inner_guest_list_value_instance = GetReservationsResponseDataInnerGuestListValue.from_json(json)
+# create an instance of GetReservationsWithRateDetailsResponseDataInnerGuestListValue from a JSON string
+get_reservations_with_rate_details_response_data_inner_guest_list_value_instance = GetReservationsWithRateDetailsResponseDataInnerGuestListValue.from_json(json)
 # print the JSON string representation of the object
-print(GetReservationsResponseDataInnerGuestListValue.to_json())
+print(GetReservationsWithRateDetailsResponseDataInnerGuestListValue.to_json())
 
 # convert the object into a dict
-get_reservations_response_data_inner_guest_list_value_dict = get_reservations_response_data_inner_guest_list_value_instance.to_dict()
-# create an instance of GetReservationsResponseDataInnerGuestListValue from a dict
-get_reservations_response_data_inner_guest_list_value_from_dict = GetReservationsResponseDataInnerGuestListValue.from_dict(get_reservations_response_data_inner_guest_list_value_dict)
+get_reservations_with_rate_details_response_data_inner_guest_list_value_dict = get_reservations_with_rate_details_response_data_inner_guest_list_value_instance.to_dict()
+# create an instance of GetReservationsWithRateDetailsResponseDataInnerGuestListValue from a dict
+get_reservations_with_rate_details_response_data_inner_guest_list_value_from_dict = GetReservationsWithRateDetailsResponseDataInnerGuestListValue.from_dict(get_reservations_with_rate_details_response_data_inner_guest_list_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

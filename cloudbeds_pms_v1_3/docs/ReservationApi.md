@@ -735,7 +735,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms_v1_3.ReservationApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
     reservation_id = 'reservation_id_example' # str | Reservation Unique Identifier (optional)
-    file = None # bytearray | Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml</code><br/> Allowed max file size: 100MB (optional)
+    file = None # bytearray | Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB (optional)
 
     try:
         # postReservationDocument
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
  **reservation_id** | **str**| Reservation Unique Identifier | [optional] 
- **file** | **bytearray**| Form-based File Upload&lt;br/&gt; Allowed file types: &lt;code&gt;*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml&lt;/code&gt;&lt;br/&gt; Allowed max file size: 100MB | [optional] 
+ **file** | **bytearray**| Form-based File Upload&lt;br/&gt; Allowed file types: &lt;code&gt;*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json&lt;/code&gt;&lt;br/&gt; Allowed max file size: 100MB | [optional] 
 
 ### Return type
 
