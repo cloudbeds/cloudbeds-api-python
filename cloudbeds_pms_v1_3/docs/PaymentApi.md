@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_charge_post**
-> PostChargeResponse post_charge_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, accounts_receivable_ledger_id=accounts_receivable_ledger_id, amount=amount, currency=currency, description=description, card_token=card_token, payment_method_id=payment_method_id, is_deposit=is_deposit, redirect_url=redirect_url)
+> PostChargeResponse post_charge_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, accounts_receivable_ledger_id=accounts_receivable_ledger_id, amount=amount, currency=currency, description=description, payment_method_id=payment_method_id, is_deposit=is_deposit, redirect_url=redirect_url)
 
 postCharge
 
@@ -228,14 +228,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     amount = 'amount_example' # str | Amount to charge (optional)
     currency = 'currency_example' # str | Currency to charge (optional)
     description = 'description_example' # str | Description of the payment to display on folio (optional)
-    card_token = 'card_token_example' # str | cardToken provided by Cloudbeds vault (optional)
     payment_method_id = 'payment_method_id_example' # str | Payment method UUID (optional)
     is_deposit = True # bool | determine if this payment is a deposit (default: false) (optional)
     redirect_url = 'redirect_url_example' # str | client will be redirected to this page after he completed 3ds challenge. User will be redirected with HTTP get redirect and parameter **result** will be added to query string with possible values: - **failed** if 3ds challenge is not passed - **successful** if 3ds challenge is passed If not provided for card with 3ds the request will be rejected (optional)
 
     try:
         # postCharge
-        api_response = api_instance.post_charge_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, accounts_receivable_ledger_id=accounts_receivable_ledger_id, amount=amount, currency=currency, description=description, card_token=card_token, payment_method_id=payment_method_id, is_deposit=is_deposit, redirect_url=redirect_url)
+        api_response = api_instance.post_charge_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, accounts_receivable_ledger_id=accounts_receivable_ledger_id, amount=amount, currency=currency, description=description, payment_method_id=payment_method_id, is_deposit=is_deposit, redirect_url=redirect_url)
         print("The response of PaymentApi->post_charge_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -257,7 +256,6 @@ Name | Type | Description  | Notes
  **amount** | **str**| Amount to charge | [optional] 
  **currency** | **str**| Currency to charge | [optional] 
  **description** | **str**| Description of the payment to display on folio | [optional] 
- **card_token** | **str**| cardToken provided by Cloudbeds vault | [optional] 
  **payment_method_id** | **str**| Payment method UUID | [optional] 
  **is_deposit** | **bool**| determine if this payment is a deposit (default: false) | [optional] 
  **redirect_url** | **str**| client will be redirected to this page after he completed 3ds challenge. User will be redirected with HTTP get redirect and parameter **result** will be added to query string with possible values: - **failed** if 3ds challenge is not passed - **successful** if 3ds challenge is passed If not provided for card with 3ds the request will be rejected | [optional] 
@@ -460,11 +458,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_payment_post**
-> PostPaymentResponse post_payment_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sub_reservation_id=sub_reservation_id, type=type, amount=amount, card_type=card_type, description=description, is_deposit=is_deposit)
+> PostPaymentResponse post_payment_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, sub_reservation_id=sub_reservation_id, type=type, amount=amount, card_type=card_type, description=description, is_deposit=is_deposit)
 
 postPayment
 
-Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupCode.
+Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupID.
 
 ### Example
 
@@ -503,7 +501,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_id = 'property_id_example' # str | Property ID (optional)
     reservation_id = 'reservation_id_example' # str | Reservation identifier (optional)
     house_account_id = 'house_account_id_example' # str | House Account identifier is necessary if reservationID not sent (optional)
-    group_code = 'group_code_example' # str | Group Code. Required if neither reservationID nor houseAccountID is sent (optional)
+    group_id = 'group_id_example' # str | Group ID. Required if neither reservationID nor houseAccountID is sent (optional)
     sub_reservation_id = 'sub_reservation_id_example' # str | The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent. (optional)
     type = 'type_example' # str | Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods. (optional)
     amount = 3.4 # float | Amount paid on this transaction (optional)
@@ -513,7 +511,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postPayment
-        api_response = api_instance.post_payment_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sub_reservation_id=sub_reservation_id, type=type, amount=amount, card_type=card_type, description=description, is_deposit=is_deposit)
+        api_response = api_instance.post_payment_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_id=group_id, sub_reservation_id=sub_reservation_id, type=type, amount=amount, card_type=card_type, description=description, is_deposit=is_deposit)
         print("The response of PaymentApi->post_payment_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -530,7 +528,7 @@ Name | Type | Description  | Notes
  **property_id** | **str**| Property ID | [optional] 
  **reservation_id** | **str**| Reservation identifier | [optional] 
  **house_account_id** | **str**| House Account identifier is necessary if reservationID not sent | [optional] 
- **group_code** | **str**| Group Code. Required if neither reservationID nor houseAccountID is sent | [optional] 
+ **group_id** | **str**| Group ID. Required if neither reservationID nor houseAccountID is sent | [optional] 
  **sub_reservation_id** | **str**| The Sub Reservation identifier. reservationID is still mandatory if subReservationID is sent. | [optional] 
  **type** | **str**| Payment type. Use the call [getPaymentMethods](#api-Payment-getPaymentMethods) to get the properties enabled payment methods. | [optional] 
  **amount** | **float**| Amount paid on this transaction | [optional] 

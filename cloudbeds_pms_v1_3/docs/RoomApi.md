@@ -916,7 +916,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     room_block_reason = 'room_block_reason_example' # str | Room block reason (optional)
     start_date = '2013-10-20' # date | Room block start date (optional)
     end_date = '2013-10-20' # date | Room block end date (optional)
-    rooms = [cloudbeds_pms_v1_3.PostRoomBlockRequestRoomsInner()] # List[PostRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). (optional)
+    rooms = [cloudbeds_pms_v1_3.PostRoomBlockRequestRoomsInner()] # List[PostRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. (optional)
     first_name = 'first_name_example' # str | First name - for courtesy hold updates (optional)
     last_name = 'last_name_example' # str | Last name - for courtesy hold updates (optional)
     length_of_hold_in_hours = 56 # int | Length of hold in hours - for courtesy hold updates (optional)
@@ -944,7 +944,7 @@ Name | Type | Description  | Notes
  **room_block_reason** | **str**| Room block reason | [optional] 
  **start_date** | **date**| Room block start date | [optional] 
  **end_date** | **date**| Room block end date | [optional] 
- **rooms** | [**List[PostRoomBlockRequestRoomsInner]**](PostRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). | [optional] 
+ **rooms** | [**List[PostRoomBlockRequestRoomsInner]**](PostRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. | [optional] 
  **first_name** | **str**| First name - for courtesy hold updates | [optional] 
  **last_name** | **str**| Last name - for courtesy hold updates | [optional] 
  **length_of_hold_in_hours** | **int**| Length of hold in hours - for courtesy hold updates | [optional] 
@@ -1195,7 +1195,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     room_block_reason = 'room_block_reason_example' # str | Room block reason (optional)
     start_date = '2013-10-20' # date | Room block start date (optional)
     end_date = '2013-10-20' # date | Room block end date (optional)
-    rooms = [cloudbeds_pms_v1_3.PutRoomBlockRequestRoomsInner()] # List[PutRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room. (optional)
+    rooms = [cloudbeds_pms_v1_3.PutRoomBlockRequestRoomsInner()] # List[PutRoomBlockRequestRoomsInner] | All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. (optional)
     first_name = 'first_name_example' # str | First name - for courtesy hold updates (optional)
     last_name = 'last_name_example' # str | Last name - for courtesy hold updates (optional)
     length_of_hold_in_hours = 56 # int | Length of hold in hours - for courtesy hold updates (optional)
@@ -1223,7 +1223,7 @@ Name | Type | Description  | Notes
  **room_block_reason** | **str**| Room block reason | [optional] 
  **start_date** | **date**| Room block start date | [optional] 
  **end_date** | **date**| Room block end date | [optional] 
- **rooms** | [**List[PutRoomBlockRequestRoomsInner]**](PutRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room. | [optional] 
+ **rooms** | [**List[PutRoomBlockRequestRoomsInner]**](PutRoomBlockRequestRoomsInner.md)| All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. | [optional] 
  **first_name** | **str**| First name - for courtesy hold updates | [optional] 
  **last_name** | **str**| Last name - for courtesy hold updates | [optional] 
  **length_of_hold_in_hours** | **int**| Length of hold in hours - for courtesy hold updates | [optional] 

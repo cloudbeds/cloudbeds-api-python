@@ -21,8 +21,8 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
+from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_balance_detailed import GetReservationsWithRateDetailsResponseDataInnerBalanceDetailed
-from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_guest_list_value import GetReservationsWithRateDetailsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_rooms_inner import GetReservationsWithRateDetailsResponseDataInnerRoomsInner
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_source import GetReservationsWithRateDetailsResponseDataInnerSource
 from typing import Optional, Set
@@ -46,18 +46,18 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     reservation_check_out: Optional[datetime] = Field(default=None, alias="reservationCheckOut")
     guest_id: Optional[StrictStr] = Field(default=None, description="Main guest ID", alias="guestID")
     profile_id: Optional[StrictStr] = Field(default=None, description="Main guest profile ID", alias="profileID")
-    guest_country: Optional[StrictStr] = Field(default=None, description="Main guest Country", alias="guestCountry")
+    guest_country: Optional[StrictInt] = Field(default=None, description="Main guest Country", alias="guestCountry")
     source_name: Optional[StrictStr] = Field(default=None, description="Reservation source", alias="sourceName")
     source: Optional[GetReservationsWithRateDetailsResponseDataInnerSource] = None
-    source_category: Optional[StrictStr] = Field(default=None, description="Reservation source category", alias="sourceCategory")
-    source_reservation_id: Optional[StrictStr] = Field(default=None, description="Reservation ID on the source", alias="sourceReservationID")
-    property_currency: Optional[StrictStr] = Field(default=None, description="Property currency ISO-formatted (3 characters)", alias="propertyCurrency")
+    source_category: Optional[StrictInt] = Field(default=None, description="Reservation source category", alias="sourceCategory")
+    source_reservation_id: Optional[StrictInt] = Field(default=None, description="Reservation ID on the source", alias="sourceReservationID")
+    property_currency: Optional[StrictInt] = Field(default=None, description="Property currency ISO-formatted (3 characters)", alias="propertyCurrency")
     balance_detailed: Optional[GetReservationsWithRateDetailsResponseDataInnerBalanceDetailed] = Field(default=None, alias="balanceDetailed")
-    detailed_rates: Optional[Dict[str, Any]] = Field(default=None, description="Associative object, where key is the date, and value is the total rate for that date.", alias="detailedRates")
+    detailed_rates: Optional[List[Dict[str, Any]]] = Field(default=None, description="Associative object, where key is the date, and value is the total rate for that date.", alias="detailedRates")
     rooms: Optional[List[GetReservationsWithRateDetailsResponseDataInnerRoomsInner]] = Field(default=None, description="Array with rooms information")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
     meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation meal plans", alias="mealPlans")
-    guest_list: Optional[Dict[str, GetReservationsWithRateDetailsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
+    guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
     third_party_identifier: Optional[StrictStr] = Field(default=None, alias="thirdPartyIdentifier")
     custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
     estimated_arrival_time: Optional[StrictStr] = Field(default=None, description="Estimated arrival time, 24-hour format.", alias="estimatedArrivalTime")
@@ -221,7 +221,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
             "origin": obj.get("origin"),
             "mealPlans": obj.get("mealPlans"),
             "guestList": dict(
-                (_k, GetReservationsWithRateDetailsResponseDataInnerGuestListValue.from_dict(_v))
+                (_k, GetReservationsResponseDataInnerGuestListValue.from_dict(_v))
                 for _k, _v in obj["guestList"].items()
             )
             if obj.get("guestList") is not None

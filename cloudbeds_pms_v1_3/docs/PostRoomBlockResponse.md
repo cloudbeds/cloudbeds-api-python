@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **room_block_reason** | **str** | Room block reason | [optional] 
 **start_date** | **date** | Room block start date | [optional] 
 **end_date** | **date** | Room block end date | [optional] 
-**rooms** | [**List[PostRoomBlockResponseRoomsInner]**](PostRoomBlockResponseRoomsInner.md) | All rooms for room block. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration). | [optional] 
+**rooms** | [**List[PostRoomBlockResponseRoomsInner]**](PostRoomBlockResponseRoomsInner.md) | All rooms for room block | [optional] 
 **message** | **str** | To be used in case any error occurs (if success &#x3D; false).  If success &#x3D; true, it does not exist. | [optional] 
 
 ## Example

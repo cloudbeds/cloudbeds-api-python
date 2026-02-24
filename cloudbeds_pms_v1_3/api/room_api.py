@@ -3475,7 +3475,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).")] = None,
+        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -3508,7 +3508,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
@@ -3582,7 +3582,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).")] = None,
+        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -3615,7 +3615,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
@@ -3689,7 +3689,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).")] = None,
+        rooms: Annotated[Optional[List[PostRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -3722,7 +3722,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s).
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PostRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
@@ -4541,7 +4541,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.")] = None,
+        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -4574,7 +4574,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
@@ -4648,7 +4648,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.")] = None,
+        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -4681,7 +4681,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
@@ -4755,7 +4755,7 @@ class RoomApi:
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
-        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.")] = None,
+        rooms: Annotated[Optional[List[PutRoomBlockRequestRoomsInner]], Field(description="All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="First name - for courtesy hold updates")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Last name - for courtesy hold updates")] = None,
         length_of_hold_in_hours: Annotated[Optional[StrictInt], Field(description="Length of hold in hours - for courtesy hold updates")] = None,
@@ -4788,7 +4788,7 @@ class RoomApi:
         :type start_date: date
         :param end_date: Room block end date
         :type end_date: date
-        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID. For properties using split inventory (virtual rooms linked to physical rooms), only provide the source rooms you want to block. Linked rooms will be automatically added. Do not include auto-added linked rooms in the request - the API will reject requests that include both a source room and its linked room(s). Auto-added rooms cannot be individually swapped out; to remove an auto-added room, you must remove or swap its source room.
+        :param rooms: All rooms for room block. When multiple rooms are submitted they will be created under the same roomBlockID.
         :type rooms: List[PutRoomBlockRequestRoomsInner]
         :param first_name: First name - for courtesy hold updates
         :type first_name: str
