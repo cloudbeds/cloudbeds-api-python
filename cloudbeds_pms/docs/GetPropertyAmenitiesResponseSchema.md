@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amenities** | [**List[AmenityItemSchema]**](AmenityItemSchema.md) | List of active property amenities | 
+**custom_amenities** | **List[str]** | List of custom property amenities | 
 
 ## Example
 

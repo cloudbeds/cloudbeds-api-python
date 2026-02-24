@@ -2,6 +2,7 @@ README.md
 cloudbeds_pms/__init__.py
 cloudbeds_pms/api/__init__.py
 cloudbeds_pms/api/addons_api.py
+cloudbeds_pms/api/amenities_api.py
 cloudbeds_pms/api/applications_api.py
 cloudbeds_pms/api/door_locks_api.py
 cloudbeds_pms/api/events_api.py
@@ -47,6 +48,7 @@ cloudbeds_pms/docs/AllotmentBlockReleaseListRequestSchema.md
 cloudbeds_pms/docs/AllotmentBlockReleaseListResponseSchema.md
 cloudbeds_pms/docs/AllotmentBlockReleaseResponseSchema.md
 cloudbeds_pms/docs/AllotmentBlockReleaseUpdateRequestSchema.md
+cloudbeds_pms/docs/AmenitiesApi.md
 cloudbeds_pms/docs/AmenityItemSchema.md
 cloudbeds_pms/docs/ApplicationListResponseSchema.md
 cloudbeds_pms/docs/ApplicationResponseSchema.md
@@ -60,6 +62,7 @@ cloudbeds_pms/docs/CursorPaginationSchema.md
 cloudbeds_pms/docs/CustomItemListRequestSchema.md
 cloudbeds_pms/docs/CustomItemListResponseSchema.md
 cloudbeds_pms/docs/CustomItemResponseSchema.md
+cloudbeds_pms/docs/DeleteRoomCustomAmenitiesRequestSchema.md
 cloudbeds_pms/docs/DirectionEnumSchema.md
 cloudbeds_pms/docs/DoorLockKeyCreateRequestSchema.md
 cloudbeds_pms/docs/DoorLockKeyFailedToGenerateResponseSchema.md
@@ -106,6 +109,7 @@ cloudbeds_pms/docs/GetDistributionSettingsResponseSchemaSettingsInner.md
 cloudbeds_pms/docs/GetPropertyAmenitiesResponseSchema.md
 cloudbeds_pms/docs/GetPropertyRoomsAmenitiesResponseSchema.md
 cloudbeds_pms/docs/GetRoomAmenitiesResponseSchema.md
+cloudbeds_pms/docs/GetRoomLabelsResponseSchema.md
 cloudbeds_pms/docs/GroupCreateRequestSchema.md
 cloudbeds_pms/docs/GroupDeleteRequestSchema.md
 cloudbeds_pms/docs/GroupDisableRequestSchema.md
@@ -180,6 +184,9 @@ cloudbeds_pms/docs/ReservationRoomControllerUpdateRoomRequest.md
 cloudbeds_pms/docs/ReservationsApi.md
 cloudbeds_pms/docs/RoomAmenitiesSchema.md
 cloudbeds_pms/docs/RoomAmenitiesUpdateRequestSchema.md
+cloudbeds_pms/docs/RoomAmenitiesUpdateSchema.md
+cloudbeds_pms/docs/RoomCustomAmenitiesResponseSchema.md
+cloudbeds_pms/docs/RoomLabelItemSchema.md
 cloudbeds_pms/docs/RoomsApi.md
 cloudbeds_pms/docs/SegmentCreateRequestSchema.md
 cloudbeds_pms/docs/SegmentDefaultRequestSchema.md
@@ -251,6 +258,7 @@ cloudbeds_pms/models/cursor_pagination_schema.py
 cloudbeds_pms/models/custom_item_list_request_schema.py
 cloudbeds_pms/models/custom_item_list_response_schema.py
 cloudbeds_pms/models/custom_item_response_schema.py
+cloudbeds_pms/models/delete_room_custom_amenities_request_schema.py
 cloudbeds_pms/models/direction_enum_schema.py
 cloudbeds_pms/models/door_lock_key_create_request_schema.py
 cloudbeds_pms/models/door_lock_key_failed_to_generate_response_schema.py
@@ -295,6 +303,7 @@ cloudbeds_pms/models/get_distribution_settings_response_schema_settings_inner.py
 cloudbeds_pms/models/get_property_amenities_response_schema.py
 cloudbeds_pms/models/get_property_rooms_amenities_response_schema.py
 cloudbeds_pms/models/get_room_amenities_response_schema.py
+cloudbeds_pms/models/get_room_labels_response_schema.py
 cloudbeds_pms/models/group_create_request_schema.py
 cloudbeds_pms/models/group_delete_request_schema.py
 cloudbeds_pms/models/group_disable_request_schema.py
@@ -363,6 +372,9 @@ cloudbeds_pms/models/reservation_commission_response_schema_estimated_commission
 cloudbeds_pms/models/reservation_room_controller_update_room_request.py
 cloudbeds_pms/models/room_amenities_schema.py
 cloudbeds_pms/models/room_amenities_update_request_schema.py
+cloudbeds_pms/models/room_amenities_update_schema.py
+cloudbeds_pms/models/room_custom_amenities_response_schema.py
+cloudbeds_pms/models/room_label_item_schema.py
 cloudbeds_pms/models/segment_create_request_schema.py
 cloudbeds_pms/models/segment_default_request_schema.py
 cloudbeds_pms/models/segment_delete_request_schema.py
@@ -422,6 +434,7 @@ cloudbeds_pms/test/test_allotment_block_release_list_request_schema.py
 cloudbeds_pms/test/test_allotment_block_release_list_response_schema.py
 cloudbeds_pms/test/test_allotment_block_release_response_schema.py
 cloudbeds_pms/test/test_allotment_block_release_update_request_schema.py
+cloudbeds_pms/test/test_amenities_api.py
 cloudbeds_pms/test/test_amenity_item_schema.py
 cloudbeds_pms/test/test_application_list_response_schema.py
 cloudbeds_pms/test/test_application_response_schema.py
@@ -435,6 +448,7 @@ cloudbeds_pms/test/test_cursor_pagination_schema.py
 cloudbeds_pms/test/test_custom_item_list_request_schema.py
 cloudbeds_pms/test/test_custom_item_list_response_schema.py
 cloudbeds_pms/test/test_custom_item_response_schema.py
+cloudbeds_pms/test/test_delete_room_custom_amenities_request_schema.py
 cloudbeds_pms/test/test_direction_enum_schema.py
 cloudbeds_pms/test/test_door_lock_key_create_request_schema.py
 cloudbeds_pms/test/test_door_lock_key_failed_to_generate_response_schema.py
@@ -481,6 +495,7 @@ cloudbeds_pms/test/test_get_distribution_settings_response_schema_settings_inner
 cloudbeds_pms/test/test_get_property_amenities_response_schema.py
 cloudbeds_pms/test/test_get_property_rooms_amenities_response_schema.py
 cloudbeds_pms/test/test_get_room_amenities_response_schema.py
+cloudbeds_pms/test/test_get_room_labels_response_schema.py
 cloudbeds_pms/test/test_group_create_request_schema.py
 cloudbeds_pms/test/test_group_delete_request_schema.py
 cloudbeds_pms/test/test_group_disable_request_schema.py
@@ -555,6 +570,9 @@ cloudbeds_pms/test/test_reservation_room_controller_update_room_request.py
 cloudbeds_pms/test/test_reservations_api.py
 cloudbeds_pms/test/test_room_amenities_schema.py
 cloudbeds_pms/test/test_room_amenities_update_request_schema.py
+cloudbeds_pms/test/test_room_amenities_update_schema.py
+cloudbeds_pms/test/test_room_custom_amenities_response_schema.py
+cloudbeds_pms/test/test_room_label_item_schema.py
 cloudbeds_pms/test/test_rooms_api.py
 cloudbeds_pms/test/test_segment_create_request_schema.py
 cloudbeds_pms/test/test_segment_default_request_schema.py

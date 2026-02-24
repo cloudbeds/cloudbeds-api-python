@@ -42,6 +42,9 @@ class TestRoomAmenitiesSchema(unittest.TestCase):
                         name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
+                    ],
+                custom_amenities = [
+                    ''
                     ]
             )
         else:
@@ -53,6 +56,9 @@ class TestRoomAmenitiesSchema(unittest.TestCase):
                         name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
+                    ],
+                custom_amenities = [
+                    ''
                     ],
         )
         """

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rooms** | [**List[RoomAmenitiesSchema]**](RoomAmenitiesSchema.md) | Updated rooms with their amenities | 
+**rooms** | [**List[RoomAmenitiesUpdateSchema]**](RoomAmenitiesUpdateSchema.md) | Updated rooms with their amenities | 
 
 ## Example
 

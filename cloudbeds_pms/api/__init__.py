@@ -2,6 +2,7 @@
 
 # import apis into api package
 from cloudbeds_pms.api.addons_api import AddonsApi
+from cloudbeds_pms.api.amenities_api import AmenitiesApi
 from cloudbeds_pms.api.applications_api import ApplicationsApi
 from cloudbeds_pms.api.door_locks_api import DoorLocksApi
 from cloudbeds_pms.api.events_api import EventsApi

@@ -17,18 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from cloudbeds_pms.models.room_amenities_update_schema import RoomAmenitiesUpdateSchema
+from cloudbeds_pms.models.amenity_item_schema import AmenityItemSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
+class RoomAmenitiesUpdateSchema(BaseModel):
     """
-    UpdatePropertyRoomsAmenitiesResponseSchema
+    RoomAmenitiesUpdateSchema
     """ # noqa: E501
-    rooms: List[RoomAmenitiesUpdateSchema] = Field(description="Updated rooms with their amenities")
-    __properties: ClassVar[List[str]] = ["rooms"]
+    id: StrictStr = Field(description="Room ID")
+    amenities: List[AmenityItemSchema] = Field(description="List of active amenities for this room")
+    __properties: ClassVar[List[str]] = ["id", "amenities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +49,7 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdatePropertyRoomsAmenitiesResponseSchema from a JSON string"""
+        """Create an instance of RoomAmenitiesUpdateSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +70,18 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in rooms (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in amenities (list)
         _items = []
-        if self.rooms:
-            for _item_rooms in self.rooms:
-                if _item_rooms:
-                    _items.append(_item_rooms.to_dict())
-            _dict['rooms'] = _items
+        if self.amenities:
+            for _item_amenities in self.amenities:
+                if _item_amenities:
+                    _items.append(_item_amenities.to_dict())
+            _dict['amenities'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdatePropertyRoomsAmenitiesResponseSchema from a dict"""
+        """Create an instance of RoomAmenitiesUpdateSchema from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +89,8 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rooms": [RoomAmenitiesUpdateSchema.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None
+            "id": obj.get("id"),
+            "amenities": [AmenityItemSchema.from_dict(_item) for _item in obj["amenities"]] if obj.get("amenities") is not None else None
         })
         return _obj
 

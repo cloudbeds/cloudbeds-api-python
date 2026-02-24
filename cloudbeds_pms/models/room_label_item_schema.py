@@ -17,18 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from cloudbeds_pms.models.room_amenities_update_schema import RoomAmenitiesUpdateSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
+class RoomLabelItemSchema(BaseModel):
     """
-    UpdatePropertyRoomsAmenitiesResponseSchema
+    RoomLabelItemSchema
     """ # noqa: E501
-    rooms: List[RoomAmenitiesUpdateSchema] = Field(description="Updated rooms with their amenities")
-    __properties: ClassVar[List[str]] = ["rooms"]
+    code: StrictStr = Field(description="Unique label code")
+    title: StrictStr = Field(description="Translated label title")
+    accommodation_privacy_code: StrictStr = Field(description="Accommodation privacy code", alias="accommodationPrivacyCode")
+    __properties: ClassVar[List[str]] = ["code", "title", "accommodationPrivacyCode"]
+
+    @field_validator('accommodation_privacy_code')
+    def accommodation_privacy_code_validate_enum(cls, value):
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        _allowed_values = set(['PRIVATE', 'SHARED', 'PRIVATE_SHARED', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +57,7 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdatePropertyRoomsAmenitiesResponseSchema from a JSON string"""
+        """Create an instance of RoomLabelItemSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +78,11 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in rooms (list)
-        _items = []
-        if self.rooms:
-            for _item_rooms in self.rooms:
-                if _item_rooms:
-                    _items.append(_item_rooms.to_dict())
-            _dict['rooms'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdatePropertyRoomsAmenitiesResponseSchema from a dict"""
+        """Create an instance of RoomLabelItemSchema from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +90,9 @@ class UpdatePropertyRoomsAmenitiesResponseSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rooms": [RoomAmenitiesUpdateSchema.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None
+            "code": obj.get("code"),
+            "title": obj.get("title"),
+            "accommodationPrivacyCode": obj.get("accommodationPrivacyCode")
         })
         return _obj
 

@@ -36,6 +36,7 @@ class FeatureEnum(str, Enum):
     FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_AUTO_MINUS_ROLLBACK_MINUS_ENABLED = 'feature.distribution.age-policy-auto-rollback-enabled'
     FEATURE_DOT_DISTRIBUTION_DOT_AGE_MINUS_POLICY_MINUS_CENTRALIZED_MINUS_SERVICE_MINUS_LAYER = 'feature.distribution.age-policy-centralized-service-layer'
     FEATURE_DOT_DISTRIBUTION_DOT_SEND_MINUS_RATE_MINUS_PLAN_MINUS_IF_MINUS_PROMO_MINUS_CODE_MINUS_REMOVED = 'feature.distribution.send-rate-plan-if-promo-code-removed'
+    FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION_MINUS_DEBUG_MINUS_LOGS = 'feature.distribution.market-segmentation-debug-logs'
     FEATURE_DOT_INVENTORY_DOT_RATE_MINUS_PLANS = 'feature.inventory.rate-plans'
     FEATURE_DOT_INVENTORY_DOT_DERIVED_MINUS_RATE_MINUS_PLANS_MINUS_FROM_MINUS_NON_MINUS_BASE_MINUS_RATE_MINUS_PLANS = 'feature.inventory.derived-rate-plans-from-non-base-rate-plans'
     FEATURE_DOT_INVENTORY_DOT_DERIVED_MINUS_RATE_MINUS_PLANS_MINUS_FROM_MINUS_ANOTHER_MINUS_DERIVED_MINUS_RATE_MINUS_PLANS = 'feature.inventory.derived-rate-plans-from-another-derived-rate-plans'

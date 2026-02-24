@@ -41,6 +41,9 @@ class TestGetPropertyAmenitiesResponseSchema(unittest.TestCase):
                         name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
+                    ],
+                custom_amenities = [
+                    ''
                     ]
             )
         else:
@@ -51,6 +54,9 @@ class TestGetPropertyAmenitiesResponseSchema(unittest.TestCase):
                         name = 'Wi-fi', 
                         category_code = 'technology', 
                         is_top = True, )
+                    ],
+                custom_amenities = [
+                    ''
                     ],
         )
         """

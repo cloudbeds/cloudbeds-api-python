@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from cloudbeds_pms.models.amenity_item_schema import AmenityItemSchema
 from typing import Optional, Set
@@ -28,7 +28,8 @@ class GetRoomAmenitiesResponseSchema(BaseModel):
     GetRoomAmenitiesResponseSchema
     """ # noqa: E501
     amenities: List[AmenityItemSchema] = Field(description="List of active room amenities")
-    __properties: ClassVar[List[str]] = ["amenities"]
+    custom_amenities: List[StrictStr] = Field(description="List of custom room amenities", alias="customAmenities")
+    __properties: ClassVar[List[str]] = ["amenities", "customAmenities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +89,8 @@ class GetRoomAmenitiesResponseSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amenities": [AmenityItemSchema.from_dict(_item) for _item in obj["amenities"]] if obj.get("amenities") is not None else None
+            "amenities": [AmenityItemSchema.from_dict(_item) for _item in obj["amenities"]] if obj.get("amenities") is not None else None,
+            "customAmenities": obj.get("customAmenities")
         })
         return _obj
 

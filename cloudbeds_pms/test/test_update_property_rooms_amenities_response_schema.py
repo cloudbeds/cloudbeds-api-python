@@ -36,7 +36,7 @@ class TestUpdatePropertyRoomsAmenitiesResponseSchema(unittest.TestCase):
         if include_optional:
             return UpdatePropertyRoomsAmenitiesResponseSchema(
                 rooms = [
-                    cloudbeds_pms.models.room_amenities_schema.RoomAmenitiesSchema(
+                    cloudbeds_pms.models.room_amenities_update_schema.RoomAmenitiesUpdateSchema(
                         id = '101', 
                         amenities = [
                             cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
@@ -50,7 +50,7 @@ class TestUpdatePropertyRoomsAmenitiesResponseSchema(unittest.TestCase):
         else:
             return UpdatePropertyRoomsAmenitiesResponseSchema(
                 rooms = [
-                    cloudbeds_pms.models.room_amenities_schema.RoomAmenitiesSchema(
+                    cloudbeds_pms.models.room_amenities_update_schema.RoomAmenitiesUpdateSchema(
                         id = '101', 
                         amenities = [
                             cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(

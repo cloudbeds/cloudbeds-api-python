@@ -29,7 +29,8 @@ class RoomAmenitiesSchema(BaseModel):
     """ # noqa: E501
     id: StrictStr = Field(description="Room ID")
     amenities: List[AmenityItemSchema] = Field(description="List of active amenities for this room")
-    __properties: ClassVar[List[str]] = ["id", "amenities"]
+    custom_amenities: List[StrictStr] = Field(description="List of custom amenities for this room", alias="customAmenities")
+    __properties: ClassVar[List[str]] = ["id", "amenities", "customAmenities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +91,8 @@ class RoomAmenitiesSchema(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "amenities": [AmenityItemSchema.from_dict(_item) for _item in obj["amenities"]] if obj.get("amenities") is not None else None
+            "amenities": [AmenityItemSchema.from_dict(_item) for _item in obj["amenities"]] if obj.get("amenities") is not None else None,
+            "customAmenities": obj.get("customAmenities")
         })
         return _obj
 

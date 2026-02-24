@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.get_property_rooms_amenities_response_schema import GetPropertyRoomsAmenitiesResponseSchema
+from cloudbeds_pms.models.room_amenities_update_schema import RoomAmenitiesUpdateSchema
 
-class TestGetPropertyRoomsAmenitiesResponseSchema(unittest.TestCase):
-    """GetPropertyRoomsAmenitiesResponseSchema unit test stubs"""
+class TestRoomAmenitiesUpdateSchema(unittest.TestCase):
+    """RoomAmenitiesUpdateSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,52 +25,40 @@ class TestGetPropertyRoomsAmenitiesResponseSchema(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetPropertyRoomsAmenitiesResponseSchema:
-        """Test GetPropertyRoomsAmenitiesResponseSchema
+    def make_instance(self, include_optional) -> RoomAmenitiesUpdateSchema:
+        """Test RoomAmenitiesUpdateSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetPropertyRoomsAmenitiesResponseSchema`
+        # uncomment below to create an instance of `RoomAmenitiesUpdateSchema`
         """
-        model = GetPropertyRoomsAmenitiesResponseSchema()
+        model = RoomAmenitiesUpdateSchema()
         if include_optional:
-            return GetPropertyRoomsAmenitiesResponseSchema(
-                rooms = [
-                    cloudbeds_pms.models.room_amenities_schema.RoomAmenitiesSchema(
-                        id = '101', 
-                        amenities = [
-                            cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
-                                code = 'wifi', 
-                                name = 'Wi-fi', 
-                                category_code = 'technology', 
-                                is_top = True, )
-                            ], 
-                        custom_amenities = [
-                            ''
-                            ], )
+            return RoomAmenitiesUpdateSchema(
+                id = '101',
+                amenities = [
+                    cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
+                        code = 'wifi', 
+                        name = 'Wi-fi', 
+                        category_code = 'technology', 
+                        is_top = True, )
                     ]
             )
         else:
-            return GetPropertyRoomsAmenitiesResponseSchema(
-                rooms = [
-                    cloudbeds_pms.models.room_amenities_schema.RoomAmenitiesSchema(
-                        id = '101', 
-                        amenities = [
-                            cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
-                                code = 'wifi', 
-                                name = 'Wi-fi', 
-                                category_code = 'technology', 
-                                is_top = True, )
-                            ], 
-                        custom_amenities = [
-                            ''
-                            ], )
+            return RoomAmenitiesUpdateSchema(
+                id = '101',
+                amenities = [
+                    cloudbeds_pms.models.amenity_item_schema.AmenityItemSchema(
+                        code = 'wifi', 
+                        name = 'Wi-fi', 
+                        category_code = 'technology', 
+                        is_top = True, )
                     ],
         )
         """
 
-    def testGetPropertyRoomsAmenitiesResponseSchema(self):
-        """Test GetPropertyRoomsAmenitiesResponseSchema"""
+    def testRoomAmenitiesUpdateSchema(self):
+        """Test RoomAmenitiesUpdateSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
