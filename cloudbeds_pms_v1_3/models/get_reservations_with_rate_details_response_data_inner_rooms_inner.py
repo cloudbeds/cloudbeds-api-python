@@ -42,7 +42,7 @@ class GetReservationsWithRateDetailsResponseDataInnerRoomsInner(BaseModel):
     room_check_in: Optional[StrictStr] = Field(default=None, description="Check-in date for the room", alias="roomCheckIn")
     room_check_out: Optional[StrictStr] = Field(default=None, description="Check-out date for the room", alias="roomCheckOut")
     room_status: Optional[StrictStr] = Field(default=None, alias="roomStatus")
-    detailed_room_rates: Optional[List[Dict[str, Any]]] = Field(default=None, description="Associative object, with dates as indexes, and rates as values", alias="detailedRoomRates")
+    detailed_room_rates: Optional[Dict[str, Any]] = Field(default=None, description="A map of dates to rates (key is date). It contains an entry for each reserved date.", alias="detailedRoomRates")
     market_name: Optional[StrictStr] = Field(default=None, description="Market segmentation name", alias="marketName")
     market_code: Optional[StrictStr] = Field(default=None, description="Market segmentation code", alias="marketCode")
     __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeIsVirtual", "roomTypeName", "subReservationID", "guestID", "guestName", "rateID", "rateName", "adults", "children", "reservationRoomID", "roomID", "roomName", "roomCheckIn", "roomCheckOut", "roomStatus", "detailedRoomRates", "marketName", "marketCode"]

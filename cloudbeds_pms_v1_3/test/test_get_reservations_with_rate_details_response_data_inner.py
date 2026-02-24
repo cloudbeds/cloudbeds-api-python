@@ -85,9 +85,7 @@ class TestGetReservationsWithRateDetailsResponseDataInner(unittest.TestCase):
                         room_check_in = '', 
                         room_check_out = '', 
                         room_status = 'cancelled', 
-                        detailed_room_rates = [
-                            None
-                            ], 
+                        detailed_room_rates = cloudbeds_pms_v1_3.models.detailed_room_rates.detailedRoomRates(), 
                         market_name = '', 
                         market_code = '', )
                     ],

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **room_check_in** | **str** | Check-in date for the room | [optional] 
 **room_check_out** | **str** | Check-out date for the room | [optional] 
 **room_status** | **str** |  | [optional] 
-**detailed_room_rates** | **List[object]** | Associative object, with dates as indexes, and rates as values | [optional] 
+**detailed_room_rates** | **object** | A map of dates to rates (key is date). It contains an entry for each reserved date. | [optional] 
 **market_name** | **str** | Market segmentation name | [optional] 
 **market_code** | **str** | Market segmentation code | [optional] 
 
