@@ -342,8 +342,8 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     room_block_id = 'room_block_id_example' # str | Room block ID (optional)
     room_type_id = 'room_type_id_example' # str | Room type ID (optional)
     room_id = 'room_id_example' # str | Room ID (optional)
-    start_date = '2013-10-20' # date | date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
-    end_date = '2013-10-20' # date | date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
+    start_date = '2013-10-20' # date | Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
+    end_date = '2013-10-20' # date | Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
     page_number = 1 # int | Page number (optional) (default to 1)
     page_size = 20 # int | Page size (optional) (default to 20)
 
@@ -367,8 +367,8 @@ Name | Type | Description  | Notes
  **room_block_id** | **str**| Room block ID | [optional] 
  **room_type_id** | **str**| Room type ID | [optional] 
  **room_id** | **str**| Room ID | [optional] 
- **start_date** | **date**| date\&quot;] Start date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
- **end_date** | **date**| date\&quot;] End date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
+ **start_date** | **date**| Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
+ **end_date** | **date**| Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
  **page_number** | **int**| Page number | [optional] [default to 1]
  **page_size** | **int**| Page size | [optional] [default to 20]
 

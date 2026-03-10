@@ -35,8 +35,8 @@ class TestGetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAm
         model = GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner()
         if include_optional:
             return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner(
-                rate = 1.337,
-                percentage = 1.337
+                rate = None,
+                percentage = None
             )
         else:
             return GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner(

@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**minimum_nights** | **int** | Minimum number of nights required for this range | [optional] 
-**maximum_nights** | **int** | Maximum number of nights for this range (null means no limit) | [optional] 
-**amount** | **float** | Amount for this range (uses same amountType as the parent tax/fee) | [optional] 
-**amount_adult** | **float** | Amount per adult for this range (uses same amountType as the parent tax/fee) | [optional] 
-**amount_child** | **float** | Amount per child for this range (uses same amountType as the parent tax/fee) | [optional] 
+**minimum_nights** | [**GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerMinimumNights**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerMinimumNights.md) |  | [optional] 
+**maximum_nights** | [**GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerMaximumNights**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerMaximumNights.md) |  | [optional] 
+**amount** | [**GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmount**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmount.md) |  | [optional] 
+**amount_adult** | [**GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountAdult.md) |  | [optional] 
+**amount_child** | [**GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountChild**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountChild.md) |  | [optional] 
 **amount_rate_based** | [**List[GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner]**](GetTaxesAndFeesResponseDataInnerLengthOfStaySettingsOneOfRangesInnerAmountRateBasedInner.md) | Rate-based amounts for this range (uses same amountType as the parent tax/fee) | [optional] 
 
 ## Example

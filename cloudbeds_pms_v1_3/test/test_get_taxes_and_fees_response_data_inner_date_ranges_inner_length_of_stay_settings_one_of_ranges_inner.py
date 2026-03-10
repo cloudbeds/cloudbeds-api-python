@@ -37,9 +37,9 @@ class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOne
             return GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInner(
                 minimum_nights = 56,
                 maximum_nights = 56,
-                amount = 1.337,
-                amount_adult = 1.337,
-                amount_child = 1.337,
+                amount = None,
+                amount_adult = None,
+                amount_child = None,
                 amount_rate_based = [
                     None
                     ]
