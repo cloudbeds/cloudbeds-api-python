@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **range** | **str** | ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD | [optional] 
-**amount** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount**](GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount.md) |  | [optional] 
+**amount** | [**GetTaxesAndFeesResponseDataInnerAmount**](GetTaxesAndFeesResponseDataInnerAmount.md) |  | [optional] 
 **amount_adult** | [**GetTaxesAndFeesResponseDataInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerAmountAdult.md) |  | [optional] 
 **amount_child** | [**GetTaxesAndFeesResponseDataInnerAmountChild**](GetTaxesAndFeesResponseDataInnerAmountChild.md) |  | [optional] 
 **max_length** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength**](GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength.md) |  | [optional] 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **name** | **str** | Name | [optional] 
 **code** | **str** | Code | [optional] 
 **kind** | **str** | Tax kind. Currently supports \&quot;vat\&quot;, \&quot;municipal_tax\&quot; or null. Only exists if type &#x3D; tax. | [optional] 
-**amount** | **str** | Amount | [optional] 
+**amount** | [**GetTaxesAndFeesResponseDataInnerAmount**](GetTaxesAndFeesResponseDataInnerAmount.md) |  | [optional] 
 **amount_adult** | [**GetTaxesAndFeesResponseDataInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerAmountAdult.md) |  | [optional] 
 **amount_child** | [**GetTaxesAndFeesResponseDataInnerAmountChild**](GetTaxesAndFeesResponseDataInnerAmountChild.md) |  | [optional] 
 **amount_rate_based** | [**List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]**](GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.md) | Rules defined for Rate-Based taxes/fees. Only applicable if amountType &#x3D; percentage_rate_based (Rate-based) | [optional] 

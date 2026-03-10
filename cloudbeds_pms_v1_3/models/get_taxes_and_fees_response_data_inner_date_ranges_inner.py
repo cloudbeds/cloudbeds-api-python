@@ -19,10 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount import GetTaxesAndFeesResponseDataInnerAmount
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_adult import GetTaxesAndFeesResponseDataInnerAmountAdult
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_child import GetTaxesAndFeesResponseDataInnerAmountChild
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_length_of_stay_settings import GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_max_length import GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength
 from typing import Optional, Set
@@ -33,7 +33,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     GetTaxesAndFeesResponseDataInnerDateRangesInner
     """ # noqa: E501
     range: Optional[StrictStr] = Field(default=None, description="ISO 8601 date range. It can be in the format YYYY-MM-DD/YYYY-MM-DD or YYYY-MM-DD/ (to indicate that the end date is not defined). In case of empty year the format is --MM-DD/--MM-DD")
-    amount: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount] = None
+    amount: Optional[GetTaxesAndFeesResponseDataInnerAmount] = None
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
     max_length: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength] = Field(default=None, alias="maxLength")
@@ -125,7 +125,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
 
         _obj = cls.model_validate({
             "range": obj.get("range"),
-            "amount": GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amount": GetTaxesAndFeesResponseDataInnerAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "amountAdult": GetTaxesAndFeesResponseDataInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
             "amountChild": GetTaxesAndFeesResponseDataInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
             "maxLength": GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength.from_dict(obj["maxLength"]) if obj.get("maxLength") is not None else None,

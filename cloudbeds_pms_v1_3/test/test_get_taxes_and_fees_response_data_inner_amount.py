@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_date_ranges_inner_amount import GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount import GetTaxesAndFeesResponseDataInnerAmount
 
-class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(unittest.TestCase):
-    """GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount unit test stubs"""
+class TestGetTaxesAndFeesResponseDataInnerAmount(unittest.TestCase):
+    """GetTaxesAndFeesResponseDataInnerAmount unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,24 +25,24 @@ class TestGetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(unittest.TestCas
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount:
-        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount
+    def make_instance(self, include_optional) -> GetTaxesAndFeesResponseDataInnerAmount:
+        """Test GetTaxesAndFeesResponseDataInnerAmount
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount`
+        # uncomment below to create an instance of `GetTaxesAndFeesResponseDataInnerAmount`
         """
-        model = GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount()
+        model = GetTaxesAndFeesResponseDataInnerAmount()
         if include_optional:
-            return GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(
+            return GetTaxesAndFeesResponseDataInnerAmount(
             )
         else:
-            return GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(
+            return GetTaxesAndFeesResponseDataInnerAmount(
         )
         """
 
-    def testGetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(self):
-        """Test GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount"""
+    def testGetTaxesAndFeesResponseDataInnerAmount(self):
+        """Test GetTaxesAndFeesResponseDataInnerAmount"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

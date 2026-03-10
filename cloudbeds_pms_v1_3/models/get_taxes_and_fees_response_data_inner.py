@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount import GetTaxesAndFeesResponseDataInnerAmount
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_adult import GetTaxesAndFeesResponseDataInnerAmountAdult
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_child import GetTaxesAndFeesResponseDataInnerAmountChild
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response_data_inner_amount_rate_based_inner import GetTaxesAndFeesResponseDataInnerAmountRateBasedInner
@@ -38,7 +39,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Name")
     code: Optional[StrictStr] = Field(default=None, description="Code")
     kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\", \"municipal_tax\" or null. Only exists if type = tax.")
-    amount: Optional[StrictStr] = Field(default=None, description="Amount")
+    amount: Optional[GetTaxesAndFeesResponseDataInnerAmount] = None
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
@@ -138,6 +139,9 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict()
         # override the default output from pydantic by calling `to_dict()` of amount_adult
         if self.amount_adult:
             _dict['amountAdult'] = self.amount_adult.to_dict()
@@ -226,7 +230,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "name": obj.get("name"),
             "code": obj.get("code"),
             "kind": obj.get("kind"),
-            "amount": obj.get("amount"),
+            "amount": GetTaxesAndFeesResponseDataInnerAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "amountAdult": GetTaxesAndFeesResponseDataInnerAmountAdult.from_dict(obj["amountAdult"]) if obj.get("amountAdult") is not None else None,
             "amountChild": GetTaxesAndFeesResponseDataInnerAmountChild.from_dict(obj["amountChild"]) if obj.get("amountChild") is not None else None,
             "amountRateBased": [GetTaxesAndFeesResponseDataInnerAmountRateBasedInner.from_dict(_item) for _item in obj["amountRateBased"]] if obj.get("amountRateBased") is not None else None,

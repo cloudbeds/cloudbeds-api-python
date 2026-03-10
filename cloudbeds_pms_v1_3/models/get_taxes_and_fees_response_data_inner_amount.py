@@ -21,9 +21,9 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-GETTAXESANDFEESRESPONSEDATAINNERDATERANGESINNERAMOUNT_ONE_OF_SCHEMAS = ["float", "str"]
+GETTAXESANDFEESRESPONSEDATAINNERAMOUNT_ONE_OF_SCHEMAS = ["float", "str"]
 
-class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(BaseModel):
+class GetTaxesAndFeesResponseDataInnerAmount(BaseModel):
     """
     Amount
     """
@@ -52,7 +52,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(BaseModel):
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount.model_construct()
+        instance = GetTaxesAndFeesResponseDataInnerAmount.model_construct()
         error_messages = []
         match = 0
         # validate data type: str
@@ -69,10 +69,10 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(BaseModel):
             error_messages.append(str(e))
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in GetTaxesAndFeesResponseDataInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -108,10 +108,10 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerDateRangesInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into GetTaxesAndFeesResponseDataInnerAmount with oneOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 

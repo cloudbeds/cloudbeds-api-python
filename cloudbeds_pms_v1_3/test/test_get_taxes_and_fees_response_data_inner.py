@@ -41,7 +41,7 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                 name = '',
                 code = '',
                 kind = '',
-                amount = '',
+                amount = None,
                 amount_adult = None,
                 amount_child = None,
                 amount_rate_based = [
