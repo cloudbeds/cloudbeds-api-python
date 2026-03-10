@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **minimum_nights** | **int** | Minimum number of nights required for this range | [optional] 
 **maximum_nights** | **int** | Maximum number of nights for this range (null means no limit) | [optional] 
-**amount** | **float** | Amount for this range | [optional] 
-**amount_adult** | **float** | Amount per adult for this range | [optional] 
-**amount_child** | **float** | Amount per child for this range | [optional] 
+**amount** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmount**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmount.md) |  | [optional] 
+**amount_adult** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmountAdult**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmountAdult.md) |  | [optional] 
+**amount_child** | [**GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmountChild**](GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettingsOneOfRangesInnerAmountChild.md) |  | [optional] 
 **amount_rate_based** | **List[object]** | Rate-based amounts for this range | [optional] 
 
 ## Example

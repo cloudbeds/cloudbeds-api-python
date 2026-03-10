@@ -62,7 +62,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to now.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -96,7 +96,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to now.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -169,7 +169,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to now.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -203,7 +203,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to now.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -276,7 +276,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to now.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -310,7 +310,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to now.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -1317,7 +1317,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -1355,7 +1355,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -1432,7 +1432,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -1470,7 +1470,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -1547,7 +1547,7 @@ class ItemApi:
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Guest identifier")] = None,
         guest_name: Annotated[Optional[StrictStr], Field(description="(Ignored if guestID exist)")] = None,
         payments: Annotated[Optional[List[PostCustomItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
@@ -1585,7 +1585,7 @@ class ItemApi:
         :type room_id: str
         :param items: list of items will be posted
         :type items: List[PostCustomItemRequestItemsInner]
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param guest_id: Guest identifier
         :type guest_id: str
@@ -2112,7 +2112,7 @@ class ItemApi:
         item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
@@ -2151,7 +2151,7 @@ class ItemApi:
         :type item_note: str
         :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
         :type item_paid: bool
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
         :type payments: List[PostItemRequestPaymentsInner]
@@ -2223,7 +2223,7 @@ class ItemApi:
         item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
@@ -2262,7 +2262,7 @@ class ItemApi:
         :type item_note: str
         :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
         :type item_paid: bool
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
         :type payments: List[PostItemRequestPaymentsInner]
@@ -2334,7 +2334,7 @@ class ItemApi:
         item_price: Annotated[Optional[StrictStr], Field(description="Item price, if not sent, items registered price will be used")] = None,
         item_note: Annotated[Optional[StrictStr], Field(description="Item note")] = None,
         item_paid: Annotated[Optional[StrictBool], Field(description="If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.")] = None,
-        sale_date: Annotated[Optional[datetime], Field(description="posting date")] = None,
+        sale_date: Annotated[Optional[datetime], Field(description="Posting date. Defaults to current date.")] = None,
         payments: Annotated[Optional[List[PostItemRequestPaymentsInner]], Field(description="list of payments If the item is already paid")] = None,
         _request_timeout: Union[
             None,
@@ -2373,7 +2373,7 @@ class ItemApi:
         :type item_note: str
         :param item_paid: If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored.
         :type item_paid: bool
-        :param sale_date: posting date
+        :param sale_date: Posting date. Defaults to current date.
         :type sale_date: datetime
         :param payments: list of payments If the item is already paid
         :type payments: List[PostItemRequestPaymentsInner]

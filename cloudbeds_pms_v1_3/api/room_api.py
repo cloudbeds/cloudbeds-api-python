@@ -1143,8 +1143,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1172,9 +1172,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type start_date: date
-        :param end_date: date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int
@@ -1238,8 +1238,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1267,9 +1267,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type start_date: date
-        :param end_date: date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int
@@ -1333,8 +1333,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1362,9 +1362,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: date\"] Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type start_date: date
-        :param end_date: date\"] End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int

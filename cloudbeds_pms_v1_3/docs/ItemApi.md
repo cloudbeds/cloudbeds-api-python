@@ -65,7 +65,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier (optional)
     room_id = 'room_id_example' # str | Room identifier (Ignored if subReservationID exist) (optional)
     items = [cloudbeds_pms_v1_3.PostCustomItemRequestItemsInner()] # List[PostCustomItemRequestItemsInner] | list of items will be posted (optional)
-    sale_date = '2013-10-20T19:20:30+01:00' # datetime | posting date (optional)
+    sale_date = '2013-10-20T19:20:30+01:00' # datetime | Posting date. Defaults to now. (optional)
     guest_id = 'guest_id_example' # str | Guest identifier (optional)
     guest_name = 'guest_name_example' # str | (Ignored if guestID exist) (optional)
     payments = [cloudbeds_pms_v1_3.PostCustomItemRequestPaymentsInner()] # List[PostCustomItemRequestPaymentsInner] | list of payments If the item is already paid (optional)
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
  **sub_reservation_id** | **str**| Sub Reservation identifier | [optional] 
  **room_id** | **str**| Room identifier (Ignored if subReservationID exist) | [optional] 
  **items** | [**List[PostCustomItemRequestItemsInner]**](PostCustomItemRequestItemsInner.md)| list of items will be posted | [optional] 
- **sale_date** | **datetime**| posting date | [optional] 
+ **sale_date** | **datetime**| Posting date. Defaults to now. | [optional] 
  **guest_id** | **str**| Guest identifier | [optional] 
  **guest_name** | **str**| (Ignored if guestID exist) | [optional] 
  **payments** | [**List[PostCustomItemRequestPaymentsInner]**](PostCustomItemRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
@@ -421,7 +421,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier (optional)
     room_id = 'room_id_example' # str | Room identifier (Ignored if subReservationID exist) (optional)
     items = [cloudbeds_pms_v1_3.PostCustomItemRequestItemsInner()] # List[PostCustomItemRequestItemsInner] | list of items will be posted (optional)
-    sale_date = '2013-10-20T19:20:30+01:00' # datetime | posting date (optional)
+    sale_date = '2013-10-20T19:20:30+01:00' # datetime | Posting date. Defaults to current date. (optional)
     guest_id = 'guest_id_example' # str | Guest identifier (optional)
     guest_name = 'guest_name_example' # str | (Ignored if guestID exist) (optional)
     payments = [cloudbeds_pms_v1_3.PostCustomItemRequestPaymentsInner()] # List[PostCustomItemRequestPaymentsInner] | list of payments If the item is already paid (optional)
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
  **sub_reservation_id** | **str**| Sub Reservation identifier | [optional] 
  **room_id** | **str**| Room identifier (Ignored if subReservationID exist) | [optional] 
  **items** | [**List[PostCustomItemRequestItemsInner]**](PostCustomItemRequestItemsInner.md)| list of items will be posted | [optional] 
- **sale_date** | **datetime**| posting date | [optional] 
+ **sale_date** | **datetime**| Posting date. Defaults to current date. | [optional] 
  **guest_id** | **str**| Guest identifier | [optional] 
  **guest_name** | **str**| (Ignored if guestID exist) | [optional] 
  **payments** | [**List[PostCustomItemRequestPaymentsInner]**](PostCustomItemRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
@@ -620,7 +620,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     item_price = 'item_price_example' # str | Item price, if not sent, items registered price will be used (optional)
     item_note = 'item_note_example' # str | Item note (optional)
     item_paid = False # bool | If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. (optional) (default to False)
-    sale_date = '2013-10-20T19:20:30+01:00' # datetime | posting date (optional)
+    sale_date = '2013-10-20T19:20:30+01:00' # datetime | Posting date. Defaults to current date. (optional)
     payments = [cloudbeds_pms_v1_3.PostItemRequestPaymentsInner()] # List[PostItemRequestPaymentsInner] | list of payments If the item is already paid (optional)
 
     try:
@@ -649,7 +649,7 @@ Name | Type | Description  | Notes
  **item_price** | **str**| Item price, if not sent, items registered price will be used | [optional] 
  **item_note** | **str**| Item note | [optional] 
  **item_paid** | **bool**| If the item is already paid. Note: If set to true, a payment in cash will be registered for the total value of the item, taxes and fees. If this is not the expected behavior, set to false, and register the operation manually. If payments is set, itemPaid is ignored. | [optional] [default to False]
- **sale_date** | **datetime**| posting date | [optional] 
+ **sale_date** | **datetime**| Posting date. Defaults to current date. | [optional] 
  **payments** | [**List[PostItemRequestPaymentsInner]**](PostItemRequestPaymentsInner.md)| list of payments If the item is already paid | [optional] 
 
 ### Return type
