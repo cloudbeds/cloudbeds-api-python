@@ -17,24 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner import GetRoomBlocksResponseDataInnerRoomsInner
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner_room_type_id import GetRoomBlocksResponseDataRoomBlocksInnerRoomsInnerRoomTypeID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetRoomBlocksResponseDataInner(BaseModel):
+class GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(BaseModel):
     """
-    GetRoomBlocksResponseDataInner
+    GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner
     """ # noqa: E501
-    room_block_id: Optional[StrictStr] = Field(default=None, description="Room block ID", alias="roomBlockID")
-    room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
-    start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
-    end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
-    rooms: Optional[List[GetRoomBlocksResponseDataInnerRoomsInner]] = Field(default=None, description="All rooms for Block ID. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration).")
-    count: Optional[StrictInt] = Field(default=None, description="Number of results (properties) returned.")
-    __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockReason", "startDate", "endDate", "rooms", "count"]
+    event_id: Optional[StrictStr] = Field(default=None, description="Event ID (unique identifier for this specific room’s block entry)", alias="eventID")
+    room_id: Optional[StrictStr] = Field(default=None, description="Room ID", alias="roomID")
+    room_type_id: Optional[GetRoomBlocksResponseDataRoomBlocksInnerRoomsInnerRoomTypeID] = Field(default=None, alias="roomTypeID")
+    is_source: Optional[StrictBool] = Field(default=None, description="Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room.", alias="isSource")
+    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +51,7 @@ class GetRoomBlocksResponseDataInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponseDataInner from a JSON string"""
+        """Create an instance of GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,18 +72,14 @@ class GetRoomBlocksResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in rooms (list)
-        _items = []
-        if self.rooms:
-            for _item_rooms in self.rooms:
-                if _item_rooms:
-                    _items.append(_item_rooms.to_dict())
-            _dict['rooms'] = _items
+        # override the default output from pydantic by calling `to_dict()` of room_type_id
+        if self.room_type_id:
+            _dict['roomTypeID'] = self.room_type_id.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponseDataInner from a dict"""
+        """Create an instance of GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner from a dict"""
         if obj is None:
             return None
 
@@ -94,12 +87,10 @@ class GetRoomBlocksResponseDataInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "roomBlockID": obj.get("roomBlockID"),
-            "roomBlockReason": obj.get("roomBlockReason"),
-            "startDate": obj.get("startDate"),
-            "endDate": obj.get("endDate"),
-            "rooms": [GetRoomBlocksResponseDataInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
-            "count": obj.get("count")
+            "eventID": obj.get("eventID"),
+            "roomID": obj.get("roomID"),
+            "roomTypeID": GetRoomBlocksResponseDataRoomBlocksInnerRoomsInnerRoomTypeID.from_dict(obj["roomTypeID"]) if obj.get("roomTypeID") is not None else None,
+            "isSource": obj.get("isSource")
         })
         return _obj
 

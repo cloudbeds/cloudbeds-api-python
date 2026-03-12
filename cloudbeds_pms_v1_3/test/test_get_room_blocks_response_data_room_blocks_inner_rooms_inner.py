@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner import GetRoomBlocksResponseDataInnerRoomsInner
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner import GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner
 
-class TestGetRoomBlocksResponseDataInnerRoomsInner(unittest.TestCase):
-    """GetRoomBlocksResponseDataInnerRoomsInner unit test stubs"""
+class TestGetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(unittest.TestCase):
+    """GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,28 @@ class TestGetRoomBlocksResponseDataInnerRoomsInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataInnerRoomsInner:
-        """Test GetRoomBlocksResponseDataInnerRoomsInner
+    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner:
+        """Test GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetRoomBlocksResponseDataInnerRoomsInner`
+        # uncomment below to create an instance of `GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner`
         """
-        model = GetRoomBlocksResponseDataInnerRoomsInner()
+        model = GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner()
         if include_optional:
-            return GetRoomBlocksResponseDataInnerRoomsInner(
+            return GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(
                 event_id = '',
                 room_id = '',
-                room_type_id = '',
+                room_type_id = None,
                 is_source = True
             )
         else:
-            return GetRoomBlocksResponseDataInnerRoomsInner(
+            return GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(
         )
         """
 
-    def testGetRoomBlocksResponseDataInnerRoomsInner(self):
-        """Test GetRoomBlocksResponseDataInnerRoomsInner"""
+    def testGetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(self):
+        """Test GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

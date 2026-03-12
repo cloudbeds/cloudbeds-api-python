@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_room_blocks_response import GetRoomBlocksResponse
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data import GetRoomBlocksResponseData
 
-class TestGetRoomBlocksResponse(unittest.TestCase):
-    """GetRoomBlocksResponse unit test stubs"""
+class TestGetRoomBlocksResponseData(unittest.TestCase):
+    """GetRoomBlocksResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,45 +25,40 @@ class TestGetRoomBlocksResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetRoomBlocksResponse:
-        """Test GetRoomBlocksResponse
+    def make_instance(self, include_optional) -> GetRoomBlocksResponseData:
+        """Test GetRoomBlocksResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetRoomBlocksResponse`
+        # uncomment below to create an instance of `GetRoomBlocksResponseData`
         """
-        model = GetRoomBlocksResponse()
+        model = GetRoomBlocksResponseData()
         if include_optional:
-            return GetRoomBlocksResponse(
-                success = True,
-                data = cloudbeds_pms_v1_3.models.get_room_blocks_response_data.GetRoomBlocksResponse_data(
-                    property_id = '', 
-                    room_blocks = [
-                        cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner.GetRoomBlocksResponse_data_roomBlocks_inner(
-                            room_block_id = '', 
-                            room_block_type = 'blocked', 
-                            room_block_reason = '', 
-                            start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                            end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                            rooms = [
-                                cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner.GetRoomBlocksResponse_data_roomBlocks_inner_rooms_inner(
-                                    event_id = '', 
-                                    room_id = '', 
-                                    room_type_id = null, 
-                                    is_source = True, )
-                                ], )
-                        ], ),
-                count = 56,
-                total = 56,
-                message = ''
+            return GetRoomBlocksResponseData(
+                property_id = '',
+                room_blocks = [
+                    cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner.GetRoomBlocksResponse_data_roomBlocks_inner(
+                        room_block_id = '', 
+                        room_block_type = 'blocked', 
+                        room_block_reason = '', 
+                        start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        rooms = [
+                            cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner.GetRoomBlocksResponse_data_roomBlocks_inner_rooms_inner(
+                                event_id = '', 
+                                room_id = '', 
+                                room_type_id = null, 
+                                is_source = True, )
+                            ], )
+                    ]
             )
         else:
-            return GetRoomBlocksResponse(
+            return GetRoomBlocksResponseData(
         )
         """
 
-    def testGetRoomBlocksResponse(self):
-        """Test GetRoomBlocksResponse"""
+    def testGetRoomBlocksResponseData(self):
+        """Test GetRoomBlocksResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

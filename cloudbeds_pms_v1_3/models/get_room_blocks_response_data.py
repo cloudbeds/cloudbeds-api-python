@@ -17,20 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner import GetRoomBlocksResponseDataRoomBlocksInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetRoomBlocksResponseDataInnerRoomsInner(BaseModel):
+class GetRoomBlocksResponseData(BaseModel):
     """
-    GetRoomBlocksResponseDataInnerRoomsInner
+    Property room block details
     """ # noqa: E501
-    event_id: Optional[StrictStr] = Field(default=None, description="Event ID (unique identifier for this specific room's block entry)", alias="eventID")
-    room_id: Optional[StrictStr] = Field(default=None, description="Room ID", alias="roomID")
-    room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeID")
-    is_source: Optional[StrictBool] = Field(default=None, description="Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room.", alias="isSource")
-    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource"]
+    property_id: Optional[StrictStr] = Field(default=None, description="Property ID", alias="propertyID")
+    room_blocks: Optional[List[GetRoomBlocksResponseDataRoomBlocksInner]] = Field(default=None, description="Room blocks for the property", alias="roomBlocks")
+    __properties: ClassVar[List[str]] = ["propertyID", "roomBlocks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class GetRoomBlocksResponseDataInnerRoomsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponseDataInnerRoomsInner from a JSON string"""
+        """Create an instance of GetRoomBlocksResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +70,18 @@ class GetRoomBlocksResponseDataInnerRoomsInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in room_blocks (list)
+        _items = []
+        if self.room_blocks:
+            for _item_room_blocks in self.room_blocks:
+                if _item_room_blocks:
+                    _items.append(_item_room_blocks.to_dict())
+            _dict['roomBlocks'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponseDataInnerRoomsInner from a dict"""
+        """Create an instance of GetRoomBlocksResponseData from a dict"""
         if obj is None:
             return None
 
@@ -83,10 +89,8 @@ class GetRoomBlocksResponseDataInnerRoomsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "eventID": obj.get("eventID"),
-            "roomID": obj.get("roomID"),
-            "roomTypeID": obj.get("roomTypeID"),
-            "isSource": obj.get("isSource")
+            "propertyID": obj.get("propertyID"),
+            "roomBlocks": [GetRoomBlocksResponseDataRoomBlocksInner.from_dict(_item) for _item in obj["roomBlocks"]] if obj.get("roomBlocks") is not None else None
         })
         return _obj
 

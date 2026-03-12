@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner import GetRoomBlocksResponseDataInner
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner import GetRoomBlocksResponseDataRoomBlocksInner
 
-class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
-    """GetRoomBlocksResponseDataInner unit test stubs"""
+class TestGetRoomBlocksResponseDataRoomBlocksInner(unittest.TestCase):
+    """GetRoomBlocksResponseDataRoomBlocksInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,36 +25,36 @@ class TestGetRoomBlocksResponseDataInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataInner:
-        """Test GetRoomBlocksResponseDataInner
+    def make_instance(self, include_optional) -> GetRoomBlocksResponseDataRoomBlocksInner:
+        """Test GetRoomBlocksResponseDataRoomBlocksInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetRoomBlocksResponseDataInner`
+        # uncomment below to create an instance of `GetRoomBlocksResponseDataRoomBlocksInner`
         """
-        model = GetRoomBlocksResponseDataInner()
+        model = GetRoomBlocksResponseDataRoomBlocksInner()
         if include_optional:
-            return GetRoomBlocksResponseDataInner(
+            return GetRoomBlocksResponseDataRoomBlocksInner(
                 room_block_id = '',
+                room_block_type = 'blocked',
                 room_block_reason = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 rooms = [
-                    cloudbeds_pms_v1_3.models.get_room_blocks_response_data_inner_rooms_inner.GetRoomBlocksResponse_data_inner_rooms_inner(
+                    cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner.GetRoomBlocksResponse_data_roomBlocks_inner_rooms_inner(
                         event_id = '', 
                         room_id = '', 
-                        room_type_id = '', 
+                        room_type_id = null, 
                         is_source = True, )
-                    ],
-                count = 56
+                    ]
             )
         else:
-            return GetRoomBlocksResponseDataInner(
+            return GetRoomBlocksResponseDataRoomBlocksInner(
         )
         """
 
-    def testGetRoomBlocksResponseDataInner(self):
-        """Test GetRoomBlocksResponseDataInner"""
+    def testGetRoomBlocksResponseDataRoomBlocksInner(self):
+        """Test GetRoomBlocksResponseDataRoomBlocksInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

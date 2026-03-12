@@ -17,22 +17,35 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from datetime import date
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_room_blocks_response_data import GetRoomBlocksResponseData
+from cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner_rooms_inner import GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetRoomBlocksResponse(BaseModel):
+class GetRoomBlocksResponseDataRoomBlocksInner(BaseModel):
     """
-    GetRoomBlocksResponse
+    GetRoomBlocksResponseDataRoomBlocksInner
     """ # noqa: E501
-    success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
-    data: Optional[GetRoomBlocksResponseData] = None
-    count: Optional[StrictInt] = Field(default=None, description="Number of results returned.")
-    total: Optional[StrictInt] = Field(default=None, description="Total number of results.")
-    message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false).  If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "data", "count", "total", "message"]
+    room_block_id: Optional[StrictStr] = Field(default=None, description="Room block ID", alias="roomBlockID")
+    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.", alias="roomBlockType")
+    room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
+    start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
+    end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
+    rooms: Optional[List[GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner]] = Field(default=None, description="All rooms for Block ID. For properties using split inventory, this includes both source rooms (explicitly requested) and linked rooms (automatically added based on shared inventory configuration).")
+    __properties: ClassVar[List[str]] = ["roomBlockID", "roomBlockType", "roomBlockReason", "startDate", "endDate", "rooms"]
+
+    @field_validator('room_block_type')
+    def room_block_type_validate_enum(cls, value):
+        """Validates the enum, returning unknown_default_open_api for unrecognized values"""
+        if value is None:
+            return value
+
+        _allowed_values = set(['blocked', 'out_of_service', 'courtesy_hold', 'unknown_default_open_api'])
+        if value not in _allowed_values:
+            return 'unknown_default_open_api'
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +65,7 @@ class GetRoomBlocksResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponse from a JSON string"""
+        """Create an instance of GetRoomBlocksResponseDataRoomBlocksInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +86,18 @@ class GetRoomBlocksResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
-        if self.data:
-            _dict['data'] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in rooms (list)
+        _items = []
+        if self.rooms:
+            for _item_rooms in self.rooms:
+                if _item_rooms:
+                    _items.append(_item_rooms.to_dict())
+            _dict['rooms'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetRoomBlocksResponse from a dict"""
+        """Create an instance of GetRoomBlocksResponseDataRoomBlocksInner from a dict"""
         if obj is None:
             return None
 
@@ -88,11 +105,12 @@ class GetRoomBlocksResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "data": GetRoomBlocksResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None,
-            "count": obj.get("count"),
-            "total": obj.get("total"),
-            "message": obj.get("message")
+            "roomBlockID": obj.get("roomBlockID"),
+            "roomBlockType": obj.get("roomBlockType"),
+            "roomBlockReason": obj.get("roomBlockReason"),
+            "startDate": obj.get("startDate"),
+            "endDate": obj.get("endDate"),
+            "rooms": [GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None
         })
         return _obj
 
