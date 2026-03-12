@@ -37,7 +37,113 @@ class TestImportTaskListRequestSchema(unittest.TestCase):
             return ImportTaskListRequestSchema(
                 limit = 1,
                 offset = 1,
-                filters = field1:value;field2:operator:value,
+                filters = {
+        "and": [
+            {
+                "field": "checkin_date",
+                "operator": "less_than_or_equal",
+                "value": "2023-12-01T00:00:00"
+            },
+            {
+                "or": [
+                    {
+                        "and": [
+                            {
+                                "field": "checkin_date",
+                                "operator": "less_than_or_equal",
+                                "value": "2023-12-01T00:00:00"
+                            },
+                            {
+                                "field": "guest_first_name",
+                                "operator": "starts_with",
+                                "value": [
+                                    "John",
+                                    "Doe"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "field": "guest_last_name",
+                        "operator": "ends_with",
+                        "value": "Doe"
+                    },
+                    {
+                        "field": "guest_name",
+                        "operator": "in",
+                        "value": [
+                            "John Smith",
+                            "Doe Family"
+                        ]
+                    },
+                    {
+                        "field": "guest_email",
+                        "operator": "not_in",
+                        "value": [
+                            "test@example.com",
+                            "fakeuser@example.org"
+                        ]
+                    },
+                    {
+                        "field": "status",
+                        "operator": "is_null"
+                    },
+                    {
+                        "field": "reservation_notes",
+                        "operator": "is_not_null"
+                    }
+                ]
+            },
+            {
+                "field": "room_price",
+                "operator": "equals",
+                "value": 150
+            },
+            {
+                "field": "discount_code",
+                "operator": "not_equals",
+                "value": "BLACKFRIDAY2024"
+            },
+            {
+                "field": "guest_comments",
+                "operator": "contains",
+                "value": "great service"
+            },
+            {
+                "field": "special_requests",
+                "operator": "not_contains",
+                "value": "late check-out"
+            },
+            {
+                "field": "property_name",
+                "operator": "starts_with",
+                "value": "Luxury"
+            },
+            {
+                "field": "property_location",
+                "operator": "not_starts_with",
+                "value": "Downtown"
+            },
+            {
+                "field": "booking_reference",
+                "operator": "ends_with",
+                "value": "-2023"
+            },
+            {
+                "field": "transaction_id",
+                "operator": "not_ends_with",
+                "value": "-VOID"
+            },
+            {
+                "field": "internal_notes",
+                "operator": "is_empty"
+            },
+            {
+                "field": "guest_feedback",
+                "operator": "is_not_empty"
+            }
+        ]
+    },
                 include_children = True
             )
         else:

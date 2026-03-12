@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.update_reservation_room_response_schema_total import UpdateReservationRoomResponseSchemaTotal
+from cloudbeds_pms.models.policy_exception_rate_schema import PolicyExceptionRateSchema
 
-class TestUpdateReservationRoomResponseSchemaTotal(unittest.TestCase):
-    """UpdateReservationRoomResponseSchemaTotal unit test stubs"""
+class TestPolicyExceptionRateSchema(unittest.TestCase):
+    """PolicyExceptionRateSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,27 @@ class TestUpdateReservationRoomResponseSchemaTotal(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> UpdateReservationRoomResponseSchemaTotal:
-        """Test UpdateReservationRoomResponseSchemaTotal
+    def make_instance(self, include_optional) -> PolicyExceptionRateSchema:
+        """Test PolicyExceptionRateSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `UpdateReservationRoomResponseSchemaTotal`
+        # uncomment below to create an instance of `PolicyExceptionRateSchema`
         """
-        model = UpdateReservationRoomResponseSchemaTotal()
+        model = PolicyExceptionRateSchema()
         if include_optional:
-            return UpdateReservationRoomResponseSchemaTotal(
-                amount = '12439',
-                currency_code = 'USD'
+            return PolicyExceptionRateSchema(
+                package_id = 123,
+                room_type_id = 456
             )
         else:
-            return UpdateReservationRoomResponseSchemaTotal(
-                amount = '12439',
-                currency_code = 'USD',
+            return PolicyExceptionRateSchema(
+                package_id = 123,
         )
         """
 
-    def testUpdateReservationRoomResponseSchemaTotal(self):
-        """Test UpdateReservationRoomResponseSchemaTotal"""
+    def testPolicyExceptionRateSchema(self):
+        """Test PolicyExceptionRateSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

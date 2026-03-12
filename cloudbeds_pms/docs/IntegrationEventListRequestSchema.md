@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **limit** | **int** | The limit for the number of items to return (max 500) | [optional] [default to 100]
 **offset** | **int** | The offset for the current page of results | [optional] [default to 0]
-**filters** | [**QueryParameterDynamicFilterSchemaFilters**](QueryParameterDynamicFilterSchemaFilters.md) |  | [optional] 
+**filters** | [**DynamicFilterSchema**](DynamicFilterSchema.md) |  | [optional] 
 **sort** | [**SortSchema**](SortSchema.md) |  | [optional] 
 
 ## Example

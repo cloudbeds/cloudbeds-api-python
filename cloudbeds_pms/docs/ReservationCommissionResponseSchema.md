@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **reservation_id** | **str** |  | 
 **effective_commission** | [**MoneySchema**](MoneySchema.md) |  | 
 **effective_commission_type** | **str** |  | 
-**estimated_commission_from_source** | [**ReservationCommissionResponseSchemaEstimatedCommissionFromSource**](ReservationCommissionResponseSchemaEstimatedCommissionFromSource.md) |  | [optional] 
-**estimated_commissionable_revenue** | [**ReservationCommissionResponseSchemaEstimatedCommissionFromSource**](ReservationCommissionResponseSchemaEstimatedCommissionFromSource.md) |  | [optional] 
-**channel_commission** | [**ReservationCommissionResponseSchemaEstimatedCommissionFromSource**](ReservationCommissionResponseSchemaEstimatedCommissionFromSource.md) |  | [optional] 
+**estimated_commission_from_source** | [**MoneySchema**](MoneySchema.md) |  | [optional] 
+**estimated_commissionable_revenue** | [**MoneySchema**](MoneySchema.md) |  | [optional] 
+**channel_commission** | [**MoneySchema**](MoneySchema.md) |  | [optional] 
 **channel_commission_type** | **str** |  | [optional] 
 **source_commission_percentage** | **float** |  | [optional] 
 **created_at** | **str** |  | 

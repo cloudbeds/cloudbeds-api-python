@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.body_dynamic_filter_schema_filters import BodyDynamicFilterSchemaFilters
+from cloudbeds_pms.models.get_policy_exception_request_schema import GetPolicyExceptionRequestSchema
 
-class TestBodyDynamicFilterSchemaFilters(unittest.TestCase):
-    """BodyDynamicFilterSchemaFilters unit test stubs"""
+class TestGetPolicyExceptionRequestSchema(unittest.TestCase):
+    """GetPolicyExceptionRequestSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,26 @@ class TestBodyDynamicFilterSchemaFilters(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> BodyDynamicFilterSchemaFilters:
-        """Test BodyDynamicFilterSchemaFilters
+    def make_instance(self, include_optional) -> GetPolicyExceptionRequestSchema:
+        """Test GetPolicyExceptionRequestSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `BodyDynamicFilterSchemaFilters`
+        # uncomment below to create an instance of `GetPolicyExceptionRequestSchema`
         """
-        model = BodyDynamicFilterSchemaFilters()
+        model = GetPolicyExceptionRequestSchema()
         if include_optional:
-            return BodyDynamicFilterSchemaFilters(
-                var_and = [
-                    null
-                    ],
-                var_or = [
-                    null
-                    ]
+            return GetPolicyExceptionRequestSchema(
+                exception_id = '5001'
             )
         else:
-            return BodyDynamicFilterSchemaFilters(
+            return GetPolicyExceptionRequestSchema(
+                exception_id = '5001',
         )
         """
 
-    def testBodyDynamicFilterSchemaFilters(self):
-        """Test BodyDynamicFilterSchemaFilters"""
+    def testGetPolicyExceptionRequestSchema(self):
+        """Test GetPolicyExceptionRequestSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

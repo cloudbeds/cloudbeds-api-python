@@ -39,7 +39,9 @@ class TestUpdateReservationRoomResponseSchema(unittest.TestCase):
                 room_id = '',
                 room_type_id = 56,
                 room_name = '',
-                total = None
+                total = cloudbeds_pms.models.money_schema.MoneySchema(
+                    amount = '12439', 
+                    currency_code = 'USD', )
             )
         else:
             return UpdateReservationRoomResponseSchema(
@@ -47,7 +49,9 @@ class TestUpdateReservationRoomResponseSchema(unittest.TestCase):
                 room_id = '',
                 room_type_id = 56,
                 room_name = '',
-                total = None,
+                total = cloudbeds_pms.models.money_schema.MoneySchema(
+                    amount = '12439', 
+                    currency_code = 'USD', ),
         )
         """
 

@@ -36,7 +36,11 @@ class TestBadRequestResponseSchema(unittest.TestCase):
         if include_optional:
             return BadRequestResponseSchema(
                 message = '',
-                errors = None,
+                errors = [
+                    cloudbeds_pms.models.bad_request_error_item_schema.BadRequestErrorItemSchema(
+                        field = '', 
+                        message = '', )
+                    ],
                 code = 'INVALID_REQUEST'
             )
         else:

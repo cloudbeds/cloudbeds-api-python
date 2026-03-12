@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.query_parameter_dynamic_filter_schema_filters import QueryParameterDynamicFilterSchemaFilters
+from cloudbeds_pms.models.dynamic_filter_schema import DynamicFilterSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class QueryParameterDynamicFilterSchema(BaseModel):
     """
     QueryParameterDynamicFilterSchema
     """ # noqa: E501
-    filters: Optional[QueryParameterDynamicFilterSchemaFilters] = None
+    filters: Optional[DynamicFilterSchema] = None
     __properties: ClassVar[List[str]] = ["filters"]
 
     model_config = ConfigDict(
@@ -89,7 +89,7 @@ class QueryParameterDynamicFilterSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filters": QueryParameterDynamicFilterSchemaFilters.from_dict(obj["filters"]) if obj.get("filters") is not None else None
+            "filters": DynamicFilterSchema.from_dict(obj["filters"]) if obj.get("filters") is not None else None
         })
         return _obj
 

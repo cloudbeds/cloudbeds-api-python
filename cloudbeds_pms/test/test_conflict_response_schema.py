@@ -36,7 +36,13 @@ class TestConflictResponseSchema(unittest.TestCase):
         if include_optional:
             return ConflictResponseSchema(
                 message = '',
-                errors = None,
+                errors = [
+                    cloudbeds_pms.models.conflict_error_item_schema.ConflictErrorItemSchema(
+                        field = '', 
+                        message = '', 
+                        code = 'OVERBOOKING_CONFIRMATION_REQUIRED', 
+                        details = cloudbeds_pms.models.details.details(), )
+                    ],
                 code = 'CONFIRMATION_REQUIRED'
             )
         else:

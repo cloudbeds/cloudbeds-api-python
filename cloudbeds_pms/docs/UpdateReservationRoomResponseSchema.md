@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **room_id** | **str** | Assigned room ID (null if unassigned) | 
 **room_type_id** | **int** | Room type ID | 
 **room_name** | **str** | Room name | 
-**total** | [**UpdateReservationRoomResponseSchemaTotal**](UpdateReservationRoomResponseSchemaTotal.md) |  | 
+**total** | [**MoneySchema**](MoneySchema.md) |  | 
 
 ## Example
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filters** | [**BodyDynamicFilterSchemaFilters**](BodyDynamicFilterSchemaFilters.md) |  | [optional] 
+**filters** | [**DynamicFilterSchema**](DynamicFilterSchema.md) |  | [optional] 
 
 ## Example
 

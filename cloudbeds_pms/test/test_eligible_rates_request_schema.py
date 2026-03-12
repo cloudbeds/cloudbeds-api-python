@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.bad_request_response_schema_errors import BadRequestResponseSchemaErrors
+from cloudbeds_pms.models.eligible_rates_request_schema import EligibleRatesRequestSchema
 
-class TestBadRequestResponseSchemaErrors(unittest.TestCase):
-    """BadRequestResponseSchemaErrors unit test stubs"""
+class TestEligibleRatesRequestSchema(unittest.TestCase):
+    """EligibleRatesRequestSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,24 +25,39 @@ class TestBadRequestResponseSchemaErrors(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> BadRequestResponseSchemaErrors:
-        """Test BadRequestResponseSchemaErrors
+    def make_instance(self, include_optional) -> EligibleRatesRequestSchema:
+        """Test EligibleRatesRequestSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `BadRequestResponseSchemaErrors`
+        # uncomment below to create an instance of `EligibleRatesRequestSchema`
         """
-        model = BadRequestResponseSchemaErrors()
+        model = EligibleRatesRequestSchema()
         if include_optional:
-            return BadRequestResponseSchemaErrors(
+            return EligibleRatesRequestSchema(
+                limit = 1,
+                offset = 1,
+                sort = [
+        {
+            "field": "checkin_date",
+            "direction": "desc"
+        },
+        {
+            "field": "checkout_date"
+        }
+    ],
+                start_date = 'Mon Jan 01 00:00:00 UTC 2024',
+                end_date = 'Wed Jan 31 00:00:00 UTC 2024'
             )
         else:
-            return BadRequestResponseSchemaErrors(
+            return EligibleRatesRequestSchema(
+                start_date = 'Mon Jan 01 00:00:00 UTC 2024',
+                end_date = 'Wed Jan 31 00:00:00 UTC 2024',
         )
         """
 
-    def testBadRequestResponseSchemaErrors(self):
-        """Test BadRequestResponseSchemaErrors"""
+    def testEligibleRatesRequestSchema(self):
+        """Test EligibleRatesRequestSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

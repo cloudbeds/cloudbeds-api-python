@@ -12,4 +12,5 @@ from cloudbeds_pms.api.items_api import ItemsApi
 from cloudbeds_pms.api.market_segmentation_api import MarketSegmentationApi
 from cloudbeds_pms.api.property_api import PropertyApi
 from cloudbeds_pms.api.rooms_api import RoomsApi
+from cloudbeds_pms.api.smart_policy_exceptions_api import SmartPolicyExceptionsApi
 

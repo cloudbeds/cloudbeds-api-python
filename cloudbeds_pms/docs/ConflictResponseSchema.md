@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** |  | 
-**errors** | [**ConflictResponseSchemaErrors**](ConflictResponseSchemaErrors.md) |  | [optional] 
+**errors** | [**List[ConflictErrorItemSchema]**](ConflictErrorItemSchema.md) |  | [optional] 
 **code** | **str** | Error code identifying the type of conflict | [optional] 
 
 ## Example

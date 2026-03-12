@@ -20,7 +20,6 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms.models.money_schema import MoneySchema
-from cloudbeds_pms.models.reservation_commission_response_schema_estimated_commission_from_source import ReservationCommissionResponseSchemaEstimatedCommissionFromSource
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,9 +32,9 @@ class ReservationCommissionResponseSchema(BaseModel):
     reservation_id: StrictStr = Field(alias="reservationId")
     effective_commission: MoneySchema = Field(alias="effectiveCommission")
     effective_commission_type: StrictStr = Field(alias="effectiveCommissionType")
-    estimated_commission_from_source: Optional[ReservationCommissionResponseSchemaEstimatedCommissionFromSource] = Field(default=None, alias="estimatedCommissionFromSource")
-    estimated_commissionable_revenue: Optional[ReservationCommissionResponseSchemaEstimatedCommissionFromSource] = Field(default=None, alias="estimatedCommissionableRevenue")
-    channel_commission: Optional[ReservationCommissionResponseSchemaEstimatedCommissionFromSource] = Field(default=None, alias="channelCommission")
+    estimated_commission_from_source: Optional[MoneySchema] = Field(default=None, alias="estimatedCommissionFromSource")
+    estimated_commissionable_revenue: Optional[MoneySchema] = Field(default=None, alias="estimatedCommissionableRevenue")
+    channel_commission: Optional[MoneySchema] = Field(default=None, alias="channelCommission")
     channel_commission_type: Optional[StrictStr] = Field(default=None, alias="channelCommissionType")
     source_commission_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="sourceCommissionPercentage")
     created_at: StrictStr = Field(alias="createdAt")
@@ -140,9 +139,9 @@ class ReservationCommissionResponseSchema(BaseModel):
             "reservationId": obj.get("reservationId"),
             "effectiveCommission": MoneySchema.from_dict(obj["effectiveCommission"]) if obj.get("effectiveCommission") is not None else None,
             "effectiveCommissionType": obj.get("effectiveCommissionType"),
-            "estimatedCommissionFromSource": ReservationCommissionResponseSchemaEstimatedCommissionFromSource.from_dict(obj["estimatedCommissionFromSource"]) if obj.get("estimatedCommissionFromSource") is not None else None,
-            "estimatedCommissionableRevenue": ReservationCommissionResponseSchemaEstimatedCommissionFromSource.from_dict(obj["estimatedCommissionableRevenue"]) if obj.get("estimatedCommissionableRevenue") is not None else None,
-            "channelCommission": ReservationCommissionResponseSchemaEstimatedCommissionFromSource.from_dict(obj["channelCommission"]) if obj.get("channelCommission") is not None else None,
+            "estimatedCommissionFromSource": MoneySchema.from_dict(obj["estimatedCommissionFromSource"]) if obj.get("estimatedCommissionFromSource") is not None else None,
+            "estimatedCommissionableRevenue": MoneySchema.from_dict(obj["estimatedCommissionableRevenue"]) if obj.get("estimatedCommissionableRevenue") is not None else None,
+            "channelCommission": MoneySchema.from_dict(obj["channelCommission"]) if obj.get("channelCommission") is not None else None,
             "channelCommissionType": obj.get("channelCommissionType"),
             "sourceCommissionPercentage": obj.get("sourceCommissionPercentage"),
             "createdAt": obj.get("createdAt"),

@@ -14,41 +14,67 @@
 
 import unittest
 
-from cloudbeds_pms.models.reservation_commission_response_schema_estimated_commission_from_source import ReservationCommissionResponseSchemaEstimatedCommissionFromSource
+from cloudbeds_pms.api.smart_policy_exceptions_api import SmartPolicyExceptionsApi
 
-class TestReservationCommissionResponseSchemaEstimatedCommissionFromSource(unittest.TestCase):
-    """ReservationCommissionResponseSchemaEstimatedCommissionFromSource unit test stubs"""
 
-    def setUp(self):
+class TestSmartPolicyExceptionsApi(unittest.TestCase):
+    """SmartPolicyExceptionsApi unit test stubs"""
+
+    def setUp(self) -> None:
+        self.api = SmartPolicyExceptionsApi()
+
+    def tearDown(self) -> None:
         pass
 
-    def tearDown(self):
+    def test_policy_exception_controller_create(self) -> None:
+        """Test case for policy_exception_controller_create
+
+        Create a new policy exception.
+        """
         pass
 
-    def make_instance(self, include_optional) -> ReservationCommissionResponseSchemaEstimatedCommissionFromSource:
-        """Test ReservationCommissionResponseSchemaEstimatedCommissionFromSource
-            include_optional is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `ReservationCommissionResponseSchemaEstimatedCommissionFromSource`
-        """
-        model = ReservationCommissionResponseSchemaEstimatedCommissionFromSource()
-        if include_optional:
-            return ReservationCommissionResponseSchemaEstimatedCommissionFromSource(
-                amount = '12439',
-                currency_code = 'USD'
-            )
-        else:
-            return ReservationCommissionResponseSchemaEstimatedCommissionFromSource(
-                amount = '12439',
-                currency_code = 'USD',
-        )
-        """
+    def test_policy_exception_controller_destroy(self) -> None:
+        """Test case for policy_exception_controller_destroy
 
-    def testReservationCommissionResponseSchemaEstimatedCommissionFromSource(self):
-        """Test ReservationCommissionResponseSchemaEstimatedCommissionFromSource"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        Delete a policy exception.
+        """
+        pass
+
+    def test_policy_exception_controller_eligible_rates(self) -> None:
+        """Test case for policy_exception_controller_eligible_rates
+
+        Get eligible rate plans and base rates for exception creation.
+        """
+        pass
+
+    def test_policy_exception_controller_index(self) -> None:
+        """Test case for policy_exception_controller_index
+
+        List all policy exceptions for a property.
+        """
+        pass
+
+    def test_policy_exception_controller_partial_update(self) -> None:
+        """Test case for policy_exception_controller_partial_update
+
+        Partially update a policy exception.
+        """
+        pass
+
+    def test_policy_exception_controller_show(self) -> None:
+        """Test case for policy_exception_controller_show
+
+        Get a single policy exception by ID.
+        """
+        pass
+
+    def test_policy_exception_controller_update(self) -> None:
+        """Test case for policy_exception_controller_update
+
+        Update an existing policy exception.
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

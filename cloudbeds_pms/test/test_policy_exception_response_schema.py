@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.query_parameter_dynamic_filter_schema_filters import QueryParameterDynamicFilterSchemaFilters
+from cloudbeds_pms.models.policy_exception_response_schema import PolicyExceptionResponseSchema
 
-class TestQueryParameterDynamicFilterSchemaFilters(unittest.TestCase):
-    """QueryParameterDynamicFilterSchemaFilters unit test stubs"""
+class TestPolicyExceptionResponseSchema(unittest.TestCase):
+    """PolicyExceptionResponseSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,49 @@ class TestQueryParameterDynamicFilterSchemaFilters(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> QueryParameterDynamicFilterSchemaFilters:
-        """Test QueryParameterDynamicFilterSchemaFilters
+    def make_instance(self, include_optional) -> PolicyExceptionResponseSchema:
+        """Test PolicyExceptionResponseSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `QueryParameterDynamicFilterSchemaFilters`
+        # uncomment below to create an instance of `PolicyExceptionResponseSchema`
         """
-        model = QueryParameterDynamicFilterSchemaFilters()
+        model = PolicyExceptionResponseSchema()
         if include_optional:
-            return QueryParameterDynamicFilterSchemaFilters(
-                var_and = [
-                    null
+            return PolicyExceptionResponseSchema(
+                id = '5001',
+                property_id = '1234',
+                name = 'Winter holiday exception',
+                policy_root_id = '1001',
+                enabled = True,
+                created_by = '9876',
+                created_at = '2024-01-01T10:00Z',
+                updated_at = '2024-01-15T12:00Z',
+                intervals = [
+                    cloudbeds_pms.models.policy_exception_interval_response_schema.PolicyExceptionIntervalResponseSchema(
+                        start_date = 'Mon Jan 01 00:00:00 UTC 2024', 
+                        end_date = 'Wed Jan 31 00:00:00 UTC 2024', 
+                        day0 = True, 
+                        day1 = True, 
+                        day2 = True, 
+                        day3 = True, 
+                        day4 = True, 
+                        day5 = True, 
+                        day6 = True, )
                     ],
-                var_or = [
-                    null
+                rates = [
+                    cloudbeds_pms.models.policy_exception_rate_response_schema.PolicyExceptionRateResponseSchema(
+                        package_id = '123', 
+                        room_type_id = '456', )
                     ]
             )
         else:
-            return QueryParameterDynamicFilterSchemaFilters(
+            return PolicyExceptionResponseSchema(
         )
         """
 
-    def testQueryParameterDynamicFilterSchemaFilters(self):
-        """Test QueryParameterDynamicFilterSchemaFilters"""
+    def testPolicyExceptionResponseSchema(self):
+        """Test PolicyExceptionResponseSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

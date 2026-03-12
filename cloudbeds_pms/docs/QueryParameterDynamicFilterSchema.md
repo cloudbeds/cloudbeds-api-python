@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filters** | [**QueryParameterDynamicFilterSchemaFilters**](QueryParameterDynamicFilterSchemaFilters.md) |  | [optional] 
+**filters** | [**DynamicFilterSchema**](DynamicFilterSchema.md) |  | [optional] 
 
 ## Example
 

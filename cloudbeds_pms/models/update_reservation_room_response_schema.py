@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.update_reservation_room_response_schema_total import UpdateReservationRoomResponseSchemaTotal
+from cloudbeds_pms.models.money_schema import MoneySchema
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +31,7 @@ class UpdateReservationRoomResponseSchema(BaseModel):
     room_id: Optional[StrictStr] = Field(description="Assigned room ID (null if unassigned)", alias="roomId")
     room_type_id: Optional[StrictInt] = Field(description="Room type ID", alias="roomTypeId")
     room_name: Optional[StrictStr] = Field(description="Room name", alias="roomName")
-    total: Optional[UpdateReservationRoomResponseSchemaTotal]
+    total: Optional[MoneySchema]
     __properties: ClassVar[List[str]] = ["reservationRoomId", "roomId", "roomTypeId", "roomName", "total"]
 
     model_config = ConfigDict(
@@ -112,7 +112,7 @@ class UpdateReservationRoomResponseSchema(BaseModel):
             "roomId": obj.get("roomId"),
             "roomTypeId": obj.get("roomTypeId"),
             "roomName": obj.get("roomName"),
-            "total": UpdateReservationRoomResponseSchemaTotal.from_dict(obj["total"]) if obj.get("total") is not None else None
+            "total": MoneySchema.from_dict(obj["total"]) if obj.get("total") is not None else None
         })
         return _obj
 

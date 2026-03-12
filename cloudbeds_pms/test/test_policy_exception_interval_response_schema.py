@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.conflict_response_schema_errors import ConflictResponseSchemaErrors
+from cloudbeds_pms.models.policy_exception_interval_response_schema import PolicyExceptionIntervalResponseSchema
 
-class TestConflictResponseSchemaErrors(unittest.TestCase):
-    """ConflictResponseSchemaErrors unit test stubs"""
+class TestPolicyExceptionIntervalResponseSchema(unittest.TestCase):
+    """PolicyExceptionIntervalResponseSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,24 +25,33 @@ class TestConflictResponseSchemaErrors(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ConflictResponseSchemaErrors:
-        """Test ConflictResponseSchemaErrors
+    def make_instance(self, include_optional) -> PolicyExceptionIntervalResponseSchema:
+        """Test PolicyExceptionIntervalResponseSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ConflictResponseSchemaErrors`
+        # uncomment below to create an instance of `PolicyExceptionIntervalResponseSchema`
         """
-        model = ConflictResponseSchemaErrors()
+        model = PolicyExceptionIntervalResponseSchema()
         if include_optional:
-            return ConflictResponseSchemaErrors(
+            return PolicyExceptionIntervalResponseSchema(
+                start_date = 'Mon Jan 01 00:00:00 UTC 2024',
+                end_date = 'Wed Jan 31 00:00:00 UTC 2024',
+                day0 = True,
+                day1 = True,
+                day2 = True,
+                day3 = True,
+                day4 = True,
+                day5 = True,
+                day6 = True
             )
         else:
-            return ConflictResponseSchemaErrors(
+            return PolicyExceptionIntervalResponseSchema(
         )
         """
 
-    def testConflictResponseSchemaErrors(self):
-        """Test ConflictResponseSchemaErrors"""
+    def testPolicyExceptionIntervalResponseSchema(self):
+        """Test PolicyExceptionIntervalResponseSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

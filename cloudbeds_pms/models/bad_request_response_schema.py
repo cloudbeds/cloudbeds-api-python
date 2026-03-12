@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms.models.bad_request_response_schema_errors import BadRequestResponseSchemaErrors
+from cloudbeds_pms.models.bad_request_error_item_schema import BadRequestErrorItemSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class BadRequestResponseSchema(BaseModel):
     BadRequestResponseSchema
     """ # noqa: E501
     message: StrictStr
-    errors: Optional[BadRequestResponseSchemaErrors] = None
+    errors: Optional[List[BadRequestErrorItemSchema]] = None
     code: Optional[StrictStr] = Field(default=None, description="Error code identifying the type of error")
     __properties: ClassVar[List[str]] = ["message", "errors", "code"]
 
@@ -71,9 +71,13 @@ class BadRequestResponseSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of errors
+        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        _items = []
         if self.errors:
-            _dict['errors'] = self.errors.to_dict()
+            for _item_errors in self.errors:
+                if _item_errors:
+                    _items.append(_item_errors.to_dict())
+            _dict['errors'] = _items
         # set to None if errors (nullable) is None
         # and model_fields_set contains the field
         if self.errors is None and "errors" in self.model_fields_set:
@@ -97,7 +101,7 @@ class BadRequestResponseSchema(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "errors": BadRequestResponseSchemaErrors.from_dict(obj["errors"]) if obj.get("errors") is not None else None,
+            "errors": [BadRequestErrorItemSchema.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None,
             "code": obj.get("code")
         })
         return _obj
