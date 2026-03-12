@@ -17,18 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
+from cloudbeds_pms.models.arrangement_item_schema import ArrangementItemSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ReservationRoomControllerUpdateRoomRequest(BaseModel):
+class AreaItemSchema(BaseModel):
     """
-    ReservationRoomControllerUpdateRoomRequest
+    AreaItemSchema
     """ # noqa: E501
-    room_id: Optional[StrictStr] = Field(default=None, description="Room ID to assign (format: 'roomTypeId-roomNumber'), or null to unassign", alias="roomId")
-    adjust_price: Optional[StrictBool] = Field(default=False, description="Whether to adjust price if room assignment changes rate", alias="adjustPrice")
-    __properties: ClassVar[List[str]] = ["roomId", "adjustPrice"]
+    type_code: StrictStr = Field(description="Area type code. Valid values: BEDROOM, LIVING_ROOM (for MULTI layout), SLEEPING_AREA (for SINGLE layout)", alias="typeCode")
+    position: Annotated[int, Field(strict=True, ge=0)] = Field(description="Position/order of this area")
+    arrangements: Annotated[List[ArrangementItemSchema], Field(min_length=0, max_length=1)] = Field(description="List of bed arrangements in this area. BEDROOM areas must have exactly 1 arrangement. LIVING_ROOM areas can have 0 or 1 arrangement.")
+    __properties: ClassVar[List[str]] = ["typeCode", "position", "arrangements"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +51,7 @@ class ReservationRoomControllerUpdateRoomRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ReservationRoomControllerUpdateRoomRequest from a JSON string"""
+        """Create an instance of AreaItemSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,16 +72,18 @@ class ReservationRoomControllerUpdateRoomRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if room_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.room_id is None and "room_id" in self.model_fields_set:
-            _dict['roomId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in arrangements (list)
+        _items = []
+        if self.arrangements:
+            for _item_arrangements in self.arrangements:
+                if _item_arrangements:
+                    _items.append(_item_arrangements.to_dict())
+            _dict['arrangements'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ReservationRoomControllerUpdateRoomRequest from a dict"""
+        """Create an instance of AreaItemSchema from a dict"""
         if obj is None:
             return None
 
@@ -86,8 +91,9 @@ class ReservationRoomControllerUpdateRoomRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "roomId": obj.get("roomId"),
-            "adjustPrice": obj.get("adjustPrice") if obj.get("adjustPrice") is not None else False
+            "typeCode": obj.get("typeCode"),
+            "position": obj.get("position"),
+            "arrangements": [ArrangementItemSchema.from_dict(_item) for _item in obj["arrangements"]] if obj.get("arrangements") is not None else None
         })
         return _obj
 

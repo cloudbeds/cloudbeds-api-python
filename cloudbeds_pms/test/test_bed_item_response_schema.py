@@ -14,25 +14,45 @@
 
 import unittest
 
-from cloudbeds_pms.api.reservations_api import ReservationsApi
+from cloudbeds_pms.models.bed_item_response_schema import BedItemResponseSchema
 
+class TestBedItemResponseSchema(unittest.TestCase):
+    """BedItemResponseSchema unit test stubs"""
 
-class TestReservationsApi(unittest.TestCase):
-    """ReservationsApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = ReservationsApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_reservation_room_controller_update_room(self) -> None:
-        """Test case for reservation_room_controller_update_room
+    def tearDown(self):
+        pass
 
-        Update room assignment for a reservation
+    def make_instance(self, include_optional) -> BedItemResponseSchema:
+        """Test BedItemResponseSchema
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `BedItemResponseSchema`
         """
-        pass
+        model = BedItemResponseSchema()
+        if include_optional:
+            return BedItemResponseSchema(
+                id = 123,
+                type_code = 'KING_SIZE_BED',
+                capacity = 2,
+                quantity = 1
+            )
+        else:
+            return BedItemResponseSchema(
+                id = 123,
+                type_code = 'KING_SIZE_BED',
+                capacity = 2,
+                quantity = 1,
+        )
+        """
 
+    def testBedItemResponseSchema(self):
+        """Test BedItemResponseSchema"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

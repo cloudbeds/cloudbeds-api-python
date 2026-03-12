@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms.models.reservation_room_controller_update_room_request import ReservationRoomControllerUpdateRoomRequest
+from cloudbeds_pms.models.conflict_response_schema import ConflictResponseSchema
 
-class TestReservationRoomControllerUpdateRoomRequest(unittest.TestCase):
-    """ReservationRoomControllerUpdateRoomRequest unit test stubs"""
+class TestConflictResponseSchema(unittest.TestCase):
+    """ConflictResponseSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,28 @@ class TestReservationRoomControllerUpdateRoomRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ReservationRoomControllerUpdateRoomRequest:
-        """Test ReservationRoomControllerUpdateRoomRequest
+    def make_instance(self, include_optional) -> ConflictResponseSchema:
+        """Test ConflictResponseSchema
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ReservationRoomControllerUpdateRoomRequest`
+        # uncomment below to create an instance of `ConflictResponseSchema`
         """
-        model = ReservationRoomControllerUpdateRoomRequest()
+        model = ConflictResponseSchema()
         if include_optional:
-            return ReservationRoomControllerUpdateRoomRequest(
-                room_id = '10-101',
-                adjust_price = True
+            return ConflictResponseSchema(
+                message = '',
+                errors = None,
+                code = 'CONFIRMATION_REQUIRED'
             )
         else:
-            return ReservationRoomControllerUpdateRoomRequest(
+            return ConflictResponseSchema(
+                message = '',
         )
         """
 
-    def testReservationRoomControllerUpdateRoomRequest(self):
-        """Test ReservationRoomControllerUpdateRoomRequest"""
+    def testConflictResponseSchema(self):
+        """Test ConflictResponseSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

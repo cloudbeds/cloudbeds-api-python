@@ -11,6 +11,5 @@ from cloudbeds_pms.api.integration_events_api import IntegrationEventsApi
 from cloudbeds_pms.api.items_api import ItemsApi
 from cloudbeds_pms.api.market_segmentation_api import MarketSegmentationApi
 from cloudbeds_pms.api.property_api import PropertyApi
-from cloudbeds_pms.api.reservations_api import ReservationsApi
 from cloudbeds_pms.api.rooms_api import RoomsApi
 
