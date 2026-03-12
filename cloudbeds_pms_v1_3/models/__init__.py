@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from cloudbeds_pms_v1_3.models.delete_adjustment_response import DeleteAdjustmentResponse
 from cloudbeds_pms_v1_3.models.delete_guest_note_response import DeleteGuestNoteResponse
@@ -341,3 +340,4 @@ from cloudbeds_pms_v1_3.models.put_reservation_request_rooms_inner import PutRes
 from cloudbeds_pms_v1_3.models.put_reservation_response import PutReservationResponse
 from cloudbeds_pms_v1_3.models.put_room_block_request_rooms_inner import PutRoomBlockRequestRoomsInner
 from cloudbeds_pms_v1_3.models.put_room_block_response import PutRoomBlockResponse
+

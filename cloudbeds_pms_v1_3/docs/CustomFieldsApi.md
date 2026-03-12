@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 getCustomFields
 
-Gets custom fields list<br /> ¹ data.displayed = \"booking\" - Display this field to guests on the booking engine.<br /> ¹ data.displayed = \"reservation\" - Add this field to the reservation folio for use by staff.<br /> ¹ data.displayed = \"card\" - Make this field available for registration cards.<br />
+Gets custom fields list<br /> ¹ data.displayed = "booking" - Display this field to guests on the booking engine.<br /> ¹ data.displayed = "reservation" - Add this field to the reservation folio for use by staff.<br /> ¹ data.displayed = "card" - Make this field available for registration cards.<br />
 
 ### Example
 

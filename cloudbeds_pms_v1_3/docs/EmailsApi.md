@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 postEmailTemplate
 
-Creates a new email template. See the full list of available language parameters <a href=\"https://integrations.cloudbeds.com/hc/en-us/articles/360007144993-FAQ#methods-and-parameters\">here</a>. This call is only available for third-party integration partners, and not for property client IDs.
+Creates a new email template. See the full list of available language parameters <a href="https://integrations.cloudbeds.com/hc/en-us/articles/360007144993-FAQ#methods-and-parameters">here</a>. This call is only available for third-party integration partners, and not for property client IDs.
 
 ### Example
 
