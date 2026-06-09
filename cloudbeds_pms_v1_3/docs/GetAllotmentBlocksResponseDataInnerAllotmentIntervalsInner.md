@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **end_date** | **date** | Interval end date | [optional] 
 **availability** | [**List[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInner]**](GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInner.md) | Interval availability data by day in interval | [optional] 
 **restrictions** | [**GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerRestrictions**](GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerRestrictions.md) |  | [optional] 
+**split_inventory** | **bool** | Whether split inventory is enabled for this room type. When true, the linked physical room types are individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type. | [optional] 
 
 ## Example
 

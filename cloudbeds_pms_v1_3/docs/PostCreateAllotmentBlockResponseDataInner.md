@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **is_auto_release** | **bool** | If the allotment block is configured for auto-release | [optional] 
 **auto_release** | [**PostCreateAllotmentBlockResponseDataInnerAutoRelease**](PostCreateAllotmentBlockResponseDataInnerAutoRelease.md) |  | [optional] 
 **allotment_intervals** | [**List[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner]**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner.md) | array of interval data by room type | [optional] 
+**resources** | [**List[PostCreateAllotmentBlockResponseDataInnerResourcesInner]**](PostCreateAllotmentBlockResponseDataInnerResourcesInner.md) | Space resource quotes (always present; empty array when flag off or no quotes) | [optional] 
 
 ## Example
 

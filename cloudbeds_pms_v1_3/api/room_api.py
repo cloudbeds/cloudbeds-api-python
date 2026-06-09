@@ -19,7 +19,6 @@ from datetime import date
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from cloudbeds_pms_v1_3.models.delete_room_block_response import DeleteRoomBlockResponse
 from cloudbeds_pms_v1_3.models.get_available_room_types_response import GetAvailableRoomTypesResponse
 from cloudbeds_pms_v1_3.models.get_reservation_room_details_response import GetReservationRoomDetailsResponse
 from cloudbeds_pms_v1_3.models.get_room_blocks_response import GetRoomBlocksResponse
@@ -27,6 +26,7 @@ from cloudbeds_pms_v1_3.models.get_room_types_response import GetRoomTypesRespon
 from cloudbeds_pms_v1_3.models.get_rooms_fees_and_taxes_response import GetRoomsFeesAndTaxesResponse
 from cloudbeds_pms_v1_3.models.get_rooms_response import GetRoomsResponse
 from cloudbeds_pms_v1_3.models.get_rooms_unassigned_response import GetRoomsUnassignedResponse
+from cloudbeds_pms_v1_3.models.post_delete_room_block_response import PostDeleteRoomBlockResponse
 from cloudbeds_pms_v1_3.models.post_room_assign_response import PostRoomAssignResponse
 from cloudbeds_pms_v1_3.models.post_room_block_request_rooms_inner import PostRoomBlockRequestRoomsInner
 from cloudbeds_pms_v1_3.models.post_room_block_response import PostRoomBlockResponse
@@ -54,10 +54,10 @@ class RoomApi:
 
 
     @validate_call
-    def delete_room_block_delete(
+    def delete_room_block_post(
         self,
-        room_block_id: Annotated[StrictStr, Field(description="Room block ID")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -70,15 +70,15 @@ class RoomApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> DeleteRoomBlockResponse:
+    ) -> PostDeleteRoomBlockResponse:
         """deleteRoomBlock
 
         Deletes a room block
 
-        :param room_block_id: Room block ID (required)
-        :type room_block_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param room_block_id: Room block ID
+        :type room_block_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -101,9 +101,9 @@ class RoomApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_room_block_delete_serialize(
-            room_block_id=room_block_id,
+        _param = self._delete_room_block_post_serialize(
             property_id=property_id,
+            room_block_id=room_block_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -111,7 +111,7 @@ class RoomApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteRoomBlockResponse",
+            '200': "PostDeleteRoomBlockResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -125,10 +125,10 @@ class RoomApi:
 
 
     @validate_call
-    def delete_room_block_delete_with_http_info(
+    def delete_room_block_post_with_http_info(
         self,
-        room_block_id: Annotated[StrictStr, Field(description="Room block ID")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,15 +141,15 @@ class RoomApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[DeleteRoomBlockResponse]:
+    ) -> ApiResponse[PostDeleteRoomBlockResponse]:
         """deleteRoomBlock
 
         Deletes a room block
 
-        :param room_block_id: Room block ID (required)
-        :type room_block_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param room_block_id: Room block ID
+        :type room_block_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -172,9 +172,9 @@ class RoomApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_room_block_delete_serialize(
-            room_block_id=room_block_id,
+        _param = self._delete_room_block_post_serialize(
             property_id=property_id,
+            room_block_id=room_block_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -182,7 +182,7 @@ class RoomApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteRoomBlockResponse",
+            '200': "PostDeleteRoomBlockResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -196,10 +196,10 @@ class RoomApi:
 
 
     @validate_call
-    def delete_room_block_delete_without_preload_content(
+    def delete_room_block_post_without_preload_content(
         self,
-        room_block_id: Annotated[StrictStr, Field(description="Room block ID")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -217,10 +217,10 @@ class RoomApi:
 
         Deletes a room block
 
-        :param room_block_id: Room block ID (required)
-        :type room_block_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param room_block_id: Room block ID
+        :type room_block_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -243,9 +243,9 @@ class RoomApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_room_block_delete_serialize(
-            room_block_id=room_block_id,
+        _param = self._delete_room_block_post_serialize(
             property_id=property_id,
+            room_block_id=room_block_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -253,7 +253,7 @@ class RoomApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteRoomBlockResponse",
+            '200': "PostDeleteRoomBlockResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -262,10 +262,10 @@ class RoomApi:
         return response_data.response
 
 
-    def _delete_room_block_delete_serialize(
+    def _delete_room_block_post_serialize(
         self,
-        room_block_id,
         property_id,
+        room_block_id,
         _request_auth,
         _content_type,
         _headers,
@@ -288,16 +288,12 @@ class RoomApi:
 
         # process the path parameters
         # process the query parameters
-        if property_id is not None:
-            
-            _query_params.append(('propertyID', property_id))
-            
-        if room_block_id is not None:
-            
-            _query_params.append(('roomBlockID', room_block_id))
-            
         # process the header parameters
         # process the form parameters
+        if property_id is not None:
+            _form_params.append(('propertyID', property_id))
+        if room_block_id is not None:
+            _form_params.append(('roomBlockID', room_block_id))
         # process the body parameter
 
 
@@ -309,6 +305,19 @@ class RoomApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/x-www-form-urlencoded'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -317,7 +326,7 @@ class RoomApi:
         ]
 
         return self.api_client.param_serialize(
-            method='DELETE',
+            method='POST',
             resource_path='/deleteRoomBlock',
             path_params=_path_params,
             query_params=_query_params,
@@ -1142,8 +1151,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1171,9 +1180,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type start_date: date
-        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int
@@ -1237,8 +1246,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1266,9 +1275,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type start_date: date
-        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int
@@ -1332,8 +1341,8 @@ class RoomApi:
         room_block_id: Annotated[Optional[StrictStr], Field(description="Room block ID")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Room type ID")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room ID")] = None,
-        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
-        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)")] = None,
+        start_date: Annotated[Optional[date], Field(description="Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
+        end_date: Annotated[Optional[date], Field(description="Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Page size")] = None,
         _request_timeout: Union[
@@ -1361,9 +1370,9 @@ class RoomApi:
         :type room_type_id: str
         :param room_id: Room ID
         :type room_id: str
-        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param start_date: Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type start_date: date
-        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less)
+        :param end_date: Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less)
         :type end_date: date
         :param page_number: Page number
         :type page_number: int
@@ -2047,6 +2056,8 @@ class RoomApi:
         rooms_total: Annotated[Union[StrictFloat, StrictInt], Field(description="Total value of the rooms to be booked, with included taxes")],
         rooms_count: Annotated[StrictInt, Field(description="Number of rooms to be booked")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        adults_per_room: Annotated[Optional[StrictInt], Field(description="Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.")] = None,
+        children_per_room: Annotated[Optional[StrictInt], Field(description="Child occupants per room. Same semantics as `adultsPerRoom`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2074,6 +2085,10 @@ class RoomApi:
         :type rooms_count: int
         :param property_id: Property ID
         :type property_id: str
+        :param adults_per_room: Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.
+        :type adults_per_room: int
+        :param children_per_room: Child occupants per room. Same semantics as `adultsPerRoom`.
+        :type children_per_room: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2102,6 +2117,8 @@ class RoomApi:
             rooms_total=rooms_total,
             rooms_count=rooms_count,
             property_id=property_id,
+            adults_per_room=adults_per_room,
+            children_per_room=children_per_room,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2130,6 +2147,8 @@ class RoomApi:
         rooms_total: Annotated[Union[StrictFloat, StrictInt], Field(description="Total value of the rooms to be booked, with included taxes")],
         rooms_count: Annotated[StrictInt, Field(description="Number of rooms to be booked")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        adults_per_room: Annotated[Optional[StrictInt], Field(description="Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.")] = None,
+        children_per_room: Annotated[Optional[StrictInt], Field(description="Child occupants per room. Same semantics as `adultsPerRoom`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2157,6 +2176,10 @@ class RoomApi:
         :type rooms_count: int
         :param property_id: Property ID
         :type property_id: str
+        :param adults_per_room: Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.
+        :type adults_per_room: int
+        :param children_per_room: Child occupants per room. Same semantics as `adultsPerRoom`.
+        :type children_per_room: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2185,6 +2208,8 @@ class RoomApi:
             rooms_total=rooms_total,
             rooms_count=rooms_count,
             property_id=property_id,
+            adults_per_room=adults_per_room,
+            children_per_room=children_per_room,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2213,6 +2238,8 @@ class RoomApi:
         rooms_total: Annotated[Union[StrictFloat, StrictInt], Field(description="Total value of the rooms to be booked, with included taxes")],
         rooms_count: Annotated[StrictInt, Field(description="Number of rooms to be booked")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        adults_per_room: Annotated[Optional[StrictInt], Field(description="Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.")] = None,
+        children_per_room: Annotated[Optional[StrictInt], Field(description="Child occupants per room. Same semantics as `adultsPerRoom`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2240,6 +2267,10 @@ class RoomApi:
         :type rooms_count: int
         :param property_id: Property ID
         :type property_id: str
+        :param adults_per_room: Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0.
+        :type adults_per_room: int
+        :param children_per_room: Child occupants per room. Same semantics as `adultsPerRoom`.
+        :type children_per_room: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2268,6 +2299,8 @@ class RoomApi:
             rooms_total=rooms_total,
             rooms_count=rooms_count,
             property_id=property_id,
+            adults_per_room=adults_per_room,
+            children_per_room=children_per_room,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2291,6 +2324,8 @@ class RoomApi:
         rooms_total,
         rooms_count,
         property_id,
+        adults_per_room,
+        children_per_room,
         _request_auth,
         _content_type,
         _headers,
@@ -2350,6 +2385,14 @@ class RoomApi:
         if rooms_count is not None:
             
             _query_params.append(('roomsCount', rooms_count))
+            
+        if adults_per_room is not None:
+            
+            _query_params.append(('adultsPerRoom', adults_per_room))
+            
+        if children_per_room is not None:
+            
+            _query_params.append(('childrenPerRoom', children_per_room))
             
         # process the header parameters
         # process the form parameters
@@ -3470,7 +3513,7 @@ class RoomApi:
     def post_room_block_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
@@ -3499,7 +3542,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
+        :param room_block_type: Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str
@@ -3577,7 +3620,7 @@ class RoomApi:
     def post_room_block_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
@@ -3606,7 +3649,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
+        :param room_block_type: Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str
@@ -3684,7 +3727,7 @@ class RoomApi:
     def post_room_block_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.")] = None,
+        room_block_type: Annotated[Optional[StrictStr], Field(description="Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.")] = None,
         room_block_reason: Annotated[Optional[StrictStr], Field(description="Room block reason")] = None,
         start_date: Annotated[Optional[date], Field(description="Room block start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Room block end date")] = None,
@@ -3713,7 +3756,7 @@ class RoomApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_block_type: Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block.
+        :param room_block_type: Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block.
         :type room_block_type: str
         :param room_block_reason: Room block reason
         :type room_block_reason: str

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **rate_plan_name** | **str** | Rate plan name | [optional] 
 **room_status** | **str** |  | [optional] 
 **sub_reservation_id** | **str** |  | [optional] 
+**is_room_locked** | **bool** | Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI. | [optional] 
 
 ## Example
 

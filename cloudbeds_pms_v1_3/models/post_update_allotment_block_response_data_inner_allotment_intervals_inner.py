@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability import PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_response_data_inner_allotment_intervals_inner_restrictions import PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions
@@ -32,7 +32,8 @@ class PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeId")
     availability: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability] = None
     restrictions: Optional[PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions] = None
-    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "availability", "restrictions"]
+    split_inventory: Optional[StrictBool] = Field(default=None, description="Whether split inventory is enabled for this room type. When true, the linked physical room types are individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type.", alias="splitInventory")
+    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "availability", "restrictions", "splitInventory"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +80,11 @@ class PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
         # override the default output from pydantic by calling `to_dict()` of restrictions
         if self.restrictions:
             _dict['restrictions'] = self.restrictions.to_dict()
+        # set to None if split_inventory (nullable) is None
+        # and model_fields_set contains the field
+        if self.split_inventory is None and "split_inventory" in self.model_fields_set:
+            _dict['splitInventory'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +100,8 @@ class PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
             "policyId": obj.get("policyId"),
             "roomTypeId": obj.get("roomTypeId"),
             "availability": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability.from_dict(obj["availability"]) if obj.get("availability") is not None else None,
-            "restrictions": PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None
+            "restrictions": PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None,
+            "splitInventory": obj.get("splitInventory")
         })
         return _obj
 

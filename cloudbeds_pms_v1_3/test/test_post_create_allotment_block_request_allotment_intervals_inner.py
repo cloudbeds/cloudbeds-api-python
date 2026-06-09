@@ -36,6 +36,8 @@ class TestPostCreateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
         if include_optional:
             return PostCreateAllotmentBlockRequestAllotmentIntervalsInner(
                 policy_id = '',
+                room_type_id = '',
+                split_inventory = True,
                 availability = [
                     cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner_availability_inner.PostCreateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner(
                         date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 

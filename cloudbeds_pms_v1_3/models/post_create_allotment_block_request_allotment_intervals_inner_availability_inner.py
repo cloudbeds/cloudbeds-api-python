@@ -30,7 +30,7 @@ class PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner(Ba
     PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner
     """ # noqa: E501
     var_date: Optional[date] = Field(default=None, description="the day within the interval (YYYY-MM-DD)", alias="date")
-    block_allotted: Optional[StrictInt] = Field(default=None, description="Total number of units available for the", alias="blockAllotted")
+    block_allotted: Optional[StrictInt] = Field(default=None, description="Total number of units available for the room type for this day. Note: this value is ignored for based_on_availability allotment types, which always use full property availability.", alias="blockAllotted")
     rate: Optional[StrictStr] = Field(default=None, description="the price if applicable")
     guest_pricing: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing] = Field(default=None, alias="guestPricing")
     restrictions: Optional[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions] = None

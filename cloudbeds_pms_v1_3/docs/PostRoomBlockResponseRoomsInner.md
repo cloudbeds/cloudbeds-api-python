@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **room_id** | **str** | Room ID | [optional] 
 **room_type_id** | **str** | Room Type ID | [optional] 
 **is_source** | **bool** | Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room. | [optional] 
+**source_event_ids** | **List[str]** | Event IDs of source events that triggered this auto-added room. Null for source rooms. Present only for properties using split inventory. | [optional] 
+**linked_event_ids** | **List[str]** | Event IDs of auto-added rooms triggered by this source room. Null for auto-added rooms. Present only for properties using split inventory. | [optional] 
 
 ## Example
 

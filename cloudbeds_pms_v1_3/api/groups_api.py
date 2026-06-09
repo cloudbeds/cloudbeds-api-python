@@ -363,6 +363,7 @@ class GroupsApi:
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
         group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -390,6 +391,8 @@ class GroupsApi:
         :type property_id: str
         :param group_code: Unique ID for a group
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
+        :type group_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -427,6 +430,7 @@ class GroupsApi:
         _param = self._get_groups_get_serialize(
             property_id=property_id,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -458,6 +462,7 @@ class GroupsApi:
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
         group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -485,6 +490,8 @@ class GroupsApi:
         :type property_id: str
         :param group_code: Unique ID for a group
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
+        :type group_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -522,6 +529,7 @@ class GroupsApi:
         _param = self._get_groups_get_serialize(
             property_id=property_id,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -553,6 +561,7 @@ class GroupsApi:
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
         group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -580,6 +589,8 @@ class GroupsApi:
         :type property_id: str
         :param group_code: Unique ID for a group
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
+        :type group_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -617,6 +628,7 @@ class GroupsApi:
         _param = self._get_groups_get_serialize(
             property_id=property_id,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -643,6 +655,7 @@ class GroupsApi:
         self,
         property_id,
         group_code,
+        group_profile_id,
         type,
         status,
         created_from,
@@ -678,6 +691,10 @@ class GroupsApi:
         if group_code is not None:
             
             _query_params.append(('groupCode', group_code))
+            
+        if group_profile_id is not None:
+            
+            _query_params.append(('groupProfileID', group_profile_id))
             
         if type is not None:
             

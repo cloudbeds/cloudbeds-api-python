@@ -41,7 +41,8 @@ class TestGetReservationAssignmentsResponseDataInnerAssignedInner(unittest.TestC
                 dorm_room_name = '',
                 room_name = '',
                 room_id = '',
-                sub_reservation_id = ''
+                sub_reservation_id = '',
+                is_room_locked = True
             )
         else:
             return GetReservationAssignmentsResponseDataInnerAssignedInner(

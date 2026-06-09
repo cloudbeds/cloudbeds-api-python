@@ -33,13 +33,14 @@ class GetReservationResponseDataUnassignedInner(BaseModel):
     room_type_is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="roomTypeIsVirtual")
     room_type_id: Optional[StrictStr] = Field(default=None, description="ID of the room type to be assigned", alias="roomTypeID")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Sub Reservation ID of the specific assigned room", alias="subReservationID")
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
     start_date: Optional[date] = Field(default=None, description="Check-In date of the room", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Check-Out date of the room", alias="endDate")
     adults: Optional[StrictStr] = Field(default=None, description="Number of adult staying in the room")
     children: Optional[StrictStr] = Field(default=None, description="Number of children staying in the room")
     daily_rates: Optional[List[GetReservationResponseDataAssignedInnerDailyRatesInner]] = Field(default=None, description="Array with rates detailed by day", alias="dailyRates")
     room_total: Optional[StrictStr] = Field(default=None, description="Room total rate", alias="roomTotal")
-    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "subReservationID", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal"]
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "subReservationID", "isRoomLocked", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,6 +105,7 @@ class GetReservationResponseDataUnassignedInner(BaseModel):
             "roomTypeIsVirtual": obj.get("roomTypeIsVirtual"),
             "roomTypeID": obj.get("roomTypeID"),
             "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
             "adults": obj.get("adults"),

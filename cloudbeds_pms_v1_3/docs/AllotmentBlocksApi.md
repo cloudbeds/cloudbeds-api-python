@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_allotment_block_post**
-> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
+> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
 
 createAllotmentBlock
 
@@ -115,6 +115,7 @@ Retreive allotment blocks @apiQuery {Integer} propertyID Property ID
 import cloudbeds_pms_v1_3
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner import PostCreateAllotmentBlockRequestAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_auto_release import PostCreateAllotmentBlockRequestAutoRelease
+from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_resources_inner import PostCreateAllotmentBlockRequestResourcesInner
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response import PostCreateAllotmentBlockResponse
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
@@ -152,10 +153,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     allow_overbooking = True # bool | If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. (optional)
     auto_release = cloudbeds_pms_v1_3.PostCreateAllotmentBlockRequestAutoRelease() # PostCreateAllotmentBlockRequestAutoRelease |  (optional)
     allotment_intervals = [cloudbeds_pms_v1_3.PostCreateAllotmentBlockRequestAllotmentIntervalsInner()] # List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner] | The day-based data for the allotment block. (optional)
+    resources = [cloudbeds_pms_v1_3.PostCreateAllotmentBlockRequestResourcesInner()] # List[PostCreateAllotmentBlockRequestResourcesInner] | Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored. (optional)
 
     try:
         # createAllotmentBlock
-        api_response = api_instance.create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals)
+        api_response = api_instance.create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
         print("The response of AllotmentBlocksApi->create_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -179,6 +181,7 @@ Name | Type | Description  | Notes
  **allow_overbooking** | **bool**| If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking. | [optional] 
  **auto_release** | [**PostCreateAllotmentBlockRequestAutoRelease**](PostCreateAllotmentBlockRequestAutoRelease.md)|  | [optional] 
  **allotment_intervals** | [**List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]**](PostCreateAllotmentBlockRequestAllotmentIntervalsInner.md)| The day-based data for the allotment block. | [optional] 
+ **resources** | [**List[PostCreateAllotmentBlockRequestResourcesInner]**](PostCreateAllotmentBlockRequestResourcesInner.md)| Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored. | [optional] 
 
 ### Return type
 
@@ -284,7 +287,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_allotment_blocks_get**
-> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
+> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, group_profile_id=group_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources)
 
 getAllotmentBlocks
 
@@ -328,6 +331,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     allotment_block_code = 'allotment_block_code_example' # str | Allotment block code (optional)
     allotment_block_name = 'allotment_block_name_example' # str | Allotment block name (optional)
     group_code = 'group_code_example' # str | A group profile code (optional)
+    group_profile_id = 'group_profile_id_example' # str | GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. (optional)
     event_code = 'event_code_example' # str | An event code (optional)
     allotment_block_status = 'allotment_block_status_example' # str | Allotment block status(es) (optional)
     allotment_block_type = 'allotment_block_type_example' # str | The type of allotment block (optional)
@@ -337,10 +341,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     start_date = '2013-10-20' # date | Interval start date (optional)
     end_date = '2013-10-20' # date | Interval end date (optional)
     for_update = True # bool | If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. (optional)
+    include_resources = True # bool | When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true. (optional)
 
     try:
         # getAllotmentBlocks
-        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update)
+        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, group_profile_id=group_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources)
         print("The response of AllotmentBlocksApi->get_allotment_blocks_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -358,6 +363,7 @@ Name | Type | Description  | Notes
  **allotment_block_code** | **str**| Allotment block code | [optional] 
  **allotment_block_name** | **str**| Allotment block name | [optional] 
  **group_code** | **str**| A group profile code | [optional] 
+ **group_profile_id** | **str**| GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. | [optional] 
  **event_code** | **str**| An event code | [optional] 
  **allotment_block_status** | **str**| Allotment block status(es) | [optional] 
  **allotment_block_type** | **str**| The type of allotment block | [optional] 
@@ -367,6 +373,7 @@ Name | Type | Description  | Notes
  **start_date** | **date**| Interval start date | [optional] 
  **end_date** | **date**| Interval end date | [optional] 
  **for_update** | **bool**| If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. | [optional] 
+ **include_resources** | **bool**| When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true. | [optional] 
 
 ### Return type
 
@@ -570,7 +577,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_allotment_block_post**
-> PostUpdateAllotmentBlockResponse update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+> PostUpdateAllotmentBlockResponse update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
 
 updateAllotmentBlock
 
@@ -585,6 +592,7 @@ Update an allotment block @apiQuery {Integer} propertyID Property ID
 import cloudbeds_pms_v1_3
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner import PostUpdateAllotmentBlockRequestAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_auto_release import PostUpdateAllotmentBlockRequestAutoRelease
+from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_resources_inner import PostUpdateAllotmentBlockRequestResourcesInner
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_response import PostUpdateAllotmentBlockResponse
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
@@ -619,10 +627,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     allotment_block_status = 'allotment_block_status_example' # str | The status for the allotment block under (optional)
     auto_release = cloudbeds_pms_v1_3.PostUpdateAllotmentBlockRequestAutoRelease() # PostUpdateAllotmentBlockRequestAutoRelease |  (optional)
     allotment_intervals = [cloudbeds_pms_v1_3.PostUpdateAllotmentBlockRequestAllotmentIntervalsInner()] # List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner] | The day-based data for the allotment block. (optional)
+    resources = [cloudbeds_pms_v1_3.PostUpdateAllotmentBlockRequestResourcesInner()] # List[PostUpdateAllotmentBlockRequestResourcesInner] | Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored. (optional)
 
     try:
         # updateAllotmentBlock
-        api_response = api_instance.update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals)
+        api_response = api_instance.update_allotment_block_post(allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, allow_overbooking=allow_overbooking, allotment_type=allotment_type, allotment_block_status=allotment_block_status, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
         print("The response of AllotmentBlocksApi->update_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -643,6 +652,7 @@ Name | Type | Description  | Notes
  **allotment_block_status** | **str**| The status for the allotment block under | [optional] 
  **auto_release** | [**PostUpdateAllotmentBlockRequestAutoRelease**](PostUpdateAllotmentBlockRequestAutoRelease.md)|  | [optional] 
  **allotment_intervals** | [**List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]**](PostUpdateAllotmentBlockRequestAllotmentIntervalsInner.md)| The day-based data for the allotment block. | [optional] 
+ **resources** | [**List[PostUpdateAllotmentBlockRequestResourcesInner]**](PostUpdateAllotmentBlockRequestResourcesInner.md)| Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored. | [optional] 
 
 ### Return type
 

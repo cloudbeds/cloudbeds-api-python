@@ -36,7 +36,7 @@ class TestPostCreateAllotmentBlockRequestAutoRelease(unittest.TestCase):
         if include_optional:
             return PostCreateAllotmentBlockRequestAutoRelease(
                 release_type = 'all_dates',
-                days = 56,
+                release_days = 56,
                 release_time = ''
             )
         else:

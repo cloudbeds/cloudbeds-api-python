@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.delete_room_block_response import DeleteRoomBlockResponse
+from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_resources_inner import PostCreateAllotmentBlockRequestResourcesInner
 
-class TestDeleteRoomBlockResponse(unittest.TestCase):
-    """DeleteRoomBlockResponse unit test stubs"""
+class TestPostCreateAllotmentBlockRequestResourcesInner(unittest.TestCase):
+    """PostCreateAllotmentBlockRequestResourcesInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,39 @@ class TestDeleteRoomBlockResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeleteRoomBlockResponse:
-        """Test DeleteRoomBlockResponse
+    def make_instance(self, include_optional) -> PostCreateAllotmentBlockRequestResourcesInner:
+        """Test PostCreateAllotmentBlockRequestResourcesInner
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeleteRoomBlockResponse`
+        # uncomment below to create an instance of `PostCreateAllotmentBlockRequestResourcesInner`
         """
-        model = DeleteRoomBlockResponse()
+        model = PostCreateAllotmentBlockRequestResourcesInner()
         if include_optional:
-            return DeleteRoomBlockResponse(
-                success = True,
-                message = ''
+            return PostCreateAllotmentBlockRequestResourcesInner(
+                id = '',
+                resource_type_id = '',
+                resource_id = '',
+                resource_type_quantity = 56,
+                start_at = '',
+                end_at = '',
+                interval_rate = 56,
+                interval_type = 'per_interval',
+                adults = 56,
+                children = 56,
+                inventory_strategy = '',
+                title = '',
+                notes = '',
+                event_interval_period = '',
+                event_interval_amount = 56
             )
         else:
-            return DeleteRoomBlockResponse(
+            return PostCreateAllotmentBlockRequestResourcesInner(
         )
         """
 
-    def testDeleteRoomBlockResponse(self):
-        """Test DeleteRoomBlockResponse"""
+    def testPostCreateAllotmentBlockRequestResourcesInner(self):
+        """Test PostCreateAllotmentBlockRequestResourcesInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

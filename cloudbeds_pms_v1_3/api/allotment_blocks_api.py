@@ -24,11 +24,13 @@ from cloudbeds_pms_v1_3.models.get_list_allotment_block_notes_response import Ge
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_notes_response import PostCreateAllotmentBlockNotesResponse
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_allotment_intervals_inner import PostCreateAllotmentBlockRequestAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_auto_release import PostCreateAllotmentBlockRequestAutoRelease
+from cloudbeds_pms_v1_3.models.post_create_allotment_block_request_resources_inner import PostCreateAllotmentBlockRequestResourcesInner
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response import PostCreateAllotmentBlockResponse
 from cloudbeds_pms_v1_3.models.post_delete_allotment_block_response import PostDeleteAllotmentBlockResponse
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_notes_response import PostUpdateAllotmentBlockNotesResponse
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner import PostUpdateAllotmentBlockRequestAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_auto_release import PostUpdateAllotmentBlockRequestAutoRelease
+from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_resources_inner import PostUpdateAllotmentBlockRequestResourcesInner
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_response import PostUpdateAllotmentBlockResponse
 
 from cloudbeds_pms_v1_3.api_client import ApiClient, RequestSerialized
@@ -367,6 +369,7 @@ class AllotmentBlocksApi:
         allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostCreateAllotmentBlockRequestResourcesInner]], Field(description="Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -404,6 +407,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostCreateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -437,6 +442,7 @@ class AllotmentBlocksApi:
             allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -470,6 +476,7 @@ class AllotmentBlocksApi:
         allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostCreateAllotmentBlockRequestResourcesInner]], Field(description="Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -507,6 +514,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostCreateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -540,6 +549,7 @@ class AllotmentBlocksApi:
             allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -573,6 +583,7 @@ class AllotmentBlocksApi:
         allow_overbooking: Annotated[Optional[StrictBool], Field(description="If false, or omitted, then this command will fail if it would result in an overbooking.  If true, then the update will succeed even if it results in an overbooking.")] = None,
         auto_release: Optional[PostCreateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostCreateAllotmentBlockRequestResourcesInner]], Field(description="Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -610,6 +621,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostCreateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostCreateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional array of space resource quotes to associate with the block. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostCreateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -643,6 +656,7 @@ class AllotmentBlocksApi:
             allow_overbooking=allow_overbooking,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -671,6 +685,7 @@ class AllotmentBlocksApi:
         allow_overbooking,
         auto_release,
         allotment_intervals,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -681,6 +696,7 @@ class AllotmentBlocksApi:
 
         _collection_formats: Dict[str, str] = {
             'allotmentIntervals': 'csv',
+            'resources': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -716,6 +732,8 @@ class AllotmentBlocksApi:
             _form_params.append(('autoRelease', auto_release))
         if allotment_intervals is not None:
             _form_params.append(('allotmentIntervals', allotment_intervals))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 
@@ -1047,6 +1065,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
@@ -1056,6 +1075,7 @@ class AllotmentBlocksApi:
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
+        include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1081,6 +1101,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type group_profile_id: str
         :param event_code: An event code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
@@ -1099,6 +1121,8 @@ class AllotmentBlocksApi:
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
+        :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
+        :type include_resources: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1126,6 +1150,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1135,6 +1160,7 @@ class AllotmentBlocksApi:
             start_date=start_date,
             end_date=end_date,
             for_update=for_update,
+            include_resources=include_resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1162,6 +1188,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
@@ -1171,6 +1198,7 @@ class AllotmentBlocksApi:
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
+        include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1196,6 +1224,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type group_profile_id: str
         :param event_code: An event code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
@@ -1214,6 +1244,8 @@ class AllotmentBlocksApi:
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
+        :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
+        :type include_resources: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1241,6 +1273,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1250,6 +1283,7 @@ class AllotmentBlocksApi:
             start_date=start_date,
             end_date=end_date,
             for_update=for_update,
+            include_resources=include_resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1277,6 +1311,7 @@ class AllotmentBlocksApi:
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
         group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
+        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
@@ -1286,6 +1321,7 @@ class AllotmentBlocksApi:
         start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
         end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
+        include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1311,6 +1347,8 @@ class AllotmentBlocksApi:
         :type allotment_block_name: str
         :param group_code: A group profile code
         :type group_code: str
+        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type group_profile_id: str
         :param event_code: An event code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
@@ -1329,6 +1367,8 @@ class AllotmentBlocksApi:
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
+        :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
+        :type include_resources: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1356,6 +1396,7 @@ class AllotmentBlocksApi:
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
             group_code=group_code,
+            group_profile_id=group_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1365,6 +1406,7 @@ class AllotmentBlocksApi:
             start_date=start_date,
             end_date=end_date,
             for_update=for_update,
+            include_resources=include_resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1387,6 +1429,7 @@ class AllotmentBlocksApi:
         allotment_block_code,
         allotment_block_name,
         group_code,
+        group_profile_id,
         event_code,
         allotment_block_status,
         allotment_block_type,
@@ -1396,6 +1439,7 @@ class AllotmentBlocksApi:
         start_date,
         end_date,
         for_update,
+        include_resources,
         _request_auth,
         _content_type,
         _headers,
@@ -1433,6 +1477,10 @@ class AllotmentBlocksApi:
         if group_code is not None:
             
             _query_params.append(('groupCode', group_code))
+            
+        if group_profile_id is not None:
+            
+            _query_params.append(('groupProfileID', group_profile_id))
             
         if event_code is not None:
             
@@ -1487,6 +1535,10 @@ class AllotmentBlocksApi:
         if for_update is not None:
             
             _query_params.append(('forUpdate', for_update))
+            
+        if include_resources is not None:
+            
+            _query_params.append(('includeResources', include_resources))
             
         # process the header parameters
         # process the form parameters
@@ -2203,6 +2255,7 @@ class AllotmentBlocksApi:
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostUpdateAllotmentBlockRequestResourcesInner]], Field(description="Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2234,6 +2287,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostUpdateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostUpdateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2264,6 +2319,7 @@ class AllotmentBlocksApi:
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2294,6 +2350,7 @@ class AllotmentBlocksApi:
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostUpdateAllotmentBlockRequestResourcesInner]], Field(description="Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2325,6 +2382,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostUpdateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostUpdateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2355,6 +2414,7 @@ class AllotmentBlocksApi:
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2385,6 +2445,7 @@ class AllotmentBlocksApi:
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="The status for the allotment block under")] = None,
         auto_release: Optional[PostUpdateAllotmentBlockRequestAutoRelease] = None,
         allotment_intervals: Annotated[Optional[List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]], Field(description="The day-based data for the allotment block.")] = None,
+        resources: Annotated[Optional[List[PostUpdateAllotmentBlockRequestResourcesInner]], Field(description="Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2416,6 +2477,8 @@ class AllotmentBlocksApi:
         :type auto_release: PostUpdateAllotmentBlockRequestAutoRelease
         :param allotment_intervals: The day-based data for the allotment block.
         :type allotment_intervals: List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInner]
+        :param resources: Optional full-desired-state array of space resource quotes. Passing an empty array deletes all existing quotes. When the spaces-allotment-blocks flag is off, this field is silently ignored.
+        :type resources: List[PostUpdateAllotmentBlockRequestResourcesInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2446,6 +2509,7 @@ class AllotmentBlocksApi:
             allotment_block_status=allotment_block_status,
             auto_release=auto_release,
             allotment_intervals=allotment_intervals,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2471,6 +2535,7 @@ class AllotmentBlocksApi:
         allotment_block_status,
         auto_release,
         allotment_intervals,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -2481,6 +2546,7 @@ class AllotmentBlocksApi:
 
         _collection_formats: Dict[str, str] = {
             'allotmentIntervals': 'csv',
+            'resources': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2510,6 +2576,8 @@ class AllotmentBlocksApi:
             _form_params.append(('autoRelease', auto_release))
         if allotment_intervals is not None:
             _form_params.append(('allotmentIntervals', allotment_intervals))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 

@@ -37,7 +37,8 @@ class TestPostPutRateRequestRatesInnerIntervalInner(unittest.TestCase):
             return PostPutRateRequestRatesInnerIntervalInner(
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                rate = 1.337
+                rate = 1.337,
+                blocked = True
             )
         else:
             return PostPutRateRequestRatesInnerIntervalInner(

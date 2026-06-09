@@ -43,10 +43,14 @@ class GetRatePlansResponseDataInner(BaseModel):
     derived_type: Optional[StrictStr] = Field(default=None, description="type of deriving (only if current rate was derived from other one).", alias="derivedType")
     derived_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Can be positive or negative (only if current rate was derived from other one).", alias="derivedValue")
     base_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Base rate on given period", alias="baseRate")
+    parent_rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID of the parent rate row (null when rate is not derived).", alias="parentRateID")
+    parent_rate_plan_id: Optional[StrictStr] = Field(default=None, description="Package ID of the parent rate plan (null when not derived or derived from the room-type base rate).", alias="parentRatePlanID")
+    parent_rate_plan_name_public: Optional[StrictStr] = Field(default=None, description="Public name of the parent rate plan (null when parentRatePlanID is null).", alias="parentRatePlanNamePublic")
+    parent_rate_plan_name_private: Optional[StrictStr] = Field(default=None, description="Private/internal name of the parent rate plan (null when parentRatePlanID is null).", alias="parentRatePlanNamePrivate")
     days_of_week: Optional[List[StrictStr]] = Field(default=None, description="Returns when there is a difference between range given with startDate/endDate and days of week which rate plan applies.", alias="daysOfWeek")
     add_ons: Optional[List[GetRatePlansResponseDataInnerAddOnsInner]] = Field(default=None, description="addOns information on the rates", alias="addOns")
     room_rate_detailed: Optional[List[GetRatePlansResponseDataInnerRoomRateDetailedInner]] = Field(default=None, description="Detailed information on the rates, if requested", alias="roomRateDetailed")
-    __properties: ClassVar[List[str]] = ["rateID", "isDerived", "roomRate", "totalRate", "roomsAvailable", "roomTypeID", "roomTypeName", "propertyID", "ratePlanID", "ratePlanNamePublic", "ratePlanNamePrivate", "promoCode", "derivedType", "derivedValue", "baseRate", "daysOfWeek", "addOns", "roomRateDetailed"]
+    __properties: ClassVar[List[str]] = ["rateID", "isDerived", "roomRate", "totalRate", "roomsAvailable", "roomTypeID", "roomTypeName", "propertyID", "ratePlanID", "ratePlanNamePublic", "ratePlanNamePrivate", "promoCode", "derivedType", "derivedValue", "baseRate", "parentRateID", "parentRatePlanID", "parentRatePlanNamePublic", "parentRatePlanNamePrivate", "daysOfWeek", "addOns", "roomRateDetailed"]
 
     @field_validator('derived_type')
     def derived_type_validate_enum(cls, value):
@@ -173,6 +177,26 @@ class GetRatePlansResponseDataInner(BaseModel):
         if self.base_rate is None and "base_rate" in self.model_fields_set:
             _dict['baseRate'] = None
 
+        # set to None if parent_rate_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_id is None and "parent_rate_id" in self.model_fields_set:
+            _dict['parentRateID'] = None
+
+        # set to None if parent_rate_plan_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_id is None and "parent_rate_plan_id" in self.model_fields_set:
+            _dict['parentRatePlanID'] = None
+
+        # set to None if parent_rate_plan_name_public (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_name_public is None and "parent_rate_plan_name_public" in self.model_fields_set:
+            _dict['parentRatePlanNamePublic'] = None
+
+        # set to None if parent_rate_plan_name_private (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_name_private is None and "parent_rate_plan_name_private" in self.model_fields_set:
+            _dict['parentRatePlanNamePrivate'] = None
+
         # set to None if days_of_week (nullable) is None
         # and model_fields_set contains the field
         if self.days_of_week is None and "days_of_week" in self.model_fields_set:
@@ -210,6 +234,10 @@ class GetRatePlansResponseDataInner(BaseModel):
             "derivedType": obj.get("derivedType"),
             "derivedValue": obj.get("derivedValue"),
             "baseRate": obj.get("baseRate"),
+            "parentRateID": obj.get("parentRateID"),
+            "parentRatePlanID": obj.get("parentRatePlanID"),
+            "parentRatePlanNamePublic": obj.get("parentRatePlanNamePublic"),
+            "parentRatePlanNamePrivate": obj.get("parentRatePlanNamePrivate"),
             "daysOfWeek": obj.get("daysOfWeek"),
             "addOns": [GetRatePlansResponseDataInnerAddOnsInner.from_dict(_item) for _item in obj["addOns"]] if obj.get("addOns") is not None else None,
             "roomRateDetailed": [GetRatePlansResponseDataInnerRoomRateDetailedInner.from_dict(_item) for _item in obj["roomRateDetailed"]] if obj.get("roomRateDetailed") is not None else None

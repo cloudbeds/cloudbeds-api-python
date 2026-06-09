@@ -1082,7 +1082,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_guests_to_room_post**
-> PostGuestsToRoomResponse post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all)
+> PostGuestsToRoomResponse post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all, main_guest_id=main_guest_id)
 
 postGuestsToRoom
 
@@ -1129,10 +1129,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     remove_guest_ids = 'remove_guest_ids_example' # str | If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed. (optional)
     remove_guest_ids_from_room = 'remove_guest_ids_from_room_example' # str | If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter. (optional)
     remove_all = True # bool | If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed. (optional)
+    main_guest_id = 'main_guest_id_example' # str | Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged. (optional)
 
     try:
         # postGuestsToRoom
-        api_response = api_instance.post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all)
+        api_response = api_instance.post_guests_to_room_post(property_id=property_id, reservation_id=reservation_id, room_id=room_id, guest_ids=guest_ids, remove_guest_ids=remove_guest_ids, remove_guest_ids_from_room=remove_guest_ids_from_room, remove_all=remove_all, main_guest_id=main_guest_id)
         print("The response of GuestApi->post_guests_to_room_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1153,6 +1154,7 @@ Name | Type | Description  | Notes
  **remove_guest_ids** | **str**| If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed. | [optional] 
  **remove_guest_ids_from_room** | **str**| If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter. | [optional] 
  **remove_all** | **bool**| If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed. | [optional] 
+ **main_guest_id** | **str**| Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room&#39;s main guest is left unchanged. | [optional] 
 
 ### Return type
 

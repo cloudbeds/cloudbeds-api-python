@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_auto_release import PostCreateAllotmentBlockResponseDataInnerAutoRelease
+from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_resources_inner import PostCreateAllotmentBlockResponseDataInnerResourcesInner
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_response_data_inner_allotment_intervals_inner import PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -43,7 +44,8 @@ class PostUpdateAllotmentBlockResponseDataInner(BaseModel):
     is_auto_release: Optional[StrictBool] = Field(default=None, description="If the allotment block is configured for auto-release", alias="isAutoRelease")
     auto_release: Optional[PostCreateAllotmentBlockResponseDataInnerAutoRelease] = Field(default=None, alias="autoRelease")
     allotment_intervals: Optional[List[PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner]] = Field(default=None, description="array of interval data by room type", alias="allotmentIntervals")
-    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "isAutoRelease", "autoRelease", "allotmentIntervals"]
+    resources: Optional[List[PostCreateAllotmentBlockResponseDataInnerResourcesInner]] = Field(default=None, description="Space resource quotes (always present; empty array when flag off or no quotes)")
+    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "isAutoRelease", "autoRelease", "allotmentIntervals", "resources"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +96,13 @@ class PostUpdateAllotmentBlockResponseDataInner(BaseModel):
                 if _item_allotment_intervals:
                     _items.append(_item_allotment_intervals.to_dict())
             _dict['allotmentIntervals'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in resources (list)
+        _items = []
+        if self.resources:
+            for _item_resources in self.resources:
+                if _item_resources:
+                    _items.append(_item_resources.to_dict())
+            _dict['resources'] = _items
         return _dict
 
     @classmethod
@@ -120,7 +129,8 @@ class PostUpdateAllotmentBlockResponseDataInner(BaseModel):
             "eventCode": obj.get("eventCode"),
             "isAutoRelease": obj.get("isAutoRelease"),
             "autoRelease": PostCreateAllotmentBlockResponseDataInnerAutoRelease.from_dict(obj["autoRelease"]) if obj.get("autoRelease") is not None else None,
-            "allotmentIntervals": [PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None
+            "allotmentIntervals": [PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None,
+            "resources": [PostCreateAllotmentBlockResponseDataInnerResourcesInner.from_dict(_item) for _item in obj["resources"]] if obj.get("resources") is not None else None
         })
         return _obj
 

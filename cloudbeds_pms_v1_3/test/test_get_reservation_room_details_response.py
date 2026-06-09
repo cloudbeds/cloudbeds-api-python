@@ -40,6 +40,7 @@ class TestGetReservationRoomDetailsResponse(unittest.TestCase):
                 data = cloudbeds_pms_v1_3.models.get_reservation_room_details_response_data.GetReservationRoomDetailsResponse_data(
                     reservation_id = '', 
                     sub_reservation_id = '', 
+                    is_room_locked = True, 
                     room_id = '', 
                     room_name = '', 
                     dorm_room_name = '', 

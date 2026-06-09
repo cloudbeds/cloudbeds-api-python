@@ -42,6 +42,7 @@ class TestGetReservationResponseDataAssignedInner(unittest.TestCase):
                 dorm_room_name = '',
                 room_type_id = '',
                 sub_reservation_id = '',
+                is_room_locked = True,
                 room_name = '',
                 room_id = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),

@@ -39,6 +39,7 @@ class TestGetReservationsWithRateDetailsResponseDataInnerRoomsInner(unittest.Tes
                 room_type_is_virtual = True,
                 room_type_name = '',
                 sub_reservation_id = '',
+                is_room_locked = True,
                 guest_id = '',
                 guest_name = '',
                 rate_id = '',

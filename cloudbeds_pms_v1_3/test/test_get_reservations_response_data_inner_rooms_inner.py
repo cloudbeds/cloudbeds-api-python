@@ -39,6 +39,7 @@ class TestGetReservationsResponseDataInnerRoomsInner(unittest.TestCase):
                 room_type_name = '',
                 room_type_is_virtual = True,
                 sub_reservation_id = '',
+                is_room_locked = True,
                 guest_id = '',
                 guest_name = '',
                 adults = '',

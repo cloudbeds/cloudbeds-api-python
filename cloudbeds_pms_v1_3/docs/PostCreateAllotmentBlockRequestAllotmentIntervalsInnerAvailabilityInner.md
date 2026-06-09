@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_date** | **date** | the day within the interval (YYYY-MM-DD) | [optional] 
-**block_allotted** | **int** | Total number of units available for the | [optional] 
+**block_allotted** | **int** | Total number of units available for the room type for this day. Note: this value is ignored for based_on_availability allotment types, which always use full property availability. | [optional] 
 **rate** | **str** | the price if applicable | [optional] 
 **guest_pricing** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerGuestPricing.md) |  | [optional] 
 **restrictions** | [**PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInnerRestrictions.md) |  | [optional] 

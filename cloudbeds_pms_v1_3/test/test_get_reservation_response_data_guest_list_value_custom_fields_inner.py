@@ -35,6 +35,9 @@ class TestGetReservationResponseDataGuestListValueCustomFieldsInner(unittest.Tes
         model = GetReservationResponseDataGuestListValueCustomFieldsInner()
         if include_optional:
             return GetReservationResponseDataGuestListValueCustomFieldsInner(
+                custom_field_id = '',
+                shortcode = '',
+                is_active = True,
                 custom_field_name = '',
                 custom_field_value = ''
             )

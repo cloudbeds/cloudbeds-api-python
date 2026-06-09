@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reservation_id** | **str** | Reservation Unique Identifier. | [optional] 
 **sub_reservation_id** | **str** | Subreservation Unique Identifier | [optional] 
+**is_room_locked** | **bool** | Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI. | [optional] 
 **room_id** | **str** | ID of room assigned | [optional] 
 **room_name** | **str** | Name of room assigned | [optional] 
 **dorm_room_name** | **str** | Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type. | [optional] 

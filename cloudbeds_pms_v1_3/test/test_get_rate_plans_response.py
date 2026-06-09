@@ -53,6 +53,10 @@ class TestGetRatePlansResponse(unittest.TestCase):
                         derived_type = 'fixed', 
                         derived_value = 1.337, 
                         base_rate = 1.337, 
+                        parent_rate_id = '', 
+                        parent_rate_plan_id = '', 
+                        parent_rate_plan_name_public = '', 
+                        parent_rate_plan_name_private = '', 
                         days_of_week = [
                             'Sun'
                             ], 
@@ -71,6 +75,7 @@ class TestGetRatePlansResponse(unittest.TestCase):
                                 rooms_available = 56, 
                                 closed_to_arrival = True, 
                                 closed_to_departure = True, 
+                                blocked = True, 
                                 min_los = 56, 
                                 max_los = 56, 
                                 cut_off = 56, 

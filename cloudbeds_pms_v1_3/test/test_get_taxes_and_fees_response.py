@@ -60,6 +60,9 @@ class TestGetTaxesAndFeesResponse(unittest.TestCase):
                         fees_charged = [
                             ''
                             ], 
+                        taxes_charged = [
+                            ''
+                            ], 
                         inclusive_or_exclusive = 'inclusive', 
                         is_deleted = True, 
                         child_id = '', 

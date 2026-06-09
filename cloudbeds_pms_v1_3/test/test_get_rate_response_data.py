@@ -37,6 +37,10 @@ class TestGetRateResponseData(unittest.TestCase):
             return GetRateResponseData(
                 rate_id = '',
                 is_derived = True,
+                parent_rate_id = '',
+                parent_rate_plan_id = '',
+                parent_rate_plan_name_public = '',
+                parent_rate_plan_name_private = '',
                 room_rate = 1.337,
                 total_rate = 1.337,
                 rooms_available = 56,
@@ -51,6 +55,7 @@ class TestGetRateResponseData(unittest.TestCase):
                         rooms_available = 56, 
                         closed_to_arrival = True, 
                         closed_to_departure = True, 
+                        blocked = True, 
                         min_los = 56, 
                         max_los = 56, )
                     ]

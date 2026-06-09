@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **meal_plans** | **str** | Reservation meal plans | [optional] 
 **guest_list** | [**Dict[str, GetReservationsWithRateDetailsResponseDataInnerGuestListValue]**](GetReservationsWithRateDetailsResponseDataInnerGuestListValue.md) | A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \&quot;includeGuestsDetails\&quot; is true | [optional] 
 **third_party_identifier** | **str** |  | [optional] 
-**custom_fields** | [**List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]**](GetGuestsModifiedResponseDataInnerCustomFieldsInner.md) | List of reservation custom fields. Only returned if \&quot;includeCustomFields\&quot; is true | [optional] 
+**custom_fields** | [**List[GetReservationsResponseDataInnerCustomFieldsInner]**](GetReservationsResponseDataInnerCustomFieldsInner.md) | List of reservation custom fields. Only returned if \&quot;includeCustomFields\&quot; is true | [optional] 
 **estimated_arrival_time** | **str** | Estimated arrival time, 24-hour format. | [optional] 
 **total** | **float** | Total price of the booking | [optional] 
 **balance** | **float** | Balance currently owed | [optional] 

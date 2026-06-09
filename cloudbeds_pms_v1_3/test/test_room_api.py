@@ -26,8 +26,8 @@ class TestRoomApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_delete_room_block_delete(self) -> None:
-        """Test case for delete_room_block_delete
+    def test_delete_room_block_post(self) -> None:
+        """Test case for delete_room_block_post
 
         deleteRoomBlock
         """

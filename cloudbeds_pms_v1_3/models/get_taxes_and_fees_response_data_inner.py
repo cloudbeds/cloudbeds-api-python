@@ -45,7 +45,8 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
     amount_type: Optional[StrictStr] = Field(default=None, description="Amount type. They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>percentage</td><td>Percentage of Total Amount</td></tr> <tr><td>fixed</td><td>Fixed per Room Night / Item</td></tr> <tr><td>fixed_per_person</td><td>Fixed per Person per Night</td></tr> <tr><td>fixed_per_accomodation</td><td>Fixed per Accomodation</td></tr> <tr><td>fixed_per_reservation</td><td>Fixed per Reservation</td></tr> <tr><td>percentage_rate_based</td><td>Rate-based</td></tr> </table>", alias="amountType")
     available_for: Optional[List[StrictStr]] = Field(default=None, description="Where this tax/fee is available?<br/>They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>product</td><td>Items</td></tr> <tr><td>rate</td><td>Reservations</td></tr> <tr><td>fee</td><td>Fees -- this tax is charged on top of some fees</td></tr> <tr><td>custom_item</td><td>Custom item - this tax was charged for a custom item</td></tr> </table>", alias="availableFor")
-    fees_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Fee IDs charged by the current tax. Only exists if type = tax.", alias="feesCharged")
+    fees_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Fee IDs charged by the current tax (tax-on-fee). Only exists if type = tax.", alias="feesCharged")
+    taxes_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Tax IDs charged by the current tax (tax-on-tax). Only exists if type = tax.", alias="taxesCharged")
     inclusive_or_exclusive: Optional[StrictStr] = Field(default=None, description="If this tax/fee is inclusive or exclusive", alias="inclusiveOrExclusive")
     is_deleted: Optional[StrictBool] = Field(default=None, description="Flag indicating if tax was deleted from the system", alias="isDeleted")
     child_id: Optional[StrictStr] = Field(default=None, description="ID of the tax or fee that replaced current one", alias="childId")
@@ -54,7 +55,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     room_types: Optional[List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]] = Field(default=None, description="Room types this tax/fee applies to", alias="roomTypes")
     date_ranges: Optional[List[GetTaxesAndFeesResponseDataInnerDateRangesInner]] = Field(default=None, description="Date ranges when this tax/fee is applicable", alias="dateRanges")
     length_of_stay_settings: Optional[GetTaxesAndFeesResponseDataInnerLengthOfStaySettings] = Field(default=None, alias="lengthOfStaySettings")
-    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges", "lengthOfStaySettings"]
+    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "taxesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges", "lengthOfStaySettings"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -197,6 +198,11 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         if self.fees_charged is None and "fees_charged" in self.model_fields_set:
             _dict['feesCharged'] = None
 
+        # set to None if taxes_charged (nullable) is None
+        # and model_fields_set contains the field
+        if self.taxes_charged is None and "taxes_charged" in self.model_fields_set:
+            _dict['taxesCharged'] = None
+
         # set to None if room_types (nullable) is None
         # and model_fields_set contains the field
         if self.room_types is None and "room_types" in self.model_fields_set:
@@ -237,6 +243,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "amountType": obj.get("amountType"),
             "availableFor": obj.get("availableFor"),
             "feesCharged": obj.get("feesCharged"),
+            "taxesCharged": obj.get("taxesCharged"),
             "inclusiveOrExclusive": obj.get("inclusiveOrExclusive"),
             "isDeleted": obj.get("isDeleted"),
             "childId": obj.get("childId"),

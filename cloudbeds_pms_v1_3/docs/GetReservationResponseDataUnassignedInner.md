@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **room_type_is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
 **room_type_id** | **str** | ID of the room type to be assigned | [optional] 
 **sub_reservation_id** | **str** | Sub Reservation ID of the specific assigned room | [optional] 
+**is_room_locked** | **bool** | Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI. | [optional] 
 **start_date** | **date** | Check-In date of the room | [optional] 
 **end_date** | **date** | Check-Out date of the room | [optional] 
 **adults** | **str** | Number of adult staying in the room | [optional] 

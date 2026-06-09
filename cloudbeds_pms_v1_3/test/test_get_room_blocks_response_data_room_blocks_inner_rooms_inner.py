@@ -38,7 +38,13 @@ class TestGetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(unittest.TestCase):
                 event_id = '',
                 room_id = '',
                 room_type_id = None,
-                is_source = True
+                is_source = True,
+                source_event_ids = [
+                    ''
+                    ],
+                linked_event_ids = [
+                    ''
+                    ]
             )
         else:
             return GetRoomBlocksResponseDataRoomBlocksInnerRoomsInner(

@@ -33,11 +33,12 @@ class GetRatePlansResponseDataInnerRoomRateDetailedInner(BaseModel):
     rooms_available: Optional[StrictInt] = Field(default=None, description="Number of rooms available for the selected date", alias="roomsAvailable")
     closed_to_arrival: Optional[StrictBool] = Field(default=None, description="true if day closed to arrival", alias="closedToArrival")
     closed_to_departure: Optional[StrictBool] = Field(default=None, description="true if day closed to departure", alias="closedToDeparture")
+    blocked: Optional[StrictBool] = Field(default=None, description="Whether the accommodation is blocked. Mirrors /patchRate `blocked` parameter and reflects the operator-set restriction only.")
     min_los: Optional[StrictInt] = Field(default=None, description="Minimum Length Of Stay", alias="minLos")
     max_los: Optional[StrictInt] = Field(default=None, description="Maximum Length Of Stay", alias="maxLos")
     cut_off: Optional[StrictInt] = Field(default=None, alias="cutOff")
     last_minute_booking: Optional[StrictInt] = Field(default=None, alias="lastMinuteBooking")
-    __properties: ClassVar[List[str]] = ["date", "rateBase", "totalRate", "roomsAvailable", "closedToArrival", "closedToDeparture", "minLos", "maxLos", "cutOff", "lastMinuteBooking"]
+    __properties: ClassVar[List[str]] = ["date", "rateBase", "totalRate", "roomsAvailable", "closedToArrival", "closedToDeparture", "blocked", "minLos", "maxLos", "cutOff", "lastMinuteBooking"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,6 +102,7 @@ class GetRatePlansResponseDataInnerRoomRateDetailedInner(BaseModel):
             "roomsAvailable": obj.get("roomsAvailable"),
             "closedToArrival": obj.get("closedToArrival"),
             "closedToDeparture": obj.get("closedToDeparture"),
+            "blocked": obj.get("blocked"),
             "minLos": obj.get("minLos"),
             "maxLos": obj.get("maxLos"),
             "cutOff": obj.get("cutOff"),

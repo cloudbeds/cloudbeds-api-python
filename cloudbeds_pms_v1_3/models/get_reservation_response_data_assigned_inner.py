@@ -35,6 +35,7 @@ class GetReservationResponseDataAssignedInner(BaseModel):
     dorm_room_name: Optional[StrictStr] = Field(default=None, description="Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type", alias="dormRoomName")
     room_type_id: Optional[StrictStr] = Field(default=None, description="ID of the assigned room type", alias="roomTypeID")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Sub Reservation ID of the specific assigned room", alias="subReservationID")
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
     room_name: Optional[StrictStr] = Field(default=None, description="Name of the specific assigned room", alias="roomName")
     room_id: Optional[StrictStr] = Field(default=None, description="ID of the specific assigned room", alias="roomID")
     start_date: Optional[date] = Field(default=None, description="Check-In date of the room", alias="startDate")
@@ -45,7 +46,7 @@ class GetReservationResponseDataAssignedInner(BaseModel):
     room_total: Optional[StrictStr] = Field(default=None, description="Room total rate", alias="roomTotal")
     market_name: Optional[StrictStr] = Field(default=None, description="Market segmentation name", alias="marketName")
     market_code: Optional[StrictStr] = Field(default=None, description="Market segmentation code", alias="marketCode")
-    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeName", "roomTypeNameShort", "roomTypeIsVirtual", "dormRoomName", "roomTypeID", "subReservationID", "roomName", "roomID", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal", "marketName", "marketCode"]
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeName", "roomTypeNameShort", "roomTypeIsVirtual", "dormRoomName", "roomTypeID", "subReservationID", "isRoomLocked", "roomName", "roomID", "startDate", "endDate", "adults", "children", "dailyRates", "roomTotal", "marketName", "marketCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,6 +118,7 @@ class GetReservationResponseDataAssignedInner(BaseModel):
             "dormRoomName": obj.get("dormRoomName"),
             "roomTypeID": obj.get("roomTypeID"),
             "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked"),
             "roomName": obj.get("roomName"),
             "roomID": obj.get("roomID"),
             "startDate": obj.get("startDate"),

@@ -76,6 +76,9 @@ class TestGetReservationResponse(unittest.TestCase):
                             guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                             custom_fields = [
                                 cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner.GetReservationResponse_data_guestList_value_customFields_inner(
+                                    custom_field_id = '', 
+                                    shortcode = '', 
+                                    is_active = True, 
                                     custom_field_name = '', 
                                     custom_field_value = '', )
                                 ], 
@@ -117,6 +120,7 @@ class TestGetReservationResponse(unittest.TestCase):
                             dorm_room_name = '', 
                             room_type_id = '', 
                             sub_reservation_id = '', 
+                            is_room_locked = True, 
                             room_name = '', 
                             room_id = '', 
                             start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
@@ -139,6 +143,7 @@ class TestGetReservationResponse(unittest.TestCase):
                             room_type_is_virtual = True, 
                             room_type_id = '', 
                             sub_reservation_id = '', 
+                            is_room_locked = True, 
                             start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             adults = '', 
@@ -153,6 +158,9 @@ class TestGetReservationResponse(unittest.TestCase):
                         ], 
                     custom_fields = [
                         cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value_custom_fields_inner.GetReservationResponse_data_guestList_value_customFields_inner(
+                            custom_field_id = '', 
+                            shortcode = '', 
+                            is_active = True, 
                             custom_field_name = '', 
                             custom_field_value = '', )
                         ], 

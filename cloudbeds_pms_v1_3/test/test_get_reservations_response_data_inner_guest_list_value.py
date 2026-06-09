@@ -78,7 +78,8 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                         rate_id = '', 
                         rate_plan_name = '', 
                         room_status = 'in_house', 
-                        sub_reservation_id = '', )
+                        sub_reservation_id = '', 
+                        is_room_locked = True, )
                     ],
                 unassigned_rooms = [
                     cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_unassigned_rooms_inner.GetReservationsResponse_data_inner_guestList_value_unassignedRooms_inner(
@@ -89,11 +90,15 @@ class TestGetReservationsResponseDataInnerGuestListValue(unittest.TestCase):
                         room_type_name_short = '', 
                         rate_id = '', 
                         rate_plan_name = '', 
-                        sub_reservation_id = '', )
+                        sub_reservation_id = '', 
+                        is_room_locked = True, )
                     ],
                 guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(),
                 custom_fields = [
-                    cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
+                    cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner.GetReservationsResponse_data_inner_customFields_inner(
+                        custom_field_id = '', 
+                        shortcode = '', 
+                        is_active = True, 
                         custom_field_name = '', 
                         custom_field_value = '', )
                     ],

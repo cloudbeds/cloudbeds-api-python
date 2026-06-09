@@ -20,7 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
+from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner import GetReservationsResponseDataInnerCustomFieldsInner
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_balance_detailed import GetReservationsWithRateDetailsResponseDataInnerBalanceDetailed
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_guest_list_value import GetReservationsWithRateDetailsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_3.models.get_reservations_with_rate_details_response_data_inner_rooms_inner import GetReservationsWithRateDetailsResponseDataInnerRoomsInner
@@ -59,7 +59,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation meal plans", alias="mealPlans")
     guest_list: Optional[Dict[str, GetReservationsWithRateDetailsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
     third_party_identifier: Optional[StrictStr] = Field(default=None, alias="thirdPartyIdentifier")
-    custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
+    custom_fields: Optional[List[GetReservationsResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
     estimated_arrival_time: Optional[StrictStr] = Field(default=None, description="Estimated arrival time, 24-hour format.", alias="estimatedArrivalTime")
     total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total price of the booking")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Balance currently owed")
@@ -227,7 +227,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
             if obj.get("guestList") is not None
             else None,
             "thirdPartyIdentifier": obj.get("thirdPartyIdentifier"),
-            "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
+            "customFields": [GetReservationsResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "estimatedArrivalTime": obj.get("estimatedArrivalTime"),
             "total": obj.get("total"),
             "balance": obj.get("balance"),

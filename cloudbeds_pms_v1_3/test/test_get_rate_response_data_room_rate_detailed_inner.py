@@ -41,6 +41,7 @@ class TestGetRateResponseDataRoomRateDetailedInner(unittest.TestCase):
                 rooms_available = 56,
                 closed_to_arrival = True,
                 closed_to_departure = True,
+                blocked = True,
                 min_los = 56,
                 max_los = 56
             )

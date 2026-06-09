@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner import GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner
 from cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_auto_release_inner import GetAllotmentBlocksResponseDataInnerAutoReleaseInner
+from cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_resources_inner import GetAllotmentBlocksResponseDataInnerResourcesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -53,7 +54,8 @@ class GetAllotmentBlocksResponseDataInner(BaseModel):
     rooms_picked_up: Optional[StrictInt] = Field(default=None, description="Rooms picked up", alias="roomsPickedUp")
     rooms_remaining: Optional[StrictInt] = Field(default=None, description="Rooms remaining", alias="roomsRemaining")
     allotment_intervals: Optional[List[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner]] = Field(default=None, description="array of interval data by room type", alias="allotmentIntervals")
-    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "ratePlan", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "bookingCodeUrl", "isAutoRelease", "autoRelease", "releaseStatus", "releaseScheduleStatus", "releaseScheduleType", "releaseDate", "reservationsCount", "roomsHeld", "roomsPickedUp", "roomsRemaining", "allotmentIntervals"]
+    resources: Optional[List[GetAllotmentBlocksResponseDataInnerResourcesInner]] = Field(default=None, description="Space resource quotes (present when includeResources=true)")
+    __properties: ClassVar[List[str]] = ["propertyID", "allotmentBlockCode", "allotmentBlockStatus", "allotmentBlockName", "allotmentBlockId", "rateType", "ratePlanId", "ratePlan", "allotmentType", "groupId", "groupCode", "eventId", "eventCode", "bookingCodeUrl", "isAutoRelease", "autoRelease", "releaseStatus", "releaseScheduleStatus", "releaseScheduleType", "releaseDate", "reservationsCount", "roomsHeld", "roomsPickedUp", "roomsRemaining", "allotmentIntervals", "resources"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,6 +110,18 @@ class GetAllotmentBlocksResponseDataInner(BaseModel):
                 if _item_allotment_intervals:
                     _items.append(_item_allotment_intervals.to_dict())
             _dict['allotmentIntervals'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in resources (list)
+        _items = []
+        if self.resources:
+            for _item_resources in self.resources:
+                if _item_resources:
+                    _items.append(_item_resources.to_dict())
+            _dict['resources'] = _items
+        # set to None if resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.resources is None and "resources" in self.model_fields_set:
+            _dict['resources'] = None
+
         return _dict
 
     @classmethod
@@ -144,7 +158,8 @@ class GetAllotmentBlocksResponseDataInner(BaseModel):
             "roomsHeld": obj.get("roomsHeld"),
             "roomsPickedUp": obj.get("roomsPickedUp"),
             "roomsRemaining": obj.get("roomsRemaining"),
-            "allotmentIntervals": [GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None
+            "allotmentIntervals": [GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner.from_dict(_item) for _item in obj["allotmentIntervals"]] if obj.get("allotmentIntervals") is not None else None,
+            "resources": [GetAllotmentBlocksResponseDataInnerResourcesInner.from_dict(_item) for _item in obj["resources"]] if obj.get("resources") is not None else None
         })
         return _obj
 

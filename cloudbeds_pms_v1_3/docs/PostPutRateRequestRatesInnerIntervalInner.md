@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **start_date** | **date** | Interval Start date. Format: YYYY-MM-DD | [optional] 
 **end_date** | **date** | Interval End date. Format: YYYY-MM-DD | [optional] 
 **rate** | **float** | Base rate for the selected date | [optional] 
+**blocked** | **bool** | Whether the accommodation is blocked. | [optional] 
 
 ## Example
 

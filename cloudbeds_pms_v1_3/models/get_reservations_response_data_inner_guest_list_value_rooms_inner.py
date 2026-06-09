@@ -37,7 +37,8 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
     rate_plan_name: Optional[StrictStr] = Field(default=None, description="Rate plan name", alias="ratePlanName")
     room_status: Optional[StrictStr] = Field(default=None, alias="roomStatus")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "roomTypeNameShort", "rateID", "ratePlanName", "roomStatus", "subReservationID"]
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "roomTypeID", "roomTypeNameShort", "rateID", "ratePlanName", "roomStatus", "subReservationID", "isRoomLocked"]
 
     @field_validator('room_status')
     def room_status_validate_enum(cls, value):
@@ -166,7 +167,8 @@ class GetReservationsResponseDataInnerGuestListValueRoomsInner(BaseModel):
             "rateID": obj.get("rateID"),
             "ratePlanName": obj.get("ratePlanName"),
             "roomStatus": obj.get("roomStatus"),
-            "subReservationID": obj.get("subReservationID")
+            "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked")
         })
         return _obj
 

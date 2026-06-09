@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_taxes_and_fees_get**
-> GetTaxesAndFeesResponse get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes)
+> GetTaxesAndFeesResponse get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes, available_for=available_for, source_id=source_id, is_root_source=is_root_source, is_hotel_collect_booking=is_hotel_collect_booking, product_id=product_id, addon_id=addon_id)
 
 getTaxesAndFees
 
@@ -52,10 +52,16 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     include_deleted = False # bool | If the response should include deleted taxes and fees (optional) (default to False)
     include_expired = False # bool | If the response should include expired taxes and fees (optional) (default to False)
     include_custom_item_taxes = False # bool | If the response should include custom item taxes (optional) (default to False)
+    available_for = 'available_for_example' # str | Filter by entity type applicability (optional)
+    source_id = 'source_id_example' # str | Filter by booking source ID. Requires isRootSource and isHotelCollectBooking. (optional)
+    is_root_source = True # bool | Root source flag. Required with sourceId. (optional)
+    is_hotel_collect_booking = True # bool | Hotel collect flag. Required with sourceId. (optional)
+    product_id = 'product_id_example' # str | Filter taxes/fees for a product. Mutually exclusive with addonId. (optional)
+    addon_id = 'addon_id_example' # str | Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId. (optional)
 
     try:
         # getTaxesAndFees
-        api_response = api_instance.get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes)
+        api_response = api_instance.get_taxes_and_fees_get(property_id=property_id, include_deleted=include_deleted, include_expired=include_expired, include_custom_item_taxes=include_custom_item_taxes, available_for=available_for, source_id=source_id, is_root_source=is_root_source, is_hotel_collect_booking=is_hotel_collect_booking, product_id=product_id, addon_id=addon_id)
         print("The response of TaxesAndFeesApi->get_taxes_and_fees_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -73,6 +79,12 @@ Name | Type | Description  | Notes
  **include_deleted** | **bool**| If the response should include deleted taxes and fees | [optional] [default to False]
  **include_expired** | **bool**| If the response should include expired taxes and fees | [optional] [default to False]
  **include_custom_item_taxes** | **bool**| If the response should include custom item taxes | [optional] [default to False]
+ **available_for** | **str**| Filter by entity type applicability | [optional] 
+ **source_id** | **str**| Filter by booking source ID. Requires isRootSource and isHotelCollectBooking. | [optional] 
+ **is_root_source** | **bool**| Root source flag. Required with sourceId. | [optional] 
+ **is_hotel_collect_booking** | **bool**| Hotel collect flag. Required with sourceId. | [optional] 
+ **product_id** | **str**| Filter taxes/fees for a product. Mutually exclusive with addonId. | [optional] 
+ **addon_id** | **str**| Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId. | [optional] 
 
 ### Return type
 

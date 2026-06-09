@@ -34,7 +34,8 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID", alias="rateID")
     rate_plan_name: Optional[StrictStr] = Field(default=None, description="Rate plan name", alias="ratePlanName")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Sub Reservation ID of the specific assigned room", alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeID", "roomTypeName", "roomTypeIsVirtual", "roomTypeNameShort", "rateID", "ratePlanName", "subReservationID"]
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
+    __properties: ClassVar[List[str]] = ["reservationRoomID", "roomTypeID", "roomTypeName", "roomTypeIsVirtual", "roomTypeNameShort", "rateID", "ratePlanName", "subReservationID", "isRoomLocked"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,7 +135,8 @@ class GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(BaseMod
             "roomTypeNameShort": obj.get("roomTypeNameShort"),
             "rateID": obj.get("rateID"),
             "ratePlanName": obj.get("ratePlanName"),
-            "subReservationID": obj.get("subReservationID")
+            "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked")
         })
         return _obj
 

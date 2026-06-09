@@ -49,7 +49,8 @@ class TestGetReservationAssignmentsResponse(unittest.TestCase):
                                 dorm_room_name = '', 
                                 room_name = '', 
                                 room_id = '', 
-                                sub_reservation_id = '', )
+                                sub_reservation_id = '', 
+                                is_room_locked = True, )
                             ], )
                     ],
                 message = ''

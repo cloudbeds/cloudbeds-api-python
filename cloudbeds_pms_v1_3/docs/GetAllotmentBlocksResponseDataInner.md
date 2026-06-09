@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **rooms_picked_up** | **int** | Rooms picked up | [optional] 
 **rooms_remaining** | **int** | Rooms remaining | [optional] 
 **allotment_intervals** | [**List[GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner]**](GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInner.md) | array of interval data by room type | [optional] 
+**resources** | [**List[GetAllotmentBlocksResponseDataInnerResourcesInner]**](GetAllotmentBlocksResponseDataInnerResourcesInner.md) | Space resource quotes (present when includeResources&#x3D;true) | [optional] 
 
 ## Example
 

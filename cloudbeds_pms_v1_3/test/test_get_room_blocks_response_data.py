@@ -39,7 +39,7 @@ class TestGetRoomBlocksResponseData(unittest.TestCase):
                 room_blocks = [
                     cloudbeds_pms_v1_3.models.get_room_blocks_response_data_room_blocks_inner.GetRoomBlocksResponse_data_roomBlocks_inner(
                         room_block_id = '', 
-                        room_block_type = 'blocked', 
+                        room_block_type = 'blocked_dates', 
                         room_block_reason = '', 
                         start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
@@ -48,7 +48,13 @@ class TestGetRoomBlocksResponseData(unittest.TestCase):
                                 event_id = '', 
                                 room_id = '', 
                                 room_type_id = null, 
-                                is_source = True, )
+                                is_source = True, 
+                                source_event_ids = [
+                                    ''
+                                    ], 
+                                linked_event_ids = [
+                                    ''
+                                    ], )
                             ], )
                     ]
             )

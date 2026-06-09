@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +33,8 @@ class GetReservationAssignmentsResponseDataInnerAssignedInner(BaseModel):
     room_name: Optional[StrictStr] = Field(default=None, description="Name of the specific room assigned", alias="roomName")
     room_id: Optional[StrictStr] = Field(default=None, description="ID of the specific room assigned", alias="roomID")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Associated subReservation ID (specific to room)", alias="subReservationID")
-    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeName", "roomTypeNameShort", "dormRoomName", "roomName", "roomID", "subReservationID"]
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
+    __properties: ClassVar[List[str]] = ["roomTypeID", "roomTypeName", "roomTypeNameShort", "dormRoomName", "roomName", "roomID", "subReservationID", "isRoomLocked"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,7 +128,8 @@ class GetReservationAssignmentsResponseDataInnerAssignedInner(BaseModel):
             "dormRoomName": obj.get("dormRoomName"),
             "roomName": obj.get("roomName"),
             "roomID": obj.get("roomID"),
-            "subReservationID": obj.get("subReservationID")
+            "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked")
         })
         return _obj
 

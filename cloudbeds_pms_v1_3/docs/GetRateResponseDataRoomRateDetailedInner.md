@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **rooms_available** | **int** | Number of rooms available for the selected date | [optional] 
 **closed_to_arrival** | **bool** |  | [optional] 
 **closed_to_departure** | **bool** |  | [optional] 
+**blocked** | **bool** | Whether the accommodation is blocked. Mirrors /patchRate &#x60;blocked&#x60; parameter and reflects the operator-set restriction only. | [optional] 
 **min_los** | **int** | Minimum Length Of Stay | [optional] 
 **max_los** | **int** | Maximum Length Of Stay | [optional] 
 

@@ -914,7 +914,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ReservationApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    source_id = 'source_id_example' # str | The third-party source ID for this reservation. (optional)
+    source_id = 'source_id_example' # str | The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type. (optional)
     third_party_identifier = 'third_party_identifier_example' # str | If it was received from a booking channel, this can be an identifier from that channel. (optional)
     start_date = '2013-10-20' # date | Check-In date. (optional)
     end_date = '2013-10-20' # date | Check-Out date. (optional)
@@ -957,7 +957,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **source_id** | **str**| The third-party source ID for this reservation. | [optional] 
+ **source_id** | **str**| The source ID for this reservation. Accepted formats:&lt;br /&gt; \\\&quot;s-{id}\\\&quot; for primary sources (no suffix), or&lt;br /&gt; \\\&quot;ss-{id}-0\\\&quot; / \\\&quot;ss-{id}-1\\\&quot; for third-party sources (suffix required: 0 &#x3D; channel-collect, 1 &#x3D; hotel-collect). The format must match the source type. | [optional] 
  **third_party_identifier** | **str**| If it was received from a booking channel, this can be an identifier from that channel. | [optional] 
  **start_date** | **date**| Check-In date. | [optional] 
  **end_date** | **date**| Check-Out date. | [optional] 
@@ -1093,7 +1093,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reservation_put**
-> PutReservationResponse put_reservation_put(property_id=property_id, reservation_id=reservation_id, estimated_arrival_time=estimated_arrival_time, status=status, checkout_date=checkout_date, custom_fields=custom_fields, rooms=rooms, date_created=date_created, send_status_change_email=send_status_change_email)
+> PutReservationResponse put_reservation_put(property_id=property_id, reservation_id=reservation_id, estimated_arrival_time=estimated_arrival_time, status=status, checkout_date=checkout_date, custom_fields=custom_fields, rooms=rooms, date_created=date_created, allotment_block_code=allotment_block_code, event_code=event_code, send_status_change_email=send_status_change_email)
 
 putReservation
 
@@ -1143,11 +1143,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     custom_fields = [cloudbeds_pms_v1_3.PutReservationRequestCustomFieldsInner()] # List[PutReservationRequestCustomFieldsInner] | Array with custom fields information (optional)
     rooms = [cloudbeds_pms_v1_3.PutReservationRequestRoomsInner()] # List[PutReservationRequestRoomsInner] | Array with rooms information to change accommodations assigned to the reservation (optional)
     date_created = '2013-10-20T19:20:30+01:00' # datetime | Date reservation was made. Do not change if omitted. (optional)
+    allotment_block_code = 'allotment_block_code_example' # str | Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event. (optional)
+    event_code = 'event_code_example' # str | Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only. (optional)
     send_status_change_email = False # bool | Send email on reservation status change to property and guest. (optional) (default to False)
 
     try:
         # putReservation
-        api_response = api_instance.put_reservation_put(property_id=property_id, reservation_id=reservation_id, estimated_arrival_time=estimated_arrival_time, status=status, checkout_date=checkout_date, custom_fields=custom_fields, rooms=rooms, date_created=date_created, send_status_change_email=send_status_change_email)
+        api_response = api_instance.put_reservation_put(property_id=property_id, reservation_id=reservation_id, estimated_arrival_time=estimated_arrival_time, status=status, checkout_date=checkout_date, custom_fields=custom_fields, rooms=rooms, date_created=date_created, allotment_block_code=allotment_block_code, event_code=event_code, send_status_change_email=send_status_change_email)
         print("The response of ReservationApi->put_reservation_put:\n")
         pprint(api_response)
     except Exception as e:
@@ -1169,6 +1171,8 @@ Name | Type | Description  | Notes
  **custom_fields** | [**List[PutReservationRequestCustomFieldsInner]**](PutReservationRequestCustomFieldsInner.md)| Array with custom fields information | [optional] 
  **rooms** | [**List[PutReservationRequestRoomsInner]**](PutReservationRequestRoomsInner.md)| Array with rooms information to change accommodations assigned to the reservation | [optional] 
  **date_created** | **datetime**| Date reservation was made. Do not change if omitted. | [optional] 
+ **allotment_block_code** | **str**| Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event. | [optional] 
+ **event_code** | **str**| Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only. | [optional] 
  **send_status_change_email** | **bool**| Send email on reservation status change to property and guest. | [optional] [default to False]
 
 ### Return type

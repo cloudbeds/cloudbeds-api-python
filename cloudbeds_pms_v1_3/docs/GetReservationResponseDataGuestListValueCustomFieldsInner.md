@@ -5,6 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**custom_field_id** | **str** | Unique identifier of the custom field definition (matches /getCustomFields.customFieldID). | [optional] 
+**shortcode** | **str** | Stable internal code of the custom field (matches /getCustomFields.shortcode). | [optional] 
+**is_active** | **bool** | Whether the custom field definition is active (true) or archived (false). | [optional] 
 **custom_field_name** | **str** | Custom Field Name | [optional] 
 **custom_field_value** | **str** | Custom Field Value | [optional] 
 

@@ -76,6 +76,7 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                                 room_type_is_virtual = True, 
                                 room_type_name = '', 
                                 sub_reservation_id = '', 
+                                is_room_locked = True, 
                                 guest_id = '', 
                                 guest_name = '', 
                                 rate_id = '', 
@@ -136,11 +137,15 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                                         room_type_name_short = '', 
                                         rate_id = '', 
                                         rate_plan_name = '', 
-                                        sub_reservation_id = '', )
+                                        sub_reservation_id = '', 
+                                        is_room_locked = True, )
                                     ], 
                                 guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(), 
                                 custom_fields = [
-                                    cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
+                                    cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner.GetReservationsResponse_data_inner_customFields_inner(
+                                        custom_field_id = '', 
+                                        shortcode = '', 
+                                        is_active = True, 
                                         custom_field_name = '', 
                                         custom_field_value = '', )
                                     ], 
@@ -149,7 +154,10 @@ class TestGetReservationsWithRateDetailsResponse(unittest.TestCase):
                             }, 
                         third_party_identifier = '', 
                         custom_fields = [
-                            cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner.GetGuestsModifiedResponse_data_inner_customFields_inner(
+                            cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner.GetReservationsResponse_data_inner_customFields_inner(
+                                custom_field_id = '', 
+                                shortcode = '', 
+                                is_active = True, 
                                 custom_field_name = '', 
                                 custom_field_value = '', )
                             ], 

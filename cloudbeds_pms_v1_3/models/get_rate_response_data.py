@@ -29,12 +29,16 @@ class GetRateResponseData(BaseModel):
     """ # noqa: E501
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID", alias="rateID")
     is_derived: Optional[StrictBool] = Field(default=None, description="This rate has been derived from another rate", alias="isDerived")
+    parent_rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID of the parent rate row (null when rate is not derived).", alias="parentRateID")
+    parent_rate_plan_id: Optional[StrictStr] = Field(default=None, description="Package ID of the parent rate plan (null when not derived or derived from the room-type base rate).", alias="parentRatePlanID")
+    parent_rate_plan_name_public: Optional[StrictStr] = Field(default=None, description="Public name of the parent rate plan (null when parentRatePlanID is null).", alias="parentRatePlanNamePublic")
+    parent_rate_plan_name_private: Optional[StrictStr] = Field(default=None, description="Private/internal name of the parent rate plan (null when parentRatePlanID is null).", alias="parentRatePlanNamePrivate")
     room_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Base rate for the room, calculated based on the Room Type ID, selected dates, and promo code. This does not include additional guest charges", alias="roomRate")
     total_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total rate for the room, which includes the base rate (roomRate) plus additional costs for extra guests (adults and children)", alias="totalRate")
     rooms_available: Optional[StrictInt] = Field(default=None, description="Number of rooms available, based on the parameters provided", alias="roomsAvailable")
     days_of_week: Optional[List[StrictStr]] = Field(default=None, alias="daysOfWeek")
     room_rate_detailed: Optional[List[GetRateResponseDataRoomRateDetailedInner]] = Field(default=None, description="Detailed information on the rates, if requested", alias="roomRateDetailed")
-    __properties: ClassVar[List[str]] = ["rateID", "isDerived", "roomRate", "totalRate", "roomsAvailable", "daysOfWeek", "roomRateDetailed"]
+    __properties: ClassVar[List[str]] = ["rateID", "isDerived", "parentRateID", "parentRatePlanID", "parentRatePlanNamePublic", "parentRatePlanNamePrivate", "roomRate", "totalRate", "roomsAvailable", "daysOfWeek", "roomRateDetailed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +86,26 @@ class GetRateResponseData(BaseModel):
                 if _item_room_rate_detailed:
                     _items.append(_item_room_rate_detailed.to_dict())
             _dict['roomRateDetailed'] = _items
+        # set to None if parent_rate_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_id is None and "parent_rate_id" in self.model_fields_set:
+            _dict['parentRateID'] = None
+
+        # set to None if parent_rate_plan_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_id is None and "parent_rate_plan_id" in self.model_fields_set:
+            _dict['parentRatePlanID'] = None
+
+        # set to None if parent_rate_plan_name_public (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_name_public is None and "parent_rate_plan_name_public" in self.model_fields_set:
+            _dict['parentRatePlanNamePublic'] = None
+
+        # set to None if parent_rate_plan_name_private (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_rate_plan_name_private is None and "parent_rate_plan_name_private" in self.model_fields_set:
+            _dict['parentRatePlanNamePrivate'] = None
+
         # set to None if days_of_week (nullable) is None
         # and model_fields_set contains the field
         if self.days_of_week is None and "days_of_week" in self.model_fields_set:
@@ -106,6 +130,10 @@ class GetRateResponseData(BaseModel):
         _obj = cls.model_validate({
             "rateID": obj.get("rateID"),
             "isDerived": obj.get("isDerived"),
+            "parentRateID": obj.get("parentRateID"),
+            "parentRatePlanID": obj.get("parentRatePlanID"),
+            "parentRatePlanNamePublic": obj.get("parentRatePlanNamePublic"),
+            "parentRatePlanNamePrivate": obj.get("parentRatePlanNamePrivate"),
             "roomRate": obj.get("roomRate"),
             "totalRate": obj.get("totalRate"),
             "roomsAvailable": obj.get("roomsAvailable"),

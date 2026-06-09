@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner import PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner
 from typing import Optional, Set
@@ -28,9 +28,10 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
     PostUpdateAllotmentBlockRequestAllotmentIntervalsInner
     """ # noqa: E501
     policy_id: Optional[StrictStr] = Field(default=None, description="Policy ID to associate with the interval", alias="policyId")
+    split_inventory: Optional[StrictBool] = Field(default=None, description="Enables split inventory for this virtual room type. When true, the linked physical room types become individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type. If omitted, the existing value is preserved. Must be explicitly set to true when adding a virtual room type via updateAllotmentBlock.", alias="splitInventory")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type id", alias="roomTypeId")
     availability: Optional[List[PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]] = Field(default=None, description="Interval availability data by day in interval")
-    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "availability"]
+    __properties: ClassVar[List[str]] = ["policyId", "splitInventory", "roomTypeId", "availability"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +84,11 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
         if self.policy_id is None and "policy_id" in self.model_fields_set:
             _dict['policyId'] = None
 
+        # set to None if split_inventory (nullable) is None
+        # and model_fields_set contains the field
+        if self.split_inventory is None and "split_inventory" in self.model_fields_set:
+            _dict['splitInventory'] = None
+
         # set to None if room_type_id (nullable) is None
         # and model_fields_set contains the field
         if self.room_type_id is None and "room_type_id" in self.model_fields_set:
@@ -106,6 +112,7 @@ class PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(BaseModel):
 
         _obj = cls.model_validate({
             "policyId": obj.get("policyId"),
+            "splitInventory": obj.get("splitInventory"),
             "roomTypeId": obj.get("roomTypeId"),
             "availability": [PostUpdateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.from_dict(_item) for _item in obj["availability"]] if obj.get("availability") is not None else None
         })

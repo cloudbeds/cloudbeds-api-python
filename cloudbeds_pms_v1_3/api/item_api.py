@@ -56,7 +56,9 @@ class ItemApi:
     def append_custom_item_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -81,12 +83,16 @@ class ItemApi:
     ) -> PostAppendCustomItemResponse:
         """appendCustomItem
 
-        Append single, or multiple, custom items and their associated payments to a existing one in a Reservation.
+        Append single, or multiple, custom items and their associated payments to an existing one in a Reservation, House Account, or Group.
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
         :type reservation_id: str
+        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :type house_account_id: str
+        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
+        :type group_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -130,6 +136,8 @@ class ItemApi:
         _param = self._append_custom_item_post_serialize(
             property_id=property_id,
             reservation_id=reservation_id,
+            house_account_id=house_account_id,
+            group_code=group_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -163,7 +171,9 @@ class ItemApi:
     def append_custom_item_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -188,12 +198,16 @@ class ItemApi:
     ) -> ApiResponse[PostAppendCustomItemResponse]:
         """appendCustomItem
 
-        Append single, or multiple, custom items and their associated payments to a existing one in a Reservation.
+        Append single, or multiple, custom items and their associated payments to an existing one in a Reservation, House Account, or Group.
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
         :type reservation_id: str
+        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :type house_account_id: str
+        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
+        :type group_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -237,6 +251,8 @@ class ItemApi:
         _param = self._append_custom_item_post_serialize(
             property_id=property_id,
             reservation_id=reservation_id,
+            house_account_id=house_account_id,
+            group_code=group_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -270,7 +286,9 @@ class ItemApi:
     def append_custom_item_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
+        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -295,12 +313,16 @@ class ItemApi:
     ) -> RESTResponseType:
         """appendCustomItem
 
-        Append single, or multiple, custom items and their associated payments to a existing one in a Reservation.
+        Append single, or multiple, custom items and their associated payments to an existing one in a Reservation, House Account, or Group.
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
         :type reservation_id: str
+        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :type house_account_id: str
+        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
+        :type group_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -344,6 +366,8 @@ class ItemApi:
         _param = self._append_custom_item_post_serialize(
             property_id=property_id,
             reservation_id=reservation_id,
+            house_account_id=house_account_id,
+            group_code=group_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -373,6 +397,8 @@ class ItemApi:
         self,
         property_id,
         reservation_id,
+        house_account_id,
+        group_code,
         reference_id,
         sub_reservation_id,
         room_id,
@@ -412,6 +438,10 @@ class ItemApi:
             _form_params.append(('propertyID', property_id))
         if reservation_id is not None:
             _form_params.append(('reservationID', reservation_id))
+        if house_account_id is not None:
+            _form_params.append(('houseAccountID', house_account_id))
+        if group_code is not None:
+            _form_params.append(('groupCode', group_code))
         if reference_id is not None:
             _form_params.append(('referenceID', reference_id))
         if sub_reservation_id is not None:

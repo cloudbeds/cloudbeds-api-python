@@ -37,6 +37,7 @@ class TestGetReservationRoomDetailsResponseData(unittest.TestCase):
             return GetReservationRoomDetailsResponseData(
                 reservation_id = '',
                 sub_reservation_id = '',
+                is_room_locked = True,
                 room_id = '',
                 room_name = '',
                 dorm_room_name = '',

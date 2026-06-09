@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **dorm_room_name** | **str** | Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type | [optional] 
 **room_type_id** | **str** | ID of the assigned room type | [optional] 
 **sub_reservation_id** | **str** | Sub Reservation ID of the specific assigned room | [optional] 
+**is_room_locked** | **bool** | Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI. | [optional] 
 **room_name** | **str** | Name of the specific assigned room | [optional] 
 **room_id** | **str** | ID of the specific assigned room | [optional] 
 **start_date** | **date** | Check-In date of the room | [optional] 

@@ -27,9 +27,9 @@ class PostCreateAllotmentBlockRequestAutoRelease(BaseModel):
     Optional auto-release configuration
     """ # noqa: E501
     release_type: Optional[StrictStr] = Field(default=None, description="The type of auto-release", alias="releaseType")
-    days: Optional[StrictInt] = Field(default=None, description="The number of days prior to the end of the allotment block to begin releasing dates from the allotment block")
+    release_days: Optional[StrictInt] = Field(default=None, description="The number of days prior to the end of the allotment block to begin releasing dates from the allotment block", alias="releaseDays")
     release_time: Optional[StrictStr] = Field(default=None, description="The hour to being the auto-release in HH:00 format, e.g. '00:00', '01:00'...", alias="releaseTime")
-    __properties: ClassVar[List[str]] = ["releaseType", "days", "releaseTime"]
+    __properties: ClassVar[List[str]] = ["releaseType", "releaseDays", "releaseTime"]
 
     @field_validator('release_type')
     def release_type_validate_enum(cls, value):
@@ -86,10 +86,10 @@ class PostCreateAllotmentBlockRequestAutoRelease(BaseModel):
         if self.release_type is None and "release_type" in self.model_fields_set:
             _dict['releaseType'] = None
 
-        # set to None if days (nullable) is None
+        # set to None if release_days (nullable) is None
         # and model_fields_set contains the field
-        if self.days is None and "days" in self.model_fields_set:
-            _dict['days'] = None
+        if self.release_days is None and "release_days" in self.model_fields_set:
+            _dict['releaseDays'] = None
 
         # set to None if release_time (nullable) is None
         # and model_fields_set contains the field
@@ -109,7 +109,7 @@ class PostCreateAllotmentBlockRequestAutoRelease(BaseModel):
 
         _obj = cls.model_validate({
             "releaseType": obj.get("releaseType"),
-            "days": obj.get("days"),
+            "releaseDays": obj.get("releaseDays"),
             "releaseTime": obj.get("releaseTime")
         })
         return _obj

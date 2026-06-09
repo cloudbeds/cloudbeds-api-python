@@ -42,7 +42,8 @@ class TestGetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(uni
                 room_type_name_short = '',
                 rate_id = '',
                 rate_plan_name = '',
-                sub_reservation_id = ''
+                sub_reservation_id = '',
+                is_room_locked = True
             )
         else:
             return GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner(

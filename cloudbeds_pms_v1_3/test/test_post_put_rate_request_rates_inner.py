@@ -40,7 +40,8 @@ class TestPostPutRateRequestRatesInner(unittest.TestCase):
                     cloudbeds_pms_v1_3.models.post_put_rate_request_rates_inner_interval_inner.PostPutRateRequest_rates_inner_interval_inner(
                         start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                        rate = 1.337, )
+                        rate = 1.337, 
+                        blocked = True, )
                     ]
             )
         else:

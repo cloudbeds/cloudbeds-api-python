@@ -31,7 +31,7 @@ class PutRoomBlockResponse(BaseModel):
     success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
     property_id: Optional[StrictStr] = Field(default=None, description="Property ID", alias="propertyID")
     room_block_id: Optional[StrictStr] = Field(default=None, description="Room block ID", alias="roomBlockID")
-    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. 'blocked' - Room block. 'out_of_service' - Out of service block. 'courtesy_hold' - Courtesy hold.", alias="roomBlockType")
+    room_block_type: Optional[StrictStr] = Field(default=None, description="Room block type. 'blocked_dates' - Room block. 'out_of_service' - Out of service block. 'courtesy_hold' - Courtesy hold.", alias="roomBlockType")
     room_block_reason: Optional[StrictStr] = Field(default=None, description="Room block reason", alias="roomBlockReason")
     start_date: Optional[date] = Field(default=None, description="Room block start date", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Room block end date", alias="endDate")
@@ -45,7 +45,7 @@ class PutRoomBlockResponse(BaseModel):
         if value is None:
             return value
 
-        _allowed_values = set(['blocked', 'out_of_service', 'courtesy_hold', 'unknown_default_open_api'])
+        _allowed_values = set(['blocked_dates', 'out_of_service', 'courtesy_hold', 'unknown_default_open_api'])
         if value not in _allowed_values:
             return 'unknown_default_open_api'
         return value

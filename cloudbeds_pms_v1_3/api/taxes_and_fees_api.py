@@ -15,7 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from cloudbeds_pms_v1_3.models.get_taxes_and_fees_response import GetTaxesAndFeesResponse
@@ -45,6 +45,12 @@ class TaxesAndFeesApi:
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
         include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
+        available_for: Annotated[Optional[StrictStr], Field(description="Filter by entity type applicability")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.")] = None,
+        is_root_source: Annotated[Optional[StrictBool], Field(description="Root source flag. Required with sourceId.")] = None,
+        is_hotel_collect_booking: Annotated[Optional[StrictBool], Field(description="Hotel collect flag. Required with sourceId.")] = None,
+        product_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for a product. Mutually exclusive with addonId.")] = None,
+        addon_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -70,6 +76,18 @@ class TaxesAndFeesApi:
         :type include_expired: bool
         :param include_custom_item_taxes: If the response should include custom item taxes
         :type include_custom_item_taxes: bool
+        :param available_for: Filter by entity type applicability
+        :type available_for: str
+        :param source_id: Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.
+        :type source_id: str
+        :param is_root_source: Root source flag. Required with sourceId.
+        :type is_root_source: bool
+        :param is_hotel_collect_booking: Hotel collect flag. Required with sourceId.
+        :type is_hotel_collect_booking: bool
+        :param product_id: Filter taxes/fees for a product. Mutually exclusive with addonId.
+        :type product_id: str
+        :param addon_id: Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.
+        :type addon_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -97,6 +115,12 @@ class TaxesAndFeesApi:
             include_deleted=include_deleted,
             include_expired=include_expired,
             include_custom_item_taxes=include_custom_item_taxes,
+            available_for=available_for,
+            source_id=source_id,
+            is_root_source=is_root_source,
+            is_hotel_collect_booking=is_hotel_collect_booking,
+            product_id=product_id,
+            addon_id=addon_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -124,6 +148,12 @@ class TaxesAndFeesApi:
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
         include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
+        available_for: Annotated[Optional[StrictStr], Field(description="Filter by entity type applicability")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.")] = None,
+        is_root_source: Annotated[Optional[StrictBool], Field(description="Root source flag. Required with sourceId.")] = None,
+        is_hotel_collect_booking: Annotated[Optional[StrictBool], Field(description="Hotel collect flag. Required with sourceId.")] = None,
+        product_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for a product. Mutually exclusive with addonId.")] = None,
+        addon_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -149,6 +179,18 @@ class TaxesAndFeesApi:
         :type include_expired: bool
         :param include_custom_item_taxes: If the response should include custom item taxes
         :type include_custom_item_taxes: bool
+        :param available_for: Filter by entity type applicability
+        :type available_for: str
+        :param source_id: Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.
+        :type source_id: str
+        :param is_root_source: Root source flag. Required with sourceId.
+        :type is_root_source: bool
+        :param is_hotel_collect_booking: Hotel collect flag. Required with sourceId.
+        :type is_hotel_collect_booking: bool
+        :param product_id: Filter taxes/fees for a product. Mutually exclusive with addonId.
+        :type product_id: str
+        :param addon_id: Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.
+        :type addon_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -176,6 +218,12 @@ class TaxesAndFeesApi:
             include_deleted=include_deleted,
             include_expired=include_expired,
             include_custom_item_taxes=include_custom_item_taxes,
+            available_for=available_for,
+            source_id=source_id,
+            is_root_source=is_root_source,
+            is_hotel_collect_booking=is_hotel_collect_booking,
+            product_id=product_id,
+            addon_id=addon_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -203,6 +251,12 @@ class TaxesAndFeesApi:
         include_deleted: Annotated[Optional[StrictBool], Field(description="If the response should include deleted taxes and fees")] = None,
         include_expired: Annotated[Optional[StrictBool], Field(description="If the response should include expired taxes and fees")] = None,
         include_custom_item_taxes: Annotated[Optional[StrictBool], Field(description="If the response should include custom item taxes")] = None,
+        available_for: Annotated[Optional[StrictStr], Field(description="Filter by entity type applicability")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.")] = None,
+        is_root_source: Annotated[Optional[StrictBool], Field(description="Root source flag. Required with sourceId.")] = None,
+        is_hotel_collect_booking: Annotated[Optional[StrictBool], Field(description="Hotel collect flag. Required with sourceId.")] = None,
+        product_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for a product. Mutually exclusive with addonId.")] = None,
+        addon_id: Annotated[Optional[StrictStr], Field(description="Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -228,6 +282,18 @@ class TaxesAndFeesApi:
         :type include_expired: bool
         :param include_custom_item_taxes: If the response should include custom item taxes
         :type include_custom_item_taxes: bool
+        :param available_for: Filter by entity type applicability
+        :type available_for: str
+        :param source_id: Filter by booking source ID. Requires isRootSource and isHotelCollectBooking.
+        :type source_id: str
+        :param is_root_source: Root source flag. Required with sourceId.
+        :type is_root_source: bool
+        :param is_hotel_collect_booking: Hotel collect flag. Required with sourceId.
+        :type is_hotel_collect_booking: bool
+        :param product_id: Filter taxes/fees for a product. Mutually exclusive with addonId.
+        :type product_id: str
+        :param addon_id: Filter taxes/fees for an addon (resolves to product). Mutually exclusive with productId.
+        :type addon_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -255,6 +321,12 @@ class TaxesAndFeesApi:
             include_deleted=include_deleted,
             include_expired=include_expired,
             include_custom_item_taxes=include_custom_item_taxes,
+            available_for=available_for,
+            source_id=source_id,
+            is_root_source=is_root_source,
+            is_hotel_collect_booking=is_hotel_collect_booking,
+            product_id=product_id,
+            addon_id=addon_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -277,6 +349,12 @@ class TaxesAndFeesApi:
         include_deleted,
         include_expired,
         include_custom_item_taxes,
+        available_for,
+        source_id,
+        is_root_source,
+        is_hotel_collect_booking,
+        product_id,
+        addon_id,
         _request_auth,
         _content_type,
         _headers,
@@ -314,6 +392,30 @@ class TaxesAndFeesApi:
         if include_custom_item_taxes is not None:
             
             _query_params.append(('includeCustomItemTaxes', include_custom_item_taxes))
+            
+        if available_for is not None:
+            
+            _query_params.append(('availableFor', available_for))
+            
+        if source_id is not None:
+            
+            _query_params.append(('sourceId', source_id))
+            
+        if is_root_source is not None:
+            
+            _query_params.append(('isRootSource', is_root_source))
+            
+        if is_hotel_collect_booking is not None:
+            
+            _query_params.append(('isHotelCollectBooking', is_hotel_collect_booking))
+            
+        if product_id is not None:
+            
+            _query_params.append(('productId', product_id))
+            
+        if addon_id is not None:
+            
+            _query_params.append(('addonId', addon_id))
             
         # process the header parameters
         # process the form parameters

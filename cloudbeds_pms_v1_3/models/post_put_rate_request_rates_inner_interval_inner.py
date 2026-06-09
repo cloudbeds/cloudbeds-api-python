@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,8 @@ class PostPutRateRequestRatesInnerIntervalInner(BaseModel):
     start_date: Optional[date] = Field(default=None, description="Interval Start date. Format: YYYY-MM-DD", alias="startDate")
     end_date: Optional[date] = Field(default=None, description="Interval End date. Format: YYYY-MM-DD", alias="endDate")
     rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Base rate for the selected date")
-    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate"]
+    blocked: Optional[StrictBool] = Field(default=None, description="Whether the accommodation is blocked.")
+    __properties: ClassVar[List[str]] = ["startDate", "endDate", "rate", "blocked"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +72,11 @@ class PostPutRateRequestRatesInnerIntervalInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if blocked (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked is None and "blocked" in self.model_fields_set:
+            _dict['blocked'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +91,8 @@ class PostPutRateRequestRatesInnerIntervalInner(BaseModel):
         _obj = cls.model_validate({
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
-            "rate": obj.get("rate")
+            "rate": obj.get("rate"),
+            "blocked": obj.get("blocked")
         })
         return _obj
 

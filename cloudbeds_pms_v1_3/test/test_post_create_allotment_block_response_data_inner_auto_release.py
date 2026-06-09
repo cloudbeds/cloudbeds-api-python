@@ -36,7 +36,7 @@ class TestPostCreateAllotmentBlockResponseDataInnerAutoRelease(unittest.TestCase
         if include_optional:
             return PostCreateAllotmentBlockResponseDataInnerAutoRelease(
                 release_type = 'all_dates',
-                days = 56,
+                release_days = 56,
                 release_time = ''
             )
         else:

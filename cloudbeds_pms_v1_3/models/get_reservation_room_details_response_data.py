@@ -29,6 +29,7 @@ class GetReservationRoomDetailsResponseData(BaseModel):
     """ # noqa: E501
     reservation_id: Optional[StrictStr] = Field(default=None, description="Reservation Unique Identifier.", alias="reservationID")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="Subreservation Unique Identifier", alias="subReservationID")
+    is_room_locked: Optional[StrictBool] = Field(default=None, description="Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI.", alias="isRoomLocked")
     room_id: Optional[StrictStr] = Field(default=None, description="ID of room assigned", alias="roomID")
     room_name: Optional[StrictStr] = Field(default=None, description="Name of room assigned", alias="roomName")
     dorm_room_name: Optional[StrictStr] = Field(default=None, description="Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type.", alias="dormRoomName")
@@ -42,7 +43,7 @@ class GetReservationRoomDetailsResponseData(BaseModel):
     adults: Optional[StrictInt] = Field(default=None, description="Number of adults registered to room (this does not mean there will be this number of guests in guests array)")
     children: Optional[StrictInt] = Field(default=None, description="Number of children registered to room (this does not mean there will be this number of guests in guests array)")
     guests: Optional[List[GetReservationRoomDetailsResponseDataGuestsInner]] = Field(default=None, description="Array with all guests assigned to room")
-    __properties: ClassVar[List[str]] = ["reservationID", "subReservationID", "roomID", "roomName", "dormRoomName", "guestID", "guestName", "roomStatus", "roomTypeID", "roomTypeName", "roomTypeIsVirtual", "maxGuests", "adults", "children", "guests"]
+    __properties: ClassVar[List[str]] = ["reservationID", "subReservationID", "isRoomLocked", "roomID", "roomName", "dormRoomName", "guestID", "guestName", "roomStatus", "roomTypeID", "roomTypeName", "roomTypeIsVirtual", "maxGuests", "adults", "children", "guests"]
 
     @field_validator('room_status')
     def room_status_validate_enum(cls, value):
@@ -120,6 +121,7 @@ class GetReservationRoomDetailsResponseData(BaseModel):
         _obj = cls.model_validate({
             "reservationID": obj.get("reservationID"),
             "subReservationID": obj.get("subReservationID"),
+            "isRoomLocked": obj.get("isRoomLocked"),
             "roomID": obj.get("roomID"),
             "roomName": obj.get("roomName"),
             "dormRoomName": obj.get("dormRoomName"),

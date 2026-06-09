@@ -36,6 +36,7 @@ class TestPostUpdateAllotmentBlockRequestAllotmentIntervalsInner(unittest.TestCa
         if include_optional:
             return PostUpdateAllotmentBlockRequestAllotmentIntervalsInner(
                 policy_id = '',
+                split_inventory = True,
                 room_type_id = '',
                 availability = [
                     cloudbeds_pms_v1_3.models.post_update_allotment_block_request_allotment_intervals_inner_availability_inner.PostUpdateAllotmentBlockRequest_allotmentIntervals_inner_availability_inner(

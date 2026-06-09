@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **room_type_id** | **str** | Room type ID | [optional] 
 **availability** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability.md) |  | [optional] 
 **restrictions** | [**PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions**](PostUpdateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.md) |  | [optional] 
+**split_inventory** | **bool** | Whether split inventory is enabled for this room type. When true, the linked physical room types are individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type. | [optional] 
 
 ## Example
 

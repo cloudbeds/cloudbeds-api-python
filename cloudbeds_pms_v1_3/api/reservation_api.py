@@ -3533,7 +3533,7 @@ class ReservationApi:
     def post_reservation_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="The third-party source ID for this reservation.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.")] = None,
         third_party_identifier: Annotated[Optional[StrictStr], Field(description="If it was received from a booking channel, this can be an identifier from that channel.")] = None,
         start_date: Annotated[Optional[date], Field(description="Check-In date.")] = None,
         end_date: Annotated[Optional[date], Field(description="Check-Out date.")] = None,
@@ -3577,7 +3577,7 @@ class ReservationApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param source_id: The third-party source ID for this reservation.
+        :param source_id: The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.
         :type source_id: str
         :param third_party_identifier: If it was received from a booking channel, this can be an identifier from that channel.
         :type third_party_identifier: str
@@ -3700,7 +3700,7 @@ class ReservationApi:
     def post_reservation_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="The third-party source ID for this reservation.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.")] = None,
         third_party_identifier: Annotated[Optional[StrictStr], Field(description="If it was received from a booking channel, this can be an identifier from that channel.")] = None,
         start_date: Annotated[Optional[date], Field(description="Check-In date.")] = None,
         end_date: Annotated[Optional[date], Field(description="Check-Out date.")] = None,
@@ -3744,7 +3744,7 @@ class ReservationApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param source_id: The third-party source ID for this reservation.
+        :param source_id: The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.
         :type source_id: str
         :param third_party_identifier: If it was received from a booking channel, this can be an identifier from that channel.
         :type third_party_identifier: str
@@ -3867,7 +3867,7 @@ class ReservationApi:
     def post_reservation_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="The third-party source ID for this reservation.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.")] = None,
         third_party_identifier: Annotated[Optional[StrictStr], Field(description="If it was received from a booking channel, this can be an identifier from that channel.")] = None,
         start_date: Annotated[Optional[date], Field(description="Check-In date.")] = None,
         end_date: Annotated[Optional[date], Field(description="Check-Out date.")] = None,
@@ -3911,7 +3911,7 @@ class ReservationApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param source_id: The third-party source ID for this reservation.
+        :param source_id: The source ID for this reservation. Accepted formats:<br /> \\\"s-{id}\\\" for primary sources (no suffix), or<br /> \\\"ss-{id}-0\\\" / \\\"ss-{id}-1\\\" for third-party sources (suffix required: 0 = channel-collect, 1 = hotel-collect). The format must match the source type.
         :type source_id: str
         :param third_party_identifier: If it was received from a booking channel, this can be an identifier from that channel.
         :type third_party_identifier: str
@@ -4515,6 +4515,8 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
         _request_timeout: Union[
             None,
@@ -4549,6 +4551,10 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
+        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :type allotment_block_code: str
+        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4582,6 +4588,8 @@ class ReservationApi:
             custom_fields=custom_fields,
             rooms=rooms,
             date_created=date_created,
+            allotment_block_code=allotment_block_code,
+            event_code=event_code,
             send_status_change_email=send_status_change_email,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4614,6 +4622,8 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
         _request_timeout: Union[
             None,
@@ -4648,6 +4658,10 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
+        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :type allotment_block_code: str
+        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4681,6 +4695,8 @@ class ReservationApi:
             custom_fields=custom_fields,
             rooms=rooms,
             date_created=date_created,
+            allotment_block_code=allotment_block_code,
+            event_code=event_code,
             send_status_change_email=send_status_change_email,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4713,6 +4729,8 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
         _request_timeout: Union[
             None,
@@ -4747,6 +4765,10 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
+        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :type allotment_block_code: str
+        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -4780,6 +4802,8 @@ class ReservationApi:
             custom_fields=custom_fields,
             rooms=rooms,
             date_created=date_created,
+            allotment_block_code=allotment_block_code,
+            event_code=event_code,
             send_status_change_email=send_status_change_email,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4807,6 +4831,8 @@ class ReservationApi:
         custom_fields,
         rooms,
         date_created,
+        allotment_block_code,
+        event_code,
         send_status_change_email,
         _request_auth,
         _content_type,
@@ -4850,6 +4876,10 @@ class ReservationApi:
             _form_params.append(('rooms', rooms))
         if date_created is not None:
             _form_params.append(('dateCreated', date_created))
+        if allotment_block_code is not None:
+            _form_params.append(('allotmentBlockCode', allotment_block_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if send_status_change_email is not None:
             _form_params.append(('sendStatusChangeEmail', send_status_change_email))
         # process the body parameter

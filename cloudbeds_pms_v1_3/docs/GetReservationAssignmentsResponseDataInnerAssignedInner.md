@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **room_name** | **str** | Name of the specific room assigned | [optional] 
 **room_id** | **str** | ID of the specific room assigned | [optional] 
 **sub_reservation_id** | **str** | Associated subReservation ID (specific to room) | [optional] 
+**is_room_locked** | **bool** | Whether the reservation room assignment is locked. Locked reservations cannot be reassigned via the calendar UI. | [optional] 
 
 ## Example
 

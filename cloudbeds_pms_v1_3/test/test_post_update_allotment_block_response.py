@@ -53,7 +53,7 @@ class TestPostUpdateAllotmentBlockResponse(unittest.TestCase):
                         is_auto_release = True, 
                         auto_release = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_auto_release.PostCreateAllotmentBlockResponse_data_inner_autoRelease(
                             release_type = 'all_dates', 
-                            days = 56, 
+                            release_days = 56, 
                             release_time = '', ), 
                         allotment_intervals = [
                             cloudbeds_pms_v1_3.models.post_update_allotment_block_response_data_inner_allotment_intervals_inner.PostUpdateAllotmentBlockResponse_data_inner_allotmentIntervals_inner(
@@ -81,7 +81,44 @@ class TestPostUpdateAllotmentBlockResponse(unittest.TestCase):
                                     cut_off_days = 56, 
                                     last_minute_booking_days = 56, 
                                     closed_to_arrival = 56, 
-                                    closed_to_departure = 56, ), )
+                                    closed_to_departure = 56, ), 
+                                split_inventory = True, )
+                            ], 
+                        resources = [
+                            cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_resources_inner.PostCreateAllotmentBlockResponse_data_inner_resources_inner(
+                                id = '', 
+                                resource_type_id = '', 
+                                resource_id = '', 
+                                resource_type_quantity = 56, 
+                                start_at = '', 
+                                end_at = '', 
+                                interval_rate = 56, 
+                                interval_type = 'per_interval', 
+                                confirmed = True, 
+                                adults = 56, 
+                                children = 56, 
+                                inventory_strategy = '', 
+                                allotment_quantity_total = 56, 
+                                allotment_quantity_consumed = 56, 
+                                resource_type = cloudbeds_pms_v1_3.models.resource_type.resourceType(), 
+                                resource = cloudbeds_pms_v1_3.models.resource.resource(), 
+                                title = '', 
+                                notes = '', 
+                                event_interval_period = '', 
+                                event_interval_amount = 56, 
+                                interval_quantity = 56, 
+                                currency_code = '', 
+                                net_amount = cloudbeds_pms_v1_3.models.net_amount.netAmount(), 
+                                subtotal = cloudbeds_pms_v1_3.models.subtotal.subtotal(), 
+                                inclusive_taxes_and_fees_amount = cloudbeds_pms_v1_3.models.inclusive_taxes_and_fees_amount.inclusiveTaxesAndFeesAmount(), 
+                                exclusive_taxes_and_fees_amount = cloudbeds_pms_v1_3.models.exclusive_taxes_and_fees_amount.exclusiveTaxesAndFeesAmount(), 
+                                total = cloudbeds_pms_v1_3.models.total.total(), 
+                                taxes = [
+                                    None
+                                    ], 
+                                fees = [
+                                    None
+                                    ], )
                             ], )
                     ]
             )

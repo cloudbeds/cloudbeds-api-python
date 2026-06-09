@@ -40,6 +40,7 @@ class TestGetReservationResponseDataUnassignedInner(unittest.TestCase):
                 room_type_is_virtual = True,
                 room_type_id = '',
                 sub_reservation_id = '',
+                is_room_locked = True,
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 adults = '',

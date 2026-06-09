@@ -20,8 +20,8 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
+from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner import GetReservationsResponseDataInnerCustomFieldsInner
 from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value import GetReservationsResponseDataInnerGuestListValue
 from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_rooms_inner import GetReservationsResponseDataInnerRoomsInner
 from typing import Optional, Set
@@ -51,7 +51,7 @@ class GetReservationsResponseDataInner(BaseModel):
     third_party_identifier: Optional[StrictStr] = Field(default=None, alias="thirdPartyIdentifier")
     group_inventory: Optional[List[GetReservationResponseDataGroupInventoryInner]] = Field(default=None, description="Aggregate allotment block information", alias="groupInventory")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, description="If roomID or roomName are given, the respective subReservationID (to that room) is informed.", alias="subReservationID")
-    custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
+    custom_fields: Optional[List[GetReservationsResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of reservation custom fields. Only returned if \"includeCustomFields\" is true", alias="customFields")
     rooms: Optional[List[GetReservationsResponseDataInnerRoomsInner]] = Field(default=None, description="Array with rooms information. Only returned if \"includeAllRooms\" is true")
     guest_list: Optional[Dict[str, GetReservationsResponseDataInnerGuestListValue]] = Field(default=None, description="A map of guest IDs to guest objects (key is the Guest ID). It contains an entry for each guest included on the reservation. Only returned if \"includeGuestsDetails\" is true", alias="guestList")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
@@ -198,7 +198,7 @@ class GetReservationsResponseDataInner(BaseModel):
             "thirdPartyIdentifier": obj.get("thirdPartyIdentifier"),
             "groupInventory": [GetReservationResponseDataGroupInventoryInner.from_dict(_item) for _item in obj["groupInventory"]] if obj.get("groupInventory") is not None else None,
             "subReservationID": obj.get("subReservationID"),
-            "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
+            "customFields": [GetReservationsResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "rooms": [GetReservationsResponseDataInnerRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
             "guestList": dict(
                 (_k, GetReservationsResponseDataInnerGuestListValue.from_dict(_v))

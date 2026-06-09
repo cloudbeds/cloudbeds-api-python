@@ -4455,6 +4455,7 @@ class GuestApi:
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
         remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
+        main_guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4486,6 +4487,8 @@ class GuestApi:
         :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
+        :param main_guest_id: Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.
+        :type main_guest_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4516,6 +4519,7 @@ class GuestApi:
             remove_guest_ids=remove_guest_ids,
             remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
+            main_guest_id=main_guest_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4546,6 +4550,7 @@ class GuestApi:
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
         remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
+        main_guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4577,6 +4582,8 @@ class GuestApi:
         :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
+        :param main_guest_id: Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.
+        :type main_guest_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4607,6 +4614,7 @@ class GuestApi:
             remove_guest_ids=remove_guest_ids,
             remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
+            main_guest_id=main_guest_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4637,6 +4645,7 @@ class GuestApi:
         remove_guest_ids: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) before adding guests sent in guestIDs parameter. If more than one, send as comma-separated, i.e. 37,345,89. Main Guest is never removed.")] = None,
         remove_guest_ids_from_room: Annotated[Optional[StrictStr], Field(description="If sent, will remove guest ID(s) only from the specified Room ID(s). If more than one, send as comma-separated, i.e. 37,345,89. Incompatible with removeAll parameter.")] = None,
         remove_all: Annotated[Optional[StrictBool], Field(description="If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.")] = None,
+        main_guest_id: Annotated[Optional[StrictStr], Field(description="Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4668,6 +4677,8 @@ class GuestApi:
         :type remove_guest_ids_from_room: str
         :param remove_all: If set true, will remove all guests assigned to roomID before assigning guests sent in guestIDs parameter. Main Guest is never removed.
         :type remove_all: bool
+        :param main_guest_id: Guest ID to promote as main guest of the booking room. MUST be present in guestIDs. When omitted, the room's main guest is left unchanged.
+        :type main_guest_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4698,6 +4709,7 @@ class GuestApi:
             remove_guest_ids=remove_guest_ids,
             remove_guest_ids_from_room=remove_guest_ids_from_room,
             remove_all=remove_all,
+            main_guest_id=main_guest_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4723,6 +4735,7 @@ class GuestApi:
         remove_guest_ids,
         remove_guest_ids_from_room,
         remove_all,
+        main_guest_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4761,6 +4774,8 @@ class GuestApi:
             _form_params.append(('removeGuestIDsFromRoom', remove_guest_ids_from_room))
         if remove_all is not None:
             _form_params.append(('removeAll', remove_all))
+        if main_guest_id is not None:
+            _form_params.append(('mainGuestId', main_guest_id))
         # process the body parameter
 
 

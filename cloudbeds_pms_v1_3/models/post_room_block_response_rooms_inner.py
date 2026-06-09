@@ -30,7 +30,9 @@ class PostRoomBlockResponseRoomsInner(BaseModel):
     room_id: Optional[StrictStr] = Field(default=None, description="Room ID", alias="roomID")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room Type ID", alias="roomTypeID")
     is_source: Optional[StrictBool] = Field(default=None, description="Indicates whether this room was explicitly requested (true) or automatically added due to split inventory configuration (false). Auto-added rooms cannot be individually removed or swapped; they are managed through their source room.", alias="isSource")
-    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource"]
+    source_event_ids: Optional[List[StrictStr]] = Field(default=None, description="Event IDs of source events that triggered this auto-added room. Null for source rooms. Present only for properties using split inventory.", alias="sourceEventIds")
+    linked_event_ids: Optional[List[StrictStr]] = Field(default=None, description="Event IDs of auto-added rooms triggered by this source room. Null for auto-added rooms. Present only for properties using split inventory.", alias="linkedEventIds")
+    __properties: ClassVar[List[str]] = ["eventID", "roomID", "roomTypeID", "isSource", "sourceEventIds", "linkedEventIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,16 @@ class PostRoomBlockResponseRoomsInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if source_event_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_event_ids is None and "source_event_ids" in self.model_fields_set:
+            _dict['sourceEventIds'] = None
+
+        # set to None if linked_event_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.linked_event_ids is None and "linked_event_ids" in self.model_fields_set:
+            _dict['linkedEventIds'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +98,9 @@ class PostRoomBlockResponseRoomsInner(BaseModel):
             "eventID": obj.get("eventID"),
             "roomID": obj.get("roomID"),
             "roomTypeID": obj.get("roomTypeID"),
-            "isSource": obj.get("isSource")
+            "isSource": obj.get("isSource"),
+            "sourceEventIds": obj.get("sourceEventIds"),
+            "linkedEventIds": obj.get("linkedEventIds")
         })
         return _obj
 

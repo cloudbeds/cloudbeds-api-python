@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cloudbeds_pms_v1_3.models.get_guests_modified_response_data_inner_custom_fields_inner import GetGuestsModifiedResponseDataInnerCustomFieldsInner
+from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_custom_fields_inner import GetReservationsResponseDataInnerCustomFieldsInner
 from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_rooms_inner import GetReservationsResponseDataInnerGuestListValueRoomsInner
 from cloudbeds_pms_v1_3.models.get_reservations_response_data_inner_guest_list_value_unassigned_rooms_inner import GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner
 from typing import Optional, Set
@@ -64,7 +64,7 @@ class GetReservationsWithRateDetailsResponseDataInnerGuestListValue(BaseModel):
     rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueRoomsInner]] = Field(default=None, description="List of all rooms that guest is assigned to")
     unassigned_rooms: Optional[List[GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner]] = Field(default=None, description="List of all unassigned rooms", alias="unassignedRooms")
     guest_requirements: Optional[Dict[str, Any]] = Field(default=None, description="Guest requirements data. Only included if `includeGuestsDetails=true` and `includeGuestRequirements=true`.", alias="guestRequirements")
-    custom_fields: Optional[List[GetGuestsModifiedResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of guest custom fields", alias="customFields")
+    custom_fields: Optional[List[GetReservationsResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of guest custom fields", alias="customFields")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     is_main_guest: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest is the main guest on the reservation", alias="isMainGuest")
     __properties: ClassVar[List[str]] = ["guestID", "guestName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "subReservationID", "startDate", "endDate", "assignedRoom", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "rooms", "unassignedRooms", "guestRequirements", "customFields", "isAnonymized", "isMainGuest"]
@@ -371,7 +371,7 @@ class GetReservationsWithRateDetailsResponseDataInnerGuestListValue(BaseModel):
             "rooms": [GetReservationsResponseDataInnerGuestListValueRoomsInner.from_dict(_item) for _item in obj["rooms"]] if obj.get("rooms") is not None else None,
             "unassignedRooms": [GetReservationsResponseDataInnerGuestListValueUnassignedRoomsInner.from_dict(_item) for _item in obj["unassignedRooms"]] if obj.get("unassignedRooms") is not None else None,
             "guestRequirements": obj.get("guestRequirements"),
-            "customFields": [GetGuestsModifiedResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
+            "customFields": [GetReservationsResponseDataInnerCustomFieldsInner.from_dict(_item) for _item in obj["customFields"]] if obj.get("customFields") is not None else None,
             "isAnonymized": obj.get("isAnonymized"),
             "isMainGuest": obj.get("isMainGuest")
         })

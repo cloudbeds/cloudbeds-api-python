@@ -45,7 +45,8 @@ class TestGetReservationsResponseDataInnerGuestListValueRoomsInner(unittest.Test
                 rate_id = '',
                 rate_plan_name = '',
                 room_status = 'in_house',
-                sub_reservation_id = ''
+                sub_reservation_id = '',
+                is_room_locked = True
             )
         else:
             return GetReservationsResponseDataInnerGuestListValueRoomsInner(

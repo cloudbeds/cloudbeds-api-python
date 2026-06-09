@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,9 +26,12 @@ class GetReservationResponseDataGuestListValueCustomFieldsInner(BaseModel):
     """
     GetReservationResponseDataGuestListValueCustomFieldsInner
     """ # noqa: E501
+    custom_field_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the custom field definition (matches /getCustomFields.customFieldID).", alias="customFieldID")
+    shortcode: Optional[StrictStr] = Field(default=None, description="Stable internal code of the custom field (matches /getCustomFields.shortcode).")
+    is_active: Optional[StrictBool] = Field(default=None, description="Whether the custom field definition is active (true) or archived (false).", alias="isActive")
     custom_field_name: Optional[StrictStr] = Field(default=None, description="Custom Field Name", alias="customFieldName")
     custom_field_value: Optional[StrictStr] = Field(default=None, description="Custom Field Value", alias="customFieldValue")
-    __properties: ClassVar[List[str]] = ["customFieldName", "customFieldValue"]
+    __properties: ClassVar[List[str]] = ["customFieldID", "shortcode", "isActive", "customFieldName", "customFieldValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +84,9 @@ class GetReservationResponseDataGuestListValueCustomFieldsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "customFieldID": obj.get("customFieldID"),
+            "shortcode": obj.get("shortcode"),
+            "isActive": obj.get("isActive"),
             "customFieldName": obj.get("customFieldName"),
             "customFieldValue": obj.get("customFieldValue")
         })

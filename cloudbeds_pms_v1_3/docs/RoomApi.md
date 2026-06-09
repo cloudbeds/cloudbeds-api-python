@@ -4,7 +4,7 @@ All URIs are relative to *https://api.cloudbeds.com/api/v1.3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_room_block_delete**](RoomApi.md#delete_room_block_delete) | **DELETE** /deleteRoomBlock | deleteRoomBlock
+[**delete_room_block_post**](RoomApi.md#delete_room_block_post) | **POST** /deleteRoomBlock | deleteRoomBlock
 [**get_available_room_types_get**](RoomApi.md#get_available_room_types_get) | **GET** /getAvailableRoomTypes | getAvailableRoomTypes
 [**get_reservation_room_details_get**](RoomApi.md#get_reservation_room_details_get) | **GET** /getReservationRoomDetails | getReservationRoomDetails
 [**get_room_blocks_get**](RoomApi.md#get_room_blocks_get) | **GET** /getRoomBlocks | getRoomBlocks
@@ -19,8 +19,8 @@ Method | HTTP request | Description
 [**put_room_block_put**](RoomApi.md#put_room_block_put) | **PUT** /putRoomBlock | putRoomBlock
 
 
-# **delete_room_block_delete**
-> DeleteRoomBlockResponse delete_room_block_delete(room_block_id, property_id=property_id)
+# **delete_room_block_post**
+> PostDeleteRoomBlockResponse delete_room_block_post(property_id=property_id, room_block_id=room_block_id)
 
 deleteRoomBlock
 
@@ -33,7 +33,7 @@ Deletes a room block
 
 ```python
 import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.delete_room_block_response import DeleteRoomBlockResponse
+from cloudbeds_pms_v1_3.models.post_delete_room_block_response import PostDeleteRoomBlockResponse
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
 
@@ -60,16 +60,16 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.RoomApi(api_client)
-    room_block_id = 'room_block_id_example' # str | Room block ID
     property_id = 'property_id_example' # str | Property ID (optional)
+    room_block_id = 'room_block_id_example' # str | Room block ID (optional)
 
     try:
         # deleteRoomBlock
-        api_response = api_instance.delete_room_block_delete(room_block_id, property_id=property_id)
-        print("The response of RoomApi->delete_room_block_delete:\n")
+        api_response = api_instance.delete_room_block_post(property_id=property_id, room_block_id=room_block_id)
+        print("The response of RoomApi->delete_room_block_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RoomApi->delete_room_block_delete: %s\n" % e)
+        print("Exception when calling RoomApi->delete_room_block_post: %s\n" % e)
 ```
 
 
@@ -79,12 +79,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **room_block_id** | **str**| Room block ID | 
  **property_id** | **str**| Property ID | [optional] 
+ **room_block_id** | **str**| Room block ID | [optional] 
 
 ### Return type
 
-[**DeleteRoomBlockResponse**](DeleteRoomBlockResponse.md)
+[**PostDeleteRoomBlockResponse**](PostDeleteRoomBlockResponse.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details
@@ -342,8 +342,8 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     room_block_id = 'room_block_id_example' # str | Room block ID (optional)
     room_type_id = 'room_type_id_example' # str | Room type ID (optional)
     room_id = 'room_id_example' # str | Room ID (optional)
-    start_date = '2013-10-20' # date | Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
-    end_date = '2013-10-20' # date | Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less) (optional)
+    start_date = '2013-10-20' # date | Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less) (optional)
+    end_date = '2013-10-20' # date | Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less) (optional)
     page_number = 1 # int | Page number (optional) (default to 1)
     page_size = 20 # int | Page size (optional) (default to 20)
 
@@ -367,8 +367,8 @@ Name | Type | Description  | Notes
  **room_block_id** | **str**| Room block ID | [optional] 
  **room_type_id** | **str**| Room type ID | [optional] 
  **room_id** | **str**| Room ID | [optional] 
- **start_date** | **date**| Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
- **end_date** | **date**| Defaults to today. End date - will filter for any room blocks that include this date (Date range must be one month or less) | [optional] 
+ **start_date** | **date**| Defaults to today. Start date - will filter for any room blocks that include this date (Date range must be 35 days or less) | [optional] 
+ **end_date** | **date**| Defaults to today. End date - will filter for any room blocks that include this date (Date range must be 35 days or less) | [optional] 
  **page_number** | **int**| Page number | [optional] [default to 1]
  **page_size** | **int**| Page size | [optional] [default to 20]
 
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_rooms_fees_and_taxes_get**
-> GetRoomsFeesAndTaxesResponse get_rooms_fees_and_taxes_get(start_date, end_date, rooms_total, rooms_count, property_id=property_id)
+> GetRoomsFeesAndTaxesResponse get_rooms_fees_and_taxes_get(start_date, end_date, rooms_total, rooms_count, property_id=property_id, adults_per_room=adults_per_room, children_per_room=children_per_room)
 
 getRoomsFeesAndTaxes
 
@@ -547,10 +547,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     rooms_total = 3.4 # float | Total value of the rooms to be booked, with included taxes
     rooms_count = 56 # int | Number of rooms to be booked
     property_id = 'property_id_example' # str | Property ID (optional)
+    adults_per_room = 56 # int | Adult occupants per room (applied uniformly across `roomsCount`). Required for `fixed_per_person` taxes/fees to compute non-zero values; otherwise per-person amounts return 0. (optional)
+    children_per_room = 56 # int | Child occupants per room. Same semantics as `adultsPerRoom`. (optional)
 
     try:
         # getRoomsFeesAndTaxes
-        api_response = api_instance.get_rooms_fees_and_taxes_get(start_date, end_date, rooms_total, rooms_count, property_id=property_id)
+        api_response = api_instance.get_rooms_fees_and_taxes_get(start_date, end_date, rooms_total, rooms_count, property_id=property_id, adults_per_room=adults_per_room, children_per_room=children_per_room)
         print("The response of RoomApi->get_rooms_fees_and_taxes_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -569,6 +571,8 @@ Name | Type | Description  | Notes
  **rooms_total** | **float**| Total value of the rooms to be booked, with included taxes | 
  **rooms_count** | **int**| Number of rooms to be booked | 
  **property_id** | **str**| Property ID | [optional] 
+ **adults_per_room** | **int**| Adult occupants per room (applied uniformly across &#x60;roomsCount&#x60;). Required for &#x60;fixed_per_person&#x60; taxes/fees to compute non-zero values; otherwise per-person amounts return 0. | [optional] 
+ **children_per_room** | **int**| Child occupants per room. Same semantics as &#x60;adultsPerRoom&#x60;. | [optional] 
 
 ### Return type
 
@@ -912,7 +916,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.RoomApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    room_block_type = 'room_block_type_example' # str | Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. 'courtesy_hold' - Courtesy hold block. (optional)
+    room_block_type = 'room_block_type_example' # str | Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block. (optional)
     room_block_reason = 'room_block_reason_example' # str | Room block reason (optional)
     start_date = '2013-10-20' # date | Room block start date (optional)
     end_date = '2013-10-20' # date | Room block end date (optional)
@@ -940,7 +944,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **room_block_type** | **str**| Room block type. ‘blocked’ - Room block. ‘out_of_service’ - Out of service block. &#39;courtesy_hold&#39; - Courtesy hold block. | [optional] 
+ **room_block_type** | **str**| Room block type. ‘blocked_dates’ - Room block. ‘out_of_service’ - Out of service block. ‘courtesy_hold’ - Courtesy hold block. | [optional] 
  **room_block_reason** | **str**| Room block reason | [optional] 
  **start_date** | **date**| Room block start date | [optional] 
  **end_date** | **date**| Room block end date | [optional] 
