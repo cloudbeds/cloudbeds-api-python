@@ -38,7 +38,6 @@ class FeatureEnum(str, Enum):
     FEATURE_DOT_DISTRIBUTION_DOT_SEND_MINUS_RATE_MINUS_PLAN_MINUS_IF_MINUS_PROMO_MINUS_CODE_MINUS_REMOVED = 'feature.distribution.send-rate-plan-if-promo-code-removed'
     FEATURE_DOT_DISTRIBUTION_DOT_MARKET_MINUS_SEGMENTATION_MINUS_DEBUG_MINUS_LOGS = 'feature.distribution.market-segmentation-debug-logs'
     FEATURE_DOT_DISTRIBUTION_DOT_ACCOMMODATIONS_V2 = 'feature.distribution.accommodations_v2'
-    FEATURE_DOT_INVENTORY_DOT_RATE_MINUS_PLANS = 'feature.inventory.rate-plans'
     FEATURE_DOT_INVENTORY_DOT_DERIVED_MINUS_RATE_MINUS_PLANS_MINUS_FROM_MINUS_NON_MINUS_BASE_MINUS_RATE_MINUS_PLANS = 'feature.inventory.derived-rate-plans-from-non-base-rate-plans'
     FEATURE_DOT_INVENTORY_DOT_ENABLE_MINUS_RATE_MINUS_SNAPSHOTS = 'feature.inventory.enable-rate-snapshots'
     FEATURE_DOT_PROP_MINUS_STAFF_DOT_PROPERTY_MINUS_FEATURE_MINUS_CACHE = 'feature.prop-staff.property-feature-cache'
