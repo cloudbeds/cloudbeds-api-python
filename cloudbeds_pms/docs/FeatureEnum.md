@@ -28,8 +28,6 @@ The operator to use for the filter
 
 * `FEATURE_DOT_DISTRIBUTION_DOT_ACCOMMODATIONS_V2` (value: `'feature.distribution.accommodations_v2'`)
 
-* `FEATURE_DOT_INVENTORY_DOT_RATE_MINUS_PLANS` (value: `'feature.inventory.rate-plans'`)
-
 * `FEATURE_DOT_INVENTORY_DOT_DERIVED_MINUS_RATE_MINUS_PLANS_MINUS_FROM_MINUS_NON_MINUS_BASE_MINUS_RATE_MINUS_PLANS` (value: `'feature.inventory.derived-rate-plans-from-non-base-rate-plans'`)
 
 * `FEATURE_DOT_PROP_MINUS_STAFF_DOT_PROPERTY_MINUS_FEATURE_MINUS_CACHE` (value: `'feature.prop-staff.property-feature-cache'`)
