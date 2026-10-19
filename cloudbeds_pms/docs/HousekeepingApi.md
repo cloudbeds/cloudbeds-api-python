@@ -43,7 +43,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     property_id = 1 # int | The property ID
     limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
     offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
-    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
+    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. (optional)
 
     try:
         # Housekeeping inspection list
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
  **property_id** | **int**| The property ID | 
  **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
  **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
- **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
+ **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. | [optional] 
 
 ### Return type
 

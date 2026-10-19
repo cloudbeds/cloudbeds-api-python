@@ -7,7 +7,7 @@ Event response data
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique event ID | 
-**event_code** | **str** | Event code (legacy: groupCode) | 
+**event_code** | **str** | Event code | 
 **profile_id** | **str** | GPS Profile ID linked to this event | [optional] 
 **name** | **str** | Event name | 
 **status** | **str** | Event status | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **start_date** | **date** | Event start date (YYYY-MM-DD) | [optional] 
 **end_date** | **date** | Event end date (YYYY-MM-DD) | [optional] 
 **transaction_mode** | **str** | Transaction routing mode | [optional] 
-**transaction_types** | **List[str]** | Transaction types when mode is post_into_group | [optional] 
+**transaction_types** | **List[str]** | Transaction types as stored (no effect when transactionMode is none) | [optional] 
 **folio_config_id** | **str** | Folio configuration ID | [optional] 
 **enable_aggregate_allotment_block** | **bool** | Aggregate allotment block enabled | [optional] 
 **aggregate_allotment_block_package_id** | **str** | Package ID for aggregate allotment block | [optional] 

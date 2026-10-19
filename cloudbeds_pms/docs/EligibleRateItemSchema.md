@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **package_id** | **str** | Package/rate plan ID. Present only when type is \&quot;rate_plan\&quot;. | [optional] 
 **room_type_id** | **str** | Room type ID. Present only when type is \&quot;base_rate\&quot;. | [optional] 
 **policy_id** | **str** | Smart policy ID associated with this rate plan, if any. Always null for base rates. | [optional] 
+**conflict** | [**EligibleRateConflictSchema**](EligibleRateConflictSchema.md) |  | [optional] 
 
 ## Example
 

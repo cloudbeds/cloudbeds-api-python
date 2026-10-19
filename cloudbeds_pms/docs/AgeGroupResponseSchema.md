@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **max_age** | **int** |  | [optional] 
 **created_at** | **str** |  | 
 **updated_at** | **str** |  | [optional] 
+**ota_group_fallback** | **bool** | Whether this group is used for channels that do not accept granular age groups. | 
 
 ## Example
 

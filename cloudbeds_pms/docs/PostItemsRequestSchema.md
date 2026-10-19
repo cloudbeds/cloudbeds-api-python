@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reservation_id** | **str** | Reservation identifier. Required if houseAccountId and groupCode are not provided. | [optional] 
-**house_account_id** | **str** | House account identifier. Required if reservationId and groupCode are not provided. | [optional] 
-**group_code** | **str** | Group code. Required if reservationId and houseAccountId are not provided. | [optional] 
+**reservation_id** | **str** | Reservation identifier. Required if houseAccountId and eventCode are not provided. | [optional] 
+**house_account_id** | **str** | House account identifier. Required if reservationId and eventCode are not provided. | [optional] 
+**event_code** | **str** | Event code. Required if reservationId and houseAccountId are not provided. | [optional] 
 **sale_date** | **str** | Sale date in RFC 3339 format. If not provided, current timestamp will be used. | [optional] 
 **items** | [**List[ItemRequestSchema]**](ItemRequestSchema.md) | Array of items to post (minimum 1 item required) | 
 

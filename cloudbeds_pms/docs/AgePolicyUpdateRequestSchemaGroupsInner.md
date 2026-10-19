@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **min_age** | **int** | Minimum age for this age group. | 
 **max_age** | **int** | Maximum age for this age group. | [optional] 
 **apply_rate_from_id** | **str** | Apply rate from age group ID. | [optional] 
+**ota_group_fallback** | **bool** | Whether this group is used for channels that do not accept granular age groups. Exactly one child or infant group must set it when the request contains one; adult groups cannot. | [optional] 
 
 ## Example
 

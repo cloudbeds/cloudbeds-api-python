@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **config** | **str** |  | 
 **extra_guests_config** | **str** |  | 
 **custom_label** | **str** |  | [optional] 
+**counts_toward_base_occupancy** | **bool** | Whether guests under this age policy count toward base occupancy. | [optional] 
 **groups** | [**List[AgeGroupResponseSchema]**](AgeGroupResponseSchema.md) |  | [optional] 
 **created_at** | **str** |  | 
 **updated_at** | **str** |  | [optional] 

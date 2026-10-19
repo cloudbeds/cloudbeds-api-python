@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_field** | **str** |  | 
 **message** | **str** |  | 
+**code** | **str** | Error code identifying the specific validation failure | [optional] 
+**details** | **object** | Additional details about the validation failure | [optional] 
 
 ## Example
 

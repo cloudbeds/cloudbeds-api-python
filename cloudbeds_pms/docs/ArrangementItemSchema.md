@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **is_default** | **bool** | Whether this is the default arrangement | 
-**position** | **int** | Position/order of this arrangement | 
+**position** | **int** | Position/order of this arrangement. Must be 0 for the default arrangement and 1 for the alternative. | 
 **beds** | [**List[BedItemSchema]**](BedItemSchema.md) | List of beds in this arrangement | 
 
 ## Example

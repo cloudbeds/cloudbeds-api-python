@@ -1006,7 +1006,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     enabled = false # bool | List only enabled segments.
     offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
     limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
-    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
+    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. (optional)
 
     try:
         # Get a list of Market Segmentation Segments.
@@ -1028,7 +1028,7 @@ Name | Type | Description  | Notes
  **enabled** | **bool**| List only enabled segments. | 
  **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
  **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
- **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
+ **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. | [optional] 
 
 ### Return type
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type_code** | **str** | Area type code. Valid values: BEDROOM, LIVING_ROOM (for MULTI layout), SLEEPING_AREA (for SINGLE layout) | 
 **position** | **int** | Position/order of this area | 
-**arrangements** | [**List[ArrangementItemSchema]**](ArrangementItemSchema.md) | List of bed arrangements in this area. BEDROOM areas must have exactly 1 arrangement. LIVING_ROOM areas can have 0 or 1 arrangement. | 
+**arrangements** | [**List[ArrangementItemSchema]**](ArrangementItemSchema.md) | List of bed arrangements in this area. BEDROOM and SLEEPING_AREA require exactly 1 default arrangement (isDefault&#x3D;true); LIVING_ROOM can have 0 to 2. An optional second arrangement with isDefault&#x3D;false represents the alternative sleeping arrangement. | 
 
 ## Example
 

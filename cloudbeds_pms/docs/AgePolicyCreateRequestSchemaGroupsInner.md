@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **group_type** | **str** | Age group type. Must be one of the valid age group types. | 
 **min_age** | **int** | Minimum age for this age group. | 
 **max_age** | **int** | Maximum age for this age group. | [optional] 
+**ota_group_fallback** | **bool** | Whether this group is used for channels that do not accept granular age groups. Exactly one child or infant group must set it when the request contains one; adult groups cannot. | [optional] 
 
 ## Example
 

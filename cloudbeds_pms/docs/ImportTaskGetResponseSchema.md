@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **import_status** | **str** | Import task status. | 
 **created_at** | **str** |  | [optional] 
 **errors** | **str** |  | [optional] 
+**user_id** | **str** | ID of the user who created the import task. | [optional] 
+**updated_at** | **str** | When the task last changed, RFC3339. | [optional] 
+**parent_id** | **str** | Parent task ID when this task re-imports failed records of another task. | [optional] 
 
 ## Example
 

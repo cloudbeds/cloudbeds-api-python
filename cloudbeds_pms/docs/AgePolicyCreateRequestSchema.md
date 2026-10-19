@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **extra_guests_config** | **str** | Extra guests configuration. | 
 **groups** | [**List[AgePolicyCreateRequestSchemaGroupsInner]**](AgePolicyCreateRequestSchemaGroupsInner.md) | List of age groups. | 
 **custom_label** | **str** | Custom label (Adults or Guests) | [optional] 
+**counts_toward_base_occupancy** | **bool** | Whether guests under this age policy count toward base occupancy. | [optional] 
 
 ## Example
 

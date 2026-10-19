@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **encoders** | [**List[DoorLockSettingsEncoderRequestSchema]**](DoorLockSettingsEncoderRequestSchema.md) | List of supported encoders. | [default to []]
 **key_types** | [**List[DoorLockSettingsKeyTypeRequestSchema]**](DoorLockSettingsKeyTypeRequestSchema.md) | List of supported key types. | [default to []]
 **common_rooms** | [**List[DoorLockSettingsCommonRoomRequestSchema]**](DoorLockSettingsCommonRoomRequestSchema.md) | List of common rooms. | [default to []]
+**await_invalidation_confirmation** | **bool** | Wait for the door lock partner to confirm key invalidation before removing the key. | [optional] [default to False]
 
 ## Example
 

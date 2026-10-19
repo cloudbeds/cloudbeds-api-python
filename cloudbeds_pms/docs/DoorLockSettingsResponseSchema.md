@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **key_types** | [**List[DoorLockSettingsKeyTypeResponseSchema]**](DoorLockSettingsKeyTypeResponseSchema.md) | $keyTypes | 
 **encoders** | [**List[DoorLockSettingsEncoderResponseSchema]**](DoorLockSettingsEncoderResponseSchema.md) | $encoders | 
 **common_rooms** | [**List[DoorLockSettingsCommonRoomResponseSchema]**](DoorLockSettingsCommonRoomResponseSchema.md) | $commonRooms | 
+**await_invalidation_confirmation** | **bool** | Wait for the door lock partner to confirm key invalidation before removing the key. | 
 
 ## Example
 

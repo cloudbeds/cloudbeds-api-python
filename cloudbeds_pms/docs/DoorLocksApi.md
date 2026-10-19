@@ -85,6 +85,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Keys were cancelled. |  -  |
+**207** | Per-key invalidation results. Opt-in; by default this endpoint answers 204. |  -  |
 **400** | Bad Request response |  -  |
 **404** | Not found response |  -  |
 **500** | Internal server error |  -  |

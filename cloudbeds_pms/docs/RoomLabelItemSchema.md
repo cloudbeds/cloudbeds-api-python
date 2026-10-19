@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** | Unique label code | 
 **title** | **str** | Translated label title | 
+**category** | **str** | Label category code | 
 **accommodation_privacy_code** | **str** | Accommodation privacy code | 
 
 ## Example

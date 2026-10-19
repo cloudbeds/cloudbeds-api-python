@@ -6,7 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
+**property_id** | **str** |  | [optional] 
 **is_active** | **bool** |  | [optional] 
+**status** | **str** | Derived from isActive and the intervals&#39; end dates, using the property&#39;s current date. &#x60;disabled&#x60;: isActive is false. &#x60;no-intervals&#x60;: active with no intervals. &#x60;expired&#x60;: active and every interval&#39;s endDate is in the past. &#x60;active&#x60;: active with at least one interval whose endDate is today or later (or has no endDate). | [optional] 
 **is_deleted** | **bool** |  | [optional] 
 **derived_rate_plan_id** | **str** |  | [optional] 
 **is_derived** | **bool** |  | [optional] 
@@ -22,7 +24,9 @@ Name | Type | Description | Notes
 **intervals** | [**List[RatePlanIntervalResponseSchema]**](RatePlanIntervalResponseSchema.md) |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
-**policy_id** | **int** |  | [optional] 
+**policy_id** | **str** |  | [optional] 
+**segment_id** | **str** |  | [optional] 
+**meal_plans** | **List[str]** | Meal plans carried by the add-ons listed in &#x60;addons&#x60; (any attachment setting), as raw keys (not localized labels), deduplicated. Empty when none of them is a meal plan. | 
 
 ## Example
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **reservation_room_id** | **str** | Reservation Room ID | 
 **room_id** | **str** | Room ID to assign (format: &#39;roomTypeId-roomNumber&#39;), or null to unassign | [optional] 
 **room_type_id** | **int** | Room type ID to change to (without assigning specific room), or null | [optional] 
-**adjust_price** | **bool** | Whether to adjust price if room assignment changes rate | [optional] [default to False]
+**adjust_price** | **bool** | Whether the guest pays the difference when the assignment changes the rate. Omit it to leave the price decision unanswered — false is an answer, not a default. | [optional] 
 
 ## Example
 

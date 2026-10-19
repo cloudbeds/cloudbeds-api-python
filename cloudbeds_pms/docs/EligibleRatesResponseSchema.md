@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**total** | **int** | The total number of items available. | 
 **limit** | **int** | The limit for the number of items to return. | 
 **offset** | **int** | The offset for the current page of results. | 
 **data** | [**List[EligibleRateItemSchema]**](EligibleRateItemSchema.md) | Eligible rates for exception creation (rate plans and base rates combined). | 

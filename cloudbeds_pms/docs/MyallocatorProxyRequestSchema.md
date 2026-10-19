@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **endpoint** | **str** | MyAllocator endpoint name to proxy the request to. | 
 **payload** | **object** | Request payload to forward to MyAllocator. Opaque JSON body. | 
+**meta** | **object** | Internal metadata used for activity logging (e.g. MfdAccommodationId, MaAccommodationId). Not forwarded to MyAllocator. | [optional] 
 
 ## Example
 

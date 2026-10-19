@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
 **addon_id** | **str** |  | 
-**settings** | **str** |  | 
+**settings** | **str** | The addon settings. | 
 
 ## Example
 

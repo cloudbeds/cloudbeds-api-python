@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **limit** | **int** | The limit for the number of items to return (max 500) | [optional] [default to 100]
 **offset** | **int** | The offset for the current page of results | [optional] [default to 0]
-**sort** | [**SortSchema**](SortSchema.md) |  | [optional] 
 **start_date** | **date** | Start date of the date range to filter rate plans. | 
 **end_date** | **date** | End date of the date range to filter rate plans. | 
+**intervals** | [**List[PolicyExceptionIntervalSchema]**](PolicyExceptionIntervalSchema.md) | List of exception intervals for conflict detection. | 
+**exception_id** | **str** | Exception ID to exclude from conflict detection (when editing an existing exception). | [optional] 
 
 ## Example
 

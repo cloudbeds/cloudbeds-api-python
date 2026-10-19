@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | **int** | Area ID | 
 **type_code** | **str** | Area type code | 
 **position** | **int** | Display position | 
-**arrangements** | [**List[ArrangementItemResponseSchema]**](ArrangementItemResponseSchema.md) | Bed arrangements in this area | 
+**arrangements** | [**List[ArrangementItemResponseSchema]**](ArrangementItemResponseSchema.md) | Bed arrangements in this area. An arrangement with isDefault&#x3D;false is the alternative sleeping arrangement. | 
 
 ## Example
 

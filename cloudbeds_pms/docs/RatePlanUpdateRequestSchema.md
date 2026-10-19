@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **name_private** | **Dict[str, str]** | Internal name in multiple languages. | [optional] 
 **terms** | **Dict[str, str]** | Terms and conditions in multiple languages. | [optional] 
 **intervals** | [**List[RatePlanIntervalRequestSchema]**](RatePlanIntervalRequestSchema.md) | List of rate plan intervals. | [optional] 
-**addons** | [**List[RatePlanAddonRequestSchema]**](RatePlanAddonRequestSchema.md) | List of addons for the rate plan. | [optional] 
+**addons** | [**List[RatePlanAddonRequestSchema]**](RatePlanAddonRequestSchema.md) | List of addons for the rate plan. Omitted or null leaves the current addons unchanged; an empty array removes all of them. | [optional] 
 **segment_id** | **int** | Segment ID associated with the rate plan. | [optional] 
 **policy_id** | **int** | Policy ID associated with the rate plan. | [optional] 
 

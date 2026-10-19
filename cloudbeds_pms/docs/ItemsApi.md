@@ -44,7 +44,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
     x_property_id = '1,2,3' # str | A numeric, comma-separated string representing the property IDs, sent in the header.
     limit = 100 # int | The maximum number of items to return in the response. Default is 100. (optional) (default to 100)
     offset = 0 # int | The number of items to skip before starting to collect the result set. Used for pagination. (optional) (default to 0)
-    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; (optional)
+    filters = cloudbeds_pms.QueryParameterDynamicFilterSchema() # QueryParameterDynamicFilterSchema | This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. (optional)
 
     try:
         # Get a list of custom items for a specific property.
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
  **x_property_id** | **str**| A numeric, comma-separated string representing the property IDs, sent in the header. | 
  **limit** | **int**| The maximum number of items to return in the response. Default is 100. | [optional] [default to 100]
  **offset** | **int**| The number of items to skip before starting to collect the result set. Used for pagination. | [optional] [default to 0]
- **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; | [optional] 
+ **filters** | [**QueryParameterDynamicFilterSchema**](.md)| This parameter should be formatted as a list of strings separated by ; Use \\; for a literal semicolon inside a value. | [optional] 
 
 ### Return type
 

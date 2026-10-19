@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **limit** | **int** |  | 
 **offset** | **int** |  | 
 **data** | [**List[RatePlanResponseSchema]**](RatePlanResponseSchema.md) |  | 
+**total** | **int** | Total number of items matching the request; present only when includeTotal is requested. | [optional] 
 
 ## Example
 

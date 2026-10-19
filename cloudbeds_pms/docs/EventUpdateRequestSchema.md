@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **start_date** | **str** | Event start date (YYYY-MM-DD). NOTE: Informational only - effective event dates are calculated from linked reservations. | [optional] 
 **end_date** | **str** | Event end date (YYYY-MM-DD). NOTE: Informational only - effective event dates are calculated from linked reservations. | [optional] 
 **transaction_mode** | **str** | Transaction routing mode | [optional] 
-**transaction_types** | **List[str]** | Transaction types to route (required when transactionMode is post_into_group) | [optional] 
+**transaction_types** | **List[str]** | Transaction types to route (replaces the whole list, omit to keep). An empty array is rejected when the resulting transactionMode is post_into_group and clears the list otherwise. Values: see Create a new event. | [optional] 
 **folio_config_id** | **str** | Folio configuration ID | [optional] 
 **enable_aggregate_allotment_block** | **bool** | Enable aggregate allotment block feature | [optional] 
 **aggregate_allotment_block_package_id** | **str** | Package ID for aggregate allotment block | [optional] 

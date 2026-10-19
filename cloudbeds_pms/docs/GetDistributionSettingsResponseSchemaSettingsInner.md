@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **key** | **str** |  | [optional] 
 **value** | **object** | Parsed setting value. Can be string, number, boolean, or structured data, depending on the setting. | [optional] 
 **permission** | **str** |  | [optional] 
+**options** | [**List[GetDistributionSettingsResponseSchemaSettingsInnerOptionsInner]**](GetDistributionSettingsResponseSchemaSettingsInnerOptionsInner.md) | Valid choices for this setting. Omitted when options are disabled for the property or the setting has no fixed list. Scalar labels use the requested language. Channel labels use catalogue names, or the channel identifier when no active row exists. | [optional] 
 
 ## Example
 

@@ -9,9 +9,9 @@ Method | HTTP request | Description
 [**property_amenity_controller_get_property_amenities**](AmenitiesApi.md#property_amenity_controller_get_property_amenities) | **GET** /amenities/v1/properties/{propertyId}/amenities | Get property amenities
 [**property_amenity_controller_update_property_amenities**](AmenitiesApi.md#property_amenity_controller_update_property_amenities) | **PUT** /amenities/v1/properties/{propertyId}/amenities | Update property amenities
 [**room_amenity_controller_get_property_rooms_amenities**](AmenitiesApi.md#room_amenity_controller_get_property_rooms_amenities) | **GET** /amenities/v1/properties/{propertyId}/room-amenities | Get amenities for all rooms in a property
-[**room_amenity_controller_get_room_amenities**](AmenitiesApi.md#room_amenity_controller_get_room_amenities) | **GET** /amenities/v1/properties/{propertyId}/rooms/{roomId}/amenities | Get room amenities
+[**room_amenity_controller_get_room_amenities**](AmenitiesApi.md#room_amenity_controller_get_room_amenities) | **GET** /amenities/v1/properties/{propertyId}/rooms/{roomTypeId}/amenities | Get room amenities
 [**room_amenity_controller_update_property_rooms_amenities**](AmenitiesApi.md#room_amenity_controller_update_property_rooms_amenities) | **PUT** /amenities/v1/properties/{propertyId}/room-amenities | Update amenities for multiple rooms
-[**room_amenity_controller_update_room_amenities**](AmenitiesApi.md#room_amenity_controller_update_room_amenities) | **PUT** /amenities/v1/properties/{propertyId}/rooms/{roomId}/amenities | Update room amenities
+[**room_amenity_controller_update_room_amenities**](AmenitiesApi.md#room_amenity_controller_update_room_amenities) | **PUT** /amenities/v1/properties/{propertyId}/rooms/{roomTypeId}/amenities | Update room amenities
 
 
 # **amenity_catalog_controller_get_amenity_catalog**
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **room_amenity_controller_get_room_amenities**
-> GetRoomAmenitiesResponseSchema room_amenity_controller_get_room_amenities(room_id, property_id, accept_language=accept_language)
+> GetRoomAmenitiesResponseSchema room_amenity_controller_get_room_amenities(room_type_id, property_id, accept_language=accept_language)
 
 Get room amenities
 
@@ -461,13 +461,13 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.AmenitiesApi(api_client)
-    room_id = 12345 # int | The room id
+    room_type_id = 12345 # int | The room type id
     property_id = 1 # int | The property ID
     accept_language = 'es-ES, en;q=0.8' # str | RFC 5646 language preferences used for negotiation (e.g. es-ES, en;q=0.8). (optional)
 
     try:
         # Get room amenities
-        api_response = api_instance.room_amenity_controller_get_room_amenities(room_id, property_id, accept_language=accept_language)
+        api_response = api_instance.room_amenity_controller_get_room_amenities(room_type_id, property_id, accept_language=accept_language)
         print("The response of AmenitiesApi->room_amenity_controller_get_room_amenities:\n")
         pprint(api_response)
     except Exception as e:
@@ -481,7 +481,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **room_id** | **int**| The room id | 
+ **room_type_id** | **int**| The room type id | 
  **property_id** | **int**| The property ID | 
  **accept_language** | **str**| RFC 5646 language preferences used for negotiation (e.g. es-ES, en;q&#x3D;0.8). | [optional] 
 
@@ -596,7 +596,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **room_amenity_controller_update_room_amenities**
-> UpdateRoomAmenitiesResponseSchema room_amenity_controller_update_room_amenities(room_id, property_id, accept_language=accept_language, update_room_amenities_request_schema=update_room_amenities_request_schema)
+> UpdateRoomAmenitiesResponseSchema room_amenity_controller_update_room_amenities(room_type_id, property_id, accept_language=accept_language, update_room_amenities_request_schema=update_room_amenities_request_schema)
 
 Update room amenities
 
@@ -630,14 +630,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cloudbeds_pms.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms.AmenitiesApi(api_client)
-    room_id = 12345 # int | The room id
+    room_type_id = 12345 # int | The room type id
     property_id = 1 # int | The property ID
     accept_language = 'es-ES, en;q=0.8' # str | RFC 5646 language preferences used for negotiation (e.g. es-ES, en;q=0.8). (optional)
     update_room_amenities_request_schema = cloudbeds_pms.UpdateRoomAmenitiesRequestSchema() # UpdateRoomAmenitiesRequestSchema | List of amenity codes to set for the room. (optional)
 
     try:
         # Update room amenities
-        api_response = api_instance.room_amenity_controller_update_room_amenities(room_id, property_id, accept_language=accept_language, update_room_amenities_request_schema=update_room_amenities_request_schema)
+        api_response = api_instance.room_amenity_controller_update_room_amenities(room_type_id, property_id, accept_language=accept_language, update_room_amenities_request_schema=update_room_amenities_request_schema)
         print("The response of AmenitiesApi->room_amenity_controller_update_room_amenities:\n")
         pprint(api_response)
     except Exception as e:
@@ -651,7 +651,7 @@ with cloudbeds_pms.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **room_id** | **int**| The room id | 
+ **room_type_id** | **int**| The room type id | 
  **property_id** | **int**| The property ID | 
  **accept_language** | **str**| RFC 5646 language preferences used for negotiation (e.g. es-ES, en;q&#x3D;0.8). | [optional] 
  **update_room_amenities_request_schema** | [**UpdateRoomAmenitiesRequestSchema**](UpdateRoomAmenitiesRequestSchema.md)| List of amenity codes to set for the room. | [optional] 

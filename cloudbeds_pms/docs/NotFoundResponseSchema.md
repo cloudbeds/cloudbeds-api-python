@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** |  | [optional] 
+**code** | **str** | Error code identifying the type of error | [optional] 
 
 ## Example
 

@@ -6,6 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** | Status of the integration event. | 
+**result** | **str** | Result of the integration event. When provided, description and details are replaced with the values sent (omitted ones are cleared). | [optional] 
+**description** | **str** | Description of the integration event. Required when result is failure. | [optional] 
+**details** | **str** | Details of the integration event, that usually contain instructions. | [optional] 
 
 ## Example
 

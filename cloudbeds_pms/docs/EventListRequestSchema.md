@@ -6,7 +6,7 @@ Request parameters for listing events
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_code** | **str** | Filter by event code (legacy: groupCode) | [optional] 
+**event_code** | **str** | Filter by event code | [optional] 
 **profile_id** | **str** | Filter by GPS profile ID | [optional] 
 **status** | **str** | Filter by event status | [optional] 
 **created_from** | **str** | Filter events created after this datetime (RFC 3339 format) | [optional] 
