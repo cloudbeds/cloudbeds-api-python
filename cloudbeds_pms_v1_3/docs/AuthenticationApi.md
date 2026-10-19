@@ -152,7 +152,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userinfo_get**
-> GetUserinfoResponse userinfo_get(property_id=property_id, role_details=role_details)
+> GetUserinfoResponse userinfo_get(property_id=property_id, organization_id=organization_id, role_details=role_details)
 
 userinfo
 
@@ -192,12 +192,13 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.AuthenticationApi(api_client)
-    property_id = 'property_id_example' # str | Specify a property ID when using role_details (optional)
+    property_id = 'property_id_example' # str | Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied. (optional)
+    organization_id = 'organization_id_example' # str | Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions. (optional)
     role_details = True # bool | Specify whether to include role and acl details of the user. (optional)
 
     try:
         # userinfo
-        api_response = api_instance.userinfo_get(property_id=property_id, role_details=role_details)
+        api_response = api_instance.userinfo_get(property_id=property_id, organization_id=organization_id, role_details=role_details)
         print("The response of AuthenticationApi->userinfo_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -211,7 +212,8 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **property_id** | **str**| Specify a property ID when using role_details | [optional] 
+ **property_id** | **str**| Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in &#x60;roles&#x60; and &#x60;acl&#x60; is the union of their permissions (an \&quot;allow\&quot; in either role wins). Takes precedence over organization_id when both are supplied. | [optional] 
+ **organization_id** | **str**| Organization to resolve role_details for (alternative to property_id). Returns the user&#39;s Organization-level role for that organization and its permissions. | [optional] 
  **role_details** | **bool**| Specify whether to include role and acl details of the user. | [optional] 
 
 ### Return type

@@ -63,6 +63,7 @@ class TestGetGuestListResponseDataValue(unittest.TestCase):
                 tax_id = '',
                 company_tax_id = '',
                 company_name = '',
+                guest_nationality = '',
                 guest_opt_in = True,
                 guest_requirements = cloudbeds_pms_v1_3.models.guest_requirements.guestRequirements(),
                 guest_notes = [

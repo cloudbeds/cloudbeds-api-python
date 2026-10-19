@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **card_number** | **str** | Ending digits of the credit card | [optional] 
 **card_type** | **str** | Abbreviated name of credit card type | [optional] 
 **redirect_url** | **str** | null if no 3ds required | [optional] 
+**payment_method_id** | **str** | Identifier of the stored card, for reuse on later requests; prefer it over **cardID**. It becomes resolvable a few seconds after the card is stored, and stops resolving once the card is purged. | [optional] 
 
 ## Example
 

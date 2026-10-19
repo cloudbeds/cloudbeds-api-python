@@ -79,7 +79,10 @@ class TestPostUpdateAllotmentBlockResponseDataInner(unittest.TestCase):
                             last_minute_booking_days = 56, 
                             closed_to_arrival = 56, 
                             closed_to_departure = 56, ), 
-                        split_inventory = True, )
+                        split_inventory = True, 
+                        shoulder_dates_before = 56, 
+                        shoulder_dates_after = 56, 
+                        shoulder_dates_rate_id = '', )
                     ],
                 resources = [
                     cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_resources_inner.PostCreateAllotmentBlockResponse_data_inner_resources_inner(

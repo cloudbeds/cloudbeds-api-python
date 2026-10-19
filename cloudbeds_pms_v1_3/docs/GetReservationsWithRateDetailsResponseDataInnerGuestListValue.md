@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Guest&#39;s tax ID | [optional] 
 **company_tax_id** | **str** | Guest&#39;s company tax ID | [optional] 
 **company_name** | **str** | Guest&#39;s company name | [optional] 
+**guest_nationality** | **str** | Guest nationality (citizenship), ISO 3166-1 alpha-2. Empty string when none is stored. | [optional] 
 **sub_reservation_id** | **str** |  | [optional] 
 **start_date** | **date** |  | [optional] 
 **end_date** | **date** |  | [optional] 

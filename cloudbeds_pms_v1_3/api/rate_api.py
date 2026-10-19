@@ -739,7 +739,7 @@ class RateApi:
     ) -> GetRatePlansResponse:
         """getRatePlans
 
-        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. ### Group account support
+        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. Rate plans attached to an allotment block are never returned by this endpoint, even when their IDs are passed in `rateIDs`. Allotment-block rates are group inventory, not publicly sellable inventory. Their IDs do appear elsewhere (for example the `rateID` of a room on a group reservation), so an ID that cannot be resolved here is not a mapping error: use `/getAllotmentBlocks`, which returns the block's rate plan ID as `ratePlanId` and the rate IDs that reservations carry as `allotmentIntervals[].rateId`, together with `allotmentBlockCode`, `allotmentBlockName`, `allotmentBlockStatus` and the per-interval rates. Deleted rate plans are not returned by this endpoint and `/getAllotmentBlocks` omits deleted blocks, so an ID that resolves in neither endpoint belongs to a deleted rate plan or a deleted (archived) allotment block. ### Group account support
 
         :param start_date: Check-in date (required)
         :type start_date: date
@@ -846,7 +846,7 @@ class RateApi:
     ) -> ApiResponse[GetRatePlansResponse]:
         """getRatePlans
 
-        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. ### Group account support
+        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. Rate plans attached to an allotment block are never returned by this endpoint, even when their IDs are passed in `rateIDs`. Allotment-block rates are group inventory, not publicly sellable inventory. Their IDs do appear elsewhere (for example the `rateID` of a room on a group reservation), so an ID that cannot be resolved here is not a mapping error: use `/getAllotmentBlocks`, which returns the block's rate plan ID as `ratePlanId` and the rate IDs that reservations carry as `allotmentIntervals[].rateId`, together with `allotmentBlockCode`, `allotmentBlockName`, `allotmentBlockStatus` and the per-interval rates. Deleted rate plans are not returned by this endpoint and `/getAllotmentBlocks` omits deleted blocks, so an ID that resolves in neither endpoint belongs to a deleted rate plan or a deleted (archived) allotment block. ### Group account support
 
         :param start_date: Check-in date (required)
         :type start_date: date
@@ -953,7 +953,7 @@ class RateApi:
     ) -> RESTResponseType:
         """getRatePlans
 
-        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. ### Group account support
+        Returns the rates of the room type or promo code selected, based on the provided parameters. If no parameters are provided, then the method will return all publicly available rate plans. Rate plans attached to an allotment block are never returned by this endpoint, even when their IDs are passed in `rateIDs`. Allotment-block rates are group inventory, not publicly sellable inventory. Their IDs do appear elsewhere (for example the `rateID` of a room on a group reservation), so an ID that cannot be resolved here is not a mapping error: use `/getAllotmentBlocks`, which returns the block's rate plan ID as `ratePlanId` and the rate IDs that reservations carry as `allotmentIntervals[].rateId`, together with `allotmentBlockCode`, `allotmentBlockName`, `allotmentBlockStatus` and the per-interval rates. Deleted rate plans are not returned by this endpoint and `/getAllotmentBlocks` omits deleted blocks, so an ID that resolves in neither endpoint belongs to a deleted rate plan or a deleted (archived) allotment block. ### Group account support
 
         :param start_date: Check-in date (required)
         :type start_date: date

@@ -64,6 +64,7 @@ class TestGetReservationResponseData(unittest.TestCase):
                         tax_id = '', 
                         company_tax_id = '', 
                         company_name = '', 
+                        guest_nationality = '', 
                         assigned_room = True, 
                         is_anonymized = True, 
                         room_id = '', 
@@ -179,6 +180,15 @@ class TestGetReservationResponseData(unittest.TestCase):
                         end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                     ],
                 origin = '',
+                date_cancelled = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                date_cancelled_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                cancellation = cloudbeds_pms_v1_3.models.get_reservation_response_data_cancellation.GetReservationResponse_data_cancellation(
+                    source = '', 
+                    canceled_by = '', 
+                    canceled_by_id = '', 
+                    canceled_by_type = '', 
+                    origin = '', 
+                    by_employee = True, ),
                 meal_plans = ''
             )
         else:

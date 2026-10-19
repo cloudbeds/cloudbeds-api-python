@@ -32,6 +32,8 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
     dorm_room_name: Optional[StrictStr] = Field(default=None, description="Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type", alias="dormRoomName")
     room_description: Optional[StrictStr] = Field(default=None, description="Room Description", alias="roomDescription")
     max_guests: Optional[StrictInt] = Field(default=None, description="Number of guests that room allows", alias="maxGuests")
+    max_adults: Optional[StrictInt] = Field(default=None, description="Max adults the room type permits; `null` if not configured (only maxGuests applies). Advisory; not enforced on shared room types.", alias="maxAdults")
+    max_children: Optional[StrictInt] = Field(default=None, description="Max children the room type permits (`0` = none permitted); `null` if not configured. Advisory; not enforced on shared room types.", alias="maxChildren")
     is_private: Optional[StrictBool] = Field(default=None, description="If room is private (true) or shared (false)", alias="isPrivate")
     is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="isVirtual")
     room_blocked: Optional[StrictBool] = Field(default=None, description="If room is blocked on calendar during the period selected. If no check-in/out dates are sent, it returns the status for the current day.", alias="roomBlocked")
@@ -42,7 +44,7 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
     linked_room_ids: Optional[List[StrictStr]] = Field(default=None, description="List of linked room IDs for this room (including nested relations). Only returned if includeRoomRelations is set to true", alias="linkedRoomIDs")
     linked_room_type_ids: Optional[List[StrictStr]] = Field(default=None, description="List of linked room type IDs. Only returned if includeRoomRelations is set to true", alias="linkedRoomTypeIDs")
     linked_room_type_qty: Optional[List[GetRoomsResponseDataInnerRoomsInnerLinkedRoomTypeQtyInner]] = Field(default=None, description="Data about linked rooms count, grouped by room type. Only returned if includeRoomRelations is set to true", alias="linkedRoomTypeQty")
-    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort", "doorlockID", "linkedRoomIDs", "linkedRoomTypeIDs", "linkedRoomTypeQty"]
+    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "maxAdults", "maxChildren", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort", "doorlockID", "linkedRoomIDs", "linkedRoomTypeIDs", "linkedRoomTypeQty"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +92,16 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
                 if _item_linked_room_type_qty:
                     _items.append(_item_linked_room_type_qty.to_dict())
             _dict['linkedRoomTypeQty'] = _items
+        # set to None if max_adults (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_adults is None and "max_adults" in self.model_fields_set:
+            _dict['maxAdults'] = None
+
+        # set to None if max_children (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_children is None and "max_children" in self.model_fields_set:
+            _dict['maxChildren'] = None
+
         # set to None if linked_room_ids (nullable) is None
         # and model_fields_set contains the field
         if self.linked_room_ids is None and "linked_room_ids" in self.model_fields_set:
@@ -122,6 +134,8 @@ class GetRoomsResponseDataInnerRoomsInner(BaseModel):
             "dormRoomName": obj.get("dormRoomName"),
             "roomDescription": obj.get("roomDescription"),
             "maxGuests": obj.get("maxGuests"),
+            "maxAdults": obj.get("maxAdults"),
+            "maxChildren": obj.get("maxChildren"),
             "isPrivate": obj.get("isPrivate"),
             "isVirtual": obj.get("isVirtual"),
             "roomBlocked": obj.get("roomBlocked"),

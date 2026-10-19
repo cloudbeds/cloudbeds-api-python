@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tax_name** | **str** | tax name | [optional] 
-**tax_value** | **float** | tax value | [optional] 
+**tax_name** | **str** | Tax name, matched as free text. Names are not validated against the taxes configured for the property, and two different spellings are treated as two different taxes. | [optional] 
+**tax_value** | **float** | Tax amount. Used exactly as supplied; Cloudbeds does not recalculate it. When the item price is tax-inclusive, supply the tax extracted from the gross price rather than the rate applied on top of it. | [optional] 
 
 ## Example
 

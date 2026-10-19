@@ -117,6 +117,7 @@ class TestGetReservationsResponse(unittest.TestCase):
                                 tax_id = '', 
                                 company_tax_id = '', 
                                 company_name = '', 
+                                guest_nationality = '', 
                                 sub_reservation_id = '', 
                                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 

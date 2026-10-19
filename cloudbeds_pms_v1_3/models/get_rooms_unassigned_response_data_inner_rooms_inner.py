@@ -31,13 +31,15 @@ class GetRoomsUnassignedResponseDataInnerRoomsInner(BaseModel):
     dorm_room_name: Optional[StrictStr] = Field(default=None, description="Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type", alias="dormRoomName")
     room_description: Optional[StrictStr] = Field(default=None, description="Room Description", alias="roomDescription")
     max_guests: Optional[StrictInt] = Field(default=None, description="Number of guests that room allows", alias="maxGuests")
+    max_adults: Optional[StrictInt] = Field(default=None, description="Max adults the room type permits; `null` if not configured (only maxGuests applies). Advisory; not enforced on shared room types.", alias="maxAdults")
+    max_children: Optional[StrictInt] = Field(default=None, description="Max children the room type permits (`0` = none permitted); `null` if not configured. Advisory; not enforced on shared room types.", alias="maxChildren")
     is_private: Optional[StrictBool] = Field(default=None, description="If room is private (true) or shared (false)", alias="isPrivate")
     is_virtual: Optional[StrictBool] = Field(default=None, description="If room is virtual (true) or physical (false)", alias="isVirtual")
     room_blocked: Optional[StrictBool] = Field(default=None, description="If room is blocked on calendar during the period selected. If no check-in/out dates are sent, it returns the status for the current day.", alias="roomBlocked")
     room_type_id: Optional[StrictStr] = Field(default=None, description="Room type ID", alias="roomTypeID")
     room_type_name: Optional[StrictStr] = Field(default=None, description="Room type Name", alias="roomTypeName")
     room_type_name_short: Optional[StrictStr] = Field(default=None, description="Room type Short Name", alias="roomTypeNameShort")
-    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort"]
+    __properties: ClassVar[List[str]] = ["roomID", "roomName", "dormRoomName", "roomDescription", "maxGuests", "maxAdults", "maxChildren", "isPrivate", "isVirtual", "roomBlocked", "roomTypeID", "roomTypeName", "roomTypeNameShort"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,16 @@ class GetRoomsUnassignedResponseDataInnerRoomsInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if max_adults (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_adults is None and "max_adults" in self.model_fields_set:
+            _dict['maxAdults'] = None
+
+        # set to None if max_children (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_children is None and "max_children" in self.model_fields_set:
+            _dict['maxChildren'] = None
+
         return _dict
 
     @classmethod
@@ -95,6 +107,8 @@ class GetRoomsUnassignedResponseDataInnerRoomsInner(BaseModel):
             "dormRoomName": obj.get("dormRoomName"),
             "roomDescription": obj.get("roomDescription"),
             "maxGuests": obj.get("maxGuests"),
+            "maxAdults": obj.get("maxAdults"),
+            "maxChildren": obj.get("maxChildren"),
             "isPrivate": obj.get("isPrivate"),
             "isVirtual": obj.get("isVirtual"),
             "roomBlocked": obj.get("roomBlocked"),

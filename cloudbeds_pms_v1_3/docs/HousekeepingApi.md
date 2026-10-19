@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_housekeeping_status_get**
-> GetHousekeepingStatusResponse get_housekeeping_status_get(property_id=property_id, room_type_ids=room_type_ids, housekeeper_ids=housekeeper_ids, room_condition=room_condition, room_occupied=room_occupied, page_number=page_number, page_size=page_size)
+> GetHousekeepingStatusResponse get_housekeeping_status_get(property_id=property_id, room_ids=room_ids, room_type_ids=room_type_ids, housekeeper_ids=housekeeper_ids, room_condition=room_condition, room_occupied=room_occupied, page_number=page_number, page_size=page_size)
 
 getHousekeepingStatus
 
@@ -140,6 +140,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.HousekeepingApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
+    room_ids = 'room_ids_example' # str | Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned. (optional)
     room_type_ids = 'room_type_ids_example' # str | Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89 (optional)
     housekeeper_ids = 'housekeeper_ids_example' # str | Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0. (optional)
     room_condition = 'room_condition_example' # str | Condition of room (optional)
@@ -149,7 +150,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getHousekeepingStatus
-        api_response = api_instance.get_housekeeping_status_get(property_id=property_id, room_type_ids=room_type_ids, housekeeper_ids=housekeeper_ids, room_condition=room_condition, room_occupied=room_occupied, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_housekeeping_status_get(property_id=property_id, room_ids=room_ids, room_type_ids=room_type_ids, housekeeper_ids=housekeeper_ids, room_condition=room_condition, room_occupied=room_occupied, page_number=page_number, page_size=page_size)
         print("The response of HousekeepingApi->get_housekeeping_status_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -164,6 +165,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
+ **room_ids** | **str**| Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned. | [optional] 
  **room_type_ids** | **str**| Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89 | [optional] 
  **housekeeper_ids** | **str**| Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0. | [optional] 
  **room_condition** | **str**| Condition of room | [optional] 
@@ -318,7 +320,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.HousekeepingApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    room_ids = 'room_ids_example' # str | List of room IDs comma-separated, i.e. 37,345,89 (optional)
+    room_ids = 'room_ids_example' # str | List of room IDs comma-separated, i.e. 101-0,101-3 (optional)
     housekeeper_id = 'housekeeper_id_example' # str | Housekeeper ID. To designate a room as unassigned, simply set the value to 0. (optional)
 
     try:
@@ -338,7 +340,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **room_ids** | **str**| List of room IDs comma-separated, i.e. 37,345,89 | [optional] 
+ **room_ids** | **str**| List of room IDs comma-separated, i.e. 101-0,101-3 | [optional] 
  **housekeeper_id** | **str**| Housekeeper ID. To designate a room as unassigned, simply set the value to 0. | [optional] 
 
 ### Return type

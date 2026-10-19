@@ -3793,6 +3793,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -3849,6 +3850,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -3914,6 +3917,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -3964,6 +3968,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -4020,6 +4025,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -4085,6 +4092,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -4135,6 +4143,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -4191,6 +4200,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -4256,6 +4267,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -4301,6 +4313,7 @@ class GuestApi:
         guest_address2,
         guest_city,
         guest_country,
+        guest_nationality,
         guest_state,
         guest_zip,
         guest_birth_date,
@@ -4366,6 +4379,8 @@ class GuestApi:
             _form_params.append(('guestCity', guest_city))
         if guest_country is not None:
             _form_params.append(('guestCountry', guest_country))
+        if guest_nationality is not None:
+            _form_params.append(('guestNationality', guest_nationality))
         if guest_state is not None:
             _form_params.append(('guestState', guest_state))
         if guest_zip is not None:
@@ -5160,6 +5175,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -5214,6 +5230,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -5275,6 +5293,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -5323,6 +5342,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -5377,6 +5397,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -5438,6 +5460,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -5486,6 +5509,7 @@ class GuestApi:
         guest_address2: Optional[StrictStr] = None,
         guest_city: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters)")] = None,
         guest_state: Optional[StrictStr] = None,
         guest_zip: Optional[StrictStr] = None,
         guest_birth_date: Optional[date] = None,
@@ -5540,6 +5564,8 @@ class GuestApi:
         :type guest_city: str
         :param guest_country: ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters)
+        :type guest_nationality: str
         :param guest_state: 
         :type guest_state: str
         :param guest_zip: 
@@ -5601,6 +5627,7 @@ class GuestApi:
             guest_address2=guest_address2,
             guest_city=guest_city,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_state=guest_state,
             guest_zip=guest_zip,
             guest_birth_date=guest_birth_date,
@@ -5644,6 +5671,7 @@ class GuestApi:
         guest_address2,
         guest_city,
         guest_country,
+        guest_nationality,
         guest_state,
         guest_zip,
         guest_birth_date,
@@ -5707,6 +5735,8 @@ class GuestApi:
             _form_params.append(('guestCity', guest_city))
         if guest_country is not None:
             _form_params.append(('guestCountry', guest_country))
+        if guest_nationality is not None:
+            _form_params.append(('guestNationality', guest_nationality))
         if guest_state is not None:
             _form_params.append(('guestState', guest_state))
         if guest_zip is not None:

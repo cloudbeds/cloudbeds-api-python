@@ -2191,6 +2191,8 @@ class IntegrationApi:
         object: Annotated[Optional[StrictStr], Field(description="Event object")] = None,
         action: Annotated[Optional[StrictStr], Field(description="Event action")] = None,
         endpoint_url: Annotated[Optional[StrictStr], Field(description="Endpoint URL")] = None,
+        auth_header_name: Annotated[Optional[StrictStr], Field(description="HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.")] = None,
+        auth_header_value: Annotated[Optional[StrictStr], Field(description="Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2216,6 +2218,10 @@ class IntegrationApi:
         :type action: str
         :param endpoint_url: Endpoint URL
         :type endpoint_url: str
+        :param auth_header_name: HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.
+        :type auth_header_name: str
+        :param auth_header_value: Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.
+        :type auth_header_value: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2243,6 +2249,8 @@ class IntegrationApi:
             object=object,
             action=action,
             endpoint_url=endpoint_url,
+            auth_header_name=auth_header_name,
+            auth_header_value=auth_header_value,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2270,6 +2278,8 @@ class IntegrationApi:
         object: Annotated[Optional[StrictStr], Field(description="Event object")] = None,
         action: Annotated[Optional[StrictStr], Field(description="Event action")] = None,
         endpoint_url: Annotated[Optional[StrictStr], Field(description="Endpoint URL")] = None,
+        auth_header_name: Annotated[Optional[StrictStr], Field(description="HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.")] = None,
+        auth_header_value: Annotated[Optional[StrictStr], Field(description="Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2295,6 +2305,10 @@ class IntegrationApi:
         :type action: str
         :param endpoint_url: Endpoint URL
         :type endpoint_url: str
+        :param auth_header_name: HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.
+        :type auth_header_name: str
+        :param auth_header_value: Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.
+        :type auth_header_value: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2322,6 +2336,8 @@ class IntegrationApi:
             object=object,
             action=action,
             endpoint_url=endpoint_url,
+            auth_header_name=auth_header_name,
+            auth_header_value=auth_header_value,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2349,6 +2365,8 @@ class IntegrationApi:
         object: Annotated[Optional[StrictStr], Field(description="Event object")] = None,
         action: Annotated[Optional[StrictStr], Field(description="Event action")] = None,
         endpoint_url: Annotated[Optional[StrictStr], Field(description="Endpoint URL")] = None,
+        auth_header_name: Annotated[Optional[StrictStr], Field(description="HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.")] = None,
+        auth_header_value: Annotated[Optional[StrictStr], Field(description="Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2374,6 +2392,10 @@ class IntegrationApi:
         :type action: str
         :param endpoint_url: Endpoint URL
         :type endpoint_url: str
+        :param auth_header_name: HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`.
+        :type auth_header_name: str
+        :param auth_header_value: Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`.
+        :type auth_header_value: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2401,6 +2423,8 @@ class IntegrationApi:
             object=object,
             action=action,
             endpoint_url=endpoint_url,
+            auth_header_name=auth_header_name,
+            auth_header_value=auth_header_value,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2423,6 +2447,8 @@ class IntegrationApi:
         object,
         action,
         endpoint_url,
+        auth_header_name,
+        auth_header_value,
         _request_auth,
         _content_type,
         _headers,
@@ -2455,6 +2481,10 @@ class IntegrationApi:
             _form_params.append(('action', action))
         if endpoint_url is not None:
             _form_params.append(('endpointUrl', endpoint_url))
+        if auth_header_name is not None:
+            _form_params.append(('authHeaderName', auth_header_name))
+        if auth_header_value is not None:
+            _form_params.append(('authHeaderValue', auth_header_value))
         # process the body parameter
 
 

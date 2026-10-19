@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** |  | [optional] 
 **company_tax_id** | **str** |  | [optional] 
 **company_name** | **str** |  | [optional] 
+**guest_nationality** | **str** | Guest nationality (citizenship), ISO 3166-1 alpha-2. Empty string when none is stored. | [optional] 
 **assigned_room** | **bool** | Returns true if guest has roomed assigned, false if not | [optional] 
 **is_anonymized** | **bool** | Flag indicating the guest data was removed upon request | [optional] 
 **room_id** | **str** | Room ID where guest is assigned | [optional] 

@@ -636,7 +636,8 @@ class AuthenticationApi:
     @validate_call
     def userinfo_get(
         self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Specify a property ID when using role_details")] = None,
+        property_id: Annotated[Optional[StrictStr], Field(description="Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.")] = None,
+        organization_id: Annotated[Optional[StrictStr], Field(description="Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.")] = None,
         role_details: Annotated[Optional[StrictBool], Field(description="Specify whether to include role and acl details of the user.")] = None,
         _request_timeout: Union[
             None,
@@ -655,8 +656,10 @@ class AuthenticationApi:
 
         Returns information on user who authorized connection
 
-        :param property_id: Specify a property ID when using role_details
+        :param property_id: Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.
         :type property_id: str
+        :param organization_id: Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.
+        :type organization_id: str
         :param role_details: Specify whether to include role and acl details of the user.
         :type role_details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -683,6 +686,7 @@ class AuthenticationApi:
 
         _param = self._userinfo_get_serialize(
             property_id=property_id,
+            organization_id=organization_id,
             role_details=role_details,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -707,7 +711,8 @@ class AuthenticationApi:
     @validate_call
     def userinfo_get_with_http_info(
         self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Specify a property ID when using role_details")] = None,
+        property_id: Annotated[Optional[StrictStr], Field(description="Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.")] = None,
+        organization_id: Annotated[Optional[StrictStr], Field(description="Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.")] = None,
         role_details: Annotated[Optional[StrictBool], Field(description="Specify whether to include role and acl details of the user.")] = None,
         _request_timeout: Union[
             None,
@@ -726,8 +731,10 @@ class AuthenticationApi:
 
         Returns information on user who authorized connection
 
-        :param property_id: Specify a property ID when using role_details
+        :param property_id: Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.
         :type property_id: str
+        :param organization_id: Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.
+        :type organization_id: str
         :param role_details: Specify whether to include role and acl details of the user.
         :type role_details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -754,6 +761,7 @@ class AuthenticationApi:
 
         _param = self._userinfo_get_serialize(
             property_id=property_id,
+            organization_id=organization_id,
             role_details=role_details,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -778,7 +786,8 @@ class AuthenticationApi:
     @validate_call
     def userinfo_get_without_preload_content(
         self,
-        property_id: Annotated[Optional[StrictStr], Field(description="Specify a property ID when using role_details")] = None,
+        property_id: Annotated[Optional[StrictStr], Field(description="Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.")] = None,
+        organization_id: Annotated[Optional[StrictStr], Field(description="Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.")] = None,
         role_details: Annotated[Optional[StrictBool], Field(description="Specify whether to include role and acl details of the user.")] = None,
         _request_timeout: Union[
             None,
@@ -797,8 +806,10 @@ class AuthenticationApi:
 
         Returns information on user who authorized connection
 
-        :param property_id: Specify a property ID when using role_details
+        :param property_id: Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied.
         :type property_id: str
+        :param organization_id: Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions.
+        :type organization_id: str
         :param role_details: Specify whether to include role and acl details of the user.
         :type role_details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -825,6 +836,7 @@ class AuthenticationApi:
 
         _param = self._userinfo_get_serialize(
             property_id=property_id,
+            organization_id=organization_id,
             role_details=role_details,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -845,6 +857,7 @@ class AuthenticationApi:
     def _userinfo_get_serialize(
         self,
         property_id,
+        organization_id,
         role_details,
         _request_auth,
         _content_type,
@@ -871,6 +884,10 @@ class AuthenticationApi:
         if property_id is not None:
             
             _query_params.append(('property_id', property_id))
+            
+        if organization_id is not None:
+            
+            _query_params.append(('organization_id', organization_id))
             
         if role_details is not None:
             

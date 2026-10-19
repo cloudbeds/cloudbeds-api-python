@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **owner** | [**GetWebhooksResponseDataInnerOwner**](GetWebhooksResponseDataInnerOwner.md) |  | [optional] 
 **subscription_type** | **str** | Subscription Type (Webhook) | [optional] 
 **subscription_data** | [**GetWebhooksResponseDataInnerSubscriptionData**](GetWebhooksResponseDataInnerSubscriptionData.md) |  | [optional] 
+**auth_header** | [**GetWebhooksResponseDataInnerAuthHeader**](GetWebhooksResponseDataInnerAuthHeader.md) |  | [optional] 
 
 ## Example
 

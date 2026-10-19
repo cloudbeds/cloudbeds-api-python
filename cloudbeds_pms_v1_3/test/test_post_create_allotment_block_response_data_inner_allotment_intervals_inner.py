@@ -62,7 +62,10 @@ class TestPostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(unitt
                     last_minute_booking_days = 56, 
                     closed_to_arrival = 56, 
                     closed_to_departure = 56, ),
-                split_inventory = True
+                split_inventory = True,
+                shoulder_dates_before = 56,
+                shoulder_dates_after = 56,
+                shoulder_dates_rate_id = ''
             )
         else:
             return PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(

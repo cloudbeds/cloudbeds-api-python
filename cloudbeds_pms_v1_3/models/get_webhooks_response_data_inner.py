@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_auth_header import GetWebhooksResponseDataInnerAuthHeader
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_event import GetWebhooksResponseDataInnerEvent
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_key import GetWebhooksResponseDataInnerKey
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_owner import GetWebhooksResponseDataInnerOwner
@@ -36,7 +37,8 @@ class GetWebhooksResponseDataInner(BaseModel):
     owner: Optional[GetWebhooksResponseDataInnerOwner] = None
     subscription_type: Optional[StrictStr] = Field(default=None, description="Subscription Type (Webhook)", alias="subscriptionType")
     subscription_data: Optional[GetWebhooksResponseDataInnerSubscriptionData] = Field(default=None, alias="subscriptionData")
-    __properties: ClassVar[List[str]] = ["id", "key", "event", "owner", "subscriptionType", "subscriptionData"]
+    auth_header: Optional[GetWebhooksResponseDataInnerAuthHeader] = Field(default=None, alias="authHeader")
+    __properties: ClassVar[List[str]] = ["id", "key", "event", "owner", "subscriptionType", "subscriptionData", "authHeader"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +91,9 @@ class GetWebhooksResponseDataInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of subscription_data
         if self.subscription_data:
             _dict['subscriptionData'] = self.subscription_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of auth_header
+        if self.auth_header:
+            _dict['authHeader'] = self.auth_header.to_dict()
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -119,6 +124,11 @@ class GetWebhooksResponseDataInner(BaseModel):
         if self.subscription_data is None and "subscription_data" in self.model_fields_set:
             _dict['subscriptionData'] = None
 
+        # set to None if auth_header (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_header is None and "auth_header" in self.model_fields_set:
+            _dict['authHeader'] = None
+
         return _dict
 
     @classmethod
@@ -136,7 +146,8 @@ class GetWebhooksResponseDataInner(BaseModel):
             "event": GetWebhooksResponseDataInnerEvent.from_dict(obj["event"]) if obj.get("event") is not None else None,
             "owner": GetWebhooksResponseDataInnerOwner.from_dict(obj["owner"]) if obj.get("owner") is not None else None,
             "subscriptionType": obj.get("subscriptionType"),
-            "subscriptionData": GetWebhooksResponseDataInnerSubscriptionData.from_dict(obj["subscriptionData"]) if obj.get("subscriptionData") is not None else None
+            "subscriptionData": GetWebhooksResponseDataInnerSubscriptionData.from_dict(obj["subscriptionData"]) if obj.get("subscriptionData") is not None else None,
+            "authHeader": GetWebhooksResponseDataInnerAuthHeader.from_dict(obj["authHeader"]) if obj.get("authHeader") is not None else None
         })
         return _obj
 

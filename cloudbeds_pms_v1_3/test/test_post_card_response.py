@@ -40,7 +40,8 @@ class TestPostCardResponse(unittest.TestCase):
                     card_id = '', 
                     card_number = '', 
                     card_type = 'visa', 
-                    redirect_url = '', )
+                    redirect_url = '', 
+                    payment_method_id = '', )
             )
         else:
             return PostCardResponse(

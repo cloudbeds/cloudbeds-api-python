@@ -73,6 +73,7 @@ class TestGetAllotmentBlocksResponse(unittest.TestCase):
                             cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_allotment_intervals_inner.GetAllotmentBlocksResponse_data_inner_allotmentIntervals_inner(
                                 policy_id = '', 
                                 room_type_id = '', 
+                                rate_id = '', 
                                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 availability = [
@@ -81,6 +82,7 @@ class TestGetAllotmentBlocksResponse(unittest.TestCase):
                                         block_remaining = 56, 
                                         block_allotted = 56, 
                                         block_confirmed = 56, 
+                                        is_shoulder_date = True, 
                                         rate = '', 
                                         guest_pricing = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability_guest_pricing.PostCreateAllotmentBlockResponse_data_inner_allotmentIntervals_inner_availability_guestPricing(
                                             adult1 = '', 
@@ -99,7 +101,10 @@ class TestGetAllotmentBlocksResponse(unittest.TestCase):
                                     last_minute_booking_days = 56, 
                                     closed_to_arrival = 56, 
                                     closed_to_departure = 56, ), 
-                                split_inventory = True, )
+                                split_inventory = True, 
+                                shoulder_dates_before = 56, 
+                                shoulder_dates_after = 56, 
+                                shoulder_dates_rate_id = '', )
                             ], 
                         resources = [
                             cloudbeds_pms_v1_3.models.get_allotment_blocks_response_data_inner_resources_inner.GetAllotmentBlocksResponse_data_inner_resources_inner(

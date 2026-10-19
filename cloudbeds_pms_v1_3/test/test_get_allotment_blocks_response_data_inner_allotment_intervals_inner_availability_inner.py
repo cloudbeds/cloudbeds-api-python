@@ -39,6 +39,7 @@ class TestGetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailability
                 block_remaining = 56,
                 block_allotted = 56,
                 block_confirmed = 56,
+                is_shoulder_date = True,
                 rate = '',
                 guest_pricing = cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability_guest_pricing.PostCreateAllotmentBlockResponse_data_inner_allotmentIntervals_inner_availability_guestPricing(
                     adult1 = '', 

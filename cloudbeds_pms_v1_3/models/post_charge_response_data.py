@@ -32,7 +32,8 @@ class PostChargeResponseData(BaseModel):
     payment_status: Optional[StrictStr] = Field(default=None, description="the status of the payment, could be 'pending' if the payment requires a next action", alias="paymentStatus")
     payment_type: Optional[StrictStr] = Field(default=None, description="detected payment type. Ex: 'cards', 'oxxo'", alias="paymentType")
     next_action: Optional[PostChargeResponseDataNextAction] = Field(default=None, alias="nextAction")
-    __properties: ClassVar[List[str]] = ["paymentID", "transactionID", "paymentStatus", "paymentType", "nextAction"]
+    payment_method_id: Optional[StrictStr] = Field(default=None, description="Identifier of the card charged, for reuse. Null when the payment used no card, e.g. an alternate payment method. It becomes resolvable a few seconds after the charge, and stops resolving once the card is purged.", alias="paymentMethodId")
+    __properties: ClassVar[List[str]] = ["paymentID", "transactionID", "paymentStatus", "paymentType", "nextAction", "paymentMethodId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,11 @@ class PostChargeResponseData(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of next_action
         if self.next_action:
             _dict['nextAction'] = self.next_action.to_dict()
+        # set to None if payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_method_id is None and "payment_method_id" in self.model_fields_set:
+            _dict['paymentMethodId'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +98,8 @@ class PostChargeResponseData(BaseModel):
             "transactionID": obj.get("transactionID"),
             "paymentStatus": obj.get("paymentStatus"),
             "paymentType": obj.get("paymentType"),
-            "nextAction": PostChargeResponseDataNextAction.from_dict(obj["nextAction"]) if obj.get("nextAction") is not None else None
+            "nextAction": PostChargeResponseDataNextAction.from_dict(obj["nextAction"]) if obj.get("nextAction") is not None else None,
+            "paymentMethodId": obj.get("paymentMethodId")
         })
         return _obj
 

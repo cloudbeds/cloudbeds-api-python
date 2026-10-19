@@ -359,7 +359,6 @@ class AllotmentBlocksApi:
     @validate_call
     def create_allotment_block_post(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
@@ -387,8 +386,6 @@ class AllotmentBlocksApi:
 
         Retreive allotment blocks @apiQuery {Integer} propertyID Property ID
 
-        :param group_code: The unique identifier of the group profile the allotment block should be created
-        :type group_code: str
         :param event_code: The unique identifier of the event the allotment block should be created
         :type event_code: str
         :param allotment_block_name: The name for the allotment block
@@ -432,7 +429,6 @@ class AllotmentBlocksApi:
         """ # noqa: E501
 
         _param = self._create_allotment_block_post_serialize(
-            group_code=group_code,
             event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
@@ -466,7 +462,6 @@ class AllotmentBlocksApi:
     @validate_call
     def create_allotment_block_post_with_http_info(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
@@ -494,8 +489,6 @@ class AllotmentBlocksApi:
 
         Retreive allotment blocks @apiQuery {Integer} propertyID Property ID
 
-        :param group_code: The unique identifier of the group profile the allotment block should be created
-        :type group_code: str
         :param event_code: The unique identifier of the event the allotment block should be created
         :type event_code: str
         :param allotment_block_name: The name for the allotment block
@@ -539,7 +532,6 @@ class AllotmentBlocksApi:
         """ # noqa: E501
 
         _param = self._create_allotment_block_post_serialize(
-            group_code=group_code,
             event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
@@ -573,7 +565,6 @@ class AllotmentBlocksApi:
     @validate_call
     def create_allotment_block_post_without_preload_content(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the group profile the allotment block should be created")] = None,
         event_code: Annotated[Optional[StrictStr], Field(description="The unique identifier of the event the allotment block should be created")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="The name for the allotment block")] = None,
         rate_type: Annotated[Optional[StrictStr], Field(description="The rate type for the associated intervals")] = None,
@@ -601,8 +592,6 @@ class AllotmentBlocksApi:
 
         Retreive allotment blocks @apiQuery {Integer} propertyID Property ID
 
-        :param group_code: The unique identifier of the group profile the allotment block should be created
-        :type group_code: str
         :param event_code: The unique identifier of the event the allotment block should be created
         :type event_code: str
         :param allotment_block_name: The name for the allotment block
@@ -646,7 +635,6 @@ class AllotmentBlocksApi:
         """ # noqa: E501
 
         _param = self._create_allotment_block_post_serialize(
-            group_code=group_code,
             event_code=event_code,
             allotment_block_name=allotment_block_name,
             rate_type=rate_type,
@@ -675,7 +663,6 @@ class AllotmentBlocksApi:
 
     def _create_allotment_block_post_serialize(
         self,
-        group_code,
         event_code,
         allotment_block_name,
         rate_type,
@@ -712,8 +699,6 @@ class AllotmentBlocksApi:
         # process the query parameters
         # process the header parameters
         # process the form parameters
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
         if event_code is not None:
             _form_params.append(('eventCode', event_code))
         if allotment_block_name is not None:
@@ -1064,18 +1049,18 @@ class AllotmentBlocksApi:
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event (group profile) code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
-        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        start_date: Annotated[Optional[date], Field(description="Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.")] = None,
+        end_date: Annotated[Optional[date], Field(description="Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
+        include_shoulder_dates: Annotated[Optional[StrictBool], Field(description="When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1099,11 +1084,9 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: Allotment block name
         :type allotment_block_name: str
-        :param group_code: A group profile code
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
-        :type group_profile_id: str
-        :param event_code: An event code
+        :param event_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type event_profile_id: str
+        :param event_code: An event (group profile) code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
@@ -1115,14 +1098,16 @@ class AllotmentBlocksApi:
         :type page_size: int
         :param page_number: Which page in the results to access
         :type page_number: int
-        :param start_date: Interval start date
+        :param start_date: Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.
         :type start_date: date
-        :param end_date: Interval end date
+        :param end_date: Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
         :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
         :type include_resources: bool
+        :param include_shoulder_dates: When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.
+        :type include_shoulder_dates: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1149,8 +1134,7 @@ class AllotmentBlocksApi:
             property_id=property_id,
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_profile_id=event_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1161,6 +1145,7 @@ class AllotmentBlocksApi:
             end_date=end_date,
             for_update=for_update,
             include_resources=include_resources,
+            include_shoulder_dates=include_shoulder_dates,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1187,18 +1172,18 @@ class AllotmentBlocksApi:
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event (group profile) code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
-        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        start_date: Annotated[Optional[date], Field(description="Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.")] = None,
+        end_date: Annotated[Optional[date], Field(description="Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
+        include_shoulder_dates: Annotated[Optional[StrictBool], Field(description="When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1222,11 +1207,9 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: Allotment block name
         :type allotment_block_name: str
-        :param group_code: A group profile code
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
-        :type group_profile_id: str
-        :param event_code: An event code
+        :param event_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type event_profile_id: str
+        :param event_code: An event (group profile) code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
@@ -1238,14 +1221,16 @@ class AllotmentBlocksApi:
         :type page_size: int
         :param page_number: Which page in the results to access
         :type page_number: int
-        :param start_date: Interval start date
+        :param start_date: Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.
         :type start_date: date
-        :param end_date: Interval end date
+        :param end_date: Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
         :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
         :type include_resources: bool
+        :param include_shoulder_dates: When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.
+        :type include_shoulder_dates: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1272,8 +1257,7 @@ class AllotmentBlocksApi:
             property_id=property_id,
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_profile_id=event_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1284,6 +1268,7 @@ class AllotmentBlocksApi:
             end_date=end_date,
             for_update=for_update,
             include_resources=include_resources,
+            include_shoulder_dates=include_shoulder_dates,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1310,18 +1295,18 @@ class AllotmentBlocksApi:
         property_id: Annotated[StrictStr, Field(description="Property ID (optional, by default all authorized properties will be included)")],
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code")] = None,
         allotment_block_name: Annotated[Optional[StrictStr], Field(description="Allotment block name")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="A group profile code")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="An event code")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="An event (group profile) code")] = None,
         allotment_block_status: Annotated[Optional[StrictStr], Field(description="Allotment block status(es)")] = None,
         allotment_block_type: Annotated[Optional[StrictStr], Field(description="The type of allotment block")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters allotment blocks with the supplied Room Type ID.")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Number of allotment blocks to return per page (min: 1, max: 100)")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Which page in the results to access")] = None,
-        start_date: Annotated[Optional[date], Field(description="Interval start date")] = None,
-        end_date: Annotated[Optional[date], Field(description="Interval end date")] = None,
+        start_date: Annotated[Optional[date], Field(description="Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.")] = None,
+        end_date: Annotated[Optional[date], Field(description="Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.")] = None,
         for_update: Annotated[Optional[StrictBool], Field(description="If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.")] = None,
         include_resources: Annotated[Optional[StrictBool], Field(description="When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.")] = None,
+        include_shoulder_dates: Annotated[Optional[StrictBool], Field(description="When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1345,11 +1330,9 @@ class AllotmentBlocksApi:
         :type allotment_block_code: str
         :param allotment_block_name: Allotment block name
         :type allotment_block_name: str
-        :param group_code: A group profile code
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
-        :type group_profile_id: str
-        :param event_code: An event code
+        :param event_profile_id: GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile.
+        :type event_profile_id: str
+        :param event_code: An event (group profile) code
         :type event_code: str
         :param allotment_block_status: Allotment block status(es)
         :type allotment_block_status: str
@@ -1361,14 +1344,16 @@ class AllotmentBlocksApi:
         :type page_size: int
         :param page_number: Which page in the results to access
         :type page_number: int
-        :param start_date: Interval start date
+        :param start_date: Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date.
         :type start_date: date
-        :param end_date: Interval end date
+        :param end_date: Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date.
         :type end_date: date
         :param for_update: If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals.
         :type for_update: bool
         :param include_resources: When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true.
         :type include_resources: bool
+        :param include_shoulder_dates: When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates.
+        :type include_shoulder_dates: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1395,8 +1380,7 @@ class AllotmentBlocksApi:
             property_id=property_id,
             allotment_block_code=allotment_block_code,
             allotment_block_name=allotment_block_name,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_profile_id=event_profile_id,
             event_code=event_code,
             allotment_block_status=allotment_block_status,
             allotment_block_type=allotment_block_type,
@@ -1407,6 +1391,7 @@ class AllotmentBlocksApi:
             end_date=end_date,
             for_update=for_update,
             include_resources=include_resources,
+            include_shoulder_dates=include_shoulder_dates,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1428,8 +1413,7 @@ class AllotmentBlocksApi:
         property_id,
         allotment_block_code,
         allotment_block_name,
-        group_code,
-        group_profile_id,
+        event_profile_id,
         event_code,
         allotment_block_status,
         allotment_block_type,
@@ -1440,6 +1424,7 @@ class AllotmentBlocksApi:
         end_date,
         for_update,
         include_resources,
+        include_shoulder_dates,
         _request_auth,
         _content_type,
         _headers,
@@ -1474,13 +1459,9 @@ class AllotmentBlocksApi:
             
             _query_params.append(('allotmentBlockName', allotment_block_name))
             
-        if group_code is not None:
+        if event_profile_id is not None:
             
-            _query_params.append(('groupCode', group_code))
-            
-        if group_profile_id is not None:
-            
-            _query_params.append(('groupProfileID', group_profile_id))
+            _query_params.append(('eventProfileID', event_profile_id))
             
         if event_code is not None:
             
@@ -1539,6 +1520,10 @@ class AllotmentBlocksApi:
         if include_resources is not None:
             
             _query_params.append(('includeResources', include_resources))
+            
+        if include_shoulder_dates is not None:
+            
+            _query_params.append(('includeShoulderDates', include_shoulder_dates))
             
         # process the header parameters
         # process the form parameters

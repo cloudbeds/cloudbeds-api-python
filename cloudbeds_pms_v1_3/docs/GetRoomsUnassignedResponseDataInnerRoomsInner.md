@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **dorm_room_name** | **str** | Name of the dorm room. Used for the shared dorm beds that are organized into rooms within the same room type | [optional] 
 **room_description** | **str** | Room Description | [optional] 
 **max_guests** | **int** | Number of guests that room allows | [optional] 
+**max_adults** | **int** | Max adults the room type permits; &#x60;null&#x60; if not configured (only maxGuests applies). Advisory; not enforced on shared room types. | [optional] 
+**max_children** | **int** | Max children the room type permits (&#x60;0&#x60; &#x3D; none permitted); &#x60;null&#x60; if not configured. Advisory; not enforced on shared room types. | [optional] 
 **is_private** | **bool** | If room is private (true) or shared (false) | [optional] 
 **is_virtual** | **bool** | If room is virtual (true) or physical (false) | [optional] 
 **room_blocked** | **bool** | If room is blocked on calendar during the period selected. If no check-in/out dates are sent, it returns the status for the current day. | [optional] 

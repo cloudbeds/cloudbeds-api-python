@@ -30,7 +30,8 @@ class PostCardResponseData(BaseModel):
     card_number: Optional[StrictStr] = Field(default=None, description="Ending digits of the credit card", alias="cardNumber")
     card_type: Optional[StrictStr] = Field(default=None, description="Abbreviated name of credit card type", alias="cardType")
     redirect_url: Optional[StrictStr] = Field(default=None, description="null if no 3ds required", alias="redirectUrl")
-    __properties: ClassVar[List[str]] = ["cardID", "cardNumber", "cardType", "redirectUrl"]
+    payment_method_id: Optional[StrictStr] = Field(default=None, description="Identifier of the stored card, for reuse on later requests; prefer it over **cardID**. It becomes resolvable a few seconds after the card is stored, and stops resolving once the card is purged.", alias="paymentMethodId")
+    __properties: ClassVar[List[str]] = ["cardID", "cardNumber", "cardType", "redirectUrl", "paymentMethodId"]
 
     @field_validator('card_type')
     def card_type_validate_enum(cls, value):
@@ -97,7 +98,8 @@ class PostCardResponseData(BaseModel):
             "cardID": obj.get("cardID"),
             "cardNumber": obj.get("cardNumber"),
             "cardType": obj.get("cardType"),
-            "redirectUrl": obj.get("redirectUrl")
+            "redirectUrl": obj.get("redirectUrl"),
+            "paymentMethodId": obj.get("paymentMethodId")
         })
         return _obj
 

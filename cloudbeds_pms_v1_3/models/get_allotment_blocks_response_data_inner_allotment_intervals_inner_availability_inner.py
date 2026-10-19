@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability_guest_pricing import PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing
 from typing import Optional, Set
@@ -32,11 +32,12 @@ class GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInne
     block_remaining: Optional[StrictInt] = Field(default=None, description="Number of units remaining for the room type for this day", alias="blockRemaining")
     block_allotted: Optional[StrictInt] = Field(default=None, description="Total number of units available for the room type for this day. Note: this value is ignored for based_on_availability allotment types, which always use full property availability.", alias="blockAllotted")
     block_confirmed: Optional[StrictInt] = Field(default=None, description="Number of units booked for the room type for this day", alias="blockConfirmed")
+    is_shoulder_date: Optional[StrictBool] = Field(default=None, description="Present on every availability entry when includeShoulderDates=true: true on a shoulder date, false on a core date. Absent otherwise.", alias="isShoulderDate")
     rate: Optional[StrictStr] = Field(default=None, description="the price")
     guest_pricing: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing] = Field(default=None, alias="guestPricing")
     split_block_allotted: Optional[StrictInt] = Field(default=None, description="Number of split units available for the room type this day", alias="splitBlockAllotted")
     split_block_confirmed: Optional[StrictInt] = Field(default=None, description="Number of split units blocked for the room type this day", alias="splitBlockConfirmed")
-    __properties: ClassVar[List[str]] = ["date", "blockRemaining", "blockAllotted", "blockConfirmed", "rate", "guestPricing", "splitBlockAllotted", "splitBlockConfirmed"]
+    __properties: ClassVar[List[str]] = ["date", "blockRemaining", "blockAllotted", "blockConfirmed", "isShoulderDate", "rate", "guestPricing", "splitBlockAllotted", "splitBlockConfirmed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +81,11 @@ class GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInne
         # override the default output from pydantic by calling `to_dict()` of guest_pricing
         if self.guest_pricing:
             _dict['guestPricing'] = self.guest_pricing.to_dict()
+        # set to None if is_shoulder_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_shoulder_date is None and "is_shoulder_date" in self.model_fields_set:
+            _dict['isShoulderDate'] = None
+
         return _dict
 
     @classmethod
@@ -96,6 +102,7 @@ class GetAllotmentBlocksResponseDataInnerAllotmentIntervalsInnerAvailabilityInne
             "blockRemaining": obj.get("blockRemaining"),
             "blockAllotted": obj.get("blockAllotted"),
             "blockConfirmed": obj.get("blockConfirmed"),
+            "isShoulderDate": obj.get("isShoulderDate"),
             "rate": obj.get("rate"),
             "guestPricing": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.from_dict(obj["guestPricing"]) if obj.get("guestPricing") is not None else None,
             "splitBlockAllotted": obj.get("splitBlockAllotted"),

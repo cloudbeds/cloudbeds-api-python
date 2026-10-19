@@ -56,10 +56,10 @@ class ItemApi:
     def append_custom_item_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
-        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
+        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
@@ -87,13 +87,13 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
-        :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
+        :param reference_id: partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
@@ -137,7 +137,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -171,10 +171,10 @@ class ItemApi:
     def append_custom_item_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
-        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
+        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
@@ -202,13 +202,13 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
-        :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
+        :param reference_id: partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
@@ -252,7 +252,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -286,10 +286,10 @@ class ItemApi:
     def append_custom_item_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code. Required if no reservationID or houseAccountID is provided.")] = None,
-        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
+        reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
         items: Annotated[Optional[List[PostCustomItemRequestItemsInner]], Field(description="list of items will be posted")] = None,
@@ -317,13 +317,13 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group code. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
-        :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
+        :param reference_id: partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
         :type sub_reservation_id: str
@@ -367,7 +367,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -398,7 +398,7 @@ class ItemApi:
         property_id,
         reservation_id,
         house_account_id,
-        group_code,
+        event_code,
         reference_id,
         sub_reservation_id,
         room_id,
@@ -440,8 +440,8 @@ class ItemApi:
             _form_params.append(('reservationID', reservation_id))
         if house_account_id is not None:
             _form_params.append(('houseAccountID', house_account_id))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if reference_id is not None:
             _form_params.append(('referenceID', reference_id))
         if sub_reservation_id is not None:
@@ -1339,9 +1339,9 @@ class ItemApi:
     def post_custom_item_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -1370,12 +1370,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -1420,7 +1420,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -1454,9 +1454,9 @@ class ItemApi:
     def post_custom_item_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -1485,12 +1485,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -1535,7 +1535,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -1569,9 +1569,9 @@ class ItemApi:
     def post_custom_item_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         reference_id: Annotated[Optional[StrictStr], Field(description="partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Room identifier (Ignored if subReservationID exist)")] = None,
@@ -1600,12 +1600,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param reference_id: partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates
         :type reference_id: str
         :param sub_reservation_id: Sub Reservation identifier
@@ -1650,7 +1650,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             reference_id=reference_id,
             sub_reservation_id=sub_reservation_id,
             room_id=room_id,
@@ -1681,7 +1681,7 @@ class ItemApi:
         property_id,
         reservation_id,
         house_account_id,
-        group_code,
+        event_code,
         reference_id,
         sub_reservation_id,
         room_id,
@@ -1723,8 +1723,8 @@ class ItemApi:
             _form_params.append(('reservationID', reservation_id))
         if house_account_id is not None:
             _form_params.append(('houseAccountID', house_account_id))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if reference_id is not None:
             _form_params.append(('referenceID', reference_id))
         if sub_reservation_id is not None:
@@ -2132,9 +2132,9 @@ class ItemApi:
     def post_item_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier.")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
@@ -2162,12 +2162,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sub_reservation_id: Sub Reservation identifier.
         :type sub_reservation_id: str
         :param item_id: Item identifier
@@ -2210,7 +2210,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sub_reservation_id=sub_reservation_id,
             item_id=item_id,
             item_quantity=item_quantity,
@@ -2243,9 +2243,9 @@ class ItemApi:
     def post_item_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier.")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
@@ -2273,12 +2273,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sub_reservation_id: Sub Reservation identifier.
         :type sub_reservation_id: str
         :param item_id: Item identifier
@@ -2321,7 +2321,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sub_reservation_id=sub_reservation_id,
             item_id=item_id,
             item_quantity=item_quantity,
@@ -2354,9 +2354,9 @@ class ItemApi:
     def post_item_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sub_reservation_id: Annotated[Optional[StrictStr], Field(description="Sub Reservation identifier.")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         item_quantity: Annotated[Optional[StrictInt], Field(description="Items quantity")] = None,
@@ -2384,12 +2384,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sub_reservation_id: Sub Reservation identifier.
         :type sub_reservation_id: str
         :param item_id: Item identifier
@@ -2432,7 +2432,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sub_reservation_id=sub_reservation_id,
             item_id=item_id,
             item_quantity=item_quantity,
@@ -2462,7 +2462,7 @@ class ItemApi:
         property_id,
         reservation_id,
         house_account_id,
-        group_code,
+        event_code,
         sub_reservation_id,
         item_id,
         item_quantity,
@@ -2502,8 +2502,8 @@ class ItemApi:
             _form_params.append(('reservationID', reservation_id))
         if house_account_id is not None:
             _form_params.append(('houseAccountID', house_account_id))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if sub_reservation_id is not None:
             _form_params.append(('subReservationID', sub_reservation_id))
         if item_id is not None:
@@ -2848,9 +2848,9 @@ class ItemApi:
     def post_void_item_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sold_product_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         _request_timeout: Union[
             None,
@@ -2871,12 +2871,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sold_product_id: Item identifier
         :type sold_product_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2905,7 +2905,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sold_product_id=sold_product_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2931,9 +2931,9 @@ class ItemApi:
     def post_void_item_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sold_product_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         _request_timeout: Union[
             None,
@@ -2954,12 +2954,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sold_product_id: Item identifier
         :type sold_product_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2988,7 +2988,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sold_product_id=sold_product_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3014,9 +3014,9 @@ class ItemApi:
     def post_void_item_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or groupCode is provided.")] = None,
-        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or groupCode is provided.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group identifier. Required if no reservationID or houseAccountID is provided.")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier. Required if no houseAccountID or eventCode is provided.")] = None,
+        house_account_id: Annotated[Optional[StrictStr], Field(description="House Account identifier. Required if no reservationID or eventCode is provided.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code. Required if no reservationID or houseAccountID is provided.")] = None,
         sold_product_id: Annotated[Optional[StrictStr], Field(description="Item identifier")] = None,
         _request_timeout: Union[
             None,
@@ -3037,12 +3037,12 @@ class ItemApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param reservation_id: Reservation identifier. Required if no houseAccountID or groupCode is provided.
+        :param reservation_id: Reservation identifier. Required if no houseAccountID or eventCode is provided.
         :type reservation_id: str
-        :param house_account_id: House Account identifier. Required if no reservationID or groupCode is provided.
+        :param house_account_id: House Account identifier. Required if no reservationID or eventCode is provided.
         :type house_account_id: str
-        :param group_code: Group identifier. Required if no reservationID or houseAccountID is provided.
-        :type group_code: str
+        :param event_code: Event (group profile) code. Required if no reservationID or houseAccountID is provided.
+        :type event_code: str
         :param sold_product_id: Item identifier
         :type sold_product_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3071,7 +3071,7 @@ class ItemApi:
             property_id=property_id,
             reservation_id=reservation_id,
             house_account_id=house_account_id,
-            group_code=group_code,
+            event_code=event_code,
             sold_product_id=sold_product_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3094,7 +3094,7 @@ class ItemApi:
         property_id,
         reservation_id,
         house_account_id,
-        group_code,
+        event_code,
         sold_product_id,
         _request_auth,
         _content_type,
@@ -3126,8 +3126,8 @@ class ItemApi:
             _form_params.append(('reservationID', reservation_id))
         if house_account_id is not None:
             _form_params.append(('houseAccountID', house_account_id))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if sold_product_id is not None:
             _form_params.append(('soldProductID', sold_product_id))
         # process the body parameter

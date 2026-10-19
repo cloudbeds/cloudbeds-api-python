@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Tax ID number | [optional] 
 **tax_id2** | **str** | Second Tax ID number | [optional] 
 **company_legal_name** | **str** | Legal company name | [optional] 
+**property_booking_url** | **str** | Full booking-engine base URL for the property, or null if not set | [optional] 
 
 ## Example
 

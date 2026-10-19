@@ -28,14 +28,14 @@ class PostCustomItemRequestItemsInner(BaseModel):
     """
     PostCustomItemRequestItemsInner
     """ # noqa: E501
-    app_item_id: Optional[StrictStr] = Field(default=None, description="Identifier of item. Future calls using the same ID will use previously sent item name and description. Item name/description sent in new request will be ignored.", alias="appItemID")
+    app_item_id: Optional[StrictStr] = Field(default=None, description="Identifier of item, at most 85 characters. Future calls using the same ID will use previously sent item name and description. Item name/description sent in new request will be ignored.", alias="appItemID")
     item_sku: Optional[StrictStr] = Field(default=None, description="Item SKU identifier", alias="itemSKU")
     item_quantity: Optional[StrictInt] = Field(default=None, description="Items quantity", alias="itemQuantity")
     item_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Item price", alias="itemPrice")
     item_name: Optional[StrictStr] = Field(default=None, description="Item name", alias="itemName")
     item_category_name: Optional[StrictStr] = Field(default=None, description="Item category name", alias="itemCategoryName")
     item_note: Optional[StrictStr] = Field(default=None, description="Item note", alias="itemNote")
-    item_taxes: Optional[List[PostCustomItemRequestItemsInnerItemTaxesInner]] = Field(default=None, description="list of taxes applied to item", alias="itemTaxes")
+    item_taxes: Optional[List[PostCustomItemRequestItemsInnerItemTaxesInner]] = Field(default=None, description="List of taxes applied to the item. Taxes supplied here are not matched against the taxes configured for the property, so they carry no VAT classification and endpoints that nest VAT taxes under their parent charge return them as separate top-level entries instead. Each tax stays associated with its item through the item's parent transaction.", alias="itemTaxes")
     item_fees: Optional[List[PostCustomItemRequestItemsInnerItemFeesInner]] = Field(default=None, description="list of fees applied to item", alias="itemFees")
     __properties: ClassVar[List[str]] = ["appItemID", "itemSKU", "itemQuantity", "itemPrice", "itemName", "itemCategoryName", "itemNote", "itemTaxes", "itemFees"]
 

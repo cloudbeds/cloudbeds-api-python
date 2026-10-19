@@ -47,7 +47,8 @@ class GetHotelDetailsResponseData(BaseModel):
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID number", alias="taxID")
     tax_id2: Optional[StrictStr] = Field(default=None, description="Second Tax ID number", alias="taxID2")
     company_legal_name: Optional[StrictStr] = Field(default=None, description="Legal company name", alias="companyLegalName")
-    __properties: ClassVar[List[str]] = ["propertyID", "organizationID", "propertyName", "propertyType", "propertyImage", "propertyDescription", "propertyCurrency", "propertyPrimaryLanguage", "propertyAdditionalPhotos", "propertyPhone", "propertyEmail", "propertyAddress", "propertyPolicy", "propertyAmenities", "taxID", "taxID2", "companyLegalName"]
+    property_booking_url: Optional[StrictStr] = Field(default=None, description="Full booking-engine base URL for the property, or null if not set", alias="propertyBookingUrl")
+    __properties: ClassVar[List[str]] = ["propertyID", "organizationID", "propertyName", "propertyType", "propertyImage", "propertyDescription", "propertyCurrency", "propertyPrimaryLanguage", "propertyAdditionalPhotos", "propertyPhone", "propertyEmail", "propertyAddress", "propertyPolicy", "propertyAmenities", "taxID", "taxID2", "companyLegalName", "propertyBookingUrl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -139,7 +140,8 @@ class GetHotelDetailsResponseData(BaseModel):
             "propertyAmenities": obj.get("propertyAmenities"),
             "taxID": obj.get("taxID"),
             "taxID2": obj.get("taxID2"),
-            "companyLegalName": obj.get("companyLegalName")
+            "companyLegalName": obj.get("companyLegalName"),
+            "propertyBookingUrl": obj.get("propertyBookingUrl")
         })
         return _obj
 

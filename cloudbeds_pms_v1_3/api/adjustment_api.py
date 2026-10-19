@@ -15,11 +15,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from datetime import date
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Optional, Union
 from typing_extensions import Annotated
-from cloudbeds_pms_v1_3.models.delete_adjustment_response import DeleteAdjustmentResponse
 from cloudbeds_pms_v1_3.models.post_adjustment_response import PostAdjustmentResponse
+from cloudbeds_pms_v1_3.models.post_delete_adjustment_response import PostDeleteAdjustmentResponse
 
 from cloudbeds_pms_v1_3.api_client import ApiClient, RequestSerialized
 from cloudbeds_pms_v1_3.api_response import ApiResponse
@@ -40,11 +41,11 @@ class AdjustmentApi:
 
 
     @validate_call
-    def delete_adjustment_delete(
+    def delete_adjustment_post(
         self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        adjustment_id: Annotated[StrictStr, Field(description="Adjustment identifier")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
+        adjustment_id: Annotated[Optional[StrictStr], Field(description="Adjustment identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -57,17 +58,17 @@ class AdjustmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> DeleteAdjustmentResponse:
+    ) -> PostDeleteAdjustmentResponse:
         """deleteAdjustment
 
         Voids the AdjustmentID transaction on the specified reservationID
 
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param adjustment_id: Adjustment identifier (required)
-        :type adjustment_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param reservation_id: Reservation identifier
+        :type reservation_id: str
+        :param adjustment_id: Adjustment identifier
+        :type adjustment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -90,10 +91,10 @@ class AdjustmentApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_adjustment_delete_serialize(
+        _param = self._delete_adjustment_post_serialize(
+            property_id=property_id,
             reservation_id=reservation_id,
             adjustment_id=adjustment_id,
-            property_id=property_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -101,7 +102,7 @@ class AdjustmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteAdjustmentResponse",
+            '200': "PostDeleteAdjustmentResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -115,11 +116,11 @@ class AdjustmentApi:
 
 
     @validate_call
-    def delete_adjustment_delete_with_http_info(
+    def delete_adjustment_post_with_http_info(
         self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        adjustment_id: Annotated[StrictStr, Field(description="Adjustment identifier")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
+        adjustment_id: Annotated[Optional[StrictStr], Field(description="Adjustment identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -132,17 +133,17 @@ class AdjustmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[DeleteAdjustmentResponse]:
+    ) -> ApiResponse[PostDeleteAdjustmentResponse]:
         """deleteAdjustment
 
         Voids the AdjustmentID transaction on the specified reservationID
 
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param adjustment_id: Adjustment identifier (required)
-        :type adjustment_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param reservation_id: Reservation identifier
+        :type reservation_id: str
+        :param adjustment_id: Adjustment identifier
+        :type adjustment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -165,10 +166,10 @@ class AdjustmentApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_adjustment_delete_serialize(
+        _param = self._delete_adjustment_post_serialize(
+            property_id=property_id,
             reservation_id=reservation_id,
             adjustment_id=adjustment_id,
-            property_id=property_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -176,7 +177,7 @@ class AdjustmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteAdjustmentResponse",
+            '200': "PostDeleteAdjustmentResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -190,11 +191,11 @@ class AdjustmentApi:
 
 
     @validate_call
-    def delete_adjustment_delete_without_preload_content(
+    def delete_adjustment_post_without_preload_content(
         self,
-        reservation_id: Annotated[StrictStr, Field(description="Reservation identifier")],
-        adjustment_id: Annotated[StrictStr, Field(description="Adjustment identifier")],
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        reservation_id: Annotated[Optional[StrictStr], Field(description="Reservation identifier")] = None,
+        adjustment_id: Annotated[Optional[StrictStr], Field(description="Adjustment identifier")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -212,12 +213,12 @@ class AdjustmentApi:
 
         Voids the AdjustmentID transaction on the specified reservationID
 
-        :param reservation_id: Reservation identifier (required)
-        :type reservation_id: str
-        :param adjustment_id: Adjustment identifier (required)
-        :type adjustment_id: str
         :param property_id: Property ID
         :type property_id: str
+        :param reservation_id: Reservation identifier
+        :type reservation_id: str
+        :param adjustment_id: Adjustment identifier
+        :type adjustment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -240,10 +241,10 @@ class AdjustmentApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_adjustment_delete_serialize(
+        _param = self._delete_adjustment_post_serialize(
+            property_id=property_id,
             reservation_id=reservation_id,
             adjustment_id=adjustment_id,
-            property_id=property_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -251,7 +252,7 @@ class AdjustmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteAdjustmentResponse",
+            '200': "PostDeleteAdjustmentResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -260,11 +261,11 @@ class AdjustmentApi:
         return response_data.response
 
 
-    def _delete_adjustment_delete_serialize(
+    def _delete_adjustment_post_serialize(
         self,
+        property_id,
         reservation_id,
         adjustment_id,
-        property_id,
         _request_auth,
         _content_type,
         _headers,
@@ -287,20 +288,14 @@ class AdjustmentApi:
 
         # process the path parameters
         # process the query parameters
-        if property_id is not None:
-            
-            _query_params.append(('propertyID', property_id))
-            
-        if reservation_id is not None:
-            
-            _query_params.append(('reservationID', reservation_id))
-            
-        if adjustment_id is not None:
-            
-            _query_params.append(('adjustmentID', adjustment_id))
-            
         # process the header parameters
         # process the form parameters
+        if property_id is not None:
+            _form_params.append(('propertyID', property_id))
+        if reservation_id is not None:
+            _form_params.append(('reservationID', reservation_id))
+        if adjustment_id is not None:
+            _form_params.append(('adjustmentID', adjustment_id))
         # process the body parameter
 
 
@@ -312,6 +307,19 @@ class AdjustmentApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/x-www-form-urlencoded'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -320,7 +328,7 @@ class AdjustmentApi:
         ]
 
         return self.api_client.param_serialize(
-            method='DELETE',
+            method='POST',
             resource_path='/deleteAdjustment',
             path_params=_path_params,
             query_params=_query_params,
@@ -346,6 +354,7 @@ class AdjustmentApi:
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Adjustment amount")] = None,
         notes: Annotated[Optional[StrictStr], Field(description="Adjustment notes")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Apply Adjustment to. Identifier for: product, tax, fee. Not for rate")] = None,
+        service_date: Annotated[Optional[date], Field(description="Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -375,6 +384,8 @@ class AdjustmentApi:
         :type notes: str
         :param item_id: Apply Adjustment to. Identifier for: product, tax, fee. Not for rate
         :type item_id: str
+        :param service_date: Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.
+        :type service_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -404,6 +415,7 @@ class AdjustmentApi:
             amount=amount,
             notes=notes,
             item_id=item_id,
+            service_date=service_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -433,6 +445,7 @@ class AdjustmentApi:
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Adjustment amount")] = None,
         notes: Annotated[Optional[StrictStr], Field(description="Adjustment notes")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Apply Adjustment to. Identifier for: product, tax, fee. Not for rate")] = None,
+        service_date: Annotated[Optional[date], Field(description="Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -462,6 +475,8 @@ class AdjustmentApi:
         :type notes: str
         :param item_id: Apply Adjustment to. Identifier for: product, tax, fee. Not for rate
         :type item_id: str
+        :param service_date: Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.
+        :type service_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -491,6 +506,7 @@ class AdjustmentApi:
             amount=amount,
             notes=notes,
             item_id=item_id,
+            service_date=service_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -520,6 +536,7 @@ class AdjustmentApi:
         amount: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Adjustment amount")] = None,
         notes: Annotated[Optional[StrictStr], Field(description="Adjustment notes")] = None,
         item_id: Annotated[Optional[StrictStr], Field(description="Apply Adjustment to. Identifier for: product, tax, fee. Not for rate")] = None,
+        service_date: Annotated[Optional[date], Field(description="Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -549,6 +566,8 @@ class AdjustmentApi:
         :type notes: str
         :param item_id: Apply Adjustment to. Identifier for: product, tax, fee. Not for rate
         :type item_id: str
+        :param service_date: Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction.
+        :type service_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -578,6 +597,7 @@ class AdjustmentApi:
             amount=amount,
             notes=notes,
             item_id=item_id,
+            service_date=service_date,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -602,6 +622,7 @@ class AdjustmentApi:
         amount,
         notes,
         item_id,
+        service_date,
         _request_auth,
         _content_type,
         _headers,
@@ -638,6 +659,8 @@ class AdjustmentApi:
             _form_params.append(('notes', notes))
         if item_id is not None:
             _form_params.append(('itemID', item_id))
+        if service_date is not None:
+            _form_params.append(('serviceDate', service_date))
         # process the body parameter
 
 

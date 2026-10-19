@@ -14,10 +14,10 @@
 
 import unittest
 
-from cloudbeds_pms_v1_3.models.delete_adjustment_response import DeleteAdjustmentResponse
+from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_auth_header import GetWebhooksResponseDataInnerAuthHeader
 
-class TestDeleteAdjustmentResponse(unittest.TestCase):
-    """DeleteAdjustmentResponse unit test stubs"""
+class TestGetWebhooksResponseDataInnerAuthHeader(unittest.TestCase):
+    """GetWebhooksResponseDataInnerAuthHeader unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,25 @@ class TestDeleteAdjustmentResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeleteAdjustmentResponse:
-        """Test DeleteAdjustmentResponse
+    def make_instance(self, include_optional) -> GetWebhooksResponseDataInnerAuthHeader:
+        """Test GetWebhooksResponseDataInnerAuthHeader
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeleteAdjustmentResponse`
+        # uncomment below to create an instance of `GetWebhooksResponseDataInnerAuthHeader`
         """
-        model = DeleteAdjustmentResponse()
+        model = GetWebhooksResponseDataInnerAuthHeader()
         if include_optional:
-            return DeleteAdjustmentResponse(
-                success = True,
-                message = ''
+            return GetWebhooksResponseDataInnerAuthHeader(
+                name = ''
             )
         else:
-            return DeleteAdjustmentResponse(
+            return GetWebhooksResponseDataInnerAuthHeader(
         )
         """
 
-    def testDeleteAdjustmentResponse(self):
-        """Test DeleteAdjustmentResponse"""
+    def testGetWebhooksResponseDataInnerAuthHeader(self):
+        """Test GetWebhooksResponseDataInnerAuthHeader"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

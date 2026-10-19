@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_availability import PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability
 from cloudbeds_pms_v1_3.models.post_create_allotment_block_response_data_inner_allotment_intervals_inner_restrictions import PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions
@@ -36,7 +36,10 @@ class PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
     availability: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability] = None
     restrictions: Optional[PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions] = None
     split_inventory: Optional[StrictBool] = Field(default=None, description="Whether split inventory is enabled for this room type. When true, the linked physical room types are individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type.", alias="splitInventory")
-    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "startDate", "endDate", "availability", "restrictions", "splitInventory"]
+    shoulder_dates_before: Optional[StrictInt] = Field(default=None, description="Number of shoulder days before the event start date.", alias="shoulderDatesBefore")
+    shoulder_dates_after: Optional[StrictInt] = Field(default=None, description="Number of shoulder days after the event end date.", alias="shoulderDatesAfter")
+    shoulder_dates_rate_id: Optional[StrictStr] = Field(default=None, description="Rate plan ID applied during shoulder date periods.", alias="shoulderDatesRateId")
+    __properties: ClassVar[List[str]] = ["policyId", "roomTypeId", "startDate", "endDate", "availability", "restrictions", "splitInventory", "shoulderDatesBefore", "shoulderDatesAfter", "shoulderDatesRateId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +91,21 @@ class PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
         if self.split_inventory is None and "split_inventory" in self.model_fields_set:
             _dict['splitInventory'] = None
 
+        # set to None if shoulder_dates_before (nullable) is None
+        # and model_fields_set contains the field
+        if self.shoulder_dates_before is None and "shoulder_dates_before" in self.model_fields_set:
+            _dict['shoulderDatesBefore'] = None
+
+        # set to None if shoulder_dates_after (nullable) is None
+        # and model_fields_set contains the field
+        if self.shoulder_dates_after is None and "shoulder_dates_after" in self.model_fields_set:
+            _dict['shoulderDatesAfter'] = None
+
+        # set to None if shoulder_dates_rate_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.shoulder_dates_rate_id is None and "shoulder_dates_rate_id" in self.model_fields_set:
+            _dict['shoulderDatesRateId'] = None
+
         return _dict
 
     @classmethod
@@ -106,7 +124,10 @@ class PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInner(BaseModel
             "endDate": obj.get("endDate"),
             "availability": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability.from_dict(obj["availability"]) if obj.get("availability") is not None else None,
             "restrictions": PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None,
-            "splitInventory": obj.get("splitInventory")
+            "splitInventory": obj.get("splitInventory"),
+            "shoulderDatesBefore": obj.get("shoulderDatesBefore"),
+            "shoulderDatesAfter": obj.get("shoulderDatesAfter"),
+            "shoulderDatesRateId": obj.get("shoulderDatesRateId")
         })
         return _obj
 

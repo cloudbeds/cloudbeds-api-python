@@ -32,6 +32,9 @@ Name | Type | Description | Notes
 **channel_provided_credit_card** | **bool** | Whether a credit card was provided by the channel. Only included for reservations originating from OTAs. | [optional] 
 **group_inventory** | [**List[GetReservationResponseDataGroupInventoryInner]**](GetReservationResponseDataGroupInventoryInner.md) | Aggregate allotment block information | [optional] 
 **origin** | **str** | Reservation origin | [optional] 
+**date_cancelled** | **datetime** | Timestamp the reservation was cancelled, in property-local time. Present only for cancelled reservations, and set for every cancellation. | [optional] 
+**date_cancelled_utc** | **datetime** | Timestamp the reservation was cancelled, in UTC. Present only for cancelled reservations. A reliable cancellation signal independent of dateModified. | [optional] 
+**cancellation** | [**GetReservationResponseDataCancellation**](GetReservationResponseDataCancellation.md) |  | [optional] 
 **meal_plans** | **str** | Reservation Meal Plans | [optional] 
 
 ## Example

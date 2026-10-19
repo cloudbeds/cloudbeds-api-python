@@ -47,7 +47,9 @@ class TestGetWebhooksResponseDataInner(unittest.TestCase):
                     id = '', ),
                 subscription_type = '',
                 subscription_data = cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_subscription_data.GetWebhooksResponse_data_inner_subscriptionData(
-                    endpoint = '', )
+                    endpoint = '', ),
+                auth_header = cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_auth_header.GetWebhooksResponse_data_inner_authHeader(
+                    name = '', )
             )
         else:
             return GetWebhooksResponseDataInner(

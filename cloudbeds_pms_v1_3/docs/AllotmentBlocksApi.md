@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_allotment_block_post**
-> PostCreateAllotmentBlockResponse create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
+> PostCreateAllotmentBlockResponse create_allotment_block_post(event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
 
 createAllotmentBlock
 
@@ -143,7 +143,6 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.AllotmentBlocksApi(api_client)
-    group_code = 'group_code_example' # str | The unique identifier of the group profile the allotment block should be created (optional)
     event_code = 'event_code_example' # str | The unique identifier of the event the allotment block should be created (optional)
     allotment_block_name = 'allotment_block_name_example' # str | The name for the allotment block (optional)
     rate_type = 'rate_type_example' # str | The rate type for the associated intervals (optional)
@@ -157,7 +156,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # createAllotmentBlock
-        api_response = api_instance.create_allotment_block_post(group_code=group_code, event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
+        api_response = api_instance.create_allotment_block_post(event_code=event_code, allotment_block_name=allotment_block_name, rate_type=rate_type, rate_plan_id=rate_plan_id, allotment_type=allotment_type, allotment_block_status=allotment_block_status, allow_overbooking=allow_overbooking, auto_release=auto_release, allotment_intervals=allotment_intervals, resources=resources)
         print("The response of AllotmentBlocksApi->create_allotment_block_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -171,7 +170,6 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_code** | **str**| The unique identifier of the group profile the allotment block should be created | [optional] 
  **event_code** | **str**| The unique identifier of the event the allotment block should be created | [optional] 
  **allotment_block_name** | **str**| The name for the allotment block | [optional] 
  **rate_type** | **str**| The rate type for the associated intervals | [optional] 
@@ -287,7 +285,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_allotment_blocks_get**
-> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, group_profile_id=group_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources)
+> GetAllotmentBlocksResponse get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, event_profile_id=event_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources, include_shoulder_dates=include_shoulder_dates)
 
 getAllotmentBlocks
 
@@ -330,22 +328,22 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     property_id = 'property_id_example' # str | Property ID (optional, by default all authorized properties will be included)
     allotment_block_code = 'allotment_block_code_example' # str | Allotment block code (optional)
     allotment_block_name = 'allotment_block_name_example' # str | Allotment block name (optional)
-    group_code = 'group_code_example' # str | A group profile code (optional)
-    group_profile_id = 'group_profile_id_example' # str | GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. (optional)
-    event_code = 'event_code_example' # str | An event code (optional)
+    event_profile_id = 'event_profile_id_example' # str | GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. (optional)
+    event_code = 'event_code_example' # str | An event (group profile) code (optional)
     allotment_block_status = 'allotment_block_status_example' # str | Allotment block status(es) (optional)
     allotment_block_type = 'allotment_block_type_example' # str | The type of allotment block (optional)
     room_type_id = 'room_type_id_example' # str | Filters allotment blocks with the supplied Room Type ID. (optional)
     page_size = 56 # int | Number of allotment blocks to return per page (min: 1, max: 100) (optional)
     page_number = 56 # int | Which page in the results to access (optional)
-    start_date = '2013-10-20' # date | Interval start date (optional)
-    end_date = '2013-10-20' # date | Interval end date (optional)
+    start_date = '2013-10-20' # date | Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date. (optional)
+    end_date = '2013-10-20' # date | Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date. (optional)
     for_update = True # bool | If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. (optional)
     include_resources = True # bool | When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true. (optional)
+    include_shoulder_dates = True # bool | When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval's own dates even if the param is true. Has no effect when forUpdate=true: that mode reads raw interval availability, which carries no shoulder dates. (optional)
 
     try:
         # getAllotmentBlocks
-        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, group_code=group_code, group_profile_id=group_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources)
+        api_response = api_instance.get_allotment_blocks_get(property_id, allotment_block_code=allotment_block_code, allotment_block_name=allotment_block_name, event_profile_id=event_profile_id, event_code=event_code, allotment_block_status=allotment_block_status, allotment_block_type=allotment_block_type, room_type_id=room_type_id, page_size=page_size, page_number=page_number, start_date=start_date, end_date=end_date, for_update=for_update, include_resources=include_resources, include_shoulder_dates=include_shoulder_dates)
         print("The response of AllotmentBlocksApi->get_allotment_blocks_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -362,18 +360,18 @@ Name | Type | Description  | Notes
  **property_id** | **str**| Property ID (optional, by default all authorized properties will be included) | 
  **allotment_block_code** | **str**| Allotment block code | [optional] 
  **allotment_block_name** | **str**| Allotment block name | [optional] 
- **group_code** | **str**| A group profile code | [optional] 
- **group_profile_id** | **str**| GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. | [optional] 
- **event_code** | **str**| An event code | [optional] 
+ **event_profile_id** | **str**| GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile. | [optional] 
+ **event_code** | **str**| An event (group profile) code | [optional] 
  **allotment_block_status** | **str**| Allotment block status(es) | [optional] 
  **allotment_block_type** | **str**| The type of allotment block | [optional] 
  **room_type_id** | **str**| Filters allotment blocks with the supplied Room Type ID. | [optional] 
  **page_size** | **int**| Number of allotment blocks to return per page (min: 1, max: 100) | [optional] 
  **page_number** | **int**| Which page in the results to access | [optional] 
- **start_date** | **date**| Interval start date | [optional] 
- **end_date** | **date**| Interval end date | [optional] 
+ **start_date** | **date**| Lower limit for the block&#39;s date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date. | [optional] 
+ **end_date** | **date**| Upper limit for the block&#39;s date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date. | [optional] 
  **for_update** | **bool**| If false (default) this will show the effective availability on each date. If true, will read raw availability from the allotment intervals. | [optional] 
  **include_resources** | **bool**| When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true. | [optional] 
+ **include_shoulder_dates** | **bool**| When true, each interval&#39;s availability[] also includes the interval&#39;s shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property&#39;s shoulder-dates feature to be enabled; when it is off, availability[] holds only the interval&#39;s own dates even if the param is true. Has no effect when forUpdate&#x3D;true: that mode reads raw interval availability, which carries no shoulder dates. | [optional] 
 
 ### Return type
 

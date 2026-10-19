@@ -1238,20 +1238,20 @@ class ReservationApi:
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
-        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.")] = None,
         source_reservation_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied reservation source ID.")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied event (group profile) code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1296,7 +1296,7 @@ class ReservationApi:
         :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
-        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
+        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.
         :type room_name: str
         :param room_type_id: Filters reservation with the supplied Room Type ID.
         :type room_type_id: str
@@ -1308,7 +1308,7 @@ class ReservationApi:
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
         :type include_all_rooms: bool
-        :param source_id: Filters reservation with the supplied source ID.
+        :param source_id: Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.
         :type source_id: str
         :param source_reservation_id: Filters reservation with the supplied reservation source ID.
         :type source_reservation_id: str
@@ -1322,8 +1322,8 @@ class ReservationApi:
         :type guest_id: str
         :param allotment_block_code: Filters reservation with the supplied allotment block code.
         :type allotment_block_code: str
-        :param group_code: Filters reservation with the supplied group code.
-        :type group_code: str
+        :param event_code: Filters reservation with the supplied event (group profile) code.
+        :type event_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1378,7 +1378,7 @@ class ReservationApi:
             last_name=last_name,
             guest_id=guest_id,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1417,20 +1417,20 @@ class ReservationApi:
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
-        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.")] = None,
         source_reservation_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied reservation source ID.")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied event (group profile) code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1475,7 +1475,7 @@ class ReservationApi:
         :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
-        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
+        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.
         :type room_name: str
         :param room_type_id: Filters reservation with the supplied Room Type ID.
         :type room_type_id: str
@@ -1487,7 +1487,7 @@ class ReservationApi:
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
         :type include_all_rooms: bool
-        :param source_id: Filters reservation with the supplied source ID.
+        :param source_id: Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.
         :type source_id: str
         :param source_reservation_id: Filters reservation with the supplied reservation source ID.
         :type source_reservation_id: str
@@ -1501,8 +1501,8 @@ class ReservationApi:
         :type guest_id: str
         :param allotment_block_code: Filters reservation with the supplied allotment block code.
         :type allotment_block_code: str
-        :param group_code: Filters reservation with the supplied group code.
-        :type group_code: str
+        :param event_code: Filters reservation with the supplied event (group profile) code.
+        :type event_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1557,7 +1557,7 @@ class ReservationApi:
             last_name=last_name,
             guest_id=guest_id,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1596,20 +1596,20 @@ class ReservationApi:
         check_out_to: Annotated[Optional[date], Field(description="Filters reservations result to return only reservations with check-out date range ending on this date")] = None,
         dates_query_mode: Annotated[Optional[StrictStr], Field(description="If we should consider the booking's check-in/check-out dates or the start and end dates for the associated rooms.")] = None,
         room_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.")] = None,
-        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.")] = None,
+        room_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.")] = None,
         room_type_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Room Type ID.")] = None,
         include_guests_details: Annotated[Optional[StrictBool], Field(description="If guests details should be included or not")] = None,
         include_guest_requirements: Annotated[Optional[StrictBool], Field(description="Includes guest requirements data in the response. Requires `includeGuestsDetails=true`.")] = None,
         include_custom_fields: Annotated[Optional[StrictBool], Field(description="If reservation custom fields should be included or not")] = None,
         include_all_rooms: Annotated[Optional[StrictBool], Field(description="When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.")] = None,
-        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied source ID.")] = None,
+        source_id: Annotated[Optional[StrictStr], Field(description="Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.")] = None,
         source_reservation_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied reservation source ID.")] = None,
         rate_plan_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied rate plan ID.")] = None,
         first_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest first name.")] = None,
         last_name: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied primary guest last name.")] = None,
         guest_id: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied Guest ID (Including additional guests).")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied allotment block code.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied group code.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Filters reservation with the supplied event (group profile) code.")] = None,
         sort_by_recent: Annotated[Optional[StrictBool], Field(description="Sort response results by most recent action")] = None,
         page_number: Annotated[Optional[StrictInt], Field(description="Results page number")] = None,
         page_size: Annotated[Optional[StrictInt], Field(description="Results page size. Max = 100")] = None,
@@ -1654,7 +1654,7 @@ class ReservationApi:
         :type dates_query_mode: str
         :param room_id: Filters reservation with the supplied room ID. CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If roomID supplied, roomName is ignored.
         :type room_id: str
-        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned.
+        :param room_name: Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned.
         :type room_name: str
         :param room_type_id: Filters reservation with the supplied Room Type ID.
         :type room_type_id: str
@@ -1666,7 +1666,7 @@ class ReservationApi:
         :type include_custom_fields: bool
         :param include_all_rooms: When specified, the response will include an additional rooms field that combines both unassigned and assigned rooms.
         :type include_all_rooms: bool
-        :param source_id: Filters reservation with the supplied source ID.
+        :param source_id: Filters reservations by source, using the same code returned in `sourceID`: `s-{id}` for primary sources or `ss-{id}-{0|1}` for third-party sources.
         :type source_id: str
         :param source_reservation_id: Filters reservation with the supplied reservation source ID.
         :type source_reservation_id: str
@@ -1680,8 +1680,8 @@ class ReservationApi:
         :type guest_id: str
         :param allotment_block_code: Filters reservation with the supplied allotment block code.
         :type allotment_block_code: str
-        :param group_code: Filters reservation with the supplied group code.
-        :type group_code: str
+        :param event_code: Filters reservation with the supplied event (group profile) code.
+        :type event_code: str
         :param sort_by_recent: Sort response results by most recent action
         :type sort_by_recent: bool
         :param page_number: Results page number
@@ -1736,7 +1736,7 @@ class ReservationApi:
             last_name=last_name,
             guest_id=guest_id,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             sort_by_recent=sort_by_recent,
             page_number=page_number,
             page_size=page_size,
@@ -1783,7 +1783,7 @@ class ReservationApi:
         last_name,
         guest_id,
         allotment_block_code,
-        group_code,
+        event_code,
         sort_by_recent,
         page_number,
         page_size,
@@ -1981,9 +1981,9 @@ class ReservationApi:
             
             _query_params.append(('allotmentBlockCode', allotment_block_code))
             
-        if group_code is not None:
+        if event_code is not None:
             
-            _query_params.append(('groupCode', group_code))
+            _query_params.append(('eventCode', event_code))
             
         if sort_by_recent is not None:
             
@@ -3541,6 +3541,7 @@ class ReservationApi:
         guest_last_name: Annotated[Optional[StrictStr], Field(description="Last name of the guest")] = None,
         guest_gender: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.")] = None,
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
@@ -3555,7 +3556,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -3593,6 +3594,8 @@ class ReservationApi:
         :type guest_gender: str
         :param guest_country: Valid ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.
+        :type guest_nationality: str
         :param guest_zip: ZIP Code
         :type guest_zip: str
         :param guest_email: Guest email
@@ -3621,8 +3624,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
-        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
-        :type group_code: str
+        :param event_code: Event (group profile) code the reservation will be added to.
+        :type event_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -3659,6 +3662,7 @@ class ReservationApi:
             guest_last_name=guest_last_name,
             guest_gender=guest_gender,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
@@ -3673,7 +3677,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -3708,6 +3712,7 @@ class ReservationApi:
         guest_last_name: Annotated[Optional[StrictStr], Field(description="Last name of the guest")] = None,
         guest_gender: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.")] = None,
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
@@ -3722,7 +3727,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -3760,6 +3765,8 @@ class ReservationApi:
         :type guest_gender: str
         :param guest_country: Valid ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.
+        :type guest_nationality: str
         :param guest_zip: ZIP Code
         :type guest_zip: str
         :param guest_email: Guest email
@@ -3788,8 +3795,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
-        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
-        :type group_code: str
+        :param event_code: Event (group profile) code the reservation will be added to.
+        :type event_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -3826,6 +3833,7 @@ class ReservationApi:
             guest_last_name=guest_last_name,
             guest_gender=guest_gender,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
@@ -3840,7 +3848,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -3875,6 +3883,7 @@ class ReservationApi:
         guest_last_name: Annotated[Optional[StrictStr], Field(description="Last name of the guest")] = None,
         guest_gender: Optional[StrictStr] = None,
         guest_country: Annotated[Optional[StrictStr], Field(description="Valid ISO-Code for Country (2 characters)")] = None,
+        guest_nationality: Annotated[Optional[StrictStr], Field(description="Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.")] = None,
         guest_zip: Annotated[Optional[StrictStr], Field(description="ZIP Code")] = None,
         guest_email: Annotated[Optional[StrictStr], Field(description="Guest email")] = None,
         guest_phone: Annotated[Optional[StrictStr], Field(description="Guest main phone number")] = None,
@@ -3889,7 +3898,7 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PostReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         promo_code: Annotated[Optional[StrictStr], Field(description="Promotional code. Required for specials and packages that uses it. \\\"rateID\\\" parameter required for using \\\"promoCode\\\".")] = None,
         allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to add reservation to allotment block.")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Code from the Aggregate Allotment block the reservation will be added to.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code the reservation will be added to.")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Defaults to current date if omitted.")] = None,
         send_email_confirmation: Annotated[Optional[StrictBool], Field(description="Send confirmation email to guest.")] = None,
         _request_timeout: Union[
@@ -3927,6 +3936,8 @@ class ReservationApi:
         :type guest_gender: str
         :param guest_country: Valid ISO-Code for Country (2 characters)
         :type guest_country: str
+        :param guest_nationality: Guest nationality (citizenship). ISO-Code for Country (2 characters). Distinct from `guestCountry`, which is the address country.
+        :type guest_nationality: str
         :param guest_zip: ZIP Code
         :type guest_zip: str
         :param guest_email: Guest email
@@ -3955,8 +3966,8 @@ class ReservationApi:
         :type promo_code: str
         :param allotment_block_code: Allotment block code to add reservation to allotment block.
         :type allotment_block_code: str
-        :param group_code: Code from the Aggregate Allotment block the reservation will be added to.
-        :type group_code: str
+        :param event_code: Event (group profile) code the reservation will be added to.
+        :type event_code: str
         :param date_created: Date reservation was made. Defaults to current date if omitted.
         :type date_created: datetime
         :param send_email_confirmation: Send confirmation email to guest.
@@ -3993,6 +4004,7 @@ class ReservationApi:
             guest_last_name=guest_last_name,
             guest_gender=guest_gender,
             guest_country=guest_country,
+            guest_nationality=guest_nationality,
             guest_zip=guest_zip,
             guest_email=guest_email,
             guest_phone=guest_phone,
@@ -4007,7 +4019,7 @@ class ReservationApi:
             custom_fields=custom_fields,
             promo_code=promo_code,
             allotment_block_code=allotment_block_code,
-            group_code=group_code,
+            event_code=event_code,
             date_created=date_created,
             send_email_confirmation=send_email_confirmation,
             _request_auth=_request_auth,
@@ -4037,6 +4049,7 @@ class ReservationApi:
         guest_last_name,
         guest_gender,
         guest_country,
+        guest_nationality,
         guest_zip,
         guest_email,
         guest_phone,
@@ -4051,7 +4064,7 @@ class ReservationApi:
         custom_fields,
         promo_code,
         allotment_block_code,
-        group_code,
+        event_code,
         date_created,
         send_email_confirmation,
         _request_auth,
@@ -4101,6 +4114,8 @@ class ReservationApi:
             _form_params.append(('guestGender', guest_gender))
         if guest_country is not None:
             _form_params.append(('guestCountry', guest_country))
+        if guest_nationality is not None:
+            _form_params.append(('guestNationality', guest_nationality))
         if guest_zip is not None:
             _form_params.append(('guestZip', guest_zip))
         if guest_email is not None:
@@ -4129,8 +4144,8 @@ class ReservationApi:
             _form_params.append(('promoCode', promo_code))
         if allotment_block_code is not None:
             _form_params.append(('allotmentBlockCode', allotment_block_code))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if date_created is not None:
             _form_params.append(('dateCreated', date_created))
         if send_email_confirmation is not None:
@@ -4515,9 +4530,11 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
-        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
+        canceled_by_guest: Annotated[Optional[StrictBool], Field(description="Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.")] = None,
+        modified_by_guest: Annotated[Optional[StrictBool], Field(description="Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4551,12 +4568,16 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
-        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :param allotment_block_code: Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.
         :type allotment_block_code: str
-        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :param event_code: Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).
         :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
+        :param canceled_by_guest: Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.
+        :type canceled_by_guest: bool
+        :param modified_by_guest: Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.
+        :type modified_by_guest: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4591,6 +4612,8 @@ class ReservationApi:
             allotment_block_code=allotment_block_code,
             event_code=event_code,
             send_status_change_email=send_status_change_email,
+            canceled_by_guest=canceled_by_guest,
+            modified_by_guest=modified_by_guest,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4622,9 +4645,11 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
-        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
+        canceled_by_guest: Annotated[Optional[StrictBool], Field(description="Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.")] = None,
+        modified_by_guest: Annotated[Optional[StrictBool], Field(description="Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4658,12 +4683,16 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
-        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :param allotment_block_code: Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.
         :type allotment_block_code: str
-        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :param event_code: Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).
         :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
+        :param canceled_by_guest: Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.
+        :type canceled_by_guest: bool
+        :param modified_by_guest: Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.
+        :type modified_by_guest: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4698,6 +4727,8 @@ class ReservationApi:
             allotment_block_code=allotment_block_code,
             event_code=event_code,
             send_status_change_email=send_status_change_email,
+            canceled_by_guest=canceled_by_guest,
+            modified_by_guest=modified_by_guest,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4729,9 +4760,11 @@ class ReservationApi:
         custom_fields: Annotated[Optional[List[PutReservationRequestCustomFieldsInner]], Field(description="Array with custom fields information")] = None,
         rooms: Annotated[Optional[List[PutReservationRequestRoomsInner]], Field(description="Array with rooms information to change accommodations assigned to the reservation")] = None,
         date_created: Annotated[Optional[datetime], Field(description="Date reservation was made. Do not change if omitted.")] = None,
-        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.")] = None,
-        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.")] = None,
+        allotment_block_code: Annotated[Optional[StrictStr], Field(description="Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).")] = None,
         send_status_change_email: Annotated[Optional[StrictBool], Field(description="Send email on reservation status change to property and guest.")] = None,
+        canceled_by_guest: Annotated[Optional[StrictBool], Field(description="Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.")] = None,
+        modified_by_guest: Annotated[Optional[StrictBool], Field(description="Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4765,12 +4798,16 @@ class ReservationApi:
         :type rooms: List[PutReservationRequestRoomsInner]
         :param date_created: Date reservation was made. Do not change if omitted.
         :type date_created: datetime
-        :param allotment_block_code: Allotment block code to link the reservation to. Send null to unlink. If provided along with eventCode, the allotment block must belong to the event.
+        :param allotment_block_code: Allotment block code to link the reservation to. If provided along with eventCode, the allotment block must belong to the event. To unlink, send the parameter with an empty value (`allotmentBlockCode=`); a form-urlencoded body cannot carry a real null, so sending the literal text \\\"null\\\" is treated as an ordinary block code rather than as an unlink. One unlink call clears both the allotment block and the event. Moving a reservation to a different block is unlink-then-link: sending a new code while the reservation is still linked is rejected.
         :type allotment_block_code: str
-        :param event_code: Event (group profile) code to link the reservation to. Send null to unlink. When sent without allotmentBlockCode, links to the group profile only.
+        :param event_code: Event (group profile) code to link the reservation to. When sent without allotmentBlockCode, links to the group profile only. Unlinks the same way as allotmentBlockCode: send the parameter with an empty value (`eventCode=`).
         :type event_code: str
         :param send_status_change_email: Send email on reservation status change to property and guest.
         :type send_status_change_email: bool
+        :param canceled_by_guest: Marks the cancellation as initiated by the guest (self-service portal, CFAR, or a guest request relayed by the integration). Only valid together with status='canceled' — sending it with any other status returns success=false. The reservation's main guest is recorded as the cancellation actor; the caller cannot supply actor identity.
+        :type canceled_by_guest: bool
+        :param modified_by_guest: Marks a reservation update as initiated by the guest. When enabled for the property, guest changes to dates, room type, rate plan and occupancy are rejected after the free-cancellation deadline. Send rooms.rateID for each room; otherwise that room is priced on its type's Base Rate.
+        :type modified_by_guest: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4805,6 +4842,8 @@ class ReservationApi:
             allotment_block_code=allotment_block_code,
             event_code=event_code,
             send_status_change_email=send_status_change_email,
+            canceled_by_guest=canceled_by_guest,
+            modified_by_guest=modified_by_guest,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4834,6 +4873,8 @@ class ReservationApi:
         allotment_block_code,
         event_code,
         send_status_change_email,
+        canceled_by_guest,
+        modified_by_guest,
         _request_auth,
         _content_type,
         _headers,
@@ -4882,6 +4923,10 @@ class ReservationApi:
             _form_params.append(('eventCode', event_code))
         if send_status_change_email is not None:
             _form_params.append(('sendStatusChangeEmail', send_status_change_email))
+        if canceled_by_guest is not None:
+            _form_params.append(('canceledByGuest', canceled_by_guest))
+        if modified_by_guest is not None:
+            _form_params.append(('modifiedByGuest', modified_by_guest))
         # process the body parameter
 
 

@@ -34,28 +34,29 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
     GetTaxesAndFeesResponseDataInner
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="Type. Fee or tax.")
-    fee_id: Optional[StrictStr] = Field(default=None, description="Fee's unique identifier. Only exists if type = fee.", alias="feeID")
-    tax_id: Optional[StrictStr] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax.", alias="taxID")
+    fee_id: Optional[StrictStr] = Field(default=None, description="Fee's unique identifier. Only exists if type = fee. Not permanent: editing the fee creates a new version with a new identifier, and childId on the previous version points at the replacement.", alias="feeID")
+    tax_id: Optional[StrictStr] = Field(default=None, description="Tax's unique identifier. Only exists if type = tax. Not permanent: editing the tax creates a new version with a new identifier, and childId on the previous version points at the replacement.", alias="taxID")
     name: Optional[StrictStr] = Field(default=None, description="Name")
     code: Optional[StrictStr] = Field(default=None, description="Code")
     kind: Optional[StrictStr] = Field(default=None, description="Tax kind. Currently supports \"vat\", \"municipal_tax\" or null. Only exists if type = tax.")
     amount: Optional[GetTaxesAndFeesResponseDataInnerAmount] = None
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
-    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
-    amount_type: Optional[StrictStr] = Field(default=None, description="Amount type. They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>percentage</td><td>Percentage of Total Amount</td></tr> <tr><td>fixed</td><td>Fixed per Room Night / Item</td></tr> <tr><td>fixed_per_person</td><td>Fixed per Person per Night</td></tr> <tr><td>fixed_per_accomodation</td><td>Fixed per Accomodation</td></tr> <tr><td>fixed_per_reservation</td><td>Fixed per Reservation</td></tr> <tr><td>percentage_rate_based</td><td>Rate-based</td></tr> </table>", alias="amountType")
+    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based) or fixed_per_person_rate_based. For fixed_per_person_rate_based the items are {rate, amountAdult, amountChild}, with amountAdult / amountChild null when that guest is not charged.", alias="amountRateBased")
+    amount_type: Optional[StrictStr] = Field(default=None, description="Amount type. They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>percentage</td><td>Percentage of Total Amount</td></tr> <tr><td>fixed</td><td>Fixed per Room Night / Item</td></tr> <tr><td>fixed_per_person</td><td>Fixed per Person per Night</td></tr> <tr><td>fixed_per_accomodation</td><td>Fixed per Accomodation</td></tr> <tr><td>fixed_per_reservation</td><td>Fixed per Reservation</td></tr> <tr><td>percentage_rate_based</td><td>Rate-based</td></tr> <tr><td>fixed_per_person_rate_based</td><td>Fixed per Person per Night by rate tier</td></tr> </table>", alias="amountType")
     available_for: Optional[List[StrictStr]] = Field(default=None, description="Where this tax/fee is available?<br/>They mean:<br/> <table> <tr><th>Value</th><th>Meaning</th></tr> <tr><td>product</td><td>Items</td></tr> <tr><td>rate</td><td>Reservations</td></tr> <tr><td>fee</td><td>Fees -- this tax is charged on top of some fees</td></tr> <tr><td>custom_item</td><td>Custom item - this tax was charged for a custom item</td></tr> </table>", alias="availableFor")
     fees_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Fee IDs charged by the current tax (tax-on-fee). Only exists if type = tax.", alias="feesCharged")
     taxes_charged: Optional[List[StrictStr]] = Field(default=None, description="List of Tax IDs charged by the current tax (tax-on-tax). Only exists if type = tax.", alias="taxesCharged")
     inclusive_or_exclusive: Optional[StrictStr] = Field(default=None, description="If this tax/fee is inclusive or exclusive", alias="inclusiveOrExclusive")
     is_deleted: Optional[StrictBool] = Field(default=None, description="Flag indicating if tax was deleted from the system", alias="isDeleted")
     child_id: Optional[StrictStr] = Field(default=None, description="ID of the tax or fee that replaced current one", alias="childId")
+    external_id: Optional[StrictStr] = Field(default=None, description="Partner-supplied 3rd-party identifier the property has associated with this Cloudbeds tax/fee. Used by partner-facing write endpoints (e.g. the `externalId` field in postCheck `taxes[]` / `fees[]` rows) to address the tax/fee by the partner's own naming; `null` when no mapping is configured. Set via the property's tax/fee configuration UI.", alias="externalId")
     created_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was created in the system", alias="createdAt")
     expired_at: Optional[StrictStr] = Field(default=None, description="Date when tax or fee was expired", alias="expiredAt")
     room_types: Optional[List[GetTaxesAndFeesResponseDataInnerRoomTypesInner]] = Field(default=None, description="Room types this tax/fee applies to", alias="roomTypes")
     date_ranges: Optional[List[GetTaxesAndFeesResponseDataInnerDateRangesInner]] = Field(default=None, description="Date ranges when this tax/fee is applicable", alias="dateRanges")
     length_of_stay_settings: Optional[GetTaxesAndFeesResponseDataInnerLengthOfStaySettings] = Field(default=None, alias="lengthOfStaySettings")
-    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "taxesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "createdAt", "expiredAt", "roomTypes", "dateRanges", "lengthOfStaySettings"]
+    __properties: ClassVar[List[str]] = ["type", "feeID", "taxID", "name", "code", "kind", "amount", "amountAdult", "amountChild", "amountRateBased", "amountType", "availableFor", "feesCharged", "taxesCharged", "inclusiveOrExclusive", "isDeleted", "childId", "externalId", "createdAt", "expiredAt", "roomTypes", "dateRanges", "lengthOfStaySettings"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -74,7 +75,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         if value is None:
             return value
 
-        _allowed_values = set(['percentage', 'fixed', 'fixed_per_person', 'fixed_per_accomodation', 'fixed_per_reservation', 'percentage_rate_based', 'unknown_default_open_api'])
+        _allowed_values = set(['percentage', 'fixed', 'fixed_per_person', 'fixed_per_accomodation', 'fixed_per_reservation', 'percentage_rate_based', 'fixed_per_person_rate_based', 'unknown_default_open_api'])
         if value not in _allowed_values:
             return 'unknown_default_open_api'
         return value
@@ -203,6 +204,11 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
         if self.taxes_charged is None and "taxes_charged" in self.model_fields_set:
             _dict['taxesCharged'] = None
 
+        # set to None if external_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_id is None and "external_id" in self.model_fields_set:
+            _dict['externalId'] = None
+
         # set to None if room_types (nullable) is None
         # and model_fields_set contains the field
         if self.room_types is None and "room_types" in self.model_fields_set:
@@ -247,6 +253,7 @@ class GetTaxesAndFeesResponseDataInner(BaseModel):
             "inclusiveOrExclusive": obj.get("inclusiveOrExclusive"),
             "isDeleted": obj.get("isDeleted"),
             "childId": obj.get("childId"),
+            "externalId": obj.get("externalId"),
             "createdAt": obj.get("createdAt"),
             "expiredAt": obj.get("expiredAt"),
             "roomTypes": [GetTaxesAndFeesResponseDataInnerRoomTypesInner.from_dict(_item) for _item in obj["roomTypes"]] if obj.get("roomTypes") is not None else None,

@@ -623,7 +623,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_webhook_post**
-> PostWebhookResponse post_webhook_post(property_id=property_id, object=object, action=action, endpoint_url=endpoint_url)
+> PostWebhookResponse post_webhook_post(property_id=property_id, object=object, action=action, endpoint_url=endpoint_url, auth_header_name=auth_header_name, auth_header_value=auth_header_value)
 
 postWebhook
 
@@ -667,10 +667,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     object = 'object_example' # str | Event object (optional)
     action = 'action_example' # str | Event action (optional)
     endpoint_url = 'endpoint_url_example' # str | Endpoint URL (optional)
+    auth_header_name = 'auth_header_name_example' # str | HTTP header sent with every delivery, i.e. `Authorization`. Use instead of credentials in `endpointUrl`. Requires `authHeaderValue`. (optional)
+    auth_header_value = 'auth_header_value_example' # str | Value for `authHeaderName`, i.e. `Basic dXNlcjpwYXNz`. Never returned by getWebhooks. Re-post to rotate. Requires `authHeaderName`. (optional)
 
     try:
         # postWebhook
-        api_response = api_instance.post_webhook_post(property_id=property_id, object=object, action=action, endpoint_url=endpoint_url)
+        api_response = api_instance.post_webhook_post(property_id=property_id, object=object, action=action, endpoint_url=endpoint_url, auth_header_name=auth_header_name, auth_header_value=auth_header_value)
         print("The response of IntegrationApi->post_webhook_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -688,6 +690,8 @@ Name | Type | Description  | Notes
  **object** | **str**| Event object | [optional] 
  **action** | **str**| Event action | [optional] 
  **endpoint_url** | **str**| Endpoint URL | [optional] 
+ **auth_header_name** | **str**| HTTP header sent with every delivery, i.e. &#x60;Authorization&#x60;. Use instead of credentials in &#x60;endpointUrl&#x60;. Requires &#x60;authHeaderValue&#x60;. | [optional] 
+ **auth_header_value** | **str**| Value for &#x60;authHeaderName&#x60;, i.e. &#x60;Basic dXNlcjpwYXNz&#x60;. Never returned by getWebhooks. Re-post to rotate. Requires &#x60;authHeaderName&#x60;. | [optional] 
 
 ### Return type
 

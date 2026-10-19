@@ -37,7 +37,7 @@ class GetTaxesAndFeesResponseDataInnerDateRangesInner(BaseModel):
     amount_adult: Optional[GetTaxesAndFeesResponseDataInnerAmountAdult] = Field(default=None, alias="amountAdult")
     amount_child: Optional[GetTaxesAndFeesResponseDataInnerAmountChild] = Field(default=None, alias="amountChild")
     max_length: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerMaxLength] = Field(default=None, alias="maxLength")
-    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based)", alias="amountRateBased")
+    amount_rate_based: Optional[List[GetTaxesAndFeesResponseDataInnerAmountRateBasedInner]] = Field(default=None, description="Rules defined for Rate-Based taxes/fees. Only applicable if amountType = percentage_rate_based (Rate-based) or fixed_per_person_rate_based (items are {rate, amountAdult, amountChild})", alias="amountRateBased")
     length_of_stay_settings: Optional[GetTaxesAndFeesResponseDataInnerDateRangesInnerLengthOfStaySettings] = Field(default=None, alias="lengthOfStaySettings")
     __properties: ClassVar[List[str]] = ["range", "amount", "amountAdult", "amountChild", "maxLength", "amountRateBased", "lengthOfStaySettings"]
 

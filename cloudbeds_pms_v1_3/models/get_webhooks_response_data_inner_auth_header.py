@@ -17,18 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeleteAdjustmentResponse(BaseModel):
+class GetWebhooksResponseDataInnerAuthHeader(BaseModel):
     """
-    DeleteAdjustmentResponse
+    Present only when the subscription was registered with an auth header.
     """ # noqa: E501
-    success: Optional[StrictBool] = Field(default=None, description="Returns if the request could be completed")
-    message: Optional[StrictStr] = Field(default=None, description="To be used in case any error occurs (if success = false). If success = true, it does not exist.")
-    __properties: ClassVar[List[str]] = ["success", "message"]
+    name: Optional[StrictStr] = Field(default=None, description="Header name. The value is never returned.")
+    __properties: ClassVar[List[str]] = ["name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +47,7 @@ class DeleteAdjustmentResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeleteAdjustmentResponse from a JSON string"""
+        """Create an instance of GetWebhooksResponseDataInnerAuthHeader from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,16 +68,16 @@ class DeleteAdjustmentResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if message (nullable) is None
+        # set to None if name (nullable) is None
         # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeleteAdjustmentResponse from a dict"""
+        """Create an instance of GetWebhooksResponseDataInnerAuthHeader from a dict"""
         if obj is None:
             return None
 
@@ -86,8 +85,7 @@ class DeleteAdjustmentResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "message": obj.get("message")
+            "name": obj.get("name")
         })
         return _obj
 

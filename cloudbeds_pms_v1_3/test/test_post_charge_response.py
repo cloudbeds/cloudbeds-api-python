@@ -45,7 +45,8 @@ class TestPostChargeResponse(unittest.TestCase):
                         type = '', 
                         details = cloudbeds_pms_v1_3.models.post_charge_response_data_next_action_details.PostChargeResponse_data_nextAction_details(
                             url = '', 
-                            method = '', ), ), )
+                            method = '', ), ), 
+                    payment_method_id = '', )
             )
         else:
             return PostChargeResponse(

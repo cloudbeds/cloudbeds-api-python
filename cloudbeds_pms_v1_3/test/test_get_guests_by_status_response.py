@@ -76,6 +76,7 @@ class TestGetGuestsByStatusResponse(unittest.TestCase):
                         tax_id = '', 
                         company_tax_id = '', 
                         company_name = '', 
+                        guest_nationality = '', 
                         is_anonymized = True, 
                         is_deleted = True, 
                         guest_opt_in = True, 

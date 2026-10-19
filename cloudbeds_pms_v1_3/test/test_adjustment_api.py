@@ -26,8 +26,8 @@ class TestAdjustmentApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_delete_adjustment_delete(self) -> None:
-        """Test case for delete_adjustment_delete
+    def test_delete_adjustment_post(self) -> None:
+        """Test case for delete_adjustment_post
 
         deleteAdjustment
         """

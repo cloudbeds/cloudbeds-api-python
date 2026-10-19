@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **append_custom_item_post**
-> PostAppendCustomItemResponse append_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
+> PostAppendCustomItemResponse append_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
 
 appendCustomItem
 
@@ -60,10 +60,10 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or groupCode is provided. (optional)
-    house_account_id = 'house_account_id_example' # str | House Account identifier. Required if no reservationID or groupCode is provided. (optional)
-    group_code = 'group_code_example' # str | Group code. Required if no reservationID or houseAccountID is provided. (optional)
-    reference_id = 'reference_id_example' # str | partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates (optional)
+    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or eventCode is provided. (optional)
+    house_account_id = 'house_account_id_example' # str | House Account identifier. Required if no reservationID or eventCode is provided. (optional)
+    event_code = 'event_code_example' # str | Event (group profile) code. Required if no reservationID or houseAccountID is provided. (optional)
+    reference_id = 'reference_id_example' # str | partner's transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented (optional)
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier (optional)
     room_id = 'room_id_example' # str | Room identifier (Ignored if subReservationID exist) (optional)
     items = [cloudbeds_pms_v1_3.PostCustomItemRequestItemsInner()] # List[PostCustomItemRequestItemsInner] | list of items will be posted (optional)
@@ -75,7 +75,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # appendCustomItem
-        api_response = api_instance.append_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
+        api_response = api_instance.append_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
         print("The response of ItemApi->append_custom_item_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -90,10 +90,10 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or groupCode is provided. | [optional] 
- **house_account_id** | **str**| House Account identifier. Required if no reservationID or groupCode is provided. | [optional] 
- **group_code** | **str**| Group code. Required if no reservationID or houseAccountID is provided. | [optional] 
- **reference_id** | **str**| partner&#39;s transaction reference. If exist then Cloudbeds will prevent adding of duplicates | [optional] 
+ **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or eventCode is provided. | [optional] 
+ **house_account_id** | **str**| House Account identifier. Required if no reservationID or eventCode is provided. | [optional] 
+ **event_code** | **str**| Event (group profile) code. Required if no reservationID or houseAccountID is provided. | [optional] 
+ **reference_id** | **str**| partner&#39;s transaction reference of the existing posting to append the items to. Items are added on every call; duplicates are not prevented | [optional] 
  **sub_reservation_id** | **str**| Sub Reservation identifier | [optional] 
  **room_id** | **str**| Room identifier (Ignored if subReservationID exist) | [optional] 
  **items** | [**List[PostCustomItemRequestItemsInner]**](PostCustomItemRequestItemsInner.md)| list of items will be posted | [optional] 
@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_custom_item_post**
-> PostCustomItemResponse post_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
+> PostCustomItemResponse post_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
 
 postCustomItem
 
@@ -418,9 +418,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or groupCode is provided. (optional)
-    house_account_id = 'house_account_id_example' # str | House account identifier. Required if no reservationID or groupCode is provided. (optional)
-    group_code = 'group_code_example' # str | Group identifier. Required if no reservationID or houseAccountID is provided. (optional)
+    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or eventCode is provided. (optional)
+    house_account_id = 'house_account_id_example' # str | House account identifier. Required if no reservationID or eventCode is provided. (optional)
+    event_code = 'event_code_example' # str | Event (group profile) code. Required if no reservationID or houseAccountID is provided. (optional)
     reference_id = 'reference_id_example' # str | partner's transaction reference. If exist then Cloudbeds will prevent adding of duplicates (optional)
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier (optional)
     room_id = 'room_id_example' # str | Room identifier (Ignored if subReservationID exist) (optional)
@@ -433,7 +433,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postCustomItem
-        api_response = api_instance.post_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
+        api_response = api_instance.post_custom_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, reference_id=reference_id, sub_reservation_id=sub_reservation_id, room_id=room_id, items=items, sale_date=sale_date, guest_id=guest_id, guest_name=guest_name, payments=payments, item_paid=item_paid)
         print("The response of ItemApi->post_custom_item_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -448,9 +448,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or groupCode is provided. | [optional] 
- **house_account_id** | **str**| House account identifier. Required if no reservationID or groupCode is provided. | [optional] 
- **group_code** | **str**| Group identifier. Required if no reservationID or houseAccountID is provided. | [optional] 
+ **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or eventCode is provided. | [optional] 
+ **house_account_id** | **str**| House account identifier. Required if no reservationID or eventCode is provided. | [optional] 
+ **event_code** | **str**| Event (group profile) code. Required if no reservationID or houseAccountID is provided. | [optional] 
  **reference_id** | **str**| partner&#39;s transaction reference. If exist then Cloudbeds will prevent adding of duplicates | [optional] 
  **sub_reservation_id** | **str**| Sub Reservation identifier | [optional] 
  **room_id** | **str**| Room identifier (Ignored if subReservationID exist) | [optional] 
@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_item_post**
-> PostItemResponse post_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sub_reservation_id=sub_reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
+> PostItemResponse post_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, sub_reservation_id=sub_reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
 
 postItem
 
@@ -615,9 +615,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or groupCode is provided. (optional)
-    house_account_id = 'house_account_id_example' # str | House account identifier. Required if no reservationID or groupCode is provided. (optional)
-    group_code = 'group_code_example' # str | Group identifier. Required if no reservationID or houseAccountID is provided. (optional)
+    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or eventCode is provided. (optional)
+    house_account_id = 'house_account_id_example' # str | House account identifier. Required if no reservationID or eventCode is provided. (optional)
+    event_code = 'event_code_example' # str | Event (group profile) code. Required if no reservationID or houseAccountID is provided. (optional)
     sub_reservation_id = 'sub_reservation_id_example' # str | Sub Reservation identifier. (optional)
     item_id = 'item_id_example' # str | Item identifier (optional)
     item_quantity = 56 # int | Items quantity (optional)
@@ -629,7 +629,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postItem
-        api_response = api_instance.post_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sub_reservation_id=sub_reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
+        api_response = api_instance.post_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, sub_reservation_id=sub_reservation_id, item_id=item_id, item_quantity=item_quantity, item_price=item_price, item_note=item_note, item_paid=item_paid, sale_date=sale_date, payments=payments)
         print("The response of ItemApi->post_item_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -644,9 +644,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or groupCode is provided. | [optional] 
- **house_account_id** | **str**| House account identifier. Required if no reservationID or groupCode is provided. | [optional] 
- **group_code** | **str**| Group identifier. Required if no reservationID or houseAccountID is provided. | [optional] 
+ **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or eventCode is provided. | [optional] 
+ **house_account_id** | **str**| House account identifier. Required if no reservationID or eventCode is provided. | [optional] 
+ **event_code** | **str**| Event (group profile) code. Required if no reservationID or houseAccountID is provided. | [optional] 
  **sub_reservation_id** | **str**| Sub Reservation identifier. | [optional] 
  **item_id** | **str**| Item identifier | [optional] 
  **item_quantity** | **int**| Items quantity | [optional] 
@@ -761,7 +761,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_void_item_post**
-> PostVoidItemResponse post_void_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sold_product_id=sold_product_id)
+> PostVoidItemResponse post_void_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, sold_product_id=sold_product_id)
 
 postVoidItem
 
@@ -802,14 +802,14 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.ItemApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or groupCode is provided. (optional)
-    house_account_id = 'house_account_id_example' # str | House Account identifier. Required if no reservationID or groupCode is provided. (optional)
-    group_code = 'group_code_example' # str | Group identifier. Required if no reservationID or houseAccountID is provided. (optional)
+    reservation_id = 'reservation_id_example' # str | Reservation identifier. Required if no houseAccountID or eventCode is provided. (optional)
+    house_account_id = 'house_account_id_example' # str | House Account identifier. Required if no reservationID or eventCode is provided. (optional)
+    event_code = 'event_code_example' # str | Event (group profile) code. Required if no reservationID or houseAccountID is provided. (optional)
     sold_product_id = 'sold_product_id_example' # str | Item identifier (optional)
 
     try:
         # postVoidItem
-        api_response = api_instance.post_void_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, group_code=group_code, sold_product_id=sold_product_id)
+        api_response = api_instance.post_void_item_post(property_id=property_id, reservation_id=reservation_id, house_account_id=house_account_id, event_code=event_code, sold_product_id=sold_product_id)
         print("The response of ItemApi->post_void_item_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -824,9 +824,9 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or groupCode is provided. | [optional] 
- **house_account_id** | **str**| House Account identifier. Required if no reservationID or groupCode is provided. | [optional] 
- **group_code** | **str**| Group identifier. Required if no reservationID or houseAccountID is provided. | [optional] 
+ **reservation_id** | **str**| Reservation identifier. Required if no houseAccountID or eventCode is provided. | [optional] 
+ **house_account_id** | **str**| House Account identifier. Required if no reservationID or eventCode is provided. | [optional] 
+ **event_code** | **str**| Event (group profile) code. Required if no reservationID or houseAccountID is provided. | [optional] 
  **sold_product_id** | **str**| Item identifier | [optional] 
 
 ### Return type

@@ -34,7 +34,7 @@ class PutReservationRequestRoomsInner(BaseModel):
     adults: Optional[StrictInt] = Field(default=None, description="Quantity of adults for the room. Mandatory if rooms are sent.")
     children: Optional[StrictInt] = Field(default=None, description="Number of children for the room. Mandatory if rooms are sent.")
     rate_id: Optional[StrictStr] = Field(default=None, description="Rate ID for the room. Optional.", alias="rateID")
-    adjust_price: Optional[StrictBool] = Field(default=True, description="Whether to adjust pricing when changing room types. If false, preserves existing rates. Default is true.", alias="adjustPrice")
+    adjust_price: Optional[StrictBool] = Field(default=True, description="Whether to re-price the room after the change (default true). When false, the existing price is preserved for ANY modification of the room (room-type change, guest-count change, or a same-length or shortened stay), not only room-type changes. Because the price is held as-is, increasing the guest count keeps the existing price and is NOT charged the extra-guest amount (per-guest taxes and fees may still recalculate for the new occupancy). A modification that has no existing rate to preserve - extending the stay, or shifting it onto dates the reservation did not previously cover - cannot be honored and is rejected.", alias="adjustPrice")
     __properties: ClassVar[List[str]] = ["subReservationID", "roomTypeID", "checkinDate", "checkoutDate", "adults", "children", "rateID", "adjustPrice"]
 
     model_config = ConfigDict(

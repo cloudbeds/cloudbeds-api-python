@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **block_remaining** | **int** | Number of units remaining for the room type for this day | [optional] 
 **block_allotted** | **int** | Total number of units available for the room type for this day. Note: this value is ignored for based_on_availability allotment types, which always use full property availability. | [optional] 
 **block_confirmed** | **int** | Number of units booked for the room type for this day | [optional] 
+**is_shoulder_date** | **bool** | Present on every availability entry when includeShoulderDates&#x3D;true: true on a shoulder date, false on a core date. Absent otherwise. | [optional] 
 **rate** | **str** | the price | [optional] 
 **guest_pricing** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailabilityGuestPricing.md) |  | [optional] 
 **split_block_allotted** | **int** | Number of split units available for the room type this day | [optional] 

@@ -81,7 +81,8 @@ class TestGetHotelDetailsResponseData(unittest.TestCase):
                     ],
                 tax_id = '',
                 tax_id2 = '',
-                company_legal_name = ''
+                company_legal_name = '',
+                property_booking_url = ''
             )
         else:
             return GetHotelDetailsResponseData(

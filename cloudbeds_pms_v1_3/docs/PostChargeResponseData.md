@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **payment_status** | **str** | the status of the payment, could be &#39;pending&#39; if the payment requires a next action | [optional] 
 **payment_type** | **str** | detected payment type. Ex: &#39;cards&#39;, &#39;oxxo&#39; | [optional] 
 **next_action** | [**PostChargeResponseDataNextAction**](PostChargeResponseDataNextAction.md) |  | [optional] 
+**payment_method_id** | **str** | Identifier of the card charged, for reuse. Null when the payment used no card, e.g. an alternate payment method. It becomes resolvable a few seconds after the charge, and stops resolving once the card is purged. | [optional] 
 
 ## Example
 

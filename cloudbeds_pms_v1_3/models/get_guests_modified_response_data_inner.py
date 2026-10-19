@@ -59,11 +59,12 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
     tax_id: Optional[StrictStr] = Field(default=None, description="Tax ID", alias="taxID")
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Company tax ID", alias="companyTaxID")
     company_name: Optional[StrictStr] = Field(default=None, description="Company name", alias="companyName")
+    guest_nationality: Optional[StrictStr] = Field(default=None, description="Guest nationality (citizenship), ISO 3166-1 alpha-2. Empty string when none is stored.", alias="guestNationality")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     guest_opt_in: Optional[StrictBool] = Field(default=None, description="If guest has opted-in to marketing communication or not", alias="guestOptIn")
     is_merged: Optional[StrictBool] = Field(default=None, description="Flag indicating that guest was merged", alias="isMerged")
     new_guest_id: Optional[StrictStr] = Field(default=None, description="Merged guest ID", alias="newGuestID")
-    __properties: ClassVar[List[str]] = ["guestID", "reservationID", "roomTypeID", "roomID", "roomName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "startDate", "endDate", "guestRequirements", "customFields", "dateModified", "taxID", "companyTaxID", "companyName", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
+    __properties: ClassVar[List[str]] = ["guestID", "reservationID", "roomTypeID", "roomID", "roomName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress1", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthDate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "startDate", "endDate", "guestRequirements", "customFields", "dateModified", "taxID", "companyTaxID", "companyName", "guestNationality", "isAnonymized", "guestOptIn", "isMerged", "newGuestID"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -185,6 +186,7 @@ class GetGuestsModifiedResponseDataInner(BaseModel):
             "taxID": obj.get("taxID"),
             "companyTaxID": obj.get("companyTaxID"),
             "companyName": obj.get("companyName"),
+            "guestNationality": obj.get("guestNationality"),
             "isAnonymized": obj.get("isAnonymized"),
             "guestOptIn": obj.get("guestOptIn"),
             "isMerged": obj.get("isMerged"),

@@ -62,6 +62,7 @@ class TestGetTaxesAndFeesResponseDataInner(unittest.TestCase):
                 inclusive_or_exclusive = 'inclusive',
                 is_deleted = True,
                 child_id = '',
+                external_id = '',
                 created_at = '',
                 expired_at = '',
                 room_types = [

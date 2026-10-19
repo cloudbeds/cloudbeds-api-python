@@ -47,7 +47,7 @@ class GroupsApi:
     def get_group_notes_get(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Group code")],
+        event_code: Annotated[StrictStr, Field(description="Event (group) code")],
         page_size: Annotated[StrictInt, Field(description="Number of groups notes to return per page (min: 1, max: 100)")],
         page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
         _request_timeout: Union[
@@ -69,8 +69,8 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Group code (required)
-        :type group_code: str
+        :param event_code: Event (group) code (required)
+        :type event_code: str
         :param page_size: Number of groups notes to return per page (min: 1, max: 100) (required)
         :type page_size: int
         :param page_number: Which page in the results to access (required)
@@ -99,7 +99,7 @@ class GroupsApi:
 
         _param = self._get_group_notes_get_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             page_size=page_size,
             page_number=page_number,
             _request_auth=_request_auth,
@@ -126,7 +126,7 @@ class GroupsApi:
     def get_group_notes_get_with_http_info(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Group code")],
+        event_code: Annotated[StrictStr, Field(description="Event (group) code")],
         page_size: Annotated[StrictInt, Field(description="Number of groups notes to return per page (min: 1, max: 100)")],
         page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
         _request_timeout: Union[
@@ -148,8 +148,8 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Group code (required)
-        :type group_code: str
+        :param event_code: Event (group) code (required)
+        :type event_code: str
         :param page_size: Number of groups notes to return per page (min: 1, max: 100) (required)
         :type page_size: int
         :param page_number: Which page in the results to access (required)
@@ -178,7 +178,7 @@ class GroupsApi:
 
         _param = self._get_group_notes_get_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             page_size=page_size,
             page_number=page_number,
             _request_auth=_request_auth,
@@ -205,7 +205,7 @@ class GroupsApi:
     def get_group_notes_get_without_preload_content(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[StrictStr, Field(description="Group code")],
+        event_code: Annotated[StrictStr, Field(description="Event (group) code")],
         page_size: Annotated[StrictInt, Field(description="Number of groups notes to return per page (min: 1, max: 100)")],
         page_number: Annotated[StrictInt, Field(description="Which page in the results to access")],
         _request_timeout: Union[
@@ -227,8 +227,8 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Group code (required)
-        :type group_code: str
+        :param event_code: Event (group) code (required)
+        :type event_code: str
         :param page_size: Number of groups notes to return per page (min: 1, max: 100) (required)
         :type page_size: int
         :param page_number: Which page in the results to access (required)
@@ -257,7 +257,7 @@ class GroupsApi:
 
         _param = self._get_group_notes_get_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             page_size=page_size,
             page_number=page_number,
             _request_auth=_request_auth,
@@ -279,7 +279,7 @@ class GroupsApi:
     def _get_group_notes_get_serialize(
         self,
         property_id,
-        group_code,
+        event_code,
         page_size,
         page_number,
         _request_auth,
@@ -308,9 +308,9 @@ class GroupsApi:
             
             _query_params.append(('propertyID', property_id))
             
-        if group_code is not None:
+        if event_code is not None:
             
-            _query_params.append(('groupCode', group_code))
+            _query_params.append(('eventCode', event_code))
             
         if page_size is not None:
             
@@ -362,8 +362,8 @@ class GroupsApi:
     def get_groups_get(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Unique code for an event (group)")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -389,10 +389,10 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
-        :type group_profile_id: str
+        :param event_code: Unique code for an event (group)
+        :type event_code: str
+        :param event_profile_id: GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.
+        :type event_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -429,8 +429,8 @@ class GroupsApi:
 
         _param = self._get_groups_get_serialize(
             property_id=property_id,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_code=event_code,
+            event_profile_id=event_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -461,8 +461,8 @@ class GroupsApi:
     def get_groups_get_with_http_info(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Unique code for an event (group)")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -488,10 +488,10 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
-        :type group_profile_id: str
+        :param event_code: Unique code for an event (group)
+        :type event_code: str
+        :param event_profile_id: GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.
+        :type event_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -528,8 +528,8 @@ class GroupsApi:
 
         _param = self._get_groups_get_serialize(
             property_id=property_id,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_code=event_code,
+            event_profile_id=event_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -560,8 +560,8 @@ class GroupsApi:
     def get_groups_get_without_preload_content(
         self,
         property_id: Annotated[StrictStr, Field(description="Property ID")],
-        group_code: Annotated[Optional[StrictStr], Field(description="Unique ID for a group")] = None,
-        group_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Unique code for an event (group)")] = None,
+        event_profile_id: Annotated[Optional[StrictStr], Field(description="GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Group status")] = None,
         created_from: Annotated[Optional[datetime], Field(description="Datetime (lower limit) to be queried")] = None,
@@ -587,10 +587,10 @@ class GroupsApi:
 
         :param property_id: Property ID (required)
         :type property_id: str
-        :param group_code: Unique ID for a group
-        :type group_code: str
-        :param group_profile_id: GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile.
-        :type group_profile_id: str
+        :param event_code: Unique code for an event (group)
+        :type event_code: str
+        :param event_profile_id: GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile.
+        :type event_profile_id: str
         :param type: The type of group
         :type type: str
         :param status: Group status
@@ -627,8 +627,8 @@ class GroupsApi:
 
         _param = self._get_groups_get_serialize(
             property_id=property_id,
-            group_code=group_code,
-            group_profile_id=group_profile_id,
+            event_code=event_code,
+            event_profile_id=event_profile_id,
             type=type,
             status=status,
             created_from=created_from,
@@ -654,8 +654,8 @@ class GroupsApi:
     def _get_groups_get_serialize(
         self,
         property_id,
-        group_code,
-        group_profile_id,
+        event_code,
+        event_profile_id,
         type,
         status,
         created_from,
@@ -688,13 +688,13 @@ class GroupsApi:
             
             _query_params.append(('propertyID', property_id))
             
-        if group_code is not None:
+        if event_code is not None:
             
-            _query_params.append(('groupCode', group_code))
+            _query_params.append(('eventCode', event_code))
             
-        if group_profile_id is not None:
+        if event_profile_id is not None:
             
-            _query_params.append(('groupProfileID', group_profile_id))
+            _query_params.append(('eventProfileID', event_profile_id))
             
         if type is not None:
             
@@ -779,7 +779,7 @@ class GroupsApi:
     @validate_call
     def patch_group_post(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="code for a group")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="code for an event (group)")] = None,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Name for a group")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
@@ -807,8 +807,8 @@ class GroupsApi:
 
         Updates an existing group with information provided. At least one information field is required for this call.
 
-        :param group_code: code for a group
-        :type group_code: str
+        :param event_code: code for an event (group)
+        :type event_code: str
         :param property_id: Property ID
         :type property_id: str
         :param name: Name for a group
@@ -852,7 +852,7 @@ class GroupsApi:
         """ # noqa: E501
 
         _param = self._patch_group_post_serialize(
-            group_code=group_code,
+            event_code=event_code,
             property_id=property_id,
             name=name,
             type=type,
@@ -886,7 +886,7 @@ class GroupsApi:
     @validate_call
     def patch_group_post_with_http_info(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="code for a group")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="code for an event (group)")] = None,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Name for a group")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
@@ -914,8 +914,8 @@ class GroupsApi:
 
         Updates an existing group with information provided. At least one information field is required for this call.
 
-        :param group_code: code for a group
-        :type group_code: str
+        :param event_code: code for an event (group)
+        :type event_code: str
         :param property_id: Property ID
         :type property_id: str
         :param name: Name for a group
@@ -959,7 +959,7 @@ class GroupsApi:
         """ # noqa: E501
 
         _param = self._patch_group_post_serialize(
-            group_code=group_code,
+            event_code=event_code,
             property_id=property_id,
             name=name,
             type=type,
@@ -993,7 +993,7 @@ class GroupsApi:
     @validate_call
     def patch_group_post_without_preload_content(
         self,
-        group_code: Annotated[Optional[StrictStr], Field(description="code for a group")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="code for an event (group)")] = None,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Name for a group")] = None,
         type: Annotated[Optional[StrictStr], Field(description="The type of group")] = None,
@@ -1021,8 +1021,8 @@ class GroupsApi:
 
         Updates an existing group with information provided. At least one information field is required for this call.
 
-        :param group_code: code for a group
-        :type group_code: str
+        :param event_code: code for an event (group)
+        :type event_code: str
         :param property_id: Property ID
         :type property_id: str
         :param name: Name for a group
@@ -1066,7 +1066,7 @@ class GroupsApi:
         """ # noqa: E501
 
         _param = self._patch_group_post_serialize(
-            group_code=group_code,
+            event_code=event_code,
             property_id=property_id,
             name=name,
             type=type,
@@ -1095,7 +1095,7 @@ class GroupsApi:
 
     def _patch_group_post_serialize(
         self,
-        group_code,
+        event_code,
         property_id,
         name,
         type,
@@ -1130,8 +1130,8 @@ class GroupsApi:
         # process the query parameters
         # process the header parameters
         # process the form parameters
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if property_id is not None:
             _form_params.append(('propertyID', property_id))
         if name is not None:
@@ -1205,7 +1205,7 @@ class GroupsApi:
     def post_group_note_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group) code")] = None,
         group_note: Annotated[Optional[StrictStr], Field(description="Group note")] = None,
         _request_timeout: Union[
             None,
@@ -1226,8 +1226,8 @@ class GroupsApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param group_code: Group code
-        :type group_code: str
+        :param event_code: Event (group) code
+        :type event_code: str
         :param group_note: Group note
         :type group_note: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1254,7 +1254,7 @@ class GroupsApi:
 
         _param = self._post_group_note_post_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             group_note=group_note,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1280,7 +1280,7 @@ class GroupsApi:
     def post_group_note_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group) code")] = None,
         group_note: Annotated[Optional[StrictStr], Field(description="Group note")] = None,
         _request_timeout: Union[
             None,
@@ -1301,8 +1301,8 @@ class GroupsApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param group_code: Group code
-        :type group_code: str
+        :param event_code: Event (group) code
+        :type event_code: str
         :param group_note: Group note
         :type group_note: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1329,7 +1329,7 @@ class GroupsApi:
 
         _param = self._post_group_note_post_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             group_note=group_note,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1355,7 +1355,7 @@ class GroupsApi:
     def post_group_note_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        group_code: Annotated[Optional[StrictStr], Field(description="Group code")] = None,
+        event_code: Annotated[Optional[StrictStr], Field(description="Event (group) code")] = None,
         group_note: Annotated[Optional[StrictStr], Field(description="Group note")] = None,
         _request_timeout: Union[
             None,
@@ -1376,8 +1376,8 @@ class GroupsApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param group_code: Group code
-        :type group_code: str
+        :param event_code: Event (group) code
+        :type event_code: str
         :param group_note: Group note
         :type group_note: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1404,7 +1404,7 @@ class GroupsApi:
 
         _param = self._post_group_note_post_serialize(
             property_id=property_id,
-            group_code=group_code,
+            event_code=event_code,
             group_note=group_note,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1425,7 +1425,7 @@ class GroupsApi:
     def _post_group_note_post_serialize(
         self,
         property_id,
-        group_code,
+        event_code,
         group_note,
         _request_auth,
         _content_type,
@@ -1453,8 +1453,8 @@ class GroupsApi:
         # process the form parameters
         if property_id is not None:
             _form_params.append(('propertyID', property_id))
-        if group_code is not None:
-            _form_params.append(('groupCode', group_code))
+        if event_code is not None:
+            _form_params.append(('eventCode', event_code))
         if group_note is not None:
             _form_params.append(('groupNote', group_note))
         # process the body parameter

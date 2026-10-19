@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **property_id** | **str** | Properties identifier | [optional] 
 **reservation_id** | **str** | Reservation&#39;s unique identifier | [optional] 
 **is_deleted** | **bool** |  | [optional] 
+**is_imported** | **bool** | Whether the reservation was created through an import process. | [optional] 
 **date_created** | **datetime** |  | [optional] 
 **date_created_utc** | **datetime** |  | [optional] 
 **date_modified** | **datetime** |  | [optional] 

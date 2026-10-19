@@ -947,7 +947,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_guest_post**
-> PostGuestResponse post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+> PostGuestResponse post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_nationality=guest_nationality, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
 
 postGuest
 
@@ -1000,6 +1000,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_address2 = 'guest_address2_example' # str |  (optional)
     guest_city = 'guest_city_example' # str |  (optional)
     guest_country = 'guest_country_example' # str | ISO-Code for Country (2 characters) (optional)
+    guest_nationality = 'guest_nationality_example' # str | Guest nationality (citizenship). ISO-Code for Country (2 characters) (optional)
     guest_state = 'guest_state_example' # str |  (optional)
     guest_zip = 'guest_zip_example' # str |  (optional)
     guest_birth_date = '2013-10-20' # date |  (optional)
@@ -1018,7 +1019,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # postGuest
-        api_response = api_instance.post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+        api_response = api_instance.post_guest_post(property_id=property_id, reservation_id=reservation_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_nationality=guest_nationality, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, custom_fields=custom_fields, guest_note=guest_note, reservation_note=reservation_note, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
         print("The response of GuestApi->post_guest_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1044,6 +1045,7 @@ Name | Type | Description  | Notes
  **guest_address2** | **str**|  | [optional] 
  **guest_city** | **str**|  | [optional] 
  **guest_country** | **str**| ISO-Code for Country (2 characters) | [optional] 
+ **guest_nationality** | **str**| Guest nationality (citizenship). ISO-Code for Country (2 characters) | [optional] 
  **guest_state** | **str**|  | [optional] 
  **guest_zip** | **str**|  | [optional] 
  **guest_birth_date** | **date**|  | [optional] 
@@ -1266,7 +1268,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_guest_put**
-> PutGuestResponse put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+> PutGuestResponse put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_nationality=guest_nationality, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
 
 putGuest
 
@@ -1319,6 +1321,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     guest_address2 = 'guest_address2_example' # str |  (optional)
     guest_city = 'guest_city_example' # str |  (optional)
     guest_country = 'guest_country_example' # str | ISO-Code for Country (2 characters) (optional)
+    guest_nationality = 'guest_nationality_example' # str | Guest nationality (citizenship). ISO-Code for Country (2 characters) (optional)
     guest_state = 'guest_state_example' # str |  (optional)
     guest_zip = 'guest_zip_example' # str |  (optional)
     guest_birth_date = '2013-10-20' # date |  (optional)
@@ -1335,7 +1338,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # putGuest
-        api_response = api_instance.put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
+        api_response = api_instance.put_guest_put(property_id=property_id, guest_id=guest_id, guest_first_name=guest_first_name, guest_last_name=guest_last_name, guest_gender=guest_gender, guest_email=guest_email, guest_phone=guest_phone, guest_cell_phone=guest_cell_phone, guest_address1=guest_address1, guest_address2=guest_address2, guest_city=guest_city, guest_country=guest_country, guest_nationality=guest_nationality, guest_state=guest_state, guest_zip=guest_zip, guest_birth_date=guest_birth_date, guest_document_type=guest_document_type, guest_document_number=guest_document_number, guest_document_issue_date=guest_document_issue_date, guest_document_issuing_country=guest_document_issuing_country, guest_document_expiration_date=guest_document_expiration_date, guest_requirements=guest_requirements, guest_custom_fields=guest_custom_fields, guest_company_name=guest_company_name, guest_company_tax_id=guest_company_tax_id, guest_tax_id=guest_tax_id)
         print("The response of GuestApi->put_guest_put:\n")
         pprint(api_response)
     except Exception as e:
@@ -1361,6 +1364,7 @@ Name | Type | Description  | Notes
  **guest_address2** | **str**|  | [optional] 
  **guest_city** | **str**|  | [optional] 
  **guest_country** | **str**| ISO-Code for Country (2 characters) | [optional] 
+ **guest_nationality** | **str**| Guest nationality (citizenship). ISO-Code for Country (2 characters) | [optional] 
  **guest_state** | **str**|  | [optional] 
  **guest_zip** | **str**|  | [optional] 
  **guest_birth_date** | **date**|  | [optional] 

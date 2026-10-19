@@ -42,11 +42,14 @@ class GetGroupsResponseDataInner(BaseModel):
     state: Optional[StrictStr] = Field(default=None, description="State")
     country_code: Optional[StrictStr] = Field(default=None, description="Country code", alias="countryCode")
     commission_type: Optional[StrictStr] = Field(default=None, description="Commission type", alias="commissionType")
+    segment_id: Optional[StrictStr] = Field(default=None, description="Market segment ID (null if none assigned)", alias="segmentId")
+    segment_code: Optional[StrictStr] = Field(default=None, description="Market segment code (null if none assigned)", alias="segmentCode")
+    segment_name: Optional[StrictStr] = Field(default=None, description="Market segment name (null if none assigned)", alias="segmentName")
     tax_document_type: Optional[StrictStr] = Field(default=None, description="Tax document type", alias="taxDocumentType")
     tax_id_number: Optional[StrictStr] = Field(default=None, description="Tax ID number", alias="taxIdNumber")
     legal_name: Optional[StrictStr] = Field(default=None, description="Legal name", alias="legalName")
     contacts: Optional[List[GetGroupsResponseDataInnerContactsInner]] = Field(default=None, description="Group contacts")
-    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "sourceName", "address1", "address2", "city", "zip", "state", "countryCode", "commissionType", "taxDocumentType", "taxIdNumber", "legalName", "contacts"]
+    __properties: ClassVar[List[str]] = ["groupCode", "name", "type", "status", "created", "sourceID", "sourceName", "address1", "address2", "city", "zip", "state", "countryCode", "commissionType", "segmentId", "segmentCode", "segmentName", "taxDocumentType", "taxIdNumber", "legalName", "contacts"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -162,6 +165,21 @@ class GetGroupsResponseDataInner(BaseModel):
         if self.commission_type is None and "commission_type" in self.model_fields_set:
             _dict['commissionType'] = None
 
+        # set to None if segment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.segment_id is None and "segment_id" in self.model_fields_set:
+            _dict['segmentId'] = None
+
+        # set to None if segment_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.segment_code is None and "segment_code" in self.model_fields_set:
+            _dict['segmentCode'] = None
+
+        # set to None if segment_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.segment_name is None and "segment_name" in self.model_fields_set:
+            _dict['segmentName'] = None
+
         # set to None if tax_document_type (nullable) is None
         # and model_fields_set contains the field
         if self.tax_document_type is None and "tax_document_type" in self.model_fields_set:
@@ -208,6 +226,9 @@ class GetGroupsResponseDataInner(BaseModel):
             "state": obj.get("state"),
             "countryCode": obj.get("countryCode"),
             "commissionType": obj.get("commissionType"),
+            "segmentId": obj.get("segmentId"),
+            "segmentCode": obj.get("segmentCode"),
+            "segmentName": obj.get("segmentName"),
             "taxDocumentType": obj.get("taxDocumentType"),
             "taxIdNumber": obj.get("taxIdNumber"),
             "legalName": obj.get("legalName"),

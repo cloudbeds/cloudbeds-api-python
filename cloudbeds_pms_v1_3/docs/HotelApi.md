@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_files_get**
-> GetFilesResponse get_files_get(property_id=property_id, group_code=group_code, sort_by=sort_by, order_by=order_by, name=name, page_number=page_number, page_size=page_size)
+> GetFilesResponse get_files_get(property_id=property_id, event_code=event_code, sort_by=sort_by, order_by=order_by, name=name, page_number=page_number, page_size=page_size)
 
 getFiles
 
@@ -52,7 +52,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.HotelApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    group_code = 'group_code_example' # str | The group code, if the files are to be fetched from a group profile (optional)
+    event_code = 'event_code_example' # str | The event (group profile) code, if the files are to be fetched from a group profile (optional)
     sort_by = date # str | Sort By parameter (optional) (default to date)
     order_by = desc # str | Order response in DESCending or ASCending order, used together with sortBy (optional) (default to desc)
     name = 'name_example' # str | Filter filess by name. Include only with names containing specified string (optional)
@@ -61,7 +61,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getFiles
-        api_response = api_instance.get_files_get(property_id=property_id, group_code=group_code, sort_by=sort_by, order_by=order_by, name=name, page_number=page_number, page_size=page_size)
+        api_response = api_instance.get_files_get(property_id=property_id, event_code=event_code, sort_by=sort_by, order_by=order_by, name=name, page_number=page_number, page_size=page_size)
         print("The response of HotelApi->get_files_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -76,7 +76,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **group_code** | **str**| The group code, if the files are to be fetched from a group profile | [optional] 
+ **event_code** | **str**| The event (group profile) code, if the files are to be fetched from a group profile | [optional] 
  **sort_by** | **str**| Sort By parameter | [optional] [default to date]
  **order_by** | **str**| Order response in DESCending or ASCending order, used together with sortBy | [optional] [default to desc]
  **name** | **str**| Filter filess by name. Include only with names containing specified string | [optional] 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_file_post**
-> PostFileResponse post_file_post(property_id=property_id, file=file, group_code=group_code)
+> PostFileResponse post_file_post(property_id=property_id, file=file, event_code=event_code)
 
 postFile
 
@@ -319,11 +319,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     api_instance = cloudbeds_pms_v1_3.HotelApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
     file = None # bytearray | Form-based File Upload<br/> Allowed file types: <code>*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json</code><br/> Allowed max file size: 100MB (optional)
-    group_code = 'group_code_example' # str | optional - the group code if the file is to be attached to a group profile (optional)
+    event_code = 'event_code_example' # str | optional - the event (group profile) code if the file is to be attached to a group profile (optional)
 
     try:
         # postFile
-        api_response = api_instance.post_file_post(property_id=property_id, file=file, group_code=group_code)
+        api_response = api_instance.post_file_post(property_id=property_id, file=file, event_code=event_code)
         print("The response of HotelApi->post_file_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
  **file** | **bytearray**| Form-based File Upload&lt;br/&gt; Allowed file types: &lt;code&gt;*.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json&lt;/code&gt;&lt;br/&gt; Allowed max file size: 100MB | [optional] 
- **group_code** | **str**| optional - the group code if the file is to be attached to a group profile | [optional] 
+ **event_code** | **str**| optional - the event (group profile) code if the file is to be attached to a group profile | [optional] 
 
 ### Return type
 

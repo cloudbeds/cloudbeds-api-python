@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.18.0"
+__version__ = "1.19.0"
 
 # Define package exports
 __all__ = [
@@ -49,7 +49,6 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
-    "DeleteAdjustmentResponse",
     "DeleteGuestNoteResponse",
     "DeleteReservationNoteResponse",
     "DeleteWebhookResponse",
@@ -171,6 +170,7 @@ __all__ = [
     "GetReservationResponseDataAssignedInnerDailyRatesInner",
     "GetReservationResponseDataBalanceDetailed",
     "GetReservationResponseDataBalanceDetailedOneOf",
+    "GetReservationResponseDataCancellation",
     "GetReservationResponseDataCardsOnFileInner",
     "GetReservationResponseDataGroupInventoryInner",
     "GetReservationResponseDataGuestListValue",
@@ -249,6 +249,7 @@ __all__ = [
     "GetUsersResponse",
     "GetWebhooksResponse",
     "GetWebhooksResponseDataInner",
+    "GetWebhooksResponseDataInnerAuthHeader",
     "GetWebhooksResponseDataInnerEvent",
     "GetWebhooksResponseDataInnerKey",
     "GetWebhooksResponseDataInnerOwner",
@@ -295,6 +296,7 @@ __all__ = [
     "PostCustomItemResponse",
     "PostCustomItemResponseData",
     "PostCustomPaymentMethodResponse",
+    "PostDeleteAdjustmentResponse",
     "PostDeleteAllotmentBlockResponse",
     "PostDeleteAppPropertySettingsResponse",
     "PostDeleteRoomBlockResponse",
@@ -419,7 +421,6 @@ from cloudbeds_pms_v1_3.exceptions import ApiAttributeError as ApiAttributeError
 from cloudbeds_pms_v1_3.exceptions import ApiException as ApiException
 
 # import models into sdk package
-from cloudbeds_pms_v1_3.models.delete_adjustment_response import DeleteAdjustmentResponse as DeleteAdjustmentResponse
 from cloudbeds_pms_v1_3.models.delete_guest_note_response import DeleteGuestNoteResponse as DeleteGuestNoteResponse
 from cloudbeds_pms_v1_3.models.delete_reservation_note_response import DeleteReservationNoteResponse as DeleteReservationNoteResponse
 from cloudbeds_pms_v1_3.models.delete_webhook_response import DeleteWebhookResponse as DeleteWebhookResponse
@@ -541,6 +542,7 @@ from cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner impo
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner_daily_rates_inner import GetReservationResponseDataAssignedInnerDailyRatesInner as GetReservationResponseDataAssignedInnerDailyRatesInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed import GetReservationResponseDataBalanceDetailed as GetReservationResponseDataBalanceDetailed
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed_one_of import GetReservationResponseDataBalanceDetailedOneOf as GetReservationResponseDataBalanceDetailedOneOf
+from cloudbeds_pms_v1_3.models.get_reservation_response_data_cancellation import GetReservationResponseDataCancellation as GetReservationResponseDataCancellation
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_cards_on_file_inner import GetReservationResponseDataCardsOnFileInner as GetReservationResponseDataCardsOnFileInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner as GetReservationResponseDataGroupInventoryInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value import GetReservationResponseDataGuestListValue as GetReservationResponseDataGuestListValue
@@ -619,6 +621,7 @@ from cloudbeds_pms_v1_3.models.get_userinfo_response_roles_inner import GetUseri
 from cloudbeds_pms_v1_3.models.get_users_response import GetUsersResponse as GetUsersResponse
 from cloudbeds_pms_v1_3.models.get_webhooks_response import GetWebhooksResponse as GetWebhooksResponse
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner import GetWebhooksResponseDataInner as GetWebhooksResponseDataInner
+from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_auth_header import GetWebhooksResponseDataInnerAuthHeader as GetWebhooksResponseDataInnerAuthHeader
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_event import GetWebhooksResponseDataInnerEvent as GetWebhooksResponseDataInnerEvent
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_key import GetWebhooksResponseDataInnerKey as GetWebhooksResponseDataInnerKey
 from cloudbeds_pms_v1_3.models.get_webhooks_response_data_inner_owner import GetWebhooksResponseDataInnerOwner as GetWebhooksResponseDataInnerOwner
@@ -665,6 +668,7 @@ from cloudbeds_pms_v1_3.models.post_custom_item_request_payments_inner import Po
 from cloudbeds_pms_v1_3.models.post_custom_item_response import PostCustomItemResponse as PostCustomItemResponse
 from cloudbeds_pms_v1_3.models.post_custom_item_response_data import PostCustomItemResponseData as PostCustomItemResponseData
 from cloudbeds_pms_v1_3.models.post_custom_payment_method_response import PostCustomPaymentMethodResponse as PostCustomPaymentMethodResponse
+from cloudbeds_pms_v1_3.models.post_delete_adjustment_response import PostDeleteAdjustmentResponse as PostDeleteAdjustmentResponse
 from cloudbeds_pms_v1_3.models.post_delete_allotment_block_response import PostDeleteAllotmentBlockResponse as PostDeleteAllotmentBlockResponse
 from cloudbeds_pms_v1_3.models.post_delete_app_property_settings_response import PostDeleteAppPropertySettingsResponse as PostDeleteAppPropertySettingsResponse
 from cloudbeds_pms_v1_3.models.post_delete_room_block_response import PostDeleteRoomBlockResponse as PostDeleteRoomBlockResponse

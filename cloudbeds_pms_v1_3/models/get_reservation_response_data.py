@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, Stri
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_assigned_inner import GetReservationResponseDataAssignedInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_balance_detailed import GetReservationResponseDataBalanceDetailed
+from cloudbeds_pms_v1_3.models.get_reservation_response_data_cancellation import GetReservationResponseDataCancellation
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_cards_on_file_inner import GetReservationResponseDataCardsOnFileInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_group_inventory_inner import GetReservationResponseDataGroupInventoryInner
 from cloudbeds_pms_v1_3.models.get_reservation_response_data_guest_list_value import GetReservationResponseDataGuestListValue
@@ -60,8 +61,11 @@ class GetReservationResponseData(BaseModel):
     channel_provided_credit_card: Optional[StrictBool] = Field(default=None, description="Whether a credit card was provided by the channel. Only included for reservations originating from OTAs.", alias="channelProvidedCreditCard")
     group_inventory: Optional[List[GetReservationResponseDataGroupInventoryInner]] = Field(default=None, description="Aggregate allotment block information", alias="groupInventory")
     origin: Optional[StrictStr] = Field(default=None, description="Reservation origin")
+    date_cancelled: Optional[datetime] = Field(default=None, description="Timestamp the reservation was cancelled, in property-local time. Present only for cancelled reservations, and set for every cancellation.", alias="dateCancelled")
+    date_cancelled_utc: Optional[datetime] = Field(default=None, description="Timestamp the reservation was cancelled, in UTC. Present only for cancelled reservations. A reliable cancellation signal independent of dateModified.", alias="dateCancelledUTC")
+    cancellation: Optional[GetReservationResponseDataCancellation] = None
     meal_plans: Optional[StrictStr] = Field(default=None, description="Reservation Meal Plans", alias="mealPlans")
-    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard", "groupInventory", "origin", "mealPlans"]
+    __properties: ClassVar[List[str]] = ["propertyID", "guestName", "guestEmail", "isAnonymized", "guestList", "reservationID", "dateCreated", "dateModified", "estimatedArrivalTime", "source", "sourceID", "thirdPartyIdentifier", "status", "total", "balance", "balanceDetailed", "assigned", "unassigned", "cardsOnFile", "customFields", "startDate", "endDate", "allotmentBlockCode", "channelProvidedCreditCard", "groupInventory", "origin", "dateCancelled", "dateCancelledUTC", "cancellation", "mealPlans"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -158,6 +162,9 @@ class GetReservationResponseData(BaseModel):
                 if _item_group_inventory:
                     _items.append(_item_group_inventory.to_dict())
             _dict['groupInventory'] = _items
+        # override the default output from pydantic by calling `to_dict()` of cancellation
+        if self.cancellation:
+            _dict['cancellation'] = self.cancellation.to_dict()
         # set to None if estimated_arrival_time (nullable) is None
         # and model_fields_set contains the field
         if self.estimated_arrival_time is None and "estimated_arrival_time" in self.model_fields_set:
@@ -177,6 +184,21 @@ class GetReservationResponseData(BaseModel):
         # and model_fields_set contains the field
         if self.group_inventory is None and "group_inventory" in self.model_fields_set:
             _dict['groupInventory'] = None
+
+        # set to None if date_cancelled (nullable) is None
+        # and model_fields_set contains the field
+        if self.date_cancelled is None and "date_cancelled" in self.model_fields_set:
+            _dict['dateCancelled'] = None
+
+        # set to None if date_cancelled_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.date_cancelled_utc is None and "date_cancelled_utc" in self.model_fields_set:
+            _dict['dateCancelledUTC'] = None
+
+        # set to None if cancellation (nullable) is None
+        # and model_fields_set contains the field
+        if self.cancellation is None and "cancellation" in self.model_fields_set:
+            _dict['cancellation'] = None
 
         return _dict
 
@@ -221,6 +243,9 @@ class GetReservationResponseData(BaseModel):
             "channelProvidedCreditCard": obj.get("channelProvidedCreditCard"),
             "groupInventory": [GetReservationResponseDataGroupInventoryInner.from_dict(_item) for _item in obj["groupInventory"]] if obj.get("groupInventory") is not None else None,
             "origin": obj.get("origin"),
+            "dateCancelled": obj.get("dateCancelled"),
+            "dateCancelledUTC": obj.get("dateCancelledUTC"),
+            "cancellation": GetReservationResponseDataCancellation.from_dict(obj["cancellation"]) if obj.get("cancellation") is not None else None,
             "mealPlans": obj.get("mealPlans")
         })
         return _obj

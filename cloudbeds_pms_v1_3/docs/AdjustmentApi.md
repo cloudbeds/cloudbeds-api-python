@@ -4,12 +4,12 @@ All URIs are relative to *https://api.cloudbeds.com/api/v1.3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_adjustment_delete**](AdjustmentApi.md#delete_adjustment_delete) | **DELETE** /deleteAdjustment | deleteAdjustment
+[**delete_adjustment_post**](AdjustmentApi.md#delete_adjustment_post) | **POST** /deleteAdjustment | deleteAdjustment
 [**post_adjustment_post**](AdjustmentApi.md#post_adjustment_post) | **POST** /postAdjustment | postAdjustment
 
 
-# **delete_adjustment_delete**
-> DeleteAdjustmentResponse delete_adjustment_delete(reservation_id, adjustment_id, property_id=property_id)
+# **delete_adjustment_post**
+> PostDeleteAdjustmentResponse delete_adjustment_post(property_id=property_id, reservation_id=reservation_id, adjustment_id=adjustment_id)
 
 deleteAdjustment
 
@@ -22,7 +22,7 @@ Voids the AdjustmentID transaction on the specified reservationID
 
 ```python
 import cloudbeds_pms_v1_3
-from cloudbeds_pms_v1_3.models.delete_adjustment_response import DeleteAdjustmentResponse
+from cloudbeds_pms_v1_3.models.post_delete_adjustment_response import PostDeleteAdjustmentResponse
 from cloudbeds_pms_v1_3.rest import ApiException
 from pprint import pprint
 
@@ -49,17 +49,17 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.AdjustmentApi(api_client)
-    reservation_id = 'reservation_id_example' # str | Reservation identifier
-    adjustment_id = 'adjustment_id_example' # str | Adjustment identifier
     property_id = 'property_id_example' # str | Property ID (optional)
+    reservation_id = 'reservation_id_example' # str | Reservation identifier (optional)
+    adjustment_id = 'adjustment_id_example' # str | Adjustment identifier (optional)
 
     try:
         # deleteAdjustment
-        api_response = api_instance.delete_adjustment_delete(reservation_id, adjustment_id, property_id=property_id)
-        print("The response of AdjustmentApi->delete_adjustment_delete:\n")
+        api_response = api_instance.delete_adjustment_post(property_id=property_id, reservation_id=reservation_id, adjustment_id=adjustment_id)
+        print("The response of AdjustmentApi->delete_adjustment_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AdjustmentApi->delete_adjustment_delete: %s\n" % e)
+        print("Exception when calling AdjustmentApi->delete_adjustment_post: %s\n" % e)
 ```
 
 
@@ -69,13 +69,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **reservation_id** | **str**| Reservation identifier | 
- **adjustment_id** | **str**| Adjustment identifier | 
  **property_id** | **str**| Property ID | [optional] 
+ **reservation_id** | **str**| Reservation identifier | [optional] 
+ **adjustment_id** | **str**| Adjustment identifier | [optional] 
 
 ### Return type
 
-[**DeleteAdjustmentResponse**](DeleteAdjustmentResponse.md)
+[**PostDeleteAdjustmentResponse**](PostDeleteAdjustmentResponse.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_adjustment_post**
-> PostAdjustmentResponse post_adjustment_post(property_id=property_id, reservation_id=reservation_id, type=type, amount=amount, notes=notes, item_id=item_id)
+> PostAdjustmentResponse post_adjustment_post(property_id=property_id, reservation_id=reservation_id, type=type, amount=amount, notes=notes, item_id=item_id, service_date=service_date)
 
 postAdjustment
 
@@ -141,10 +141,11 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     amount = 3.4 # float | Adjustment amount (optional)
     notes = 'notes_example' # str | Adjustment notes (optional)
     item_id = 'item_id_example' # str | Apply Adjustment to. Identifier for: product, tax, fee. Not for rate (optional)
+    service_date = '2013-10-20' # date | Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction. (optional)
 
     try:
         # postAdjustment
-        api_response = api_instance.post_adjustment_post(property_id=property_id, reservation_id=reservation_id, type=type, amount=amount, notes=notes, item_id=item_id)
+        api_response = api_instance.post_adjustment_post(property_id=property_id, reservation_id=reservation_id, type=type, amount=amount, notes=notes, item_id=item_id, service_date=service_date)
         print("The response of AdjustmentApi->post_adjustment_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -164,6 +165,7 @@ Name | Type | Description  | Notes
  **amount** | **float**| Adjustment amount | [optional] 
  **notes** | **str**| Adjustment notes | [optional] 
  **item_id** | **str**| Apply Adjustment to. Identifier for: product, tax, fee. Not for rate | [optional] 
+ **service_date** | **date**| Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation&#39;s check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction. | [optional] 
 
 ### Return type
 

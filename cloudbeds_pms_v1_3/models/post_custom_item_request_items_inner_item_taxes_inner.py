@@ -26,8 +26,8 @@ class PostCustomItemRequestItemsInnerItemTaxesInner(BaseModel):
     """
     PostCustomItemRequestItemsInnerItemTaxesInner
     """ # noqa: E501
-    tax_name: Optional[StrictStr] = Field(default=None, description="tax name", alias="taxName")
-    tax_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="tax value", alias="taxValue")
+    tax_name: Optional[StrictStr] = Field(default=None, description="Tax name, matched as free text. Names are not validated against the taxes configured for the property, and two different spellings are treated as two different taxes.", alias="taxName")
+    tax_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Tax amount. Used exactly as supplied; Cloudbeds does not recalculate it. When the item price is tax-inclusive, supply the tax extracted from the gross price rather than the rate applied on top of it.", alias="taxValue")
     __properties: ClassVar[List[str]] = ["taxName", "taxValue"]
 
     model_config = ConfigDict(

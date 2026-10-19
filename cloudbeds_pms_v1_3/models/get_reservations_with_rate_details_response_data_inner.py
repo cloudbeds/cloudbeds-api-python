@@ -35,6 +35,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     property_id: Optional[StrictStr] = Field(default=None, description="Properties identifier", alias="propertyID")
     reservation_id: Optional[StrictStr] = Field(default=None, description="Reservation's unique identifier", alias="reservationID")
     is_deleted: Optional[StrictBool] = Field(default=None, alias="isDeleted")
+    is_imported: Optional[StrictBool] = Field(default=None, description="Whether the reservation was created through an import process.", alias="isImported")
     date_created: Optional[datetime] = Field(default=None, alias="dateCreated")
     date_created_utc: Optional[datetime] = Field(default=None, alias="dateCreatedUTC")
     date_modified: Optional[datetime] = Field(default=None, alias="dateModified")
@@ -64,7 +65,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
     total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total price of the booking")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Balance currently owed")
     date_imported: Optional[StrictStr] = Field(default=None, description="Date when the reservation was imported", alias="dateImported")
-    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "isDeleted", "dateCreated", "dateCreatedUTC", "dateModified", "dateModifiedUTC", "dateCancelled", "dateCancelledUTC", "status", "reservationCheckIn", "reservationCheckOut", "guestID", "profileID", "guestCountry", "sourceName", "source", "sourceCategory", "sourceReservationID", "propertyCurrency", "balanceDetailed", "detailedRates", "rooms", "origin", "mealPlans", "guestList", "thirdPartyIdentifier", "customFields", "estimatedArrivalTime", "total", "balance", "dateImported"]
+    __properties: ClassVar[List[str]] = ["propertyID", "reservationID", "isDeleted", "isImported", "dateCreated", "dateCreatedUTC", "dateModified", "dateModifiedUTC", "dateCancelled", "dateCancelledUTC", "status", "reservationCheckIn", "reservationCheckOut", "guestID", "profileID", "guestCountry", "sourceName", "source", "sourceCategory", "sourceReservationID", "propertyCurrency", "balanceDetailed", "detailedRates", "rooms", "origin", "mealPlans", "guestList", "thirdPartyIdentifier", "customFields", "estimatedArrivalTime", "total", "balance", "dateImported"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -198,6 +199,7 @@ class GetReservationsWithRateDetailsResponseDataInner(BaseModel):
             "propertyID": obj.get("propertyID"),
             "reservationID": obj.get("reservationID"),
             "isDeleted": obj.get("isDeleted"),
+            "isImported": obj.get("isImported"),
             "dateCreated": obj.get("dateCreated"),
             "dateCreatedUTC": obj.get("dateCreatedUTC"),
             "dateModified": obj.get("dateModified"),

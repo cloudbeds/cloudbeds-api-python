@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **availability** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerAvailability.md) |  | [optional] 
 **restrictions** | [**PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions**](PostCreateAllotmentBlockResponseDataInnerAllotmentIntervalsInnerRestrictions.md) |  | [optional] 
 **split_inventory** | **bool** | Whether split inventory is enabled for this room type. When true, the linked physical room types are individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type. | [optional] 
+**shoulder_dates_before** | **int** | Number of shoulder days before the event start date. | [optional] 
+**shoulder_dates_after** | **int** | Number of shoulder days after the event end date. | [optional] 
+**shoulder_dates_rate_id** | **str** | Rate plan ID applied during shoulder date periods. | [optional] 
 
 ## Example
 

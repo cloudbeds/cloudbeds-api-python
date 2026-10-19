@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Tax ID | [optional] 
 **company_tax_id** | **str** | Company tax ID | [optional] 
 **company_name** | **str** | Company name | [optional] 
+**guest_nationality** | **str** | Guest nationality, ISO 3166-1 alpha-2. Requires &#x60;includeGuestInfo&#x3D;true&#x60;. | [optional] 
 **guest_opt_in** | **bool** | If guest has opted-in to marketing communication or not | [optional] 
 **guest_requirements** | **object** | Guest requirements data. Only included if &#x60;includeGuestRequirements&#x3D;true&#x60;. | [optional] 
 **guest_notes** | [**List[GetGuestListResponseDataValueGuestNotesInner]**](GetGuestListResponseDataValueGuestNotesInner.md) | Guest Notes | [optional] 

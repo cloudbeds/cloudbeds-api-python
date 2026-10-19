@@ -39,6 +39,7 @@ Name | Type | Description | Notes
 **tax_id** | **str** | Tax ID | [optional] 
 **company_tax_id** | **str** | Company tax ID | [optional] 
 **company_name** | **str** | Company name | [optional] 
+**guest_nationality** | **str** | Guest nationality (citizenship), ISO 3166-1 alpha-2. Empty string when none is stored. | [optional] 
 **is_anonymized** | **bool** | Flag indicating the guest data was removed upon request | [optional] 
 **is_deleted** | **bool** | Flag indicating the guest&#39;s reservation was removed | [optional] 
 **guest_opt_in** | **bool** | If guest has opted-in to marketing communication or not | [optional] 

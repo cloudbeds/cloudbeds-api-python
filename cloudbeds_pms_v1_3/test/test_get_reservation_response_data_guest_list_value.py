@@ -58,6 +58,7 @@ class TestGetReservationResponseDataGuestListValue(unittest.TestCase):
                 tax_id = '',
                 company_tax_id = '',
                 company_name = '',
+                guest_nationality = '',
                 assigned_room = True,
                 is_anonymized = True,
                 room_id = '',

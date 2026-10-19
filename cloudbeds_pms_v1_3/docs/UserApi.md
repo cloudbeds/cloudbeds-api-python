@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 getUsers
 
-Returns information on the properties' users ### Group account support
+Returns information on the properties' users. For authenticated users without hotel_users permission, email, role, and last-login fields are omitted. Client tokens retain the current fields. ### Group account support
 
 ### Example
 

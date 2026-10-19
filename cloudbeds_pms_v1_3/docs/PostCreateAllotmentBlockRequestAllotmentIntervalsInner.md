@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **policy_id** | **str** | Policy ID to associate with the interval | [optional] 
 **room_type_id** | **str** | Room type ID | [optional] 
 **split_inventory** | **bool** | Enables split inventory for this virtual room type. When true, the linked physical room types become individually bookable within the allotment block, with their availability drawn from the allotment capacity of this room type. Defaults to false. Automatically set to true for virtual room types. Always false for physical room types. | [optional] 
+**shoulder_dates_before** | **int** | Number of shoulder days before the event start date. | [optional] 
+**shoulder_dates_after** | **int** | Number of shoulder days after the event end date. | [optional] 
+**shoulder_dates_rate_id** | **str** | Rate plan ID to apply during shoulder date periods. | [optional] 
 **availability** | [**List[PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner]**](PostCreateAllotmentBlockRequestAllotmentIntervalsInnerAvailabilityInner.md) |  | [optional] 
 
 ## Example

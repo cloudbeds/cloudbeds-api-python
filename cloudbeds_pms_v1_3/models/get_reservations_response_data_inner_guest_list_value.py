@@ -53,6 +53,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
     tax_id: Optional[StrictStr] = Field(default=None, description="Guest's tax ID", alias="taxID")
     company_tax_id: Optional[StrictStr] = Field(default=None, description="Guest's company tax ID", alias="companyTaxID")
     company_name: Optional[StrictStr] = Field(default=None, description="Guest's company name", alias="companyName")
+    guest_nationality: Optional[StrictStr] = Field(default=None, description="Guest nationality (citizenship), ISO 3166-1 alpha-2. Empty string when none is stored.", alias="guestNationality")
     sub_reservation_id: Optional[StrictStr] = Field(default=None, alias="subReservationID")
     start_date: Optional[date] = Field(default=None, alias="startDate")
     end_date: Optional[date] = Field(default=None, alias="endDate")
@@ -67,7 +68,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
     custom_fields: Optional[List[GetReservationsResponseDataInnerCustomFieldsInner]] = Field(default=None, description="List of guest custom fields", alias="customFields")
     is_anonymized: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest data was removed upon request", alias="isAnonymized")
     is_main_guest: Optional[StrictBool] = Field(default=None, description="Flag indicating the guest is the main guest on the reservation", alias="isMainGuest")
-    __properties: ClassVar[List[str]] = ["guestID", "guestName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "subReservationID", "startDate", "endDate", "assignedRoom", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "rooms", "unassignedRooms", "guestRequirements", "customFields", "isAnonymized", "isMainGuest"]
+    __properties: ClassVar[List[str]] = ["guestID", "guestName", "guestFirstName", "guestLastName", "guestGender", "guestEmail", "guestPhone", "guestCellPhone", "guestAddress", "guestAddress2", "guestCity", "guestState", "guestCountry", "guestZip", "guestBirthdate", "guestDocumentType", "guestDocumentNumber", "guestDocumentIssueDate", "guestDocumentIssuingCountry", "guestDocumentExpirationDate", "taxID", "companyTaxID", "companyName", "guestNationality", "subReservationID", "startDate", "endDate", "assignedRoom", "roomID", "roomName", "roomTypeName", "roomTypeIsVirtual", "rooms", "unassignedRooms", "guestRequirements", "customFields", "isAnonymized", "isMainGuest"]
 
     @field_validator('guest_gender')
     def guest_gender_validate_enum(cls, value):
@@ -360,6 +361,7 @@ class GetReservationsResponseDataInnerGuestListValue(BaseModel):
             "taxID": obj.get("taxID"),
             "companyTaxID": obj.get("companyTaxID"),
             "companyName": obj.get("companyName"),
+            "guestNationality": obj.get("guestNationality"),
             "subReservationID": obj.get("subReservationID"),
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),

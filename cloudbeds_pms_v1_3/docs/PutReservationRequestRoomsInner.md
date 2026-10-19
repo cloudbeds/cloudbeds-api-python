@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **adults** | **int** | Quantity of adults for the room. Mandatory if rooms are sent. | [optional] 
 **children** | **int** | Number of children for the room. Mandatory if rooms are sent. | [optional] 
 **rate_id** | **str** | Rate ID for the room. Optional. | [optional] 
-**adjust_price** | **bool** | Whether to adjust pricing when changing room types. If false, preserves existing rates. Default is true. | [optional] [default to True]
+**adjust_price** | **bool** | Whether to re-price the room after the change (default true). When false, the existing price is preserved for ANY modification of the room (room-type change, guest-count change, or a same-length or shortened stay), not only room-type changes. Because the price is held as-is, increasing the guest count keeps the existing price and is NOT charged the extra-guest amount (per-guest taxes and fees may still recalculate for the new occupancy). A modification that has no existing rate to preserve - extending the stay, or shifting it onto dates the reservation did not previously cover - cannot be honored and is rejected. | [optional] [default to True]
 
 ## Example
 

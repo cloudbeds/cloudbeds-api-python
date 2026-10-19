@@ -345,6 +345,7 @@ class HousekeepingApi:
     def get_housekeeping_status_get(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.")] = None,
         room_type_ids: Annotated[Optional[StrictStr], Field(description="Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         housekeeper_ids: Annotated[Optional[StrictStr], Field(description="Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.")] = None,
         room_condition: Annotated[Optional[StrictStr], Field(description="Condition of room")] = None,
@@ -370,6 +371,8 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
+        :param room_ids: Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.
+        :type room_ids: str
         :param room_type_ids: Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89
         :type room_type_ids: str
         :param housekeeper_ids: Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.
@@ -406,6 +409,7 @@ class HousekeepingApi:
 
         _param = self._get_housekeeping_status_get_serialize(
             property_id=property_id,
+            room_ids=room_ids,
             room_type_ids=room_type_ids,
             housekeeper_ids=housekeeper_ids,
             room_condition=room_condition,
@@ -436,6 +440,7 @@ class HousekeepingApi:
     def get_housekeeping_status_get_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.")] = None,
         room_type_ids: Annotated[Optional[StrictStr], Field(description="Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         housekeeper_ids: Annotated[Optional[StrictStr], Field(description="Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.")] = None,
         room_condition: Annotated[Optional[StrictStr], Field(description="Condition of room")] = None,
@@ -461,6 +466,8 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
+        :param room_ids: Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.
+        :type room_ids: str
         :param room_type_ids: Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89
         :type room_type_ids: str
         :param housekeeper_ids: Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.
@@ -497,6 +504,7 @@ class HousekeepingApi:
 
         _param = self._get_housekeeping_status_get_serialize(
             property_id=property_id,
+            room_ids=room_ids,
             room_type_ids=room_type_ids,
             housekeeper_ids=housekeeper_ids,
             room_condition=room_condition,
@@ -527,6 +535,7 @@ class HousekeepingApi:
     def get_housekeeping_status_get_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.")] = None,
         room_type_ids: Annotated[Optional[StrictStr], Field(description="Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89")] = None,
         housekeeper_ids: Annotated[Optional[StrictStr], Field(description="Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.")] = None,
         room_condition: Annotated[Optional[StrictStr], Field(description="Condition of room")] = None,
@@ -552,6 +561,8 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
+        :param room_ids: Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no result. An empty value applies no room filter, so every room of the property is returned.
+        :type room_ids: str
         :param room_type_ids: Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89
         :type room_type_ids: str
         :param housekeeper_ids: Use this parameter to filter by housekeeper. If you need to specify multiple housekeepers, send their IDs as a comma-separated list (e.g., 37, 345, 89). To retrieve unassigned housekeepers, use the value 0.
@@ -588,6 +599,7 @@ class HousekeepingApi:
 
         _param = self._get_housekeeping_status_get_serialize(
             property_id=property_id,
+            room_ids=room_ids,
             room_type_ids=room_type_ids,
             housekeeper_ids=housekeeper_ids,
             room_condition=room_condition,
@@ -613,6 +625,7 @@ class HousekeepingApi:
     def _get_housekeeping_status_get_serialize(
         self,
         property_id,
+        room_ids,
         room_type_ids,
         housekeeper_ids,
         room_condition,
@@ -644,6 +657,10 @@ class HousekeepingApi:
         if property_id is not None:
             
             _query_params.append(('propertyID', property_id))
+            
+        if room_ids is not None:
+            
+            _query_params.append(('roomIDs', room_ids))
             
         if room_type_ids is not None:
             
@@ -1001,7 +1018,7 @@ class HousekeepingApi:
     def post_housekeeping_assignment_post(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 37,345,89")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 101-0,101-3")] = None,
         housekeeper_id: Annotated[Optional[StrictStr], Field(description="Housekeeper ID. To designate a room as unassigned, simply set the value to 0.")] = None,
         _request_timeout: Union[
             None,
@@ -1022,7 +1039,7 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_ids: List of room IDs comma-separated, i.e. 37,345,89
+        :param room_ids: List of room IDs comma-separated, i.e. 101-0,101-3
         :type room_ids: str
         :param housekeeper_id: Housekeeper ID. To designate a room as unassigned, simply set the value to 0.
         :type housekeeper_id: str
@@ -1076,7 +1093,7 @@ class HousekeepingApi:
     def post_housekeeping_assignment_post_with_http_info(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 37,345,89")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 101-0,101-3")] = None,
         housekeeper_id: Annotated[Optional[StrictStr], Field(description="Housekeeper ID. To designate a room as unassigned, simply set the value to 0.")] = None,
         _request_timeout: Union[
             None,
@@ -1097,7 +1114,7 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_ids: List of room IDs comma-separated, i.e. 37,345,89
+        :param room_ids: List of room IDs comma-separated, i.e. 101-0,101-3
         :type room_ids: str
         :param housekeeper_id: Housekeeper ID. To designate a room as unassigned, simply set the value to 0.
         :type housekeeper_id: str
@@ -1151,7 +1168,7 @@ class HousekeepingApi:
     def post_housekeeping_assignment_post_without_preload_content(
         self,
         property_id: Annotated[Optional[StrictStr], Field(description="Property ID")] = None,
-        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 37,345,89")] = None,
+        room_ids: Annotated[Optional[StrictStr], Field(description="List of room IDs comma-separated, i.e. 101-0,101-3")] = None,
         housekeeper_id: Annotated[Optional[StrictStr], Field(description="Housekeeper ID. To designate a room as unassigned, simply set the value to 0.")] = None,
         _request_timeout: Union[
             None,
@@ -1172,7 +1189,7 @@ class HousekeepingApi:
 
         :param property_id: Property ID
         :type property_id: str
-        :param room_ids: List of room IDs comma-separated, i.e. 37,345,89
+        :param room_ids: List of room IDs comma-separated, i.e. 101-0,101-3
         :type room_ids: str
         :param housekeeper_id: Housekeeper ID. To designate a room as unassigned, simply set the value to 0.
         :type housekeeper_id: str

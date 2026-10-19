@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **get_group_notes_get**
-> GetGroupNotesResponse get_group_notes_get(property_id, group_code, page_size, page_number)
+> GetGroupNotesResponse get_group_notes_get(property_id, event_code, page_size, page_number)
 
 getGroupNotes
 
@@ -53,13 +53,13 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.GroupsApi(api_client)
     property_id = 'property_id_example' # str | Property ID
-    group_code = 'group_code_example' # str | Group code
+    event_code = 'event_code_example' # str | Event (group) code
     page_size = 56 # int | Number of groups notes to return per page (min: 1, max: 100)
     page_number = 56 # int | Which page in the results to access
 
     try:
         # getGroupNotes
-        api_response = api_instance.get_group_notes_get(property_id, group_code, page_size, page_number)
+        api_response = api_instance.get_group_notes_get(property_id, event_code, page_size, page_number)
         print("The response of GroupsApi->get_group_notes_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -74,7 +74,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | 
- **group_code** | **str**| Group code | 
+ **event_code** | **str**| Event (group) code | 
  **page_size** | **int**| Number of groups notes to return per page (min: 1, max: 100) | 
  **page_number** | **int**| Which page in the results to access | 
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_groups_get**
-> GetGroupsResponse get_groups_get(property_id, group_code=group_code, group_profile_id=group_profile_id, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
+> GetGroupsResponse get_groups_get(property_id, event_code=event_code, event_profile_id=event_profile_id, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
 
 getGroups
 
@@ -141,8 +141,8 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.GroupsApi(api_client)
     property_id = 'property_id_example' # str | Property ID
-    group_code = 'group_code_example' # str | Unique ID for a group (optional)
-    group_profile_id = 'group_profile_id_example' # str | GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile. (optional)
+    event_code = 'event_code_example' # str | Unique code for an event (group) (optional)
+    event_profile_id = 'event_profile_id_example' # str | GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile. (optional)
     type = 'type_example' # str | The type of group (optional)
     status = 'status_example' # str | Group status (optional)
     created_from = '2013-10-20T19:20:30+01:00' # datetime | Datetime (lower limit) to be queried (optional)
@@ -152,7 +152,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # getGroups
-        api_response = api_instance.get_groups_get(property_id, group_code=group_code, group_profile_id=group_profile_id, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
+        api_response = api_instance.get_groups_get(property_id, event_code=event_code, event_profile_id=event_profile_id, type=type, status=status, created_from=created_from, created_to=created_to, page_size=page_size, page_number=page_number)
         print("The response of GroupsApi->get_groups_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -167,8 +167,8 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | 
- **group_code** | **str**| Unique ID for a group | [optional] 
- **group_profile_id** | **str**| GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile. | [optional] 
+ **event_code** | **str**| Unique code for an event (group) | [optional] 
+ **event_profile_id** | **str**| GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile. | [optional] 
  **type** | **str**| The type of group | [optional] 
  **status** | **str**| Group status | [optional] 
  **created_from** | **datetime**| Datetime (lower limit) to be queried | [optional] 
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_group_post**
-> PostPatchGroupResponse patch_group_post(group_code=group_code, property_id=property_id, name=name, type=type, status=status, source_id=source_id, address1=address1, address2=address2, city=city, zip=zip, state=state)
+> PostPatchGroupResponse patch_group_post(event_code=event_code, property_id=property_id, name=name, type=type, status=status, source_id=source_id, address1=address1, address2=address2, city=city, zip=zip, state=state)
 
 patchGroup
 
@@ -238,7 +238,7 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.GroupsApi(api_client)
-    group_code = 'group_code_example' # str | code for a group (optional)
+    event_code = 'event_code_example' # str | code for an event (group) (optional)
     property_id = 'property_id_example' # str | Property ID (optional)
     name = 'name_example' # str | Name for a group (optional)
     type = 'type_example' # str | The type of group (optional)
@@ -252,7 +252,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
     try:
         # patchGroup
-        api_response = api_instance.patch_group_post(group_code=group_code, property_id=property_id, name=name, type=type, status=status, source_id=source_id, address1=address1, address2=address2, city=city, zip=zip, state=state)
+        api_response = api_instance.patch_group_post(event_code=event_code, property_id=property_id, name=name, type=type, status=status, source_id=source_id, address1=address1, address2=address2, city=city, zip=zip, state=state)
         print("The response of GroupsApi->patch_group_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -266,7 +266,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_code** | **str**| code for a group | [optional] 
+ **event_code** | **str**| code for an event (group) | [optional] 
  **property_id** | **str**| Property ID | [optional] 
  **name** | **str**| Name for a group | [optional] 
  **type** | **str**| The type of group | [optional] 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_group_note_post**
-> PostGroupNoteResponse post_group_note_post(property_id=property_id, group_code=group_code, group_note=group_note)
+> PostGroupNoteResponse post_group_note_post(property_id=property_id, event_code=event_code, group_note=group_note)
 
 postGroupNote
 
@@ -341,12 +341,12 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cloudbeds_pms_v1_3.GroupsApi(api_client)
     property_id = 'property_id_example' # str | Property ID (optional)
-    group_code = 'group_code_example' # str | Group code (optional)
+    event_code = 'event_code_example' # str | Event (group) code (optional)
     group_note = 'group_note_example' # str | Group note (optional)
 
     try:
         # postGroupNote
-        api_response = api_instance.post_group_note_post(property_id=property_id, group_code=group_code, group_note=group_note)
+        api_response = api_instance.post_group_note_post(property_id=property_id, event_code=event_code, group_note=group_note)
         print("The response of GroupsApi->post_group_note_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -361,7 +361,7 @@ with cloudbeds_pms_v1_3.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **property_id** | **str**| Property ID | [optional] 
- **group_code** | **str**| Group code | [optional] 
+ **event_code** | **str**| Event (group) code | [optional] 
  **group_note** | **str**| Group note | [optional] 
 
 ### Return type

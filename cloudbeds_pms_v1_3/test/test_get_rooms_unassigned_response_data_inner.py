@@ -43,6 +43,8 @@ class TestGetRoomsUnassignedResponseDataInner(unittest.TestCase):
                         dorm_room_name = '', 
                         room_description = '', 
                         max_guests = 56, 
+                        max_adults = 56, 
+                        max_children = 56, 
                         is_private = True, 
                         is_virtual = True, 
                         room_blocked = True, 
